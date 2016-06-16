@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>drugorders</id>
+	<name>drugorders</name>
+	<version>1.0-SNAPSHOT</version>
+	<package>org.openmrs.module.drugorders</package>
+	<author>harini</author>
+	<description>
+		helps to place drug orders
+	</description>
+	<updateURL>https://modules.openmrs.org/modules/download/drugorders/update.rdf</updateURL>
+	<require_version>1.9.7</require_version>
+	<!-- / Module Properties -->
+
+	<require_modules>
+		<require_module version="3.2">
+			org.openmrs.module.uiframework
+		</require_module>
+                
+                <require_module version="1.3">
+			org.openmrs.module.allergyapi
+		</require_module>
+	</require_modules>
+
+	
+	<!-- Module Activator -->
+	<activator>org.openmrs.module.drugorders.drugordersActivator</activator>
+	
+	
+	<!-- Adds link to admin page -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>org.openmrs.module.drugorders.extension.html.AdminList</class>
+	</extension>
+	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+
+            drugorders.hbm.xml
+				
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with drugorders. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+

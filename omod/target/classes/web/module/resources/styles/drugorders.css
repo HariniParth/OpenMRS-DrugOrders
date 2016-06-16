@@ -1,0 +1,53 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 15, 2016, 1:02:07 PM
+    Author     : harini-geek
+*/
+
+.info-body #individualOrderWindow{
+    width: 58%;
+    float: left;
+    background: #F9F9F9;
+}
+
+#singleOrderWindow{
+    width: 40%;
+    border: 1px solid black;
+    float: right;
+    background: #F9F9F9;
+}
+
+#singleOrderDetailsWindow{
+    width: 40%;
+    border: 1px solid black;
+    float: right;
+    background: #F9F9F9;
+}
+
+.info-body #addSingleOrderWindow{
+    background: #F9F9F9;
+}
+
+.info-body #individualOrderBody{
+    width: 100%;
+    background: #F9F9F9;
+    border: 1px solid #eee;
+    padding: 5px;
+    color: #363463;
+}
+
+#btn-place{
+    margin: 10px;
+}
+
+#text_heading{
+    text-align: center;
+}
+
+#fields{
+    margin: 10px;
+}

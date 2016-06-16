@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.drugorders">
+
+
+	<class name="drugorders"
+		table="drugorders">
+		<id name="id" type="int" column="id" unsaved-value="0">
+			<generator class="native" />
+		</id>
+		<discriminator column="id" insert="false" />
+		<property name="uuid" type="java.lang.String" column="uuid"
+			length="38" unique="true" />
+            <!--<property name="drugname" type="java.lang.String" column="drugname" ></property> 
+                 <property name="startdate" type="java.util.Date" column="startdate" ></property> 
+                <property name="dose" column="dose" not-null="true" ></property> 
+                <property name="quantity" column="quantity" not-null="true" ></property> 
+                <property name="duration" column="duration" not-null="true" ></property> 
+                <property name="associateddiagnosis" type="java.lang.String" column="associateddiagnosis"
+			length="255" unique="true" />
+                <property name="patientinstructions" type="java.lang.String" column="patientinstructions"
+			length="255" unique="true" />
+                <property name="pharmacistinstructions" type="java.lang.String" column="pharmacistinstructions"
+			length="255" unique="true" /> -->
+	</class>
+
+
+</hibernate-mapping>

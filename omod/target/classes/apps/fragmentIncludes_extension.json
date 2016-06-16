@@ -1,0 +1,10 @@
+[
+    {
+        "id": "org.openmrs.module.drugorders.patientDashboard.secondColumnFragments",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+            "provider": "drugorders",
+            "fragment": "drugorders"
+        }
+    }
+]

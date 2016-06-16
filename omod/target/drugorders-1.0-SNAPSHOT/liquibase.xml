@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <!--
+        See http://www.liquibase.org/manual/home#available_database_refactorings
+        for a list of supported elements and attributes
+    -->
+    
+    <changeSet id="harini_table_1" author="harini">
+        <sql>
+            drop table if exists drugorders;
+        </sql>
+    </changeSet>
+
+    <changeSet author="harini" id="harini_table_2">
+        <preConditions onFail="WARN" onError="WARN">
+            <not>
+                <tableExists tableName="drugorders" />
+            </not>
+        </preConditions>
+        <createTable tableName="drugorders">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="varchar(255)"></column>
+        <!--    <column name="drugname" type="varchar(255)"></column>
+            <column name="startdate" type="datetime"></column>
+            <column name="dose" type="int"></column>
+            <column name="quantity" type="int"></column>
+            <column name="duration" type="int"></column>            
+            <column name="associateddiagnosis" type="varchar(255)"></column>
+            <column name="patientinstructions" type="varchar(255)"></column>
+            <column name="pharmacistinstructions" type="varchar(255)"></column> -->
+            
+        </createTable>
+    </changeSet>
+       
+</databaseChangeLog>
