@@ -2,17 +2,19 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
+<form method="post" id="drug">
 <div id="singleOrderWindow">
     <div class="dialog-header">
         <h3 id="text_heading">${ ui.message("Create Individual Drug Order") }</h3>
     </div>
     <div class="addSingleOrderWindow">
-        <div id="fields"><label>Drug name </label><input type="text" id="drugName" /></div>
+        <div id="fields"><label>Drug name </label><textarea id="drugName" maxlength="255" name="drugname">${drugorders.drugname != null ? drugorders.drugname : ""}</textarea></div>
         <div id="fields">${ ui.includeFragment("uicommons", "field/datetimepicker", [ label: 'Start Date ', formFieldName: '', useTime: '']) }</div>
         <button class="confirm right" id="btn-place" type="submit" onclick="showIndividualOrderDetailsWindow()">${ ui.message("Next") }</button>
         <button class="cancel" id="btn-place" onclick="hideIndividualDrugOrderWindow()">${ ui.message("Cancel") }</button>
     </div>
 </div>
+</form>
 
 <div id="singleOrderDetailsWindow">
     

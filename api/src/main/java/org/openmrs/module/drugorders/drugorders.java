@@ -56,7 +56,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.Uuid = Uuid;
 	}
         
-        /*
+        
         public String getDrugname() {
 		return drugname;
 	}
@@ -65,16 +65,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.drugname = drugname;
 	}
         
-        
-        
-        public Date getStartDate() {
+        public Date getStartdate() {
             return startdate;
         }
 
-        public void setStartDate(Date startDate) {
-            this.startdate = startDate;
+        public void setStartdate(Date startdate) {
+            this.startdate = startdate;
         }
-   
+
         public Integer getDose() {
 		return dose;
 	}
@@ -99,28 +97,28 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.quantity = quantity;
 	}
         
-        public String getAssociatedDiagnosis() {
+        public String getAssociateddiagnosis() {
 		return associateddiagnosis;
 	}
 
-	public void setAssociatedDiagnosis(String associatedDiagnosis) {
-		this.associateddiagnosis = associatedDiagnosis;
+	public void setAssociateddiagnosis(String associateddiagnosis) {
+		this.associateddiagnosis = associateddiagnosis;
 	}
         
-        public String getPatientInstructions() {
+        public String getPatientinstructions() {
 		return patientinstructions;
 	}
 
-	public void setPatientInstructions(String patientInstructions) {
-		this.patientinstructions = patientInstructions;
+	public void setPatientinstructions(String patientinstructions) {
+		this.patientinstructions = patientinstructions;
 	}
         
-        public String getPharmacistInstructions() {
+        public String getPharmacistinstructions() {
 		return pharmacistinstructions;
 	}
 
-	public void setPharmacistInstructions(String pharmacistInstructions) {
-		this.pharmacistinstructions = pharmacistInstructions;
-	} */
+	public void setPharmacistinstructions(String pharmacistinstructions) {
+		this.pharmacistinstructions = pharmacistinstructions;
+	} 
 	
 }

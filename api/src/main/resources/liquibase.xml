@@ -26,14 +26,14 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="uuid" type="varchar(255)"></column>
-        <!--    <column name="drugname" type="varchar(255)"></column>
+            <column name="drugname" type="varchar(255)"></column>
             <column name="startdate" type="datetime"></column>
             <column name="dose" type="int"></column>
             <column name="quantity" type="int"></column>
             <column name="duration" type="int"></column>            
             <column name="associateddiagnosis" type="varchar(255)"></column>
             <column name="patientinstructions" type="varchar(255)"></column>
-            <column name="pharmacistinstructions" type="varchar(255)"></column> -->
+            <column name="pharmacistinstructions" type="varchar(255)"></column> 
             
         </createTable>
     </changeSet>
