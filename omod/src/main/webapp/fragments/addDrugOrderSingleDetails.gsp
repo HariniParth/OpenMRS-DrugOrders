@@ -3,7 +3,7 @@
 %>
 
 <div id="singleOrderDetailsWindow">
-    
+        
     <div class="fields"><label>Drug name </label>
         <input type="text" id="drugNameEntered" value="${drugname}"/>
     </div>
@@ -45,6 +45,9 @@
     <div class="fields"><label>Duration units </label>
         <select id="durationUnits">
             <option value="">Choose option</option>
+            <% durations.each { duration -> %>
+                <option value="">${ duration.getDisplayString() }</option>
+            <% } %>
         </select>
     </div>
     
