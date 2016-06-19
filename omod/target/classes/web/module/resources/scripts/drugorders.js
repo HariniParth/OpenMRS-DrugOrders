@@ -6,7 +6,6 @@
 
 $(document).ready( function() {
     jq("#singleOrderWindow").hide();
-    jq("#singleOrderDetailsWindow").hide();
 });
 
 function showIndividualDrugOrderWindow(){
@@ -15,7 +14,6 @@ function showIndividualDrugOrderWindow(){
 
 function hideIndividualDrugOrderWindow(){
     jq("#singleOrderWindow").hide();
-    $('#drugName').val("");
 }
 
 function showIndividualOrderDetailsWindow(){
@@ -25,5 +23,4 @@ function showIndividualOrderDetailsWindow(){
 
 function hideIndividualOrderDetailsWindow(){
     jq("#singleOrderDetailsWindow").hide();
-    $('#drugNameEntered').val("");
 }

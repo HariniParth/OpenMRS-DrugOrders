@@ -1,3 +1,6 @@
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/extension/html/AdminList.java
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/web/controller/drugordersManageController.java
+/home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/fragment/controller/AddDrugOrderSingleDetailsFragmentController.java
+/home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/fragment/controller/AddDrugOrderSingleFragmentController.java
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/page/controller/DrugordersPageController.java
+/home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/page/controller/OrderAndDrugOrder.java

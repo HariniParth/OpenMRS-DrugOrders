@@ -26,14 +26,26 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="uuid" type="varchar(255)"></column>
+            <column name="patientid" type="varchar(50)"></column>
             <column name="drugname" type="varchar(255)"></column>
             <column name="startdate" type="datetime"></column>
             <column name="dose" type="int"></column>
+            <column name="doseunits" type="varchar(50)"></column>
+            <column name="route" type="varchar(50)"></column>
             <column name="quantity" type="int"></column>
-            <column name="duration" type="int"></column>            
+            <column name="quantityunits" type="varchar(50)"></column>
+            <column name="duration" type="int"></column>
+            <column name="durationunits" type="varchar(50)"></column>
+            <column name="isallergic" type="tinyint(1)"></column>
+            <column name="isallergicorderreasons" type="varchar(255)"></column>          
             <column name="associateddiagnosis" type="varchar(255)"></column>
             <column name="patientinstructions" type="varchar(255)"></column>
             <column name="pharmacistinstructions" type="varchar(255)"></column> 
+            <column name="orderstatus" type="varchar(50)"></column>
+            <column name="discontinued" type="tinyint(1)"></column>
+            <column name="discontinuereason" type="varchar(50)"></column>
+            <column name="discontinuationreasons" type="varchar(255)"></column>
+            <column name="approvalrequired" type="tinyint(1)"></column>
             
         </createTable>
     </changeSet>

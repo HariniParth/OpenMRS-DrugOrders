@@ -23,14 +23,26 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	
 	private Integer id;
         private String Uuid;
+        private String patientid;
         private Date startdate;
         private String drugname;
         private Integer dose;
+        private String doseunits;
+        private String route;
         private Integer duration;
+        private String durationunits;
         private Integer quantity;
+        private String quantityunits;
+        private Integer isallergic;
+        private String isallergicorderreasons;
         private String associateddiagnosis;
         private String patientinstructions;
         private String pharmacistinstructions;
+        private String orderstatus;
+        private Integer discontinued;
+        private String discontinuereason;
+        private String discontinuationreasons;
+        private Integer approvalrequired;
 	
         public drugorders(){
             
@@ -56,6 +68,13 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.Uuid = Uuid;
 	}
         
+        public String getPatientid() {
+		return patientid;
+	}
+
+	public void setPatientid(String patientid) {
+		this.patientid = patientid;
+	}
         
         public String getDrugname() {
 		return drugname;
@@ -81,6 +100,22 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.dose = dose;
 	}
         
+        public String getDoseunits() {
+		return doseunits;
+	}
+
+	public void setDoseunits(String doseunits) {
+		this.doseunits = doseunits;
+	}
+        
+        public String getRoute() {
+		return route;
+	}
+
+	public void setRoute(String drugname) {
+		this.route = route;
+	}
+        
         public Integer getDuration() {
 		return duration;
 	}
@@ -89,12 +124,44 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.duration = duration;
 	}
         
+        public String getDurationunits() {
+		return durationunits;
+	}
+
+	public void setDurationunits(String durationunits) {
+		this.durationunits = durationunits;
+	}
+        
         public Integer getQuantity() {
 		return quantity;
 	}
 	
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+        
+        public String getQuantityunits() {
+		return quantityunits;
+	}
+
+	public void setQuantityunits(String patientid) {
+		this.quantityunits = quantityunits;
+	}
+          
+        public Integer getIsallergic() {
+		return isallergic;
+	}
+	
+	public void setIsallergic(Integer isallergic) {
+		this.isallergic = isallergic;
+	}
+        
+        public String getIsallergicorderreasons() {
+		return isallergicorderreasons;
+	}
+
+	public void setIsallergicorderreasons(String isallergicorderreasons) {
+		this.isallergicorderreasons = isallergicorderreasons;
 	}
         
         public String getAssociateddiagnosis() {
@@ -120,5 +187,45 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	public void setPharmacistinstructions(String pharmacistinstructions) {
 		this.pharmacistinstructions = pharmacistinstructions;
 	} 
+        
+        public String getOrderstatus() {
+		return orderstatus;
+	}
+
+	public void setOrderstatus(String orderstatus) {
+		this.orderstatus = orderstatus;
+	}
+        
+        public Integer getDiscontinued() {
+		return discontinued;
+	}
+	
+	public void setDiscontinued(Integer discontinued) {
+		this.discontinued = discontinued;
+	}
+        
+        public String getDiscontinuereason() {
+		return discontinuereason;
+	}
+
+	public void setDiscontinuereason(String discontinuereason) {
+		this.discontinuereason = discontinuereason;
+	}
+        
+        public String getDiscontinuationreasons() {
+		return discontinuationreasons;
+	}
+
+	public void setDiscontinuationreasons(String discontinuationreasons) {
+		this.discontinuationreasons = discontinuationreasons;
+	}
+        
+        public Integer getApprovalrequired() {
+		return approvalrequired;
+	}
+	
+	public void setApprovalrequired(Integer approvalrequired) {
+		this.approvalrequired = approvalrequired;
+	}
 	
 }

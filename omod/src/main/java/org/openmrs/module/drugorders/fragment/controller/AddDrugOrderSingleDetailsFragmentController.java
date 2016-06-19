@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-
-public class AddDrugOrderSingleFragmentController {
+public class AddDrugOrderSingleDetailsFragmentController {
     
     /**
      *
@@ -27,8 +26,12 @@ public class AddDrugOrderSingleFragmentController {
      */
     public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
             @RequestParam("patientId") Patient patient){
-
+        
         model.addAttribute("drugname", drugname);
         model.addAttribute("patientid", patient.getPatientId());
+        drugorders drugorders = new drugorders();
+        drugorders.setDrugname(drugname);
+        drugorders.setPatientid(Integer.toString(patient.getPatientId()));
+        Context.getService(drugordersService.class).saveNewTable(drugorders);
     }
 }

@@ -19,6 +19,7 @@ and open the template in the editor.
     border: 1px solid black;
     float: right;
     background: #F9F9F9;
+    display: none;
 }
 
 #singleOrderDetailsWindow{
@@ -48,6 +49,6 @@ and open the template in the editor.
     text-align: center;
 }
 
-#fields{
+.fields{
     margin: 10px;
 }
