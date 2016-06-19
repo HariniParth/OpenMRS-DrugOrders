@@ -18,7 +18,6 @@ function hideIndividualDrugOrderWindow(){
 
 function showIndividualOrderDetailsWindow(){
     jq("#singleOrderWindow").hide();
-    jq("#singleOrderDetailsWindow").show();
 }
 
 function hideIndividualOrderDetailsWindow(){

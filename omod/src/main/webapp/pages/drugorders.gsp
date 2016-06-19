@@ -44,7 +44,7 @@
             ${ ui.includeFragment("drugorders", "addDrugOrderSingle") }
         </div>
         
-        <div id="singleOrderDetailsWindow">
+        <div id="addSingleOrderDetailsWindow">
             <% if(drugname != "") { %>
                 ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
             <% } %>

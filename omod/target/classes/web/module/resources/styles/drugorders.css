@@ -16,7 +16,6 @@ and open the template in the editor.
 
 #singleOrderWindow{
     width: 40%;
-    border: 1px solid black;
     float: right;
     background: #F9F9F9;
     display: none;
@@ -24,7 +23,6 @@ and open the template in the editor.
 
 #singleOrderDetailsWindow{
     width: 40%;
-    border: 1px solid black;
     float: right;
     background: #F9F9F9;
 }

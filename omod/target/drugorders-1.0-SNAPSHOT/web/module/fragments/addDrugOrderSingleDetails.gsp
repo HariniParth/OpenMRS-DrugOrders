@@ -2,7 +2,7 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
-<div id="singleOrderDetailWindow">
+<div id="singleOrderDetailsWindow">
     
     <div class="fields"><label>Drug name </label>
         <input type="text" id="drugNameEntered" value="${drugname}"/>

@@ -44,12 +44,10 @@
             ${ ui.includeFragment("drugorders", "addDrugOrderSingle") }
         </div>
         
-        <div id="singleOrderDetailsWindow">
-        <% if(drugname != "") { %>
-        
-            ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
-        
-        <% } %>
+        <div id="addSingleOrderDetailsWindow">
+            <% if(drugname != "") { %>
+                ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
+            <% } %>
         </div>
         
     </div>
