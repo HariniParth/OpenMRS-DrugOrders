@@ -5,10 +5,18 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.openmrs.Concept;
+import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,5 +41,17 @@ public class AddDrugOrderSingleDetailsFragmentController {
         drugorders.setDrugname(drugname);
         drugorders.setPatientid(Integer.toString(patient.getPatientId()));
         Context.getService(drugordersService.class).saveNewTable(drugorders);
+        
+        List<Concept> allConcepts = new ArrayList<Concept>();
+        List<Concept> durations = new ArrayList<Concept>();
+        Concept con = Context.getConceptService().getConcept(1732);
+        for(ConceptSet durationConcepts : con.getConceptSets()){
+            Concept durationMember = durationConcepts.getConcept();
+            durations.add(durationMember);
+            System.out.print(durationMember);
+        }
+        allConcepts.add(con);
+        model.addAttribute("durationOptions", allConcepts);
+        model.addAttribute("durations", durations);
     }
 }

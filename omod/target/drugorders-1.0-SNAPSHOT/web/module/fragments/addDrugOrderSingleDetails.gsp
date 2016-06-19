@@ -4,6 +4,10 @@
 
 <div id="singleOrderDetailsWindow">
     
+    <% durations.each { duration -> %>
+            ${ duration.getDisplayString() }
+        <% } %>
+    
     <div class="fields"><label>Drug name </label>
         <input type="text" id="drugNameEntered" value="${drugname}"/>
     </div>
