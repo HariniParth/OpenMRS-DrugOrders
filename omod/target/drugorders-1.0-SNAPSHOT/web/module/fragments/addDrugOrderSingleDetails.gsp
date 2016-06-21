@@ -3,6 +3,7 @@
 %>
 
 <div id="singleOrderDetailsWindow">
+    
     <form method="post">
                     
         <div class="fields"><label>Drug name </label>
@@ -10,7 +11,7 @@
         </div>
 
         <div class="fields">
-            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: 'Start Date ', formFieldName: '', useTime: '']) }
+            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: 'Start Date ', formFieldName: '', useTime: '', defaultDate: startDate]) }
         </div>
 
         <div class="fields"><label>Route </label>
