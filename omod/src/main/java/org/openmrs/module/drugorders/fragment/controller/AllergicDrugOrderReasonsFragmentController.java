@@ -13,19 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-
-public class AddDrugOrderSingleFragmentController {
+public class AllergicDrugOrderReasonsFragmentController {
     
-    /**
-     *
-     * @param model
-     * @param drugname
-     * @param patient
-     */
-    public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
+    public void controller(PageModel model, @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
+            @RequestParam(value = "drugname", required = false) String drugname,
             @RequestParam("patientId") Patient patient){
 
         model.addAttribute("drugname", drugname);
+        model.addAttribute("allergicOrderReason", allergicOrderReason);
         model.addAttribute("patientid", patient.getPatientId());
     }
+    
 }

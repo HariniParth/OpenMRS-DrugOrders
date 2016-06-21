@@ -3,4 +3,5 @@
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/fragment/controller/AddDrugOrderSingleDetailsFragmentController.java
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/fragment/controller/AddDrugOrderSingleFragmentController.java
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/page/controller/DrugordersPageController.java
+/home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/fragment/controller/AllergicDrugOrderReasonsFragmentController.java
 /home/harini-geek/drugorders/omod/src/main/java/org/openmrs/module/drugorders/page/controller/OrderAndDrugOrder.java

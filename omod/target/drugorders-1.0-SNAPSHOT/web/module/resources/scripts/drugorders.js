@@ -16,8 +16,18 @@ function hideIndividualDrugOrderWindow(){
     jq("#singleOrderWindow").hide();
 }
 
+function showAllergicDrugOrderDetailsWindow(){
+    jq("#allergicOrderWindow").hide();
+}
+
+function hideAllergicDrugOrderWindow(){
+    jq("#allergicOrderWindow").hide();
+    jq("#singleOrderWindow").show();
+}
+
 function showIndividualOrderDetailsWindow(){
     jq("#singleOrderWindow").hide();
+    jq("#allergicOrderWindow").hide();
 }
 
 function hideIndividualOrderDetailsWindow(){

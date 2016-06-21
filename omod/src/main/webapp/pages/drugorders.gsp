@@ -2,6 +2,7 @@
     ui.decorateWith("appui", "standardEmrPage");
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "drugorders.js")
+    def isAllergic = false;
 %>
         
 <script type="text/javascript">
@@ -26,7 +27,7 @@
         <% } %>
     <% } %>
     
-    
+
 
     <div id="individualOrderBody">
         <span id="individualOrderBody"></span>
@@ -46,8 +47,23 @@
         
         <div id="addSingleOrderDetailsWindow">
             <% if(drugname != "") { %>
-                ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
+                <% allergies.each { allergy -> %>
+                    <% if(drugname == "${allergy.allergen}") { %>
+                        <% isAllergic = true; %>
+                    <% } %>
+                <% } %>
+                <% if(isAllergic && allergicOrderReason == "") { %>
+                    ${ ui.includeFragment("drugorders", "allergicDrugOrderReasons") }
+                    
+                    <% if(allergicOrderReason != "") { %>
+                        ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
+                    <% } %>
+            
+                <% } else { %>
+                    ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
+                <% } %>
             <% } %>
+
         </div>
         
     </div>

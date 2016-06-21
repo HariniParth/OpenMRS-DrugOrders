@@ -21,6 +21,12 @@ and open the template in the editor.
     display: none;
 }
 
+#allergicOrderWindow{
+    width: 40%;
+    float: right;
+    background: #F9F9F9;
+}
+
 #singleOrderDetailsWindow{
     width: 40%;
     float: right;
