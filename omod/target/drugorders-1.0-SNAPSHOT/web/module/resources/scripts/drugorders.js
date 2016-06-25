@@ -32,4 +32,5 @@ function showIndividualOrderDetailsWindow(){
 
 function hideIndividualOrderDetailsWindow(){
     jq("#singleOrderDetailsWindow").hide();
+    $("#drugNameEntered").val("");
 }

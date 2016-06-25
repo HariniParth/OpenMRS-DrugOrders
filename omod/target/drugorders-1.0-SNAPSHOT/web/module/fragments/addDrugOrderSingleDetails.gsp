@@ -7,11 +7,11 @@
     <form method="post">
                     
         <div class="fields"><label>Drug name </label>
-            <input type="text" id="drugNameEntered" value="${drugname}"/>
+            <input type="text" id="drugNameEntered" value="${drugname}" name="drugNameEntered" />
         </div>
 
         <div class="fields">
-            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: 'Start Date ', formFieldName: '', useTime: '', defaultDate: startDate]) }
+            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: 'Start Date ', formFieldName: 'startDateConfirmed', useTime: '', defaultDate: startDate]) }
         </div>
 
         <div class="fields"><label>Route </label>

@@ -6,6 +6,7 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
@@ -36,9 +37,11 @@ public class AddDrugOrderSingleDetailsFragmentController {
     List<Concept> frequencies = new ArrayList<Concept>();
         
     public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
+            @RequestParam(value = "startDate", required = false) Date startDate,
             @RequestParam("patientId") Patient patient){
         
         model.addAttribute("drugname", drugname);
+        model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
 
         Concept con1 = Context.getConceptService().getConcept(1732);
@@ -86,10 +89,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("quantities", quantities);
         model.addAttribute("frequencies", frequencies);
         
-        drugorders drugorders = new drugorders();
-        drugorders.setDrugname(drugname);
-        drugorders.setPatientid(Integer.toString(patient.getPatientId()));
-        Context.getService(drugordersService.class).saveNewTable(drugorders);
+        
     }
     
     void addDoseMember(int conceptNumber) {
