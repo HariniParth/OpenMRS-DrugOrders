@@ -12,6 +12,7 @@
             <div class="fields">
                 <div class="fields"><label>Drug name </label>
                     <input type="text" id="drugname" name="drugname" value="${drugname}"/>
+                    <div class="fields">${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateSet', label: 'Start Date ', formFieldName: 'startDate', useTime: '', defaultDate: startDate]) }</div> 
                 </div>
             </div>
             <div class="fields">

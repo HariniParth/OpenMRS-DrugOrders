@@ -1,6 +1,6 @@
-/home/harini-geek/drugorders/api/src/main/java/org/openmrs/module/drugorders/api/impl/drugordersServiceImpl.java
-/home/harini-geek/drugorders/api/src/main/java/org/openmrs/module/drugorders/drugorders.java
-/home/harini-geek/drugorders/api/src/main/java/org/openmrs/module/drugorders/drugordersActivator.java
-/home/harini-geek/drugorders/api/src/main/java/org/openmrs/module/drugorders/api/db/drugordersDAO.java
-/home/harini-geek/drugorders/api/src/main/java/org/openmrs/module/drugorders/api/drugordersService.java
-/home/harini-geek/drugorders/api/src/main/java/org/openmrs/module/drugorders/api/db/hibernate/HibernatedrugordersDAO.java
+/home/harini-geek/drugorders/drug2/api/src/main/java/org/openmrs/module/drugorders/api/db/drugordersDAO.java
+/home/harini-geek/drugorders/drug2/api/src/main/java/org/openmrs/module/drugorders/drugordersActivator.java
+/home/harini-geek/drugorders/drug2/api/src/main/java/org/openmrs/module/drugorders/api/db/hibernate/HibernatedrugordersDAO.java
+/home/harini-geek/drugorders/drug2/api/src/main/java/org/openmrs/module/drugorders/api/impl/drugordersServiceImpl.java
+/home/harini-geek/drugorders/drug2/api/src/main/java/org/openmrs/module/drugorders/drugorders.java
+/home/harini-geek/drugorders/drug2/api/src/main/java/org/openmrs/module/drugorders/api/drugordersService.java

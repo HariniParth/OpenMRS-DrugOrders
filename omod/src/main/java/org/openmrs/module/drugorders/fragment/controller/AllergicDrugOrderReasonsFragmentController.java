@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
+import java.util.Date;
 import org.openmrs.Patient;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +18,11 @@ public class AllergicDrugOrderReasonsFragmentController {
     
     public void controller(PageModel model, @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam(value = "drugname", required = false) String drugname,
-            @RequestParam("patientId") Patient patient){
+            @RequestParam("patientId") Patient patient,
+            @RequestParam(value = "startDate", required = false) Date start){
 
         model.addAttribute("drugname", drugname);
+        model.addAttribute("startDate", start);
         model.addAttribute("allergicOrderReason", allergicOrderReason);
         model.addAttribute("patientid", patient.getPatientId());
     }
