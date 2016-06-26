@@ -11,6 +11,7 @@ package org.openmrs.module.drugorders.page.controller;
  */
 
 import java.util.Date;
+import java.util.List;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
@@ -38,6 +39,6 @@ public class DrugordersPageController {
                     drugorders.setPatientid(Integer.toString(patient.getPatientId()));
                     Context.getService(drugordersService.class).saveNewTable(drugorders);
                 }
-                
+                                
  	}
 }

@@ -41,12 +41,14 @@ public class HibernatedrugordersDAO implements drugordersDAO {
 	    return sessionFactory;
     }
     
+        @Override
     public drugorders getNewTable(Integer id) {
         return (drugorders) sessionFactory.getCurrentSession().get(drugorders.class, id);
     }
 
     ;
 
+        @Override
 	public drugorders getNewTableByUuid(String uuid) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
@@ -56,6 +58,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
 
     ;
 
+        @Override
 	public drugorders saveNewTable(drugorders newTable) {
         sessionFactory.getCurrentSession().saveOrUpdate(newTable);
         return newTable;
@@ -63,6 +66,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
 
     ;
 
+        @Override
     public List<drugorders> getNewTablesByPatient(Patient patient) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);

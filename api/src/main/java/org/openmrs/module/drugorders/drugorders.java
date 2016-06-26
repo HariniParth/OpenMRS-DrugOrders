@@ -144,7 +144,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		return quantityunits;
 	}
 
-	public void setQuantityunits(String patientid) {
+	public void setQuantityunits(String quantityunits) {
 		this.quantityunits = quantityunits;
 	}
           
