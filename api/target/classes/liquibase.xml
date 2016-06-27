@@ -25,17 +25,21 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="order_id" type="int">
+                <constraints nullable="true" foreignKeyName="order_id" references="orders(order_id)" />
+            </column>  
             <column name="uuid" type="varchar(255)"></column>
             <column name="patientid" type="varchar(50)"></column>
             <column name="drugname" type="varchar(255)"></column>
             <column name="startdate" type="datetime"></column>
             <column name="dose" type="int"></column>
-            <column name="doseunits" type="varchar(50)"></column>
-            <column name="route" type="varchar(50)"></column>
+            <column name="doseunits" type="int"></column>
+            <column name="route" type="int"></column>
             <column name="quantity" type="int"></column>
-            <column name="quantityunits" type="varchar(50)"></column>
+            <column name="quantityunits" type="int"></column>
             <column name="duration" type="int"></column>
-            <column name="durationunits" type="varchar(50)"></column>
+            <column name="durationunits" type="int"></column>
+            <column name="frequency" type="int"></column>
             <column name="isallergic" type="tinyint(1)"></column>
             <column name="isallergicorderreasons" type="varchar(255)"></column>          
             <column name="associateddiagnosis" type="varchar(255)"></column>

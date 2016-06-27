@@ -22,18 +22,20 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+        private Integer orderId;
         private String Uuid;
         private String patientid;
         private Date startdate;
         private String drugname;
         private Integer dose;
-        private String doseunits;
-        private String route;
+        private Integer doseunits;
+        private Integer route;
         private Integer duration;
-        private String durationunits;
+        private Integer durationunits;
         private Integer quantity;
-        private String quantityunits;
+        private Integer quantityunits;
         private Integer isallergic;
+        private Integer frequency;
         private String isallergicorderreasons;
         private String associateddiagnosis;
         private String patientinstructions;
@@ -58,6 +60,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.id = id;
 	}
         
+        public Integer getOrderId() {
+            return orderId;
+        }
+
+        public void setOrderId(Integer orderId) {
+            this.orderId = orderId;
+        }
+    
         @Override
 	public String getUuid() {
 		return Uuid;
@@ -100,19 +110,19 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.dose = dose;
 	}
         
-        public String getDoseunits() {
+        public Integer getDoseunits() {
 		return doseunits;
 	}
 
-	public void setDoseunits(String doseunits) {
+	public void setDoseunits(Integer doseunits) {
 		this.doseunits = doseunits;
 	}
         
-        public String getRoute() {
+        public Integer getRoute() {
 		return route;
 	}
 
-	public void setRoute(String drugname) {
+	public void setRoute(Integer route) {
 		this.route = route;
 	}
         
@@ -124,11 +134,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.duration = duration;
 	}
         
-        public String getDurationunits() {
+        public Integer getDurationunits() {
 		return durationunits;
 	}
 
-	public void setDurationunits(String durationunits) {
+	public void setDurationunits(Integer durationunits) {
 		this.durationunits = durationunits;
 	}
         
@@ -140,14 +150,22 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.quantity = quantity;
 	}
         
-        public String getQuantityunits() {
+        public Integer getQuantityunits() {
 		return quantityunits;
 	}
 
-	public void setQuantityunits(String quantityunits) {
+	public void setQuantityunits(Integer quantityunits) {
 		this.quantityunits = quantityunits;
 	}
           
+        public Integer getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(Integer frequency) {
+		this.frequency = frequency;
+	}
+        
         public Integer getIsallergic() {
 		return isallergic;
 	}

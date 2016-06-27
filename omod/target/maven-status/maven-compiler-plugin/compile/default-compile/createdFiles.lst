@@ -1,7 +1,0 @@
-org/openmrs/module/drugorders/web/controller/drugordersManageController.class
-org/openmrs/module/drugorders/page/controller/OrderAndDrugOrder.class
-org/openmrs/module/drugorders/page/controller/DrugordersPageController.class
-org/openmrs/module/drugorders/fragment/controller/AllergicDrugOrderReasonsFragmentController.class
-org/openmrs/module/drugorders/extension/html/AdminList.class
-org/openmrs/module/drugorders/fragment/controller/AddDrugOrderSingleFragmentController.class
-org/openmrs/module/drugorders/fragment/controller/AddDrugOrderSingleDetailsFragmentController.class

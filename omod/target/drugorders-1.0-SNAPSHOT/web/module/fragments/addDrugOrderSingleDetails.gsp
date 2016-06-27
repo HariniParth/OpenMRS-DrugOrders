@@ -15,72 +15,73 @@
         </div>
 
         <div class="fields"><label>Route </label>
-            <select id="drugRoute">
+            <select id="drugRoute" name="drugRoute">
                 <option value="">Choose option</option>
                 <% routes.each { route -> %>
-                    <option value="">${ route.getDisplayString() }</option>
+                    <option value="${ route.getDisplayString() }">${ route.getDisplayString() }</option>
                 <% } %>
             </select>
         </div>
-
+        
+            
         <div class="fields"><label>Dose </label>
-            <input type="text" id="drugDose" />
+            <input type="text" id="drugDose" name="drugDose"/>
         </div>
 
         <div class="fields"><label>Dose units </label>
-            <select id="drugDoseUnits">
+            <select id="drugDoseUnits" name="drugDoseUnits">
                 <option value="">Choose option</option>
                 <% doses.each { dose -> %>
-                    <option value="">${ dose.getDisplayString() }</option>
+                    <option value="${ dose.getDisplayString() }">${ dose.getDisplayString() }</option>
                 <% } %>
             </select>
         </div>
 
         <div class="fields"><label>Quantity </label>
-            <input type="text" id="drugQuantity" />
+            <input type="text" id="drugQuantity" name="drugQuantity"/>
         </div>
 
         <div class="fields"><label>Quantity units </label>
-            <select id="quantityUnits">
+            <select id="quantityUnits" name="quantityUnits">
                 <option value="">Choose option</option>
                 <% quantities.each { quantity -> %>
-                    <option value="">${ quantity.getDisplayString() }</option>
+                    <option value="${ quantity.getDisplayString() }">${ quantity.getDisplayString() }</option>
                 <% } %>
             </select>
         </div>
 
         <div class="fields"><label>Duration </label>
-            <input type="text" id="drugDuration" />
+            <input type="text" id="drugDuration" name="drugDuration"/>
         </div>
 
         <div class="fields"><label>Duration units </label>
-            <select id="durationUnits">
+            <select id="durationUnits" name="durationUnits">
                 <option value="">Choose option</option>
                 <% durations.each { duration -> %>
-                    <option value="">${ duration.getDisplayString() }</option>
+                    <option value="${ duration.getDisplayString() }">${ duration.getDisplayString() }</option>
                 <% } %>
             </select>
         </div>
 
         <div class="fields"><label>Frequency </label>
-            <select id="drugFrequency">
+            <select id="drugFrequency" name="drugFrequency">
                 <option value="">Choose option</option>
                 <% frequencies.each { frequency -> %>
-                    <option value="">${ frequency.getDisplayString() }</option>
+                    <option value="${ frequency.getDisplayString() }">${ frequency.getDisplayString() }</option>
                 <% } %>
             </select>
         </div>
 
         <div class="fields"><label>Associated Diagnosis </label>
-            <input type="textarea" maxlength="30" id="associatedDiagnosis" />
+            <input type="textarea" maxlength="30" id="associatedDiagnosis" name="associatedDiagnosis"/>
         </div>
 
         <div class="fields"><label>Patient Instructions </label>
-            <input type="textarea" maxlength="30" id="patientInstructions" />
+            <input type="textarea" maxlength="30" id="patientInstructions" name="patientInstructions"/>
         </div>
 
         <div class="fields"><label>Pharmacist Instructions </label>
-            <input type="textarea" maxlength="30" id="pharmacistInstructions" />
+            <input type="textarea" maxlength="30" id="pharmacistInstructions" name="pharmacistInstructions"/>
         </div>
 
         <button class="confirm right" id="btn-place" type="submit" onclick="showIndividualOrderDetailsWindow()">${ ui.message("Next") }</button>

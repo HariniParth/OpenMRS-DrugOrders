@@ -1,6 +1,0 @@
-org/openmrs/module/drugorders/api/db/drugordersDAO.class
-org/openmrs/module/drugorders/api/drugordersService.class
-org/openmrs/module/drugorders/api/db/hibernate/HibernatedrugordersDAO.class
-org/openmrs/module/drugorders/api/impl/drugordersServiceImpl.class
-org/openmrs/module/drugorders/drugordersActivator.class
-org/openmrs/module/drugorders/drugorders.class

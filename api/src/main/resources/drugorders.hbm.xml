@@ -12,18 +12,20 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="id" insert="false" />
+                <property name="orderId"  column="order_id" not-null="false"  ></property>
 		<property name="uuid" type="java.lang.String" column="uuid"
 			length="38" unique="true" />
                 <property name="patientid" type="java.lang.String" column="patientid" ></property>
                 <property name="drugname" type="java.lang.String" column="drugname" ></property> 
                 <property name="startdate" type="java.util.Date" column="startdate" ></property> 
                 <property name="dose" column="dose" not-null="false" ></property> 
-                <property name="doseunits" type="java.lang.String" column="doseunits" ></property>
-                <property name="route" type="java.lang.String" column="route" ></property>
+                <property name="doseunits" column="doseunits" ></property>
+                <property name="route" column="route" ></property>
                 <property name="quantity" column="quantity" not-null="false" ></property>
-                <property name="quantityunits" type="java.lang.String" column="quantityunits" ></property>
+                <property name="quantityunits" column="quantityunits" ></property>
                 <property name="duration" column="duration" not-null="false" ></property> 
-                <property name="durationunits" type="java.lang.String" column="durationunits" ></property>
+                <property name="durationunits" column="durationunits" ></property>
+                <property name="frequency" column="frequency" ></property>
                 <property name="isallergic" column="isallergic" ></property>
                 <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
                 <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>
