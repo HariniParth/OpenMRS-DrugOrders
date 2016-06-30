@@ -47,7 +47,7 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
 	    return dao;
     }
     
-        @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     @Override
     public drugorders getNewTableByUuid(String uuid) {
         return dao.getNewTableByUuid(uuid);

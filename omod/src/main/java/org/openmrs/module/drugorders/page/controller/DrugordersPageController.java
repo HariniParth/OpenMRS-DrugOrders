@@ -10,10 +10,26 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
+import com.mysql.jdbc.Constants;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import org.openmrs.CareSetting;
 import org.openmrs.Concept;
+import org.openmrs.Drug;
+import org.openmrs.DrugOrder;
+import org.openmrs.Encounter;
+import org.openmrs.EncounterRole;
+import org.openmrs.Order;
+import org.openmrs.OrderFrequency;
+import org.openmrs.OrderType;
 import org.openmrs.Patient;
+import org.openmrs.Provider;
+import org.openmrs.SimpleDosingInstructions;
+import org.openmrs.TestOrder;
+import org.openmrs.api.OrderContext;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -44,37 +60,53 @@ public class DrugordersPageController {
  		
  		model.addAttribute("patient", patient);
  		model.addAttribute("allergies", patientService.getAllergies(patient));
-                
-                
+
                 if(!(drugNameEntered.equals(""))) {
+
                     drugorders drugorders = new drugorders();
                     drugorders.setDrugname(drugNameEntered);
                     drugorders.setStartdate(startDateConfirmed);
                     
-                    int routeConcept = Context.getConceptService().getConceptByName(drugRoute).getConceptId();
-                    drugorders.setRoute(routeConcept);
+                    if(!(drugRoute.equals(""))){
+                        int routeConcept = Context.getConceptService().getConceptByName(drugRoute).getConceptId();
+                        drugorders.setRoute(routeConcept);
+                    }
                     
-                    drugorders.setDose(drugDose);
-                    int doseConcept = Context.getConceptService().getConceptByName(drugDoseUnits).getConceptId();
-                    drugorders.setDoseunits(doseConcept);
+                    if(drugDose != null){
+                        drugorders.setDose(drugDose);
+                        int doseConcept = Context.getConceptService().getConceptByName(drugDoseUnits).getConceptId();
+                        drugorders.setDoseunits(doseConcept);
+                    }                    
                     
-                    drugorders.setQuantity(drugQuantity);
-                    int quantityConcept = Context.getConceptService().getConceptByName(quantityUnits).getConceptId();
-                    drugorders.setQuantityunits(quantityConcept);
+                    if(drugQuantity != null){
+                        drugorders.setQuantity(drugQuantity);
+                        int quantityConcept = Context.getConceptService().getConceptByName(quantityUnits).getConceptId();
+                        drugorders.setQuantityunits(quantityConcept);
+                    }
                     
-                    drugorders.setDuration(drugDuration);
-                    int durationConcept = Context.getConceptService().getConceptByName(durationUnits).getConceptId();
-                    drugorders.setDurationunits(durationConcept);
+                    if(drugDuration != null){
+                        drugorders.setDuration(drugDuration);
+                        int durationConcept = Context.getConceptService().getConceptByName(durationUnits).getConceptId();
+                        drugorders.setDurationunits(durationConcept);
+                    }
                     
-                    int frequencyConcept = Context.getConceptService().getConceptByName(drugFrequency).getConceptId();
-                    drugorders.setFrequency(frequencyConcept);
+                    if(!(drugFrequency.equals(""))){
+                        int frequencyConcept = Context.getConceptService().getConceptByName(drugFrequency).getConceptId();
+                        drugorders.setFrequency(frequencyConcept);
+                    }
                     
-                    drugorders.setAssociateddiagnosis(associatedDiagnosis);
-                    drugorders.setPatientinstructions(patientInstructions);
-                    drugorders.setPharmacistinstructions(pharmacistInstructions);
+                    if(!(associatedDiagnosis.equals("")))
+                        drugorders.setAssociateddiagnosis(associatedDiagnosis);
+                    if(!(patientInstructions.equals("")))
+                        drugorders.setPatientinstructions(patientInstructions);
+                    if(!(pharmacistInstructions.equals("")))
+                        drugorders.setPharmacistinstructions(pharmacistInstructions);
+                    
                     drugorders.setPatientid(Integer.toString(patient.getPatientId()));
+
                     Context.getService(drugordersService.class).saveNewTable(drugorders);
                 }   
                                 
  	}
+    
 }

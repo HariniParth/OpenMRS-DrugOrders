@@ -213,7 +213,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	public void setOrderstatus(String orderstatus) {
 		this.orderstatus = orderstatus;
 	}
-        
+           
         public Integer getDiscontinued() {
 		return discontinued;
 	}
