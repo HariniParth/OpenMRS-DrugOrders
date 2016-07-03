@@ -15,6 +15,7 @@
 	<require_version>${openMRSVersion}</require_version>
 	<!-- / Module Properties -->
 
+        
 	<require_modules>
 		<require_module version="${uiframeworkVersion}">
 			org.openmrs.module.uiframework

@@ -14,10 +14,13 @@ import com.mysql.jdbc.Constants;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.util.ArrayList;
 import java.util.Calendar;
+import static java.util.Collections.list;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import org.openmrs.CareSetting;
 import org.openmrs.Concept;
+import org.openmrs.ConceptName;
 import org.openmrs.Drug;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -30,6 +33,7 @@ import org.openmrs.Provider;
 import org.openmrs.SimpleDosingInstructions;
 import org.openmrs.TestOrder;
 import org.openmrs.api.OrderContext;
+import org.openmrs.api.OrderService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -41,15 +45,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
     
+    public static final String TWICE_A_DAY_FREQUENCY = "Twice a day";
+    DrugOrder order = new DrugOrder();
+    
     public void controller(PageModel model, @RequestParam("patientId") Patient patient, 
                             @RequestParam(value = "drugNameEntered", required = false) String drugNameEntered,
                             @RequestParam(value = "startDateConfirmed", required = false) Date startDateConfirmed,
                             UiUtils ui, @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
  	                    @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis,
                             @RequestParam(value = "drugRoute", required = false) String drugRoute,
-                            @RequestParam(value = "drugDose", required = false) Integer drugDose,
+                            @RequestParam(value = "drugDose", required = false) String drugDose,
                             @RequestParam(value = "drugDoseUnits", required = false) String drugDoseUnits,
-                            @RequestParam(value = "drugQuantity", required = false) Integer drugQuantity,
+                            @RequestParam(value = "drugQuantity", required = false) String drugQuantity,
                             @RequestParam(value = "quantityUnits", required = false) String quantityUnits,
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
                             @RequestParam(value = "drugDuration", required = false) Integer drugDuration,
@@ -58,14 +65,28 @@ public class DrugordersPageController {
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
                             @SpringBean("allergyService") PatientService patientService) {
  		
+        
+
  		model.addAttribute("patient", patient);
  		model.addAttribute("allergies", patientService.getAllergies(patient));
-
+                
+                List<drugorders> dorders = new ArrayList<drugorders>();
+                List<OrderAndDrugOrder> drugOrders = getDrugOrdersByPatient(patient);
+                
+                for(OrderAndDrugOrder drugOrder : drugOrders){
+                    drugorders dorder = drugOrder.getdrugorders();
+                    dorders.add(dorder);
+                }
+                
+                model.addAttribute("existingDrugOrders", dorders);
+                
                 if(!(drugNameEntered.equals(""))) {
-
+                    
+                    createNewDrugOrder(patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugDuration, durationUnits);
                     drugorders drugorders = new drugorders();
                     drugorders.setDrugname(drugNameEntered);
                     drugorders.setStartdate(startDateConfirmed);
+                    drugorders.setOrderId(order.getOrderId());
                     
                     if(!(drugRoute.equals(""))){
                         int routeConcept = Context.getConceptService().getConceptByName(drugRoute).getConceptId();
@@ -108,5 +129,93 @@ public class DrugordersPageController {
                 }   
                                 
  	}
+    
+    public List<OrderAndDrugOrder> getDrugOrdersByPatient(Patient p) {
+        ArrayList<OrderAndDrugOrder> drugOrders = new ArrayList<OrderAndDrugOrder>();
+
+        List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
+        int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
+        drugorders drugOrder;
+        for (Order order : orders) {
+            //if (order.getOrderType().getOrderTypeId() == 3) { OrderType ot = new OrderType();
+            if (order.getOrderType().getOrderTypeId() == drugOrderTypeId) {
+                drugOrder = Context.getService(drugordersService.class).getNewTable(order.getOrderId());
+                drugOrders.add(new OrderAndDrugOrder(order, drugOrder));
+            }
+        }
+        return drugOrders;
+    }
+    
+    private Concept concept(String name) {
+                    Concept doseUnitsConcept = new Concept();
+                    doseUnitsConcept.setFullySpecifiedName(new ConceptName(name, Locale.ENGLISH));
+                    return doseUnitsConcept;
+                }
+    
+    private void createNewDrugOrder(Patient patient, String drugNameEntered, String drugRoute, 
+                 String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,
+                 Integer drugDuration, String durationUnits){
+        
+        
+                order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameEntered));
+                order.setConcept(Context.getConceptService().getConceptByName(drugNameEntered));
+                CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
+                order.setCareSetting(careSetting);
+
+                
+                OrderFrequency orderFrequency;
+                order.setFrequency(Context.getOrderService().getOrderFrequency(1)); 
+                
+                
+                
+                
+                Date start = defaultStartDate(),
+                end = defaultEndDate(start);
+                List<Encounter> encs = Context.getEncounterService().getEncounters(null, null, start, end, null, null, null, false);
+
+                Encounter encOld = encs.get(0), enc = new Encounter();
+                enc.setEncounterDatetime(new Date());
+                enc.setPatient(patient);
+                enc.setEncounterType(encOld.getEncounterType());
+                enc.setLocation(encOld.getLocation());
+                List<Provider> provs = Context.getProviderService().getAllProviders();
+                Provider provider = provs.get(0);
+                EncounterRole encRole = Context.getEncounterService().getEncounterRoleByName("Unknown");
+                enc.setProvider(encRole, provider);
+                enc = (Encounter) Context.getEncounterService().saveEncounter(enc);
+
+                order.setPatient(patient);
+                order.setEncounter(enc);
+                order.setOrderer(provider);
+                order.setRoute(Context.getConceptService().getConceptByName(drugRoute));
+                order.setDose(Double.valueOf(drugDose));
+                order.setDoseUnits(Context.getConceptService().getConceptByName(drugDoseUnits));
+                order.setQuantity(Double.valueOf(drugQuantity));
+                order.setQuantityUnits(Context.getConceptService().getConceptByName(quantityUnits));
+                order.setDuration(drugDuration);
+                order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
+                order.setNumRefills(0);
+                order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
+
+    }
+    
+    private Date defaultStartDate() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        cal.set(2014, 1, 1);
+        return cal.getTime();
+    }
+
+    private Date defaultEndDate(Date startDate) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        cal.add(Calendar.MILLISECOND, -1);
+        cal.set(2014, 12, 22);
+        return cal.getTime();
+    }
     
 }

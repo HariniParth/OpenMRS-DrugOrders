@@ -18,10 +18,10 @@
                 <property name="patientid" type="java.lang.String" column="patientid" ></property>
                 <property name="drugname" type="java.lang.String" column="drugname" ></property> 
                 <property name="startdate" type="java.util.Date" column="startdate" ></property> 
-                <property name="dose" column="dose" not-null="false" ></property> 
+                <property name="dose" column="dose" type="java.lang.String" not-null="false" ></property> 
                 <property name="doseunits" column="doseunits" ></property>
                 <property name="route" column="route" ></property>
-                <property name="quantity" column="quantity" not-null="false" ></property>
+                <property name="quantity" column="quantity" type="java.lang.String" not-null="false" ></property>
                 <property name="quantityunits" column="quantityunits" ></property>
                 <property name="duration" column="duration" not-null="false" ></property> 
                 <property name="durationunits" column="durationunits" ></property>

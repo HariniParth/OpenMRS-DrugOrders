@@ -18,7 +18,7 @@
  
 
 <div class="info-body">
-    Drug Allergies: 
+    Drug Allergies:
     <% if (allergies.allergyStatus != "See list") { %>
         ${ ui.message(allergies.allergyStatus) }
     <% } else { %>
@@ -67,6 +67,12 @@
         </div>
         
     </div>
+    
+    
+        <% existingDrugOrders.each { existingDrugOrder -> %>
+            ${ existingDrugOrder.drugname }
+        <% } %>
+    
     
 </div>
 

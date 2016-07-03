@@ -27,12 +27,12 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private String patientid;
         private Date startdate;
         private String drugname;
-        private Integer dose;
+        private String dose;
         private Integer doseunits;
         private Integer route;
         private Integer duration;
         private Integer durationunits;
-        private Integer quantity;
+        private String quantity;
         private Integer quantityunits;
         private Integer isallergic;
         private Integer frequency;
@@ -102,12 +102,12 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
             this.startdate = startdate;
         }
 
-        public Integer getDose() {
-		return dose;
+        public String getDose() {
+            return dose;
 	}
 	
-	public void setDose(Integer dose) {
-		this.dose = dose;
+	public void setDose(String dose) {
+                this.dose = dose;
 	}
         
         public Integer getDoseunits() {
@@ -142,11 +142,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.durationunits = durationunits;
 	}
         
-        public Integer getQuantity() {
+        public String getQuantity() {
 		return quantity;
 	}
 	
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
         

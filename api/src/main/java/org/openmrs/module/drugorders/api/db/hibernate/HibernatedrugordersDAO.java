@@ -70,7 +70,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public List<drugorders> getNewTablesByPatient(Patient patient) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("patient", patient));
+        crit.add(Restrictions.eq("patientid", patient));
         return crit.list();
     }
 ;
