@@ -72,7 +72,7 @@
     
     <div id="currentDrugOrdersWindow">
         <% existingDrugOrders.each { existingDrugOrder -> %>
-        <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrder.orderId }')">
+        <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrder.orderId }','${ existingDrugOrder.patientid }','${ existingDrugOrder.startdate }','${ existingDrugOrder.drugname }','${ existingDrugOrder.patientinstructions }','${ existingDrugOrder.pharmacistinstructions }')">
                 ${ existingDrugOrder.drugname } ${ existingDrugOrder.startdate } 
             </a>    
             <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>

@@ -35,9 +35,14 @@ function hideIndividualOrderDetailsWindow(){
     $("#drugNameEntered").val("");
 }
 
-function showDrugOrderViewWindow(orderId){
+function showDrugOrderViewWindow(orderId,patientid,startdate,drugname,patientinstructions,pharmacistinstructions){
     jq("#drugOrderView").show();
     $("#order_id").val(orderId);
+    $("#patient_id").val(patientid);
+    $("#start_date").val(startdate);
+    $("#order_details").val(drugname);
+    $("#patient_instructions").val(patientinstructions);
+    $("#pharmacist_instructions").val(pharmacistinstructions);
 }
 
 function hideDrugOrderViewWindow(){
