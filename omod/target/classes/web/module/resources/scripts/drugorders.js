@@ -34,3 +34,12 @@ function hideIndividualOrderDetailsWindow(){
     jq("#singleOrderDetailsWindow").hide();
     $("#drugNameEntered").val("");
 }
+
+function showDrugOrderViewWindow(orderId){
+    jq("#drugOrderView").show();
+    $("#order_id").val(orderId);
+}
+
+function hideDrugOrderViewWindow(){
+    jq("#drugOrderView").hide();
+}

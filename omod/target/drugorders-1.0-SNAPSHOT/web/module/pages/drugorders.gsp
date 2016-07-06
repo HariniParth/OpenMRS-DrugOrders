@@ -72,11 +72,17 @@
     
     <div id="currentDrugOrdersWindow">
         <% existingDrugOrders.each { existingDrugOrder -> %>
-            <a href="#" id="existingDrugOrdersID">
+        <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrder.orderId }')">
                 ${ existingDrugOrder.drugname } ${ existingDrugOrder.startdate } 
-            </a>
+            </a>    
+            <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
+            <input id="deleteOrder" type="submit" value="Discontinue" onclick="discontinueIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
         <% } %>
     </div>
     
+    <div id="drugOrderView">
+        ${ ui.includeFragment("drugorders", "viewDrugOrderSingle") }
+    </div>
+        
 </div>
 
