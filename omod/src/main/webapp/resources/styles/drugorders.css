@@ -62,3 +62,15 @@ and open the template in the editor.
 .fields{
     margin: 10px;
 }
+
+.info-body #currentDrugOrdersWindow{
+    width: 58%;
+    float: left;
+    background: #F9F9F9;
+}
+
+.info-body .col-lg-12{
+    width: 100%;
+    height: 25px;
+    float: left;
+}

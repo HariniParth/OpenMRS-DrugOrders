@@ -68,11 +68,15 @@
         
     </div>
     
+    <div class="col-lg-12"></div>
     
+    <div id="currentDrugOrdersWindow">
         <% existingDrugOrders.each { existingDrugOrder -> %>
-            ${ existingDrugOrder.drugname }
+            <a href="#" id="existingDrugOrdersID">
+                ${ existingDrugOrder.drugname } ${ existingDrugOrder.startdate } 
+            </a>
         <% } %>
-    
+    </div>
     
 </div>
 

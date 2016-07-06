@@ -155,19 +155,18 @@ public class DrugordersPageController {
     private void createNewDrugOrder(Patient patient, String drugNameEntered, String drugRoute, 
                  String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,
                  Integer drugDuration, String durationUnits){
-        
-        
+
                 order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameEntered));
                 order.setConcept(Context.getConceptService().getConceptByName(drugNameEntered));
                 CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
                 order.setCareSetting(careSetting);
-
                 
-                OrderFrequency orderFrequency;
-                order.setFrequency(Context.getOrderService().getOrderFrequency(1)); 
+                OrderFrequency orderFrequency = new OrderFrequency();
+                orderFrequency.setFrequencyPerDay(2.0);
+                orderFrequency.setConcept(Context.getConceptService().getConceptByName("Twice Daily"));
+                orderFrequency = (OrderFrequency) Context.getOrderService().saveOrderFrequency(orderFrequency);
                 
-                
-                
+                order.setFrequency(orderFrequency);   
                 
                 Date start = defaultStartDate(),
                 end = defaultEndDate(start);
