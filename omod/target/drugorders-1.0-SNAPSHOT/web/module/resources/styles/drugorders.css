@@ -64,19 +64,39 @@ and open the template in the editor.
 }
 
 .info-body #currentDrugOrdersWindow{
-    width: 58%;
+    width: 50%;
     float: left;
     background: #F9F9F9;
 }
 
 .info-body #drugOrderView{
     display: none;
-    width: 40%;
+    width: 50%;
     float: right;
+    background: #F9F9F9;
+}
+
+#showDiscontinueOrderView{
+    display: none;
+    width: 50%;
+    float: right;
+    background: #F9F9F9;
 }
 
 .info-body .col-lg-12{
     width: 100%;
     height: 25px;
     float: left;
+}
+
+#showDrugOrderView .fields .col-lg-3{
+    width: 30%;
+}
+
+#showDrugOrderView .fields .col-lg-7{
+    width: 70%;
+}
+
+#header{
+    text-align: center;
 }

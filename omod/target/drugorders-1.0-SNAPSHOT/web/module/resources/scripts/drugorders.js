@@ -35,16 +35,26 @@ function hideIndividualOrderDetailsWindow(){
     $("#drugNameEntered").val("");
 }
 
-function showDrugOrderViewWindow(orderId,patientid,startdate,drugname,patientinstructions,pharmacistinstructions){
+function showDrugOrderViewWindow(orderId,patientid,givenName,lastName,startdate,drugname,patientinstructions,pharmacistinstructions){
     jq("#drugOrderView").show();
-    $("#order_id").val(orderId);
-    $("#patient_id").val(patientid);
-    $("#start_date").val(startdate);
-    $("#order_details").val(drugname);
-    $("#patient_instructions").val(patientinstructions);
-    $("#pharmacist_instructions").val(pharmacistinstructions);
+    $("#order_id").text(orderId);
+    $("#patient_id").text(patientid);
+    $("#patient_name").text(givenName+" "+lastName);
+    $("#start_date").text(startdate);
+    $("#order_details").text(drugname);
+    $("#patient_instructions").text(patientinstructions);
+    $("#pharmacist_instructions").text(pharmacistinstructions);
 }
 
 function hideDrugOrderViewWindow(){
     jq("#drugOrderView").hide();
+}
+
+function showDiscontinueIndividualDrugOrderWindow(orderId){
+    jq("#showDiscontinueOrderView").show();
+    $("#dis_order_id").text(orderId);
+}
+
+function hideDiscontinueOrderWindow(){
+    jq("#showDiscontinueOrderView").hide();
 }

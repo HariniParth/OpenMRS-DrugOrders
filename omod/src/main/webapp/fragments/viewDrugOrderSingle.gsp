@@ -1,40 +1,40 @@
 <div id="showDrugOrderView">
-    <form method="post">
-        <h4>${ ui.message("View Order Details") }</h4>
+
+    <h4 id="header">${ ui.message("View Order Details") }</h4>
         
-        <div class="fields"><label>Order ID </label>
-            <input type="text" id="order_id" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Order ID </label>
+        <label id="order_id" value="order_id" class="col-lg-7"></label>
+    </div>
         
-        <div class="fields"><label>Patient ID</label>
-            <input type="text" id="patient_id" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Patient ID</label>
+        <label id="patient_id" value="patient_id"class="col-lg-7"></label>
+    </div>
         
-        <div class="fields"><label>Patient Name</label>
-            <input type="text" id="patient_name" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Patient Name</label>
+        <label id="patient_name" value="patient_name" class="col-lg-7"></label>
+    </div>
         
-        <div class="fields"><label>Start Date</label>
-            <input type="text" id="start_date" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Start Date</label>
+        <label id="start_date" value="start_date" class="col-lg-7"></label>
+    </div>
         
-        <div class="fields"><label>Order/s</label>
-            <input type="text" id="order_details" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Order/s</label>
+        <label id="order_details" value="order_details" class="col-lg-7 "></label>
+    </div>
         
-        <br/>
+    <br/>
         
-        <div class="fields"><label>Physician instructions for</label></div>
+    <div class="fields"><label>Physician instructions for</label></div>
         
-        <div class="fields"><label>Patient</label>
-            <input type="text" id="patient_instructions" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Patient</label>
+        <label id="patient_instructions" value="patient_instructions" class="col-lg-7"></label>
+    </div>
         
-        <div class="fields"><label>Pharmacist</label>
-            <input type="text" id="pharmacist_instructions" readonly="true"/>
-        </div>
+    <div class="fields"><label class="col-lg-3">Pharmacist</label>
+        <label id="pharmacist_instructions" value="pharmacist_instructions" class="col-lg-7"></label>
+    </div>
         
-        <br/>
-        <button class="cancel pull-right" id="btn-place" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button></div>
-    </form>
+    <br/>
+    <button class="cancel pull-right" id="btn-place" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button></div>
+
 </div>
