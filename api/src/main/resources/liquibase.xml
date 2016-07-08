@@ -11,17 +11,17 @@
     
     <changeSet id="harini_table_1" author="harini">
         <sql>
-            drop table if exists drugorders;
+            drop table if exists drug_order_extension;
         </sql>
     </changeSet>
 
     <changeSet author="harini" id="harini_table_2">
         <preConditions onFail="WARN" onError="WARN">
             <not>
-                <tableExists tableName="drugorders" />
+                <tableExists tableName="drug_order_extension" />
             </not>
         </preConditions>
-        <createTable tableName="drugorders">
+        <createTable tableName="drug_order_extension">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -32,14 +32,6 @@
             <column name="patientid" type="varchar(50)"></column>
             <column name="drugname" type="varchar(255)"></column>
             <column name="startdate" type="datetime"></column>
-            <column name="dose" type="varchar(255)"></column>
-            <column name="doseunits" type="int"></column>
-            <column name="route" type="int"></column>
-            <column name="quantity" type="varchar(255)"></column>
-            <column name="quantityunits" type="int"></column>
-            <column name="duration" type="int"></column>
-            <column name="durationunits" type="int"></column>
-            <column name="frequency" type="int"></column>
             <column name="isallergic" type="tinyint(1)"></column>
             <column name="isallergicorderreasons" type="varchar(255)"></column>          
             <column name="associateddiagnosis" type="varchar(255)"></column>

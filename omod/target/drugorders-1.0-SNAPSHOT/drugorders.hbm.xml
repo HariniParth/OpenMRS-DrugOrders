@@ -7,7 +7,7 @@
 
 
 	<class name="drugorders"
-		table="drugorders">
+		table="drug_order_extension">
 		<id name="id" type="int" column="id" unsaved-value="0">
 			<generator class="native" />
 		</id>
@@ -18,14 +18,6 @@
                 <property name="patientid" type="java.lang.String" column="patientid" ></property>
                 <property name="drugname" type="java.lang.String" column="drugname" ></property> 
                 <property name="startdate" type="java.util.Date" column="startdate" ></property> 
-                <property name="dose" column="dose" type="java.lang.String" not-null="false" ></property> 
-                <property name="doseunits" column="doseunits" ></property>
-                <property name="route" column="route" ></property>
-                <property name="quantity" column="quantity" type="java.lang.String" not-null="false" ></property>
-                <property name="quantityunits" column="quantityunits" ></property>
-                <property name="duration" column="duration" not-null="false" ></property> 
-                <property name="durationunits" column="durationunits" ></property>
-                <property name="frequency" column="frequency" ></property>
                 <property name="isallergic" column="isallergic" ></property>
                 <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
                 <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>

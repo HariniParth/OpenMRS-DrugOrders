@@ -77,6 +77,7 @@
             </a>    
             <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
             <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
+            <br/><br/>
         <% } %>
     </div>
     

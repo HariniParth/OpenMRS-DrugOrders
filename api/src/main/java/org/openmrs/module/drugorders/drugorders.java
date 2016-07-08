@@ -27,15 +27,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private String patientid;
         private Date startdate;
         private String drugname;
-        private String dose;
-        private Integer doseunits;
-        private Integer route;
-        private Integer duration;
-        private Integer durationunits;
-        private String quantity;
-        private Integer quantityunits;
         private Integer isallergic;
-        private Integer frequency;
         private String isallergicorderreasons;
         private String associateddiagnosis;
         private String patientinstructions;
@@ -101,70 +93,6 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         public void setStartdate(Date startdate) {
             this.startdate = startdate;
         }
-
-        public String getDose() {
-            return dose;
-	}
-	
-	public void setDose(String dose) {
-                this.dose = dose;
-	}
-        
-        public Integer getDoseunits() {
-		return doseunits;
-	}
-
-	public void setDoseunits(Integer doseunits) {
-		this.doseunits = doseunits;
-	}
-        
-        public Integer getRoute() {
-		return route;
-	}
-
-	public void setRoute(Integer route) {
-		this.route = route;
-	}
-        
-        public Integer getDuration() {
-		return duration;
-	}
-	
-	public void setDuration(Integer duration) {
-		this.duration = duration;
-	}
-        
-        public Integer getDurationunits() {
-		return durationunits;
-	}
-
-	public void setDurationunits(Integer durationunits) {
-		this.durationunits = durationunits;
-	}
-        
-        public String getQuantity() {
-		return quantity;
-	}
-	
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-        
-        public Integer getQuantityunits() {
-		return quantityunits;
-	}
-
-	public void setQuantityunits(Integer quantityunits) {
-		this.quantityunits = quantityunits;
-	}
-          
-        public Integer getFrequency() {
-		return frequency;
-	}
-
-	public void setFrequency(Integer frequency) {
-		this.frequency = frequency;
-	}
         
         public Integer getIsallergic() {
 		return isallergic;
