@@ -72,11 +72,18 @@
     
     <div id="currentDrugOrdersWindow">
         <% existingDrugOrders.each { existingDrugOrder -> %>
-        <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrder.orderId }','${ existingDrugOrder.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrder.startdate }','${ existingDrugOrder.drugname }','${ existingDrugOrder.patientinstructions }','${ existingDrugOrder.pharmacistinstructions }')">
-                ${ existingDrugOrder.drugname } ${ existingDrugOrder.startdate } 
-            </a>    
-            <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
-            <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
+        
+            <span id="entries">
+                <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrder.orderId }','${ existingDrugOrder.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrder.startdate }','${ existingDrugOrder.drugname }','${ existingDrugOrder.patientinstructions }','${ existingDrugOrder.pharmacistinstructions }')">
+                    ${ existingDrugOrder.drugname } ${ existingDrugOrder.startdate } 
+                </a>    
+            </span>
+            
+            <span id="button">
+                <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
+                <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
+            </span>
+            
             <br/><br/>
         <% } %>
     </div>

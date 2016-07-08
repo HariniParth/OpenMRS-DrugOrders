@@ -6,6 +6,8 @@
 
 $(document).ready( function() {
     jq("#singleOrderWindow").hide();
+    jq("#showDrugOrderView").hide();
+    jq("#showDiscontinueOrderView").hide();
 });
 
 function showIndividualDrugOrderWindow(){
@@ -36,7 +38,7 @@ function hideIndividualOrderDetailsWindow(){
 }
 
 function showDrugOrderViewWindow(orderId,patientid,givenName,lastName,startdate,drugname,patientinstructions,pharmacistinstructions){
-    jq("#drugOrderView").show();
+    jq("#showDrugOrderView").show();
     $("#order_id").text(orderId);
     $("#patient_id").text(patientid);
     $("#patient_name").text(givenName+" "+lastName);
@@ -47,7 +49,7 @@ function showDrugOrderViewWindow(orderId,patientid,givenName,lastName,startdate,
 }
 
 function hideDrugOrderViewWindow(){
-    jq("#drugOrderView").hide();
+    jq("#showDrugOrderView").hide();
 }
 
 function showDiscontinueIndividualDrugOrderWindow(orderId){

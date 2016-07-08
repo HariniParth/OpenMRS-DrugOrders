@@ -1,3 +1,7 @@
+<%
+    ui.includeCss("drugorders", "drugorders.css")
+%>
+
 <div id="showDiscontinueOrderView">
     <form method="post">
         <h4 id="header">${ ui.message("Discontinue Order") }</h4>

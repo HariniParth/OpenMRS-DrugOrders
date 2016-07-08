@@ -69,16 +69,15 @@ and open the template in the editor.
     background: #F9F9F9;
 }
 
-.info-body #drugOrderView{
-    display: none;
-    width: 50%;
+#showDrugOrderView{
+    width: 40%;
     float: right;
     background: #F9F9F9;
 }
 
 #showDiscontinueOrderView{
     display: none;
-    width: 50%;
+    width: 40%;
     float: right;
     background: #F9F9F9;
 }
@@ -99,4 +98,20 @@ and open the template in the editor.
 
 #header{
     text-align: center;
+}
+
+#entries{
+    float: left;
+}
+
+#button{
+    float: right;
+}
+
+#currentDrugOrdersWindow .col-lg-6{
+    width: 50%;
+}
+
+#order_label{
+    width: 30%;
 }
