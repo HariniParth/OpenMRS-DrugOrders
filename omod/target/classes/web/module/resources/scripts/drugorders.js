@@ -60,3 +60,7 @@ function showDiscontinueIndividualDrugOrderWindow(orderId){
 function hideDiscontinueOrderWindow(){
     jq("#showDiscontinueOrderView").hide();
 }
+
+function editIndividualDrugOrderWindow(orderId,patientid,givenName,lastName,startdate,drugname,startDate,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+    jq("#singleOrderDetailsWindow").show();
+}

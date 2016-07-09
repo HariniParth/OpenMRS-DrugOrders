@@ -3,6 +3,7 @@
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "drugorders.js")
     def isAllergic = false;
+    def editAction = false;
 %>
         
 <script type="text/javascript">
@@ -18,19 +19,21 @@
  
 
 <div class="info-body">
-    Drug Allergies:
-    <% if (allergies.allergyStatus != "See list") { %>
-        ${ ui.message(allergies.allergyStatus) }
-    <% } else { %>
-        <% allergies.each { allergy -> %>
-            ${ allergy.allergen }
-        <% } %>
-    <% } %>
-    
 
-
-    <div id="individualOrderBody">
-        <span id="individualOrderBody"></span>
+    <div id="orderSummaryBody">
+        
+        <div id="allergyList">
+            Drug Allergies:
+            <% if (allergies.allergyStatus != "See list") { %>
+                ${ ui.message(allergies.allergyStatus) }
+            <% } else { %>
+                <% allergies.each { allergy -> %>
+                    ${ allergy.allergen }
+                <% } %>
+            <% } %>
+            
+        </div>
+        
         <div id="individualOrderWindow">
             <div>
                 <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
@@ -39,8 +42,35 @@
             </div>
 
             ${ ui.includeFragment("drugorders", "drugOrderSingle") }
+            <br/><br/>
+            
         </div>
 
+        <div id="currentDrugOrdersWindow">
+            <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
+                <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
+                    <% if(existingDrugOrderMain.orderId == existingDrugOrderExtension.orderId) { %>
+                        <span id="entries">
+                            <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')">
+                                ${ existingDrugOrderMain.orderId } 
+                                ${ existingDrugOrderExtension.drugname } ${ existingDrugOrderExtension.startdate } 
+                            </a>    
+                        </span>
+
+                        <span id="button">
+                            <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }')"/>
+                            <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }')"/>
+                        </span>
+                    <% } %>
+                <% } %>
+                <br/><br/>
+            <% } %>
+        </div>    
+        
+    </div>
+    
+    <div id="orderWindowsBody">
+    
         <div id="addSingleOrderWindow">
             ${ ui.includeFragment("drugorders", "addDrugOrderSingle") }
         </div>
@@ -66,35 +96,13 @@
 
         </div>
         
-    </div>
-    
-    <div class="col-lg-12"></div>
-    
-    <div id="currentDrugOrdersWindow">
-        <% existingDrugOrders.each { existingDrugOrder -> %>
-        
-            <span id="entries">
-                <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrder.orderId }','${ existingDrugOrder.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrder.startdate }','${ existingDrugOrder.drugname }','${ existingDrugOrder.patientinstructions }','${ existingDrugOrder.pharmacistinstructions }')">
-                    ${ existingDrugOrder.drugname } ${ existingDrugOrder.startdate } 
-                </a>    
-            </span>
-            
-            <span id="button">
-                <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
-                <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrder.orderId }')"/>
-            </span>
-            
-            <br/><br/>
-        <% } %>
-    </div>
-    
-    <div id="drugOrderView">
-        ${ ui.includeFragment("drugorders", "viewDrugOrderSingle") }
-    </div>
-    
-    <div id="discontinueOrderWindow">
-        ${ ui.includeFragment("drugorders", "discontinueDrugOrder") }
-    </div>
-        
-</div>
+        <div id="drugOrderView">
+            ${ ui.includeFragment("drugorders", "viewDrugOrderSingle") }
+        </div>
 
+        <div id="discontinueOrderWindow">
+            ${ ui.includeFragment("drugorders", "discontinueDrugOrder") }
+        </div>
+    
+    </div>
+</div>
