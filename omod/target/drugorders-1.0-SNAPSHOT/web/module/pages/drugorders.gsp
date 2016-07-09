@@ -51,7 +51,7 @@
                 <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
                     <% if(existingDrugOrderMain.orderId == existingDrugOrderExtension.orderId) { %>
                         <span id="entries">
-                            <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')">
+                            <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')">
                                 ${ existingDrugOrderMain.orderId } 
                                 ${ existingDrugOrderExtension.drugname } ${ existingDrugOrderExtension.startdate } 
                             </a>    

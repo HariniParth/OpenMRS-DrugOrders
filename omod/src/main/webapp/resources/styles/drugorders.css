@@ -76,3 +76,17 @@ and open the template in the editor.
 #button{
     float: right;
 }
+
+#view_order_detail{
+    width: 100%;
+}
+
+#order_label{
+    width: 30%;
+    float: left;
+}
+
+#order_value{
+    width: 70%;
+    float: right;
+}
