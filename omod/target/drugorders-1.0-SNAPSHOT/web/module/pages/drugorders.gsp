@@ -45,7 +45,7 @@
             <br/><br/>
             
         </div>
-
+        
         <div id="currentDrugOrdersWindow">
             <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
                 <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
@@ -58,7 +58,7 @@
                         </span>
 
                         <span id="button">
-                            <input id="editOrder" type="submit" value="Edit" onclick="editIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }')"/>
+                            <input id="editOrder" type="submit" value="Edit" onclick="showEditIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')"/>
                             <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }')"/>
                         </span>
                     <% } %>
@@ -95,14 +95,18 @@
             <% } %>
 
         </div>
-        
+
         <div id="drugOrderView">
             ${ ui.includeFragment("drugorders", "viewDrugOrderSingle") }
         </div>
-
+        
+        <div id="editOrderWindow">
+            ${ ui.includeFragment("drugorders", "editDrugOrder") }
+        </div>
+        
         <div id="discontinueOrderWindow">
             ${ ui.includeFragment("drugorders", "discontinueDrugOrder") }
         </div>
-    
+
     </div>
 </div>

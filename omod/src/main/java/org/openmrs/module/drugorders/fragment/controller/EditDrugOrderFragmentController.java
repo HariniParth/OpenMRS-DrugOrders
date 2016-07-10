@@ -5,13 +5,17 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
-import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
+import static org.openmrs.api.context.Context.getDateTimeFormat;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,29 +23,16 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-public class AddDrugOrderSingleDetailsFragmentController {
+public class EditDrugOrderFragmentController {
     
-    /**
-     *
-     * @param model
-     * @param drugname
-     * @param patient
-     */
-
     List<Concept> durations = new ArrayList<Concept>();
     List<Concept> routes = new ArrayList<Concept>();
     List<Concept> doses = new ArrayList<Concept>();
     List<Concept> quantities = new ArrayList<Concept>();
     List<Concept> frequencies = new ArrayList<Concept>();
+    
+    public void controller(PageModel model){
         
-    public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
-            @RequestParam(value = "startDate", required = false) Date startDate,
-            @RequestParam("patientId") Patient patient){
-        
-        model.addAttribute("drugname", drugname);
-        model.addAttribute("startDate", startDate);
-        model.addAttribute("patientid", patient.getPatientId());
-
         Concept con1 = Context.getConceptService().getConcept(1732);
         Concept con2 = Context.getConceptService().getConcept(162394);
         

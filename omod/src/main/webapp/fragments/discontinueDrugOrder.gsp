@@ -6,8 +6,9 @@
     <form method="post">
         <h4 id="header">${ ui.message("Discontinue Order") }</h4>
 
-        <div class="fields"><label class="col-lg-3">Order ID </label>
-            <label id="dis_order_id" value="dis_order_id" class="col-lg-7"></label>
+        <div class="fields" id="view_order_detail">
+            <div id="order_label"><label class="col-lg-3">Order ID </label></div>
+            <div id="order_value"><label id="dis_order_id" value="dis_order_id" class="col-lg-7"></label></div>
         </div>   
 
         <label class="fields">Select the reason to discontinue </label>
