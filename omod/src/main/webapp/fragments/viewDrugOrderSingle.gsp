@@ -4,7 +4,7 @@
 
 <div id="showDrugOrderView">
 
-    <h4 id="header">${ ui.message("View Order Details") }</h4>
+    <h4 id="header">${ ui.message("Order Details") }</h4>
         
     <div class="fields" id="view_order_detail">
         <div id="order_label"><label>Order ID </label></div>
@@ -28,6 +28,7 @@
         
     <div class="fields" id="view_order_detail">
         <div id="order_label"><label id="label">Order Details</label></div>
+        <br/><br/><br/>
         <div id="order_value"><label id="order_details" value="order_details"></label></div>
     </div>
         
@@ -49,6 +50,32 @@
         
     <br/><br/>
     
+    <div id="showDiscontinueOrderView">
+        <form method="post">
+            <h4 id="header">${ ui.message("Discontinue Order") }</h4>
+
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label class="col-lg-3">Order ID </label></div>
+                <div id="order_value"><label id="dis_order_id" value="dis_order_id" class="col-lg-7"></label></div>
+            </div>   
+
+            <label class="fields">Select the reason to discontinue </label>
+
+            <div class="fields">
+                <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded">
+                    <option value="">Choose option</option>
+                </select>
+            </div>
+
+            <label class="fields">Enter the reason to discontinue </label>
+            <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/>
+
+            <button class="confirm right" id="btn-place" name="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
+
+        </form>
+    </div>
+    
     <button class="cancel pull-right" id="btn-place" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button></div>
 
 </div>
+

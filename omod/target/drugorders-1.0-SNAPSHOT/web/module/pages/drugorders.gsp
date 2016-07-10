@@ -59,7 +59,7 @@
 
                         <span id="button">
                             <input id="editOrder" type="submit" value="Edit" onclick="showEditIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')"/>
-                            <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }')"/>
+                            <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')"/>
                         </span>
                     <% } %>
                 <% } %>
@@ -104,9 +104,5 @@
             ${ ui.includeFragment("drugorders", "editDrugOrder") }
         </div>
         
-        <div id="discontinueOrderWindow">
-            ${ ui.includeFragment("drugorders", "discontinueDrugOrder") }
-        </div>
-
     </div>
 </div>
