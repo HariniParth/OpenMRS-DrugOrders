@@ -37,35 +37,32 @@
         <div id="individualOrderWindow">
             <div>
                 <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
-                    <input id="addSingleOrder" type="button" value="ADD" onclick="showIndividualDrugOrderWindow()"/>
+                    <input id="addSingleOrder" type="submit" value="ADD" onclick="showIndividualDrugOrderWindow()"/>
                 </h3>
             </div>
 
-            ${ ui.includeFragment("drugorders", "drugOrderSingle") }
+            <a href="#"><span class="show">(Click to view discontinued/canceled/fulfilled orders)</span></a>
             <br/><br/>
             
         </div>
         
         <div id="currentDrugOrdersWindow">
-            <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
-                <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
-                    <% if(existingDrugOrderMain.orderId == existingDrugOrderExtension.orderId) { %>
-                        <span id="entries">
-                            <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')">
-                                ${ existingDrugOrderMain.orderId } 
-                                ${ existingDrugOrderExtension.drugname } ${ existingDrugOrderExtension.startdate } 
-                            </a>    
-                        </span>
+            ${ ui.includeFragment("drugorders", "drugOrderSingle") }
+        </div>
+        
+        <br/><br/>
 
-                        <span id="button">
-                            <input id="editOrder" type="submit" value="Edit" onclick="showEditIndividualDrugOrderWindow('${ existingDrugOrderMain.orderId }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')"/>
-                            <input id="deleteOrder" type="submit" value="Discontinue" onclick="showDiscontinueIndividualDrugOrderWindow('${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.patientid }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startdate }','${ existingDrugOrderExtension.drugname }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingDrugOrderExtension.patientinstructions }','${ existingDrugOrderExtension.pharmacistinstructions }')"/>
-                        </span>
-                    <% } %>
-                <% } %>
-                <br/><br/>
-            <% } %>
-        </div>    
+        <div id="medicationPlanOrderWindow">
+            <div>
+                <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
+                    <input id="addMedPlanOrder" type="submit" value="ADD" onclick="showMedicationPlanOrderWindow()"/>
+                </h3>
+            </div>
+
+            <a href="#"><span class="show">(Click to view discontinued/canceled/fulfilled orders)</span></a>
+            <br/><br/>
+            
+        </div>
         
     </div>
     

@@ -52,124 +52,75 @@ public class DrugordersPageController {
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
                             @SpringBean("allergyService") PatientService patientService) {
 
- 		model.addAttribute("patient", patient);
- 		model.addAttribute("allergies", patientService.getAllergies(patient));
+ 	model.addAttribute("patient", patient);
+ 	model.addAttribute("allergies", patientService.getAllergies(patient));
 
-                List<drugorders> dorders = new ArrayList<drugorders>();
-                List<OrderAndDrugOrder> drugOrders = getDrugOrdersByPatient(patient);
-                
-                for(OrderAndDrugOrder drugOrder : drugOrders){
-                    drugorders dorder = drugOrder.getdrugorders();
-                    dorders.add(dorder);
-                }
-                
-                model.addAttribute("existingDrugOrdersExtension", dorders);
-                
-                List<DrugOrder> drugOrderMain = getDrugOrderMainDataByPatient(patient);
-                model.addAttribute("existingDrugOrdersMain", drugOrderMain);
-                
-                if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
+        if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
+            
+            createNewDrugOrder(patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+            drugorders drugorders = new drugorders();
+            drugorders.setDrugname(drugNameEntered);
+            drugorders.setStartdate(startDateConfirmed);
+            drugorders.setOrderId(order.getOrderId());
                     
-                    createNewDrugOrder(patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
-                    drugorders drugorders = new drugorders();
-                    drugorders.setDrugname(drugNameEntered);
-                    drugorders.setStartdate(startDateConfirmed);
-                    drugorders.setOrderId(order.getOrderId());
+            if(!(associatedDiagnosis.equals("")))
+                drugorders.setAssociateddiagnosis(associatedDiagnosis);
+            if(!(patientInstructions.equals("")))
+                drugorders.setPatientinstructions(patientInstructions);
+            if(!(pharmacistInstructions.equals("")))
+                drugorders.setPharmacistinstructions(pharmacistInstructions);
                     
-                    if(!(associatedDiagnosis.equals("")))
-                        drugorders.setAssociateddiagnosis(associatedDiagnosis);
-                    if(!(patientInstructions.equals("")))
-                        drugorders.setPatientinstructions(patientInstructions);
-                    if(!(pharmacistInstructions.equals("")))
-                        drugorders.setPharmacistinstructions(pharmacistInstructions);
-                    
-                    drugorders.setPatientid(Integer.toString(patient.getPatientId()));
-
-                    Context.getService(drugordersService.class).saveNewTable(drugorders);
-                }   
-                                
- 	}
-    
-    
-    private List<OrderAndDrugOrder> getDrugOrdersByPatient(Patient p) {
-        ArrayList<OrderAndDrugOrder> drugOrders = new ArrayList<OrderAndDrugOrder>();
-        
-
-        List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
-        int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
-        drugorders drugOrder;
-        
-        for (Order order : orders) {
-            if (order.getOrderType().getOrderTypeId() == drugOrderTypeId) {
-                drugOrder = Context.getService(drugordersService.class).getNewTable(order.getOrderId());
-                drugOrders.add(new OrderAndDrugOrder(order, drugOrder));
-            }
-        }
-        return drugOrders;
+            drugorders.setPatientid(Integer.toString(patient.getPatientId()));
+            Context.getService(drugordersService.class).saveNewTable(drugorders);
+        }   
     }
-    
-    private List<DrugOrder> getDrugOrderMainDataByPatient(Patient p){
-        ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
-        List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
-        int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
-        DrugOrder drugOrderMain;
-        
-        for (Order order : orders) {
-            if (order.getOrderType().getOrderTypeId() == drugOrderTypeId){
-                drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                drugOrdersMain.add(drugOrderMain);
-            }
-        }
-        return drugOrdersMain;
-    }
-    
     
     private void createNewDrugOrder(Patient patient, String drugNameEntered, String drugRoute, 
                  String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,
                  String drugFrequency, Integer drugDuration, String durationUnits){
 
-                order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameEntered));
-                order.setConcept(Context.getConceptService().getConceptByName(drugNameEntered));
-                CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
-                order.setCareSetting(careSetting);
+        order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameEntered));
+        order.setConcept(Context.getConceptService().getConceptByName(drugNameEntered));
+        CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
+        order.setCareSetting(careSetting);
                 
-                if(!(drugFrequency.equals(""))){
-                    OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));
-                    if(orderFrequency == null){
-                        order.setFrequency(setOrderFrequency(drugFrequency));
-                    } else {
-                        order.setFrequency(orderFrequency);  
-                    }
-                }
+        if(!(drugFrequency.equals(""))){
+            OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));
+            if(orderFrequency == null){
+                order.setFrequency(setOrderFrequency(drugFrequency));
+            } else {
+                order.setFrequency(orderFrequency);  
+            }
+        }
 
-                Date start = defaultStartDate(),
-                end = defaultEndDate(start);
-                List<Encounter> encs = Context.getEncounterService().getEncounters(null, null, start, end, null, null, null, false);
+        Date start = defaultStartDate(),
+        end = defaultEndDate(start);
+        List<Encounter> encs = Context.getEncounterService().getEncounters(null, null, start, end, null, null, null, false);
 
-                Encounter encOld = encs.get(0), enc = new Encounter();
-                enc.setEncounterDatetime(new Date());
-                enc.setPatient(patient);
-                enc.setEncounterType(encOld.getEncounterType());
-                enc.setLocation(encOld.getLocation());
-                List<Provider> provs = Context.getProviderService().getAllProviders();
-                Provider provider = provs.get(0);
-                EncounterRole encRole = Context.getEncounterService().getEncounterRoleByName("Unknown");
-                enc.setProvider(encRole, provider);
-                enc = (Encounter) Context.getEncounterService().saveEncounter(enc);
+        Encounter encOld = encs.get(0), enc = new Encounter();
+        enc.setEncounterDatetime(new Date());
+        enc.setPatient(patient);
+        enc.setEncounterType(encOld.getEncounterType());
+        enc.setLocation(encOld.getLocation());
+        List<Provider> provs = Context.getProviderService().getAllProviders();
+        Provider provider = provs.get(0);
+        EncounterRole encRole = Context.getEncounterService().getEncounterRoleByName("Unknown");
+        enc.setProvider(encRole, provider);
+        enc = (Encounter) Context.getEncounterService().saveEncounter(enc);
 
-                order.setPatient(patient);
-                order.setEncounter(enc);
-                order.setOrderer(provider);
+        order.setPatient(patient);
+        order.setEncounter(enc);
+        order.setOrderer(provider);
                 
-                order.setRoute(Context.getConceptService().getConceptByName(drugRoute));
-                order.setDose(Double.valueOf(drugDose));
-                order.setDoseUnits(Context.getConceptService().getConceptByName(drugDoseUnits));
-                order.setQuantity(Double.valueOf(drugQuantity));
-                order.setQuantityUnits(Context.getConceptService().getConceptByName(quantityUnits));
-                order.setDuration(drugDuration);
-                order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
-                order.setNumRefills(0);
-                order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
+        order.setRoute(Context.getConceptService().getConceptByName(drugRoute));
+        order.setDose(Double.valueOf(drugDose));
+        order.setDoseUnits(Context.getConceptService().getConceptByName(drugDoseUnits));
+        order.setQuantity(Double.valueOf(drugQuantity));
+        order.setQuantityUnits(Context.getConceptService().getConceptByName(quantityUnits));
+        order.setDuration(drugDuration);
+        order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
+        order.setNumRefills(0);
+        order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
 
     }
     
@@ -180,7 +131,7 @@ public class DrugordersPageController {
         orderFrequency.setConcept(Context.getConceptService().getConceptByName(Frequency));
         orderFrequency = (OrderFrequency) Context.getOrderService().saveOrderFrequency(orderFrequency);
         return orderFrequency;                
-                
+
     }
     
     private Date defaultStartDate() {
