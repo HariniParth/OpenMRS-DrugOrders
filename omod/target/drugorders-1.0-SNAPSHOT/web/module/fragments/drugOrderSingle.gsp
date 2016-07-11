@@ -1,3 +1,6 @@
+<%
+    ui.includeCss("drugorders", "drugorders.css")
+%>
 
 <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
     <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>

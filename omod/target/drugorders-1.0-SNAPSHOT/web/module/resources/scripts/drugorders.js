@@ -6,17 +6,28 @@
 
 $(document).ready( function() {
     jq("#singleOrderWindow").hide();
+    jq("#medicationPlanWindow").hide();
     jq("#showDrugOrderView").hide();
     jq("#showEditOrderView").hide();
     jq("#showDiscontinueOrderView").hide();
 });
 
 function showIndividualDrugOrderWindow(){
+    jq("#medicationPlanWindow").hide();
     jq("#singleOrderWindow").show();
 }
 
 function hideIndividualDrugOrderWindow(){
     jq("#singleOrderWindow").hide();
+}
+
+function showMedicationPlanOrderWindow(){
+    jq("#singleOrderWindow").hide();
+    jq("#medicationPlanWindow").show();
+}
+
+function hideMedicationPlanOrderWindow(){
+    jq("#medicationPlanWindow").hide();
 }
 
 function showAllergicDrugOrderDetailsWindow(){

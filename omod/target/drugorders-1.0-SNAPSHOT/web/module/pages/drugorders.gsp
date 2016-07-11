@@ -69,7 +69,7 @@
     <div id="orderWindowsBody">
     
         <div id="addSingleOrderWindow">
-            ${ ui.includeFragment("drugorders", "addDrugOrderSingle") }
+            ${ ui.includeFragment("drugorders", "addNewOrder") }
         </div>
         
         <div id="addSingleOrderDetailsWindow">
