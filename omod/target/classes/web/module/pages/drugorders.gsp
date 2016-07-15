@@ -34,7 +34,7 @@
             
         </div>
         
-        <div id="individualOrderWindow">
+        <div id="individualOrderWindow"> 
             <div>
                 <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
                     <input id="addSingleOrder" type="submit" value="ADD" onclick="showIndividualDrugOrderWindow()"/>

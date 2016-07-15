@@ -21,8 +21,10 @@ import org.openmrs.EncounterRole;
 import org.openmrs.Order;
 import org.openmrs.OrderFrequency;
 import org.openmrs.Patient;
+import org.openmrs.PatientIdentifier;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
+import static org.openmrs.api.context.Context.getPatientService;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -54,6 +56,8 @@ public class DrugordersPageController {
 
  	model.addAttribute("patient", patient);
  	model.addAttribute("allergies", patientService.getAllergies(patient));
+        PatientIdentifier patientIdentifier = Context.getPatientService().getPatientByExample(patient).getPatientIdentifier();
+        model.addAttribute("patientIdentifier", patientIdentifier.getIdentifier());
 
         if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
             
