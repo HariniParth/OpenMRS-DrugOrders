@@ -8,9 +8,9 @@
                     
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Drug name </label>
+                <label>Drug name</label>
             </div>
-            <div id="order_value">
+            <div id="order_value" class="select_field">
                 <input type="text" id="drugNameEntered" value="${drugname}" name="drugNameEntered" />
             </div>
         </div>
@@ -18,17 +18,22 @@
         <br/><br/>
         
         <div class="fields" id="view_order_detail">
-            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: 'Start Date ', formFieldName: 'startDateConfirmed', useTime: '', defaultDate: startDate]) }
+            <div id="order_label">
+                <label>Start Date</label>
+            </div>
+            <div id="order_value">
+                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: '', formFieldName: 'startDateConfirmed', useTime: '', defaultDate: startDate]) }
+            </div>
         </div>
 
-        <br/>
+        <br/><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Route </label>
+                <label>Route</label>
             </div>
             <div id="order_value">
-                <select id="drugRoute" name="drugRoute">
+                <select id="drugRoute" name="drugRoute" class="select_field">
                     <option value="">Choose option</option>
                     <% routes.each { route -> %>
                         <option value="${ route.getDisplayString() }">${ route.getDisplayString() }</option>
@@ -41,10 +46,10 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Dose </label>
+                <label>Dose</label>
             </div>
             <div id="order_value">
-                <input type="text" id="drugDose" name="drugDose"/>
+                <input type="text" id="drugDose" name="drugDose"class="select_field" />
             </div>
         </div>
 
@@ -52,10 +57,10 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Dose units </label>
+                <label>Dose units</label>
             </div>
             <div id="order_value">
-                <select id="drugDoseUnits" name="drugDoseUnits">
+                <select id="drugDoseUnits" name="drugDoseUnits" class="select_field">
                     <option value="">Choose option</option>
                     <% doses.each { dose -> %>
                         <option value="${ dose.getDisplayString() }">${ dose.getDisplayString() }</option>
@@ -68,10 +73,10 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Quantity </label>
+                <label>Quantity</label>
             </div>
             <div id="order_value">
-                <input type="text" id="drugQuantity" name="drugQuantity"/>
+                <input type="text" id="drugQuantity" name="drugQuantity" class="select_field" />
             </div>
         </div>
 
@@ -79,10 +84,10 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Quantity units </label>
+                <label>Quantity units</label>
             </div>
             <div id="order_value">
-                <select id="quantityUnits" name="quantityUnits">
+                <select id="quantityUnits" name="quantityUnits" class="select_field">
                     <option value="">Choose option</option>
                     <% quantities.each { quantity -> %>
                         <option value="${ quantity.getDisplayString() }">${ quantity.getDisplayString() }</option>
@@ -95,10 +100,10 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Duration </label>
+                <label>Duration</label>
             </div>
             <div id="order_value">
-                <input type="text" id="drugDuration" name="drugDuration"/>
+                <input type="text" id="drugDuration" name="drugDuration" class="select_field" />
             </div>
         </div>
 
@@ -106,10 +111,10 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Duration units </label>
+                <label>Duration units</label>
             </div>
             <div id="order_value">
-                <select id="durationUnits" name="durationUnits">
+                <select id="durationUnits" name="durationUnits" class="select_field">
                     <option value="">Choose option</option>
                     <% durations.each { duration -> %>
                         <option value="${ duration.getDisplayString() }">${ duration.getDisplayString() }</option>
@@ -125,7 +130,7 @@
                 <label>Frequency </label>
             </div>
             <div id="order_value">
-                <select id="drugFrequency" name="drugFrequency">
+                <select id="drugFrequency" name="drugFrequency" class="select_field">
                     <option value="">Choose option</option>
                     <% frequencies.each { frequency -> %>
                         <option value="${ frequency.getDisplayString() }">${ frequency.getDisplayString() }</option>
@@ -141,7 +146,7 @@
                 <label>Associated Diagnosis </label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="30" id="associatedDiagnosis" name="associatedDiagnosis"/>
+                <input type="textarea" maxlength="50" id="associatedDiagnosis" name="associatedDiagnosis" class="select_field" />
             </div>
         </div>
 
@@ -152,7 +157,7 @@
                 <label>Patient Instructions </label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="30" id="patientInstructions" name="patientInstructions"/>
+                <input type="textarea" maxlength="50" id="patientInstructions" name="patientInstructions" class="select_field"/>
             </div>
         </div>
 
@@ -163,7 +168,7 @@
                 <label>Pharmacist Instructions </label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="30" id="pharmacistInstructions" name="pharmacistInstructions"/>
+                <input type="textarea" maxlength="50" id="pharmacistInstructions" name="pharmacistInstructions" class="select_field"/>
             </div>
         </div>
 

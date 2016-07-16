@@ -95,3 +95,7 @@ and open the template in the editor.
     width: 70%;
     float: right;
 }
+
+.select_field{
+    width: 35px;
+}

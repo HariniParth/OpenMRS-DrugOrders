@@ -11,7 +11,7 @@
             <label>Patient ID</label>
         </div>
         <div id="order_value">
-            <input type="text" id="patient_id" value="${ patientIdentifier }" name="patient_id" readonly />
+            <label id="patient_id">${ patientIdentifier }</label>
         </div>
     </div>
     
@@ -22,7 +22,7 @@
             <label>Patient Name</label>
         </div>
         <div id="order_value">
-            <input type="text" id="patient_name" name="patient_name" readonly />
+            <label id="patient_name"></label>
         </div>
     </div>
         
@@ -33,7 +33,7 @@
             <label>Start Date</label>
         </div>
         <div id="order_value">
-            <input type="text" id="start_date" name="start_date" readonly />
+            <label id="start_date"></label>
         </div>
     </div>
     
@@ -44,11 +44,11 @@
             <label>Order Details</label>
         </div>
         <div id="order_value">
-            <input type="text" id="order_details" name="order_details" readonly />
+            <label id="order_details"></label>
         </div>
     </div>
 
-    <br/><br/>
+    <br/><br/><br/>
         
     <div class="fields" id="view_order_detail">
         <label>Physician instructions for</label>
@@ -61,7 +61,7 @@
             <label>Patient</label>
         </div>
         <div id="order_value">
-            <input type="text" id="patient_instructions" name="patient_instructions" readonly />
+            <label id="patient_instructions"></label>
         </div>
     </div>
 
@@ -72,7 +72,7 @@
             <label>Pharmacist</label>
         </div>
         <div id="order_value">
-            <input type="text" id="pharmacist_instructions" name="pharmacist_instructions" readonly />
+            <label id="pharmacist_instructions"></label>
         </div>
     </div>
         
@@ -92,7 +92,7 @@
 
             <label class="fields">Enter the reason to discontinue </label>
             
-            <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/>
+            <div class="fields" id="view_order_detail"><input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/></div>
 
             <button class="confirm right" id="btn-place" name="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
 

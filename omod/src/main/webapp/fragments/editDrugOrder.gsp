@@ -7,32 +7,51 @@
         <h4 id="header">${ ui.message("Edit Order") }</h4>
 
         <div class="fields" id="view_order_detail">
-            <div id="order_label"><label class="col-lg-3">Order ID</label></div>
-            <div id="order_value"><label id="edit_order_id" value="edit_order_id"></label></div>
+            <div id="order_label">
+                <label>Order ID</label>
+            </div>
+            <div id="order_value">
+                <label id="edit_order_id" value="edit_order_id"></label>
+            </div>
         </div>
         
         <div class="fields" id="view_order_detail">
-            <div id="order_label"><label id="label">Drug Name</label></div>
-            <div id="order_value"><label id="drug_name" value="drug_name"></label></div>
+            <div id="order_label">
+                <label id="label">Drug Name</label>
+            </div>
+            <div id="order_value">
+                <label id="drug_name" value="drug_name"></label>
+            </div>
         </div>
         
         <div class="fields" id="view_order_detail">
-            <div id="order_label"><label id="label">Start Date</label></div>
-            <div id="order_value"><label id="SelectedOrderDate" value="SelectedOrderDate"></label></div>
+            <div id="order_label">
+                <label id="label">Start Date</label>
+            </div>
+            <div id="order_value">
+                <label id="SelectedOrderDate" value="SelectedOrderDate"></label>
+            </div>
         </div>
         
         <br/><br/>
         
         <div class="fields" id="view_order_detail">
-            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateNew', label: 'New Date', formFieldName: 'startDateNew', useTime: '']) }
+            <div id="order_label">
+                <label id="label">New Date</label>
+            </div>
+            <div id="order_value">
+                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateNew', label: '', formFieldName: 'startDateNew', useTime: '']) }
+            </div>
         </div>
+        
+        <br/><br/><br/><br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
                 <label>Route</label>
             </div>
             <div id="order_value">
-                <select id="editDrugRoute" name="editDrugRoute">
+                <select id="editDrugRoute" name="editDrugRoute" class="select_field">
                     <option id="SelectedDrugRoute" name="SelectedDrugRoute"></option>
                     <option value="">Choose option</option>
                     <% routes.each { route -> %>
@@ -49,7 +68,7 @@
                 <label>Dose</label>
             </div>
             <div id="order_value">
-                <input type="text" id="editDrugDose" name="editDrugDose"/>
+                <input type="text" id="editDrugDose" name="editDrugDose" class="select_field" />
             </div>
         </div>
         
@@ -60,7 +79,7 @@
                 <label>Dose units</label>
             </div>
             <div id="order_value">
-                <select id="editDrugDoseUnits" name="editDrugDoseUnits">
+                <select id="editDrugDoseUnits" name="editDrugDoseUnits" class="select_field">
                     <option id="SelectedDrugDoseUnits" name="SelectedDrugDoseUnits"></option>
                     <option value="">Choose option</option>
                     <% doses.each { dose -> %>
@@ -77,7 +96,7 @@
                 <label>Quantity</label>
             </div>
             <div id="order_value">
-                <input type="text" id="editDrugQuantity" name="editDrugQuantity"/>
+                <input type="text" id="editDrugQuantity" name="editDrugQuantity" class="select_field" />
             </div>
         </div>
         
@@ -88,7 +107,7 @@
                 <label>Quantity units</label>
             </div>
             <div id="order_value">
-                <select id="editQuantityUnits" name="editQuantityUnits">
+                <select id="editQuantityUnits" name="editQuantityUnits" class="select_field">
                     <option id="SelectedDrugQuantityUnits" name="SelectedDrugQuantityUnits"></option>
                     <option value="">Choose option</option>
                     <% quantities.each { quantity -> %>
@@ -105,7 +124,7 @@
                 <label>Duration</label>
             </div>
             <div id="order_value">
-                <input type="text" id="editDrugDuration" name="editDrugDuration"/>
+                <input type="text" id="editDrugDuration" name="editDrugDuration" class="select_field"/>
             </div>
         </div>
         
@@ -116,7 +135,7 @@
                 <label>Duration units</label>
             </div>
             <div id="order_value">
-                <select id="editDurationUnits" name="editDurationUnits">
+                <select id="editDurationUnits" name="editDurationUnits" class="select_field">
                     <option id="SelectedDrugDurationUnits" name="SelectedDrugDurationUnits"></option>
                     <option value="">Choose option</option>
                     <% durations.each { duration -> %>
@@ -133,7 +152,7 @@
                 <label>Frequency</label>
             </div>
             <div id="order_value">
-                <select id="editDrugFrequency" name="editDrugFrequency">
+                <select id="editDrugFrequency" name="editDrugFrequency" class="select_field">
                     <option id="SelectedDrugFrequency" name="SelectedDrugFrequency"></option>
                     <option value="">Choose option</option>
                     <% frequencies.each { frequency -> %>
@@ -150,7 +169,7 @@
                 <label>Patient Instructions</label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="30" id="editPatientInstructions" name="editPatientInstructions"/>
+                <input type="textarea" maxlength="50" id="editPatientInstructions" name="editPatientInstructions" class="select_field" />
             </div>
         </div>
 
@@ -161,7 +180,7 @@
                 <label>Pharmacist Instructions</label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="30" id="editPharmacistInstructions" name="editPharmacistInstructions"/>
+                <input type="textarea" maxlength="50" id="editPharmacistInstructions" name="editPharmacistInstructions" class="select_field" />
             </div>
         </div>
 

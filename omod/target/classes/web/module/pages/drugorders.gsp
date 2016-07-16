@@ -57,7 +57,7 @@
         <div id="medicationPlanOrderWindow">
             <div>
                 <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
-                    <input id="addMedPlanOrder" type="submit" value="ADD" onclick="showMedicationPlanOrderWindow()"/>
+                    <input id="button" type="submit" value="ADD" onclick="showMedicationPlanOrderWindow()"/>
                 </h3>
             </div>
 
