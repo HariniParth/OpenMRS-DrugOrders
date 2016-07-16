@@ -1,8 +1,9 @@
 <div class="info-section allergies">
     <div class="info-header">
-        <div class="info-header" onclick="location.href='${ui.pageLink("drugorders", "drugorders", [patientId: patient.patient.id])}';" style="cursor: pointer;">
+        <div class="info-header">
             <i class="icon-medical"></i>
             <h3>${ ui.message("drugorders.drugorders").toUpperCase() }</h3>
+            <i class="icon-pencil edit-action right" title="${ ui.message("Add") }" onclick="location.href='${ui.pageLink("drugorders", "drugorders", [patientId: patient.patient.id])}';"></i>
         </div>
     </div>
 </div>

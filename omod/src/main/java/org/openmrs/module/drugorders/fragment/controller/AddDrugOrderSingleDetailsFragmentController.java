@@ -79,7 +79,6 @@ public class AddDrugOrderSingleDetailsFragmentController {
         addFrequencyMember(1099);
         addFrequencyMember(162245);
         addFrequencyMember(162247);
-        addFrequencyMember(162256);
         
         model.addAttribute("durations", durations);
         model.addAttribute("routes", routes);

@@ -7,8 +7,8 @@
         <h4 id="header">${ ui.message("Edit Order") }</h4>
 
         <div class="fields" id="view_order_detail">
-            <div id="order_label"><label class="col-lg-3">Order ID </label></div>
-            <div id="order_value"><label id="edit_order_id" value="edit_order_id" class="col-lg-7"></label></div>
+            <div id="order_label"><label class="col-lg-3">Order ID</label></div>
+            <div id="order_value"><label id="edit_order_id" value="edit_order_id"></label></div>
         </div>
         
         <div class="fields" id="view_order_detail">
@@ -23,80 +23,150 @@
         
         <br/><br/>
         
-        <div class="fields">
-            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateNew', label: 'New Start Date (optional)', formFieldName: 'startDateNew', useTime: '']) }
+        <div class="fields" id="view_order_detail">
+            ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateNew', label: 'New Date', formFieldName: 'startDateNew', useTime: '']) }
         </div>
 
-        <div class="fields"><label>Route </label>
-            <select id="editDrugRoute" name="editDrugRoute">
-                <option id="SelectedDrugRoute" name="SelectedDrugRoute"></option>
-                <option value="">Choose option</option>
-                <% routes.each { route -> %>
-                    <option value="${ route.getDisplayString() }">${ route.getDisplayString() }</option>
-                <% } %>
-            </select>
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Route</label>
+            </div>
+            <div id="order_value">
+                <select id="editDrugRoute" name="editDrugRoute">
+                    <option id="SelectedDrugRoute" name="SelectedDrugRoute"></option>
+                    <option value="">Choose option</option>
+                    <% routes.each { route -> %>
+                        <option value="${ route.getDisplayString() }">${ route.getDisplayString() }</option>
+                    <% } %>
+                </select>
+            </div>
         </div>
+        
+        <br/><br/>
             
-        <div class="fields"><label>Dose </label>
-            <input type="text" id="editDrugDose" name="editDrugDose"/>
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Dose</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="editDrugDose" name="editDrugDose"/>
+            </div>
+        </div>
+        
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Dose units</label>
+            </div>
+            <div id="order_value">
+                <select id="editDrugDoseUnits" name="editDrugDoseUnits">
+                    <option id="SelectedDrugDoseUnits" name="SelectedDrugDoseUnits"></option>
+                    <option value="">Choose option</option>
+                    <% doses.each { dose -> %>
+                        <option value="${ dose.getDisplayString() }">${ dose.getDisplayString() }</option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Quantity</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="editDrugQuantity" name="editDrugQuantity"/>
+            </div>
+        </div>
+        
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Quantity units</label>
+            </div>
+            <div id="order_value">
+                <select id="editQuantityUnits" name="editQuantityUnits">
+                    <option id="SelectedDrugQuantityUnits" name="SelectedDrugQuantityUnits"></option>
+                    <option value="">Choose option</option>
+                    <% quantities.each { quantity -> %>
+                        <option value="${ quantity.getDisplayString() }">${ quantity.getDisplayString() }</option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Duration</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="editDrugDuration" name="editDrugDuration"/>
+            </div>
+        </div>
+        
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Duration units</label>
+            </div>
+            <div id="order_value">
+                <select id="editDurationUnits" name="editDurationUnits">
+                    <option id="SelectedDrugDurationUnits" name="SelectedDrugDurationUnits"></option>
+                    <option value="">Choose option</option>
+                    <% durations.each { duration -> %>
+                        <option value="${ duration.getDisplayString() }">${ duration.getDisplayString() }</option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Frequency</label>
+            </div>
+            <div id="order_value">
+                <select id="editDrugFrequency" name="editDrugFrequency">
+                    <option id="SelectedDrugFrequency" name="SelectedDrugFrequency"></option>
+                    <option value="">Choose option</option>
+                    <% frequencies.each { frequency -> %>
+                        <option value="${ frequency.getDisplayString() }">${ frequency.getDisplayString() }</option>
+                    <% } %>
+                </select>
+            </div>
         </div>
 
-        <div class="fields"><label>Dose units </label>
-            <select id="editDrugDoseUnits" name="editDrugDoseUnits">
-                <option id="SelectedDrugDoseUnits" name="SelectedDrugDoseUnits"></option>
-                <option value="">Choose option</option>
-                <% doses.each { dose -> %>
-                    <option value="${ dose.getDisplayString() }">${ dose.getDisplayString() }</option>
-                <% } %>
-            </select>
+        <br/><br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Patient Instructions</label>
+            </div>
+            <div id="order_value">
+                <input type="textarea" maxlength="30" id="editPatientInstructions" name="editPatientInstructions"/>
+            </div>
         </div>
 
-        <div class="fields"><label>Quantity </label>
-            <input type="text" id="editDrugQuantity" name="editDrugQuantity"/>
+        <br/><br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Pharmacist Instructions</label>
+            </div>
+            <div id="order_value">
+                <input type="textarea" maxlength="30" id="editPharmacistInstructions" name="editPharmacistInstructions"/>
+            </div>
         </div>
 
-        <div class="fields"><label>Quantity units </label>
-            <select id="editQuantityUnits" name="editQuantityUnits">
-                <option id="SelectedDrugQuantityUnits" name="SelectedDrugQuantityUnits"></option>
-                <option value="">Choose option</option>
-                <% quantities.each { quantity -> %>
-                    <option value="${ quantity.getDisplayString() }">${ quantity.getDisplayString() }</option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="fields"><label>Duration </label>
-            <input type="text" id="editDrugDuration" name="editDrugDuration"/>
-        </div>
-
-        <div class="fields"><label>Duration units </label>
-            <select id="editDurationUnits" name="editDurationUnits">
-                <option id="SelectedDrugDurationUnits" name="SelectedDrugDurationUnits"></option>
-                <option value="">Choose option</option>
-                <% durations.each { duration -> %>
-                    <option value="${ duration.getDisplayString() }">${ duration.getDisplayString() }</option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="fields"><label>Frequency </label>
-            <select id="editDrugFrequency" name="editDrugFrequency">
-                <option id="SelectedDrugFrequency" name="SelectedDrugFrequency"></option>
-                <option value="">Choose option</option>
-                <% frequencies.each { frequency -> %>
-                    <option value="${ frequency.getDisplayString() }">${ frequency.getDisplayString() }</option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="fields"><label>Patient Instructions </label>
-            <input type="textarea" maxlength="30" id="editPatientInstructions" name="editPatientInstructions"/>
-        </div>
-
-        <div class="fields"><label>Pharmacist Instructions </label>
-            <input type="textarea" maxlength="30" id="editPharmacistInstructions" name="editPharmacistInstructions"/>
-        </div>
-
+        <br/><br/><br/>
+        
         <button class="confirm right" id="btn-place" name="editOrder" type="submit" onclick="editOrderWindow()">${ ui.message("Submit") }</button>
         <button class="cancel " id="btn-place" onclick="hideEditOrderWindow()">${ ui.message("Close") }</button></div>
     </form>

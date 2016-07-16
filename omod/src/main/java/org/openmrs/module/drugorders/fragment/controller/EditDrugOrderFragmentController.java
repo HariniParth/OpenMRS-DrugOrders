@@ -5,19 +5,12 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
 import org.openmrs.api.context.Context;
-import static org.openmrs.api.context.Context.getDateTimeFormat;
 import org.openmrs.ui.framework.page.PageModel;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -70,7 +63,6 @@ public class EditDrugOrderFragmentController {
         addFrequencyMember(1099);
         addFrequencyMember(162245);
         addFrequencyMember(162247);
-        addFrequencyMember(162256);
         
         model.addAttribute("durations", durations);
         model.addAttribute("routes", routes);

@@ -51,11 +51,11 @@ function hideIndividualOrderDetailsWindow(){
 
 function showDrugOrderViewWindow(givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
     jq("#showDiscontinueOrderView").hide();
-    $("#patient_name").text(givenName+" "+lastName);
-    $("#start_date").text(startdate);
-    $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
-    $("#patient_instructions").text(patientinstructions);
-    $("#pharmacist_instructions").text(pharmacistinstructions);
+    $("#patient_name").val(givenName+" "+lastName);
+    $("#start_date").val(startdate);
+    $("#order_details").val(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
+    $("#patient_instructions").val(patientinstructions);
+    $("#pharmacist_instructions").val(pharmacistinstructions);
     jq("#showDrugOrderView").show();
 }
 
@@ -85,11 +85,11 @@ function hideEditOrderWindow(){
 }
 
 function showDiscontinueIndividualDrugOrderWindow(givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
-    $("#patient_name").text(givenName+" "+lastName);
-    $("#start_date").text(startdate);
-    $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
-    $("#patient_instructions").text(patientinstructions);
-    $("#pharmacist_instructions").text(pharmacistinstructions);
+    $("#patient_name").val(givenName+" "+lastName);
+    $("#start_date").val(startdate);
+    $("#order_details").val(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
+    $("#patient_instructions").val(patientinstructions);
+    $("#pharmacist_instructions").val(pharmacistinstructions);
     jq("#showDiscontinueOrderView").show();
     jq("#showDrugOrderView").show();
 }

@@ -66,7 +66,7 @@ and open the template in the editor.
 }
 
 .fields{
-    margin: 10px;
+    padding-left: 10px;
 }
 
 #header{
@@ -79,6 +79,7 @@ and open the template in the editor.
 
 #button{
     float: right;
+    margin-right: 20px;
 }
 
 #view_order_detail{

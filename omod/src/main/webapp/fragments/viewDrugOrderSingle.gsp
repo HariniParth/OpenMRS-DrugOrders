@@ -7,40 +7,73 @@
     <h4 id="header">${ ui.message("Order Details") }</h4>
         
     <div class="fields" id="view_order_detail">
-        <div id="order_label"><label>Patient ID</label></div>
-        <div id="order_value"><label id="patient_id">${ patientIdentifier }</label></div>
+        <div id="order_label">
+            <label>Patient ID</label>
+        </div>
+        <div id="order_value">
+            <input type="text" id="patient_id" value="${ patientIdentifier }" name="patient_id" readonly />
+        </div>
     </div>
+    
+    <br/><br/>
         
     <div class="fields" id="view_order_detail">
-        <div id="order_label"><label>Patient Name</label></div>
-        <div id="order_value"><label id="patient_name"></label></div>
-    </div>
-        
-    <div class="fields" id="view_order_detail">
-        <div id="order_label"><label>Start Date</label></div>
-        <div id="order_value"><label id="start_date"></label></div>
-    </div>
-        
-    <div class="fields" id="view_order_detail">
-        <div id="order_label"><label>Order Details</label></div>
-        <br/><br/><br/>
-        <div id="order_value"><label id="order_details"></label></div>
+        <div id="order_label">
+            <label>Patient Name</label>
+        </div>
+        <div id="order_value">
+            <input type="text" id="patient_name" name="patient_name" readonly />
+        </div>
     </div>
         
     <br/><br/>
-        
-    <div class="fields" id="view_order_detail"><label>Physician instructions for</label></div>
+    
+    <div class="fields" id="view_order_detail">
+        <div id="order_label">
+            <label>Start Date</label>
+        </div>
+        <div id="order_value">
+            <input type="text" id="start_date" name="start_date" readonly />
+        </div>
+    </div>
+    
+    <br/><br/>
         
     <div class="fields" id="view_order_detail">
-        <div id="order_label"><label>Patient</label></div>
-        <div id="order_value"><label id="patient_instructions"></label></div>
+        <div id="order_label">
+            <label>Order Details</label>
+        </div>
+        <div id="order_value">
+            <input type="text" id="order_details" name="order_details" readonly />
+        </div>
+    </div>
+
+    <br/><br/>
+        
+    <div class="fields" id="view_order_detail">
+        <label>Physician instructions for</label>
+    </div>
+    
+    <br/>
+    
+    <div class="fields" id="view_order_detail">
+        <div id="order_label">
+            <label>Patient</label>
+        </div>
+        <div id="order_value">
+            <input type="text" id="patient_instructions" name="patient_instructions" readonly />
+        </div>
     </div>
 
     <br/><br/>
 
     <div class="fields" id="view_order_detail">
-        <div id="order_label"><label>Pharmacist</label></div>
-        <div id="order_value"><label id="pharmacist_instructions"></label></div>
+        <div id="order_label">
+            <label>Pharmacist</label>
+        </div>
+        <div id="order_value">
+            <input type="text" id="pharmacist_instructions" name="pharmacist_instructions" readonly />
+        </div>
     </div>
         
     <br/><br/>
