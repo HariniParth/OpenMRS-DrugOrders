@@ -162,29 +162,33 @@
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <label>Instructions from Physician for -</label>
+        </div> 
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Patient Instructions</label>
+                <label>Patient</label>
             </div>
             <div id="order_value">
                 <input type="textarea" maxlength="50" id="editPatientInstructions" name="editPatientInstructions" class="select_field" />
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Pharmacist Instructions</label>
+                <label>Pharmacist</label>
             </div>
             <div id="order_value">
                 <input type="textarea" maxlength="50" id="editPharmacistInstructions" name="editPharmacistInstructions" class="select_field" />
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
         
         <button class="confirm right" id="btn-place" name="editOrder" type="submit" onclick="editOrderWindow()">${ ui.message("Submit") }</button>
         <button class="cancel " id="btn-place" onclick="hideEditOrderWindow()">${ ui.message("Close") }</button></div>

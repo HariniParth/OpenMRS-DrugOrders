@@ -10,7 +10,6 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,13 +17,11 @@ import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
 import org.openmrs.EncounterRole;
-import org.openmrs.Order;
 import org.openmrs.OrderFrequency;
 import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
-import static org.openmrs.api.context.Context.getPatientService;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -60,13 +57,17 @@ public class DrugordersPageController {
         model.addAttribute("patientIdentifier", patientIdentifier.getIdentifier());
 
         if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
-            
+        
             createNewDrugOrder(patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
             drugorders drugorders = new drugorders();
             drugorders.setDrugname(drugNameEntered);
             drugorders.setStartdate(startDateConfirmed);
             drugorders.setOrderId(order.getOrderId());
-                    
+
+            if(!(allergicOrderReason.equals(""))){
+                drugorders.setIsallergic(1);
+                drugorders.setIsallergicorderreasons(allergicOrderReason);
+            }
             if(!(associatedDiagnosis.equals("")))
                 drugorders.setAssociateddiagnosis(associatedDiagnosis);
             if(!(patientInstructions.equals("")))
@@ -75,6 +76,7 @@ public class DrugordersPageController {
                 drugorders.setPharmacistinstructions(pharmacistInstructions);
                     
             drugorders.setPatientid(Integer.toString(patient.getPatientId()));
+            drugorders.setOrderstatus("Active");
             Context.getService(drugordersService.class).saveNewTable(drugorders);
         }   
     }

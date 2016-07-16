@@ -26,13 +26,13 @@ public class AddNewOrderFragmentController {
      * @param patient
      */
     public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
-            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam(value = "startDate", required = false) Date startDate,
+            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam("patientId") Patient patient){
 
         model.addAttribute("drugname", drugname);
-        model.addAttribute("allergicOrderReason", allergicOrderReason);
         model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
+        model.addAttribute("allergicOrderReason", allergicOrderReason);
     }
 }

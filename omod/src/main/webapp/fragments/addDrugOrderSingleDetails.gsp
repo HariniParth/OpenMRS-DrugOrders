@@ -26,8 +26,22 @@
             </div>
         </div>
 
-        <br/><br/>
+        <br/><br/><br/>
         
+        <% if(allergicOrderReason != "") { %>
+            <div class="fields" id="view_order_detail">
+                <div id="order_label">
+                    <label>Order Reason</label>
+                </div>
+                <div id="order_value">
+                    <input type="textarea" value="${allergicOrderReason}" id="allergicOrderReason" name="allergicOrderReason" class="select_field" />
+                </div>
+            </div>
+
+            <br/><br/>
+        
+        <% } %>
+
         <div class="fields" id="view_order_detail">
             <div id="order_label">
                 <label>Route</label>
@@ -143,36 +157,40 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Associated Diagnosis </label>
+                <label>Diagnosis</label>
             </div>
             <div id="order_value">
                 <input type="textarea" maxlength="50" id="associatedDiagnosis" name="associatedDiagnosis" class="select_field" />
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
         
         <div class="fields" id="view_order_detail">
+            <label>Instructions from Physician for -</label>
+        </div>  
+            
+        <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Patient Instructions </label>
+                <label>Patient</label>
             </div>
             <div id="order_value">
                 <input type="textarea" maxlength="50" id="patientInstructions" name="patientInstructions" class="select_field"/>
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Pharmacist Instructions </label>
+                <label>Pharmacist</label>
             </div>
             <div id="order_value">
                 <input type="textarea" maxlength="50" id="pharmacistInstructions" name="pharmacistInstructions" class="select_field"/>
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
         
         <button class="confirm right" id="btn-place" type="submit" onclick="showIndividualOrderDetailsWindow()">${ ui.message("Next") }</button>
         <button class="cancel" id="btn-place" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>

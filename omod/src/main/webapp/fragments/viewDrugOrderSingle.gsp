@@ -92,7 +92,9 @@
 
             <label class="fields">Enter the reason to discontinue </label>
             
-            <div class="fields" id="view_order_detail"><input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/></div>
+            <div class="fields" id="view_order_detail">
+                <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/>
+            </div>
 
             <button class="confirm right" id="btn-place" name="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
 

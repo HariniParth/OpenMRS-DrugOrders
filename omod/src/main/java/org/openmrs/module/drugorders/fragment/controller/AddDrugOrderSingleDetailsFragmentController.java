@@ -36,11 +36,13 @@ public class AddDrugOrderSingleDetailsFragmentController {
         
     public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
             @RequestParam(value = "startDate", required = false) Date startDate,
+            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam("patientId") Patient patient){
         
         model.addAttribute("drugname", drugname);
         model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
+        model.addAttribute("allergicOrderReason", allergicOrderReason);
 
         Concept con1 = Context.getConceptService().getConcept(1732);
         Concept con2 = Context.getConceptService().getConcept(162394);
