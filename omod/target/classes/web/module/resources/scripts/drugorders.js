@@ -67,7 +67,7 @@ function hideDrugOrderViewWindow(){
 
 function showEditIndividualDrugOrderWindow(orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
     jq("#showEditOrderView").show();
-    $("#edit_order_id").text(orderId);
+    $("#edit_order_id").val(orderId);
     $("#drug_name").text(drugName);
     $("#SelectedOrderDate").text(startDate);
     $("#SelectedDrugRoute").text(route);

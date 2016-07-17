@@ -65,6 +65,12 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     }
 
     ;
+        @Override
+	public void deleteNewTable(drugorders newTable) {
+        sessionFactory.getCurrentSession().delete(newTable);
+    }
+
+    ;
 
         @Override
     public List<drugorders> getNewTablesByPatient(Patient patient) {

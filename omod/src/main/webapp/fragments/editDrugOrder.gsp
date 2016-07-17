@@ -8,15 +8,6 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Order ID</label>
-            </div>
-            <div id="order_value">
-                <label id="edit_order_id" value="edit_order_id"></label>
-            </div>
-        </div>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label">
                 <label id="label">Drug Name</label>
             </div>
             <div id="order_value">
@@ -190,6 +181,8 @@
 
         <br/><br/>
         
+        <input type="hidden" id="edit_order_id" name="edit_order_id"/>
+        <input type="hidden" name="action" value="editDrugOrder"/>
         <button class="confirm right" id="btn-place" name="editOrder" type="submit" onclick="editOrderWindow()">${ ui.message("Submit") }</button>
         <button class="cancel " id="btn-place" onclick="hideEditOrderWindow()">${ ui.message("Close") }</button></div>
     </form>

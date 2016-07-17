@@ -27,6 +27,8 @@ public interface drugordersDAO {
 	public drugorders getNewTableByUuid(String uuid);
 
 	public drugorders saveNewTable(drugorders newTable);
+        
+        public void deleteNewTable(drugorders newTable);
 
         public List<drugorders> getNewTablesByPatient(Patient patient);
 }
