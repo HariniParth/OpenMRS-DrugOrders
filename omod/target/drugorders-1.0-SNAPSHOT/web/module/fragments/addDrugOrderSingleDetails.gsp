@@ -63,7 +63,7 @@
                 <label>Dose</label>
             </div>
             <div id="order_value">
-                <input type="text" id="drugDose" name="drugDose"class="select_field" />
+                <input type="text" id="drugDose" name="drugDose" class="select_field" />
             </div>
         </div>
 

@@ -13,6 +13,7 @@ package org.openmrs.module.drugorders.page.controller;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -49,6 +50,8 @@ public class DrugordersPageController {
                             @RequestParam(value = "durationUnits", required = false) String durationUnits,
                             @RequestParam(value = "patientInstructions", required = false) String patientInstructions,
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
+                            @RequestParam(value = "action", required = false) String action,
+                            @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
                             @SpringBean("allergyService") PatientService patientService) {
 
  	model.addAttribute("patient", patient);
@@ -78,7 +81,19 @@ public class DrugordersPageController {
             drugorders.setPatientid(Integer.toString(patient.getPatientId()));
             drugorders.setOrderstatus("Active");
             Context.getService(drugordersService.class).saveNewTable(drugorders);
-        }   
+        } 
+        
+        if(StringUtils.isNotBlank(action)){
+            try {
+                if("discontinueDrugOrder".equals(action)){
+                    drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getNewTable(dis_order_id);
+                    drugorderToDiscontinue.setOrderstatus("Discontinued");
+                }
+            }
+            catch (Exception e){
+                System.out.println(e.toString());
+            }
+        }
     }
     
     private void createNewDrugOrder(Patient patient, String drugNameEntered, String drugRoute, 

@@ -81,7 +81,7 @@
     <div id="showDiscontinueOrderView">
         <form method="post">
             <h4 id="header">${ ui.message("Discontinue Order") }</h4>
-
+            
             <label class="fields">Select the reason to discontinue </label>
 
             <div class="fields">
@@ -96,6 +96,8 @@
                 <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/>
             </div>
 
+            <input type="hidden" id="dis_order_id" name="dis_order_id"/>
+            <input type="hidden" name="action" value="discontinueDrugOrder"/>
             <button class="confirm right" id="btn-place" name="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
 
         </form>
