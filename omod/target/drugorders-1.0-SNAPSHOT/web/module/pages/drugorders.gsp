@@ -35,7 +35,7 @@
         </div>
         
         <br/><br/>
-        
+
         <div id="individualOrderWindow"> 
             <div>
                 <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
@@ -100,7 +100,7 @@
             ${ ui.includeFragment("drugorders", "viewDrugOrderSingle") }
         </div>
         
-        <div id="editOrderWindow">
+        <div id="showEditOrderView">
             ${ ui.includeFragment("drugorders", "editDrugOrder") }
         </div>
         

@@ -41,7 +41,31 @@
 		<dependencies>
 
 			<!-- Begin OpenMRS modules -->
-    
+                        
+                        <dependency>
+                            <groupId>org.openmrs.module</groupId>
+                            <artifactId>htmlwidgets-omod</artifactId>
+                            <version>${htmlwidgetsModuleVersion}</version>
+                        </dependency>
+                        
+                        <dependency>
+                            <groupId>org.openmrs.module</groupId>
+                            <artifactId>htmlformentry-omod</artifactId>
+                            <version>${htmlformentryModuleVersion}</version>
+                        </dependency>
+                        
+                        <dependency>
+                            <groupId>org.openmrs.module</groupId>
+                            <artifactId>htmlformentry19ext-omod</artifactId>
+                            <version>${htmlformentry19extModuleVersion}</version>
+                        </dependency>
+                        
+                        <dependency>
+                            <groupId>org.openmrs.module</groupId>
+                            <artifactId>htmlformentryui-omod</artifactId>
+                            <version>${htmlformentryuiModuleVersion}</version>
+                        </dependency>
+        
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>uiframework-api</artifactId>

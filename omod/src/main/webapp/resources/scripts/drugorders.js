@@ -8,7 +8,8 @@ $(document).ready( function() {
     jq("#singleOrderWindow").hide();
     jq("#medicationPlanWindow").hide();
     jq("#showDrugOrderView").hide();
-    jq("#showEditOrderView").hide();
+    jq("#editOrderWindow").hide();
+    jq("#renewOrderWindow").hide();
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersWindow").hide();
     jq("#showDiscontinueOrderView").hide();
@@ -66,7 +67,7 @@ function hideDrugOrderViewWindow(){
 }
 
 function showEditIndividualDrugOrderWindow(orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
-    jq("#showEditOrderView").show();
+    jq("#editOrderWindow").show();
     $("#edit_order_id").val(orderId);
     $("#drug_name").text(drugName);
     $("#SelectedOrderDate").text(startDate);
@@ -82,8 +83,29 @@ function showEditIndividualDrugOrderWindow(orderId,drugName,startDate,dose,doseU
     $("#editPharmacistInstructions").val(pharmacistinstructions);
 }
 
+function showRenewIndividualDrugOrderWindow(orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
+    jq("#renewOrderWindow").show();
+    $("#renew_order_id").val(orderId);
+    $("#renew_drug_name").text(drugName);
+    $("#renew_DrugRoute").text(route);
+    $("#renewDrugDose").val(dose);
+    $("#renew_DrugDoseUnits").text(doseUnits);
+    $("#renewDrugQuantity").val(quantity);
+    $("#renew_DrugQuantityUnits").text(quantityUnits);
+    $("#renewDrugDuration").val(duration);
+    $("#renew_DrugDurationUnits").text(durationUnits);
+    $("#renew_DrugFrequency").text(frequency);
+    $("#renewDiagnosis").val(associateddiagnosis);
+    $("#renewPatientInstructions").val(patientinstructions);
+    $("#renewPharmacistInstructions").val(pharmacistinstructions);
+}
+
 function hideEditOrderWindow(){
-    jq("#showEditOrderView").hide();
+    jq("#editOrderWindow").hide();
+}
+
+function hideRenewOrderWindow(){
+    jq("#renewOrderWindow").hide();
 }
 
 function showDiscontinueIndividualDrugOrderWindow(orderid,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
