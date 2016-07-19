@@ -183,8 +183,8 @@
         
         <input type="hidden" id="edit_order_id" name="edit_order_id"/>
         <input type="hidden" name="action" value="editDrugOrder"/>
-        <button class="confirm right" id="btn-place" name="editOrder" type="submit" onclick="editOrderWindow()">${ ui.message("Submit") }</button>
-        <button class="cancel " id="btn-place" onclick="hideEditOrderWindow()">${ ui.message("Close") }</button></div>
+        <button class="confirm pull-right" id="btn-place" name="editOrder" type="submit" onclick="editOrderWindow()">${ ui.message("Submit") }</button>
+        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideEditOrderWindow()">${ ui.message("Close") }</button></div>
     </form>
 </div>
 
@@ -374,7 +374,8 @@
         
         <input type="hidden" id="renew_order_id" name="renew_order_id"/>
         <input type="hidden" name="action" value="renewDrugOrder"/>
-        <button class="confirm right" id="btn-place" name="renewOrder" type="submit" onclick="renewOrderWindow()">${ ui.message("Submit") }</button>
-        <button class="cancel " id="btn-place" onclick="hideRenewOrderWindow()">${ ui.message("Close") }</button></div>
+        <br/>
+        <button class="confirm pull-right" id="btn-place" name="renewOrder" type="submit" onclick="renewOrderWindow()">${ ui.message("Submit") }</button>
+        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewOrderWindow()">${ ui.message("Close") }</button></div>
     </form>
 </div>

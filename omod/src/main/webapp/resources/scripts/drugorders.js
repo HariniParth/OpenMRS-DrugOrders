@@ -54,6 +54,7 @@ function hideIndividualOrderDetailsWindow(){
 
 function showDrugOrderViewWindow(givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
     jq("#showDiscontinueOrderView").hide();
+    jq("#view_window_close_btn").show();
     $("#patient_name").text(givenName+" "+lastName);
     $("#start_date").text(startdate);
     $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
@@ -109,6 +110,7 @@ function hideRenewOrderWindow(){
 }
 
 function showDiscontinueIndividualDrugOrderWindow(orderid,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+    jq("#view_window_close_btn").hide();
     $("#dis_order_id").val(orderid);
     $("#patient_name").text(givenName+" "+lastName);
     $("#start_date").text(startdate);
