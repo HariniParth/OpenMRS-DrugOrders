@@ -5,11 +5,6 @@
  */
 
 $(document).ready( function() {
-    jq("#singleOrderWindow").hide();
-    jq("#medicationPlanWindow").hide();
-    jq("#showDrugOrderView").hide();
-    jq("#editOrderWindow").hide();
-    jq("#renewOrderWindow").hide();
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersWindow").hide();
     jq("#showDiscontinueOrderView").hide();
@@ -18,6 +13,7 @@ $(document).ready( function() {
 function showIndividualDrugOrderWindow(){
     jq("#medicationPlanWindow").hide();
     jq("#singleOrderWindow").show();
+    document.getElementById("singleOrderWindow").style.display = 'block';
 }
 
 function hideIndividualDrugOrderWindow(){
@@ -27,6 +23,7 @@ function hideIndividualDrugOrderWindow(){
 function showMedicationPlanOrderWindow(){
     jq("#singleOrderWindow").hide();
     jq("#medicationPlanWindow").show();
+    document.getElementById("medicationPlanWindow").style.display = 'block';
 }
 
 function hideMedicationPlanOrderWindow(){
@@ -61,6 +58,7 @@ function showDrugOrderViewWindow(givenName,lastName,startdate,drugname,dose,dose
     $("#patient_instructions").text(patientinstructions);
     $("#pharmacist_instructions").text(pharmacistinstructions);
     jq("#showDrugOrderView").show();
+    document.getElementById("showDrugOrderView").style.display = 'block';
 }
 
 function hideDrugOrderViewWindow(){
@@ -68,7 +66,6 @@ function hideDrugOrderViewWindow(){
 }
 
 function showEditIndividualDrugOrderWindow(orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
-    jq("#editOrderWindow").show();
     $("#edit_order_id").val(orderId);
     $("#drug_name").text(drugName);
     $("#SelectedOrderDate").text(startDate);
@@ -82,10 +79,11 @@ function showEditIndividualDrugOrderWindow(orderId,drugName,startDate,dose,doseU
     $("#SelectedDrugFrequency").text(frequency);
     $("#editPatientInstructions").val(patientinstructions);
     $("#editPharmacistInstructions").val(pharmacistinstructions);
+    jq("#editOrderWindow").show();
+    document.getElementById("editOrderWindow").style.display = 'block';
 }
 
 function showRenewIndividualDrugOrderWindow(orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
-    jq("#renewOrderWindow").show();
     $("#renew_order_id").val(orderId);
     $("#renew_drug_name").text(drugName);
     $("#renew_DrugRoute").text(route);
@@ -99,6 +97,8 @@ function showRenewIndividualDrugOrderWindow(orderId,drugName,dose,doseUnits,rout
     $("#renewDiagnosis").val(associateddiagnosis);
     $("#renewPatientInstructions").val(patientinstructions);
     $("#renewPharmacistInstructions").val(pharmacistinstructions);
+    jq("#renewOrderWindow").show();
+    document.getElementById("renewOrderWindow").style.display = 'block';
 }
 
 function hideEditOrderWindow(){

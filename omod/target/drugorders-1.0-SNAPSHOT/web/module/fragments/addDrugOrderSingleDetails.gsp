@@ -5,6 +5,8 @@
 <div id="singleOrderDetailsWindow">
     
     <form method="post">
+        
+        <h4 id="header">${ ui.message("Order Details") }</h4>
                     
         <div class="fields" id="view_order_detail">
             <div id="order_label">

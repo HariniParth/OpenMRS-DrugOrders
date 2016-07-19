@@ -4,7 +4,7 @@
 
 <div id="showDrugOrderView">
 
-    <h4 id="header">${ ui.message("Order Details") }</h4>
+    <h4 id="header">${ ui.message("View Order") }</h4>
         
     <div class="fields" id="view_order_detail">
         <div id="order_label">

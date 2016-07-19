@@ -99,3 +99,23 @@ and open the template in the editor.
 .select_field{
     width: 35px;
 }
+
+#singleOrderWindow{
+    display: none;
+}
+
+#medicationPlanWindow{
+    display: none;
+}
+
+#showDrugOrderView{
+    display: none;
+}
+
+#editOrderWindow{
+    display: none;
+}
+
+#renewOrderWindow{
+    display: none;
+}
