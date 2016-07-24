@@ -24,7 +24,7 @@
                 <label>Start Date</label>
             </div>
             <div id="order_value">
-                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateConfirmed', label: '', formFieldName: 'startDateConfirmed', useTime: '', defaultDate: startDate]) }
+                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateEntered', label: '', formFieldName: 'startDateEntered', useTime: '', defaultDate: startDate]) }
             </div>
         </div>
 
@@ -36,7 +36,7 @@
                     <label>Order Reason</label>
                 </div>
                 <div id="order_value">
-                    <input type="textarea" value="${allergicOrderReason}" id="allergicOrderReason" name="allergicOrderReason" class="select_field" />
+                    <input type="textarea" value="${allergicOrderReason}" id="allergicOrderReason" name="allergicOrderReasonEntered" class="select_field" />
                 </div>
             </div>
 
@@ -194,8 +194,8 @@
 
         <br/><br/>
         
-        <button class="confirm right" id="btn-place" type="submit" onclick="showIndividualOrderDetailsWindow()">${ ui.message("Next") }</button>
-        <button class="cancel" id="btn-place" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
+        <button class="confirm right" id="btn-place" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Confirm") }</button>
+        <button class="cancel" id="btn-place" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
 
     </form>
 </div>

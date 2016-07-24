@@ -46,7 +46,14 @@ function showIndividualOrderDetailsWindow(){
 
 function hideIndividualOrderDetailsWindow(){
     jq("#singleOrderDetailsWindow").hide();
-    $("#drugNameEntered").val("");
+}
+
+function showConfirmOrderWindow(){
+    jq("#singleOrderDetailsWindow").hide();
+}
+
+function hideConfirmOrderWindow(){
+    jq("#confirmOrderView").hide();
 }
 
 function showDrugOrderViewWindow(givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){

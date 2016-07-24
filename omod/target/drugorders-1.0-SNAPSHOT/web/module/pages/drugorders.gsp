@@ -90,19 +90,21 @@
                     <% } %>
             
                 <% } else { %>
-                    ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
+                    ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }                   
                 <% } %>
             <% } %>
 
         </div>
-
-        <div id="drugOrderView">
-            ${ ui.includeFragment("drugorders", "viewDrugOrderSingle") }
-        </div>
+        
+        <% if(drugNameEntered != "") { %>
+            <div id="confirmOrderView">
+                ${ ui.includeFragment("drugorders", "confirmOrder") }
+            </div>
+        <% } %>
         
         <div id="showEditOrderView">
             ${ ui.includeFragment("drugorders", "editDrugOrder") }
         </div>
-        
+               
     </div>
 </div>
