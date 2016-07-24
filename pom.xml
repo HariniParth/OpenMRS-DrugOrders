@@ -41,30 +41,6 @@
 		<dependencies>
 
 			<!-- Begin OpenMRS modules -->
-                        
-                        <dependency>
-                            <groupId>org.openmrs.module</groupId>
-                            <artifactId>htmlwidgets-omod</artifactId>
-                            <version>${htmlwidgetsModuleVersion}</version>
-                        </dependency>
-                        
-                        <dependency>
-                            <groupId>org.openmrs.module</groupId>
-                            <artifactId>htmlformentry-omod</artifactId>
-                            <version>${htmlformentryModuleVersion}</version>
-                        </dependency>
-                        
-                        <dependency>
-                            <groupId>org.openmrs.module</groupId>
-                            <artifactId>htmlformentry19ext-omod</artifactId>
-                            <version>${htmlformentry19extModuleVersion}</version>
-                        </dependency>
-                        
-                        <dependency>
-                            <groupId>org.openmrs.module</groupId>
-                            <artifactId>htmlformentryui-omod</artifactId>
-                            <version>${htmlformentryuiModuleVersion}</version>
-                        </dependency>
         
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
@@ -151,7 +127,7 @@
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
-						
+			
 			<!-- End OpenMRS core -->
 
 			<!-- we explicitly use version 3.2.10 since 3.2.11 has a bug which was giving us issues,

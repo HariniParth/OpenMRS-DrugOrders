@@ -24,6 +24,14 @@
                 <require_module version="1.3">
 			org.openmrs.module.allergyapi
 		</require_module>
+                
+                <require_module version="${htmlformentryVersion}">
+			org.openmrs.module.htmlformentry
+		</require_module>
+                
+                <require_module version="${htmlwidgetsVersion}">
+			org.openmrs.module.htmlwidgets
+		</require_module>
 	</require_modules>
 
 	
