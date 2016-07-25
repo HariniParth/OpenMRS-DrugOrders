@@ -194,6 +194,7 @@
 
         <br/><br/>
         
+        <input type="hidden" name="action" value="addOrderDraft" />
         <button class="confirm right" id="btn-place" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Confirm") }</button>
         <button class="cancel" id="btn-place" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
 
