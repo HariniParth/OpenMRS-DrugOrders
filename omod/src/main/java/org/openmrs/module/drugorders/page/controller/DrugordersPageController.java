@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Session;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -29,6 +32,8 @@ import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
+import org.openmrs.ui.framework.session.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
@@ -75,7 +80,7 @@ public class DrugordersPageController {
             try {
                 if("addOrderDraft".equals(action)){
                     if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
-        
+
                         DrugOrder drugOrder = null;
                         createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                         drugorders drugorders = new drugorders();
@@ -102,8 +107,8 @@ public class DrugordersPageController {
                 } 
                 
                 if("confirmOrder".equals(action)){
-                    
-                    for(DrugOrder dorderMain : AL.drugOrderMain){
+                    List<DrugOrder> drugOrderMain = AL.getDrugOrderMain();
+                    for(DrugOrder dorderMain : drugOrderMain){ 
                         dorderMain = (DrugOrder)Context.getOrderService().saveOrder(dorderMain, null);
                         AL.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
                         Context.getService(drugordersService.class).saveNewTable(AL.drugOrderExtension.get(0));
@@ -254,9 +259,11 @@ public class DrugordersPageController {
 
 class AL{
     
+    
     public static List<DrugOrder> drugOrderMain = new ArrayList<DrugOrder>();
     public static List<drugorders> drugOrderExtension = new ArrayList<drugorders>();
     
+    @Transactional
     public static List<DrugOrder> getDrugOrderMain(){
         return drugOrderMain;
     }

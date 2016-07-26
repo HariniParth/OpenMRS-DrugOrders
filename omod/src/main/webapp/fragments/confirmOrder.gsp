@@ -16,10 +16,15 @@
                     <i class="icon-pencil edit-action" title="${ ui.message("Edit") }"></i>
                     <i class="icon-remove delete-action" title="${ ui.message("Delete") }"></i>
                 </span>
+                <br/><br/>
             <% } %>
         <% } %>
         
         <br/><br/><br/><br/>
+        
+        <a href="#" onclick="addAnotherOrderWindow()">Add another order</a>
+        
+        <br/><br/>
         
         <input type="hidden" name="action" value="confirmOrder" />
         <button class="confirm right" id="btn-place" type="submit">${ ui.message("Submit") }</button>
