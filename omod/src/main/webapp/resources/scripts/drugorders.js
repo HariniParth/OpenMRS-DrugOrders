@@ -139,4 +139,9 @@ function hideDiscontinuedFulfilledOrders(){
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersLinkView").show();
 }
-    
+
+function autoCompleteDiagnosis(){
+    $("#associatedDiagnosis").autocomplete({
+       source : ["AAA","BBB","CCC","DDD"]
+    });
+}

@@ -1,5 +1,6 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
+    ui.includeJavascript("drugorders", "drugorders.js")
 %>
 
 <div id="singleOrderDetailsWindow">
@@ -154,7 +155,7 @@
                 </select>
             </div>
         </div>
-
+                    
         <br/><br/>
         
         <div class="fields" id="view_order_detail">
@@ -162,7 +163,7 @@
                 <label>Diagnosis</label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="50" id="associatedDiagnosis" name="associatedDiagnosis" class="select_field" />
+                <input type="textarea" maxlength="50" id="associatedDiagnosis" autocomplete="on" oninput="autoCompleteDiagnosis()" "autoCompleteDiagnosis()" name="associatedDiagnosis" class="select_field" />
             </div>
         </div>
 

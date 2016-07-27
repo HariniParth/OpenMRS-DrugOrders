@@ -5,7 +5,6 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
-import java.util.Date;
 import org.openmrs.Patient;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;

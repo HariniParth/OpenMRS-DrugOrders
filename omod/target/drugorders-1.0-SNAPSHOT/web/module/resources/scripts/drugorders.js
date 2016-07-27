@@ -42,7 +42,6 @@ function hideAllergicDrugOrderWindow(){
 function showIndividualOrderDetailsWindow(){
     jq("#singleOrderWindow").hide();
     jq("#allergicOrderWindow").hide();
-    jq("#singleOrderDetailsWindow").show();
 }
 
 function hideIndividualOrderDetailsWindow(){
@@ -140,4 +139,9 @@ function hideDiscontinuedFulfilledOrders(){
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersLinkView").show();
 }
-    
+
+function autoCompleteDiagnosis(){
+    $("#associatedDiagnosis").autocomplete({
+       source : ["AAA","BBB","CCC","DDD"]
+    });
+}

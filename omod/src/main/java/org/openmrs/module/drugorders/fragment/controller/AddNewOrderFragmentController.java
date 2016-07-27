@@ -5,8 +5,13 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import org.openmrs.Concept;
+import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
+import org.openmrs.api.context.Context;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,6 +30,9 @@ public class AddNewOrderFragmentController {
      * @param startDate
      * @param patient
      */
+    
+    List<Concept> drugs = new ArrayList<Concept>();
+    
     public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
             @RequestParam(value = "startDate", required = false) Date startDate,
             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
@@ -34,5 +42,14 @@ public class AddNewOrderFragmentController {
         model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
         model.addAttribute("allergicOrderReason", allergicOrderReason);
+        
+        Concept drugConcept = Context.getConceptService().getConcept(162552);
+        
+        for(ConceptSet drugConcepts : drugConcept.getConceptSets()){
+            Concept drugMember = drugConcepts.getConcept();
+            drugs.add(drugMember);
+        }
+        
+        model.addAttribute("drugs", drugs);
     }
 }

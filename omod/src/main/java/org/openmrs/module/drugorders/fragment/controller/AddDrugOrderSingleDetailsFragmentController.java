@@ -28,6 +28,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
      * @param patient
      */
 
+    List<Concept> diagnosis = new ArrayList<Concept>();
     List<Concept> durations = new ArrayList<Concept>();
     List<Concept> routes = new ArrayList<Concept>();
     List<Concept> doses = new ArrayList<Concept>();
@@ -70,17 +71,23 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
 
-        Concept con1 = Context.getConceptService().getConcept(1732);
-        Concept con2 = Context.getConceptService().getConcept(162394);
+        Concept durationConcept = Context.getConceptService().getConcept(1732);
+        Concept routeConcept = Context.getConceptService().getConcept(162394);
+        Concept diagnosisConcept = Context.getConceptService().getConcept(162555);
         
-        for(ConceptSet durationConcepts : con1.getConceptSets()){
+        for(ConceptSet durationConcepts : durationConcept.getConceptSets()){
             Concept durationMember = durationConcepts.getConcept();
             durations.add(durationMember);
         }
                                                                         
-        for(ConceptSet routeConcepts : con2.getConceptSets()){
+        for(ConceptSet routeConcepts : routeConcept.getConceptSets()){
             Concept routeMember = routeConcepts.getConcept();
             routes.add(routeMember);
+        }
+        
+        for(ConceptSet diagnosisConcepts : diagnosisConcept.getConceptSets()){
+            Concept diagnosisMember = diagnosisConcepts.getConcept();
+            diagnosis.add(diagnosisMember);
         }
         
         addDoseMember(162358);
@@ -108,6 +115,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         addFrequencyMember(162245);
         addFrequencyMember(162247);
         
+        model.addAttribute("diagnosis", diagnosis);
         model.addAttribute("durations", durations);
         model.addAttribute("routes", routes);
         model.addAttribute("doses", doses);

@@ -10,14 +10,10 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.Session;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -32,7 +28,6 @@ import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
-import org.openmrs.ui.framework.session.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -112,7 +107,9 @@ public class DrugordersPageController {
                         dorderMain = (DrugOrder)Context.getOrderService().saveOrder(dorderMain, null);
                         AL.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
                         Context.getService(drugordersService.class).saveNewTable(AL.drugOrderExtension.get(0));
+                        AL.drugOrderExtension.remove(0);
                     }
+                    AL.drugOrderMain.clear();
                 }
                 
                 if("discontinueDrugOrder".equals(action)){
@@ -255,20 +252,4 @@ public class DrugordersPageController {
         return cal.getTime();
     }
     
-}
-
-class AL{
-    
-    
-    public static List<DrugOrder> drugOrderMain = new ArrayList<DrugOrder>();
-    public static List<drugorders> drugOrderExtension = new ArrayList<drugorders>();
-    
-    @Transactional
-    public static List<DrugOrder> getDrugOrderMain(){
-        return drugOrderMain;
-    }
-    
-    public static List<drugorders> getDrugOrderExtension(){
-        return drugOrderExtension;
-    }
 }
