@@ -51,5 +51,12 @@ public class AddNewOrderFragmentController {
         }
         
         model.addAttribute("drugs", drugs);
+        
+        List<String> drugsNames = new ArrayList<String>();
+        for(Concept drug : drugs){
+            drugsNames.add(drug.getDisplayString());
+        }
+        System.out.println(drugsNames);
+        model.addAttribute("drugsNames", drugsNames);
     }
 }

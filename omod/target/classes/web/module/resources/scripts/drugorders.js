@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+/* global diagnosis */
+
 $(document).ready( function() {
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersWindow").hide();
@@ -140,8 +142,18 @@ function hideDiscontinuedFulfilledOrders(){
     jq("#nonActiveOrdersLinkView").show();
 }
 
-function autoCompleteDiagnosis(){
+function autoCompleteDiagnosis(diagnosis){
+    var list = diagnosis.split(',');
+    console.log(list);
     $("#associatedDiagnosis").autocomplete({
-       source : ["AAA","BBB","CCC","DDD"]
+       source : list
+    });
+}
+
+function autoCompleteDrug(drug){
+    var list = drug.split(',');
+    console.log(list);
+    $("#drugname").autocomplete({
+       source : list
     });
 }

@@ -8,6 +8,7 @@ package org.openmrs.module.drugorders.fragment.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
@@ -71,6 +72,8 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
 
+        ObjectMapper mapper = new ObjectMapper();
+        
         Concept durationConcept = Context.getConceptService().getConcept(1732);
         Concept routeConcept = Context.getConceptService().getConcept(162394);
         Concept diagnosisConcept = Context.getConceptService().getConcept(162555);
@@ -114,13 +117,20 @@ public class AddDrugOrderSingleDetailsFragmentController {
         addFrequencyMember(1099);
         addFrequencyMember(162245);
         addFrequencyMember(162247);
-        
+   
         model.addAttribute("diagnosis", diagnosis);
         model.addAttribute("durations", durations);
         model.addAttribute("routes", routes);
         model.addAttribute("doses", doses);
         model.addAttribute("quantities", quantities);
         model.addAttribute("frequencies", frequencies);
+        
+        List<String> diagnosisNames = new ArrayList<String>();
+        for(Concept diagnosisName : diagnosis){
+            diagnosisNames.add(diagnosisName.getDisplayString());
+        }
+        System.out.println(diagnosisNames);
+        model.addAttribute("diagnosisNames", diagnosisNames);
 
     }
     
@@ -138,4 +148,5 @@ public class AddDrugOrderSingleDetailsFragmentController {
         Concept frequencyMember = Context.getConceptService().getConcept(conceptNumber);
         frequencies.add(frequencyMember);
     }
+
 }
