@@ -157,3 +157,11 @@ function autoCompleteDrug(drug){
        source : list
     });
 }
+
+function autoCompleteDisease(disease){
+    var list = disease.split(',');
+    console.log(list);
+    $("#disease_name").autocomplete({
+       source : list
+    });
+}

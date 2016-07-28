@@ -3,7 +3,7 @@
 %>
 
 <div id="confirmDrugOrderView">
-    
+        
     <form method="post">
         <h4 id="header">${ ui.message("Confirm Order") }</h4>
 
@@ -20,6 +20,10 @@
             <% } %>
         <% } %>
         
+        <% if(disease_name != null) { %>
+            ${ disease_name } ${ medPlanStartDate }
+        <% } %>
+        
         <br/><br/><br/><br/>
         
         <a href="#" onclick="addAnotherOrderWindow()">Add another order</a>
@@ -28,7 +32,7 @@
         
         <input type="hidden" name="action" value="confirmOrder" />
         <button class="confirm right" id="btn-place" type="submit">${ ui.message("Submit") }</button>
-        <button class="cancel" id="btn-place" type="button">${ ui.message("Cancel") }</button>
+        <button class="cancel" id="btn-place" onclick="hideConfirmOrderWindow()" type="button">${ ui.message("Cancel") }</button>
     </form>
     
 </div>

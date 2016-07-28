@@ -76,7 +76,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         
         Concept durationConcept = Context.getConceptService().getConcept(1732);
         Concept routeConcept = Context.getConceptService().getConcept(162394);
-        Concept diagnosisConcept = Context.getConceptService().getConcept(162555);
+        Concept diagnosisConcept = Context.getConceptService().getConcept(160168);
         
         for(ConceptSet durationConcepts : durationConcept.getConceptSets()){
             Concept durationMember = durationConcepts.getConcept();

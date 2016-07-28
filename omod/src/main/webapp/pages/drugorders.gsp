@@ -96,7 +96,7 @@
 
         </div>
         
-        <% if(drugNameEntered != "") { %>
+        <% if(drugNameEntered != "" || disease_name != "") { %>
             <div id="confirmOrderView">
                 ${ ui.includeFragment("drugorders", "confirmOrder") }
             </div>

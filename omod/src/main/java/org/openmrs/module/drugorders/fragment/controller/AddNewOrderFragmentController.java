@@ -32,13 +32,18 @@ public class AddNewOrderFragmentController {
      */
     
     List<Concept> drugs = new ArrayList<Concept>();
+    List<Concept> diseases = new ArrayList<Concept>();
     
     public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
+            @RequestParam(value = "disease_name", required = false) String disease_name,
             @RequestParam(value = "startDate", required = false) Date startDate,
+            @RequestParam(value = "medPlanStartDate", required = false) Date medPlanStartDate,
             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam("patientId") Patient patient){
 
         model.addAttribute("drugname", drugname);
+        model.addAttribute("disease_name", disease_name);
+        model.addAttribute("medPlanStartDate", medPlanStartDate);
         model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
         model.addAttribute("allergicOrderReason", allergicOrderReason);
@@ -49,7 +54,7 @@ public class AddNewOrderFragmentController {
             Concept drugMember = drugConcepts.getConcept();
             drugs.add(drugMember);
         }
-        
+
         model.addAttribute("drugs", drugs);
         
         List<String> drugsNames = new ArrayList<String>();
@@ -58,5 +63,22 @@ public class AddNewOrderFragmentController {
         }
         System.out.println(drugsNames);
         model.addAttribute("drugsNames", drugsNames);
+        
+        
+        Concept diseaseConcept = Context.getConceptService().getConcept(160168);
+        
+        for(ConceptSet diseaseConcepts : diseaseConcept.getConceptSets()){
+            Concept diseaseMember = diseaseConcepts.getConcept();
+            diseases.add(diseaseMember);
+        }
+        
+        model.addAttribute("diagnosis", diseases);
+        
+        List<String> diseaseNames = new ArrayList<String>();
+        for(Concept diagnosisName : diseases){
+            diseaseNames.add(diagnosisName.getDisplayString());
+        }
+        System.out.println(diseaseNames);
+        model.addAttribute("diseaseNames", diseaseNames);
     }
 }
