@@ -61,7 +61,6 @@ public class AddNewOrderFragmentController {
         for(Concept drug : drugs){
             drugsNames.add(drug.getDisplayString());
         }
-        System.out.println(drugsNames);
         model.addAttribute("drugsNames", drugsNames);
         
         
@@ -78,7 +77,6 @@ public class AddNewOrderFragmentController {
         for(Concept diagnosisName : diseases){
             diseaseNames.add(diagnosisName.getDisplayString());
         }
-        System.out.println(diseaseNames);
         model.addAttribute("diseaseNames", diseaseNames);
     }
 }

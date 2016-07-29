@@ -8,7 +8,7 @@
         <h4 id="header">${ ui.message("Confirm Order") }</h4>
 
         <br/><br/>
-
+        
         <% if(drugOrderExtension != null) { %>
             <% drugOrderExtension.each { dorderExtension -> %>
                 <a href="#" class="fields">${dorderExtension.drugname} ${dorderExtension.startdate}</a>
@@ -22,6 +22,8 @@
         
         <% if(disease_name != null) { %>
             ${ disease_name } ${ medPlanStartDate }
+        <% } else { %>
+            ---
         <% } %>
         
         <br/><br/><br/><br/>

@@ -28,12 +28,11 @@ import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
 
-
+    
     public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameEntered,
                             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
                             @RequestParam(value = "allergicOrderReasonEntered", required = false) String allergicOrderReason,
@@ -68,8 +67,8 @@ public class DrugordersPageController {
  	model.addAttribute("allergies", patientService.getAllergies(patient));
         PatientIdentifier patientIdentifier = Context.getPatientService().getPatientByExample(patient).getPatientIdentifier();
         model.addAttribute("patientIdentifier", patientIdentifier.getIdentifier());
-        model.addAttribute("drugOrderMain", AL.drugOrderMain);
-        model.addAttribute("drugOrderExtension", AL.drugOrderExtension);
+        model.addAttribute("drugOrderMain", DraftOrderList.drugOrderMain);
+        model.addAttribute("drugOrderExtension", DraftOrderList.drugOrderExtension);
 
         if(StringUtils.isNotBlank(action)){
             try {
@@ -96,20 +95,19 @@ public class DrugordersPageController {
 
                         drugorders.setPatientid(Integer.toString(patient.getPatientId()));
                         drugorders.setOrderstatus("Active");
-                        AL.drugOrderExtension.add(drugorders);
+                        DraftOrderList.drugOrderExtension.add(drugorders);
 
                     }
                 } 
                 
                 if("confirmOrder".equals(action)){
-                    List<DrugOrder> drugOrderMain = AL.getDrugOrderMain();
-                    for(DrugOrder dorderMain : drugOrderMain){ 
+                    List<DrugOrder> drugOrders = DraftOrderList.getDrugOrderMain();
+                    for(DrugOrder dorderMain : drugOrders){ 
                         dorderMain = (DrugOrder)Context.getOrderService().saveOrder(dorderMain, null);
-                        AL.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
-                        Context.getService(drugordersService.class).saveNewTable(AL.drugOrderExtension.get(0));
-                        AL.drugOrderExtension.remove(0);
+                        DraftOrderList.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
+                        Context.getService(drugordersService.class).saveNewTable(DraftOrderList.drugOrderExtension.get(0));
+                        DraftOrderList.drugOrderExtension.remove(0);
                     }
-                    AL.drugOrderMain.clear();
                 }
                 
                 if("discontinueDrugOrder".equals(action)){
@@ -219,7 +217,7 @@ public class DrugordersPageController {
         order.setDuration(drugDuration);
         order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
         order.setNumRefills(0);
-        AL.drugOrderMain.add(order);
+        DraftOrderList.drugOrderMain.add(order);
         
     }
     

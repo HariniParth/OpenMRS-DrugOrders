@@ -78,7 +78,7 @@
         <div id="addSingleOrderDetailsWindow">
             <% if(drugname != "") { %>
                 <% allergies.each { allergy -> %>
-                    <% if(drugname == "${allergy.allergen}") { %>
+                    <% if(drugname == " ${allergy.allergen}") { %>
                         <% isAllergic = true; %>
                     <% } %>
                 <% } %>

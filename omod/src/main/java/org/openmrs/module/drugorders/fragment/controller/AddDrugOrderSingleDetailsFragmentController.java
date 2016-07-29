@@ -129,7 +129,6 @@ public class AddDrugOrderSingleDetailsFragmentController {
         for(Concept diagnosisName : diagnosis){
             diagnosisNames.add(diagnosisName.getDisplayString());
         }
-        System.out.println(diagnosisNames);
         model.addAttribute("diagnosisNames", diagnosisNames);
 
     }
