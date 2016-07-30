@@ -1,23 +1,24 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "drugorders.js")
-    def isAllergic = false;
 %>
 
 <div id="singleOrderDetailsWindow">
     
     <form method="post">
-        
+
         <div class="dialog-header">
             <h3 id="text_heading">${ ui.message("Create Individual Drug Order") }</h3>
         </div>
-                    
+              
+        <br/>
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label">
                 <label>Drug name</label>
             </div>
             <div id="order_value" class="select_field">
-                <input type="text" id="drugNameEntered" autocomplete="on" oninput="autoCompleteDrug('${drugsNames}')" onchange="showAllergyField()" name="drugNameEntered" />
+                <input type="text" id="drugNameEntered" autocomplete="on" oninput="autoCompleteDrug('${drugsNames}','${allergicDrugs}')" name="drugNameEntered" />
             </div>
         </div>
         
@@ -33,6 +34,7 @@
         </div>
 
         <br/><br/><br/>
+        
         <div id="allergicDrugOrderReasonField">
             <div class="fields" id="view_order_detail">
                 <div id="order_label">

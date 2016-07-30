@@ -10,6 +10,7 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;

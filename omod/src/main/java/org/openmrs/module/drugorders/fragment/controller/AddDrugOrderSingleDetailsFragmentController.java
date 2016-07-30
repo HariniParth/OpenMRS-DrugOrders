@@ -13,6 +13,8 @@ import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.allergyapi.api.PatientService;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -52,7 +54,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis,
                             @RequestParam(value = "patientInstructions", required = false) String patientInstructions,
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
-                            @RequestParam("patientId") Patient patient){
+                            @RequestParam("patientId") Patient patient,@SpringBean("allergyService") PatientService patientService){
         
         model.addAttribute("patientid", patient.getPatientId());
         model.addAttribute("drugNameEntered", drugNameEntered);
@@ -69,7 +71,15 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
-
+        model.addAttribute("allergies", patientService.getAllergies(patient));
+        
+        int number_of_allergic_drugs = patientService.getAllergies(patient).size();
+        ArrayList<String> allergen = new ArrayList<String>();
+        for(int i=1;i<=number_of_allergic_drugs;i++){
+            allergen.add(patientService.getAllergies(patient).getAllergy(i).getAllergen().toString());
+            model.addAttribute("allergicDrugs", allergen);
+        }
+        
         Concept drugConcept = Context.getConceptService().getConcept(162552);
         
         for(ConceptSet drugConcepts : drugConcept.getConceptSets()){

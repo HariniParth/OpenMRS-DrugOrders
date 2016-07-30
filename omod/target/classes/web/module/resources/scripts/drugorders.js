@@ -28,6 +28,7 @@ function showIndividualOrderDetailsWindow(){
 
 function hideIndividualOrderDetailsWindow(){
     jq("#singleOrderDetailsWindow").hide();
+    jq("#allergicDrugOrderReasonField").hide();
 }
 
 function showConfirmOrderWindow(){
@@ -130,11 +131,28 @@ function autoCompleteDiagnosis(diagnosis){
     });
 }
 
-function autoCompleteDrug(drug){
+function autoCompleteDrug(drug, allergies){
     var list = drug.split(',');
     console.log(list);
     $("#drugNameEntered").autocomplete({
-       source : list
+       source : list,
+       select : function( event , ui ) {
+            var allergyList = allergies.split(",");
+            var isAllergic = false;
+            $.each(allergyList,function(index,value){
+                var drugname = value.replace("[","").replace("]","").replace(" ","");
+                var selectedDrug = (ui.item.label).replace(" ","");
+                if(selectedDrug === drugname){
+                    isAllergic = true;
+                } 
+            });
+            if(isAllergic){
+                jq("#allergicDrugOrderReasonField").show();
+                document.getElementById("allergicDrugOrderReasonField").style.display = 'block';
+            } else {
+                jq("#allergicDrugOrderReasonField").hide();
+            }
+        }
     });
 }
 
