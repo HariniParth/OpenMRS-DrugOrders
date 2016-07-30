@@ -12,38 +12,18 @@ $(document).ready( function() {
     jq("#showDiscontinueOrderView").hide();
 });
 
-function showIndividualDrugOrderWindow(){
-    jq("#medicationPlanWindow").hide();
-    jq("#singleOrderWindow").show();
-    document.getElementById("singleOrderWindow").style.display = 'block';
-}
-
-function hideIndividualDrugOrderWindow(){
-    jq("#singleOrderWindow").hide();
-}
-
 function showMedicationPlanOrderWindow(){
-    jq("#singleOrderWindow").hide();
-    jq("#medicationPlanWindow").show();
-    document.getElementById("medicationPlanWindow").style.display = 'block';
+    jq("#addMedicationPlanWindow").show();
+    document.getElementById("addMedicationPlanWindow").style.display = 'block';
 }
 
 function hideMedicationPlanOrderWindow(){
-    jq("#medicationPlanWindow").hide();
-}
-
-function showAllergicDrugOrderDetailsWindow(){
-    jq("#allergicOrderWindow").hide();
-}
-
-function hideAllergicDrugOrderWindow(){
-    jq("#allergicOrderWindow").hide();
-    jq("#singleOrderWindow").show();
+    jq("#addMedicationPlanWindow").hide();
 }
 
 function showIndividualOrderDetailsWindow(){
-    jq("#singleOrderWindow").hide();
-    jq("#allergicOrderWindow").hide();
+    jq("#singleOrderDetailsWindow").show();
+    document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
 function hideIndividualOrderDetailsWindow(){
@@ -153,7 +133,7 @@ function autoCompleteDiagnosis(diagnosis){
 function autoCompleteDrug(drug){
     var list = drug.split(',');
     console.log(list);
-    $("#drugname").autocomplete({
+    $("#drugNameEntered").autocomplete({
        source : list
     });
 }

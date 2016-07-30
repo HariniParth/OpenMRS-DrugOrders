@@ -33,9 +33,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DrugordersPageController {
 
     
-    public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameEntered,
+    public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
                             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
-                            @RequestParam(value = "allergicOrderReasonEntered", required = false) String allergicOrderReason,
+                            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
  	                    @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis,
                             @RequestParam(value = "drugRoute", required = false) String drugRoute, @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
                             @RequestParam(value = "drugDose", required = false) String drugDose, @RequestParam(value = "drugDoseUnits", required = false) String drugDoseUnits,
@@ -62,6 +62,7 @@ public class DrugordersPageController {
                             @RequestParam(value = "renewDrugDuration", required = false) Integer renewDrugDuration, @RequestParam(value = "renewDurationUnits", required = false) String renewDurationUnits,
                             @RequestParam(value = "renewPatientInstructions", required = false) String renewPatientInstructions, @RequestParam(value = "renewPharmacistInstructions", required = false) String renewPharmacistInstructions) {
 
+        String drugNameEntered = drugNameSelected.replace(" ", "");
  	model.addAttribute("patient", patient);
         model.addAttribute("drugNameEntered", drugNameEntered);
  	model.addAttribute("allergies", patientService.getAllergies(patient));
@@ -74,9 +75,8 @@ public class DrugordersPageController {
             try {
                 if("addOrderDraft".equals(action)){
                     if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
-
                         DrugOrder drugOrder = null;
-                        createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                        int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                         drugorders drugorders = new drugorders();
                         drugorders.setDrugname(drugNameEntered);
                         drugorders.setStartdate(startDateEntered);
@@ -95,21 +95,21 @@ public class DrugordersPageController {
 
                         drugorders.setPatientid(Integer.toString(patient.getPatientId()));
                         drugorders.setOrderstatus("Active");
-                        DraftOrderList.drugOrderExtension.add(drugorders);
-
+                        drugorders.setOrderId(order);
+                        //DraftOrderList.drugOrderExtension.add(drugorders);
+                        Context.getService(drugordersService.class).saveNewTable(drugorders);
                     }
+                    
+//                        List<DrugOrder> drugOrders = DraftOrderList.getDrugOrderMain();
+//                        for(DrugOrder dorderMain : drugOrders){ 
+//                            dorderMain = (DrugOrder)Context.getOrderService().saveOrder(dorderMain, null);
+//                            DraftOrderList.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
+//                            Context.getService(drugordersService.class).saveNewTable(DraftOrderList.drugOrderExtension.get(0));
+//                            DraftOrderList.drugOrderExtension.remove(0);
+//                        }
+                    
                 } 
-                
-                if("confirmOrder".equals(action)){
-                    List<DrugOrder> drugOrders = DraftOrderList.getDrugOrderMain();
-                    for(DrugOrder dorderMain : drugOrders){ 
-                        dorderMain = (DrugOrder)Context.getOrderService().saveOrder(dorderMain, null);
-                        DraftOrderList.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
-                        Context.getService(drugordersService.class).saveNewTable(DraftOrderList.drugOrderExtension.get(0));
-                        DraftOrderList.drugOrderExtension.remove(0);
-                    }
-                }
-                
+
                 if("discontinueDrugOrder".equals(action)){
                     drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getNewTable(dis_order_id);
                     drugorderToDiscontinue.setOrderstatus("Discontinued");
@@ -128,9 +128,10 @@ public class DrugordersPageController {
                     DrugOrder drugorderMainEdited = null;
                     drugorders drugorderExtensionEdited = new drugorders();
                     
-                    createNewDrugOrder(drugorderMainEdited, patient, drugName, editDrugRoute, editDrugDose, editDrugDoseUnits, editDrugQuantity, editQuantityUnits, editDrugFrequency, editDrugDuration, editDurationUnits);
+                    int order = createNewDrugOrder(drugorderMainEdited, patient, drugName, editDrugRoute, editDrugDose, editDrugDoseUnits, editDrugQuantity, editQuantityUnits, editDrugFrequency, editDrugDuration, editDurationUnits);
                     
                     drugorderExtensionEdited.setDrugname(drugName);
+                    drugorderExtensionEdited.setOrderId(order);
                     
                     if(startDateNew != null){
                         drugorderExtensionEdited.setStartdate(startDateNew);
@@ -152,9 +153,10 @@ public class DrugordersPageController {
                     DrugOrder drugorderMainRenewed = null;
                     drugorders drugorderExtensionRenewed = new drugorders();
                     
-                    createNewDrugOrder(drugorderMainRenewed, patient, drugName, renewDrugRoute, renewDrugDose, renewDrugDoseUnits, renewDrugQuantity, renewQuantityUnits, renewDrugFrequency, renewDrugDuration, renewDurationUnits);
+                    int order = createNewDrugOrder(drugorderMainRenewed, patient, drugName, renewDrugRoute, renewDrugDose, renewDrugDoseUnits, renewDrugQuantity, renewQuantityUnits, renewDrugFrequency, renewDrugDuration, renewDurationUnits);
                     
                     drugorderExtensionRenewed.setDrugname(drugName);
+                    drugorderExtensionRenewed.setOrderId(order);
                     drugorderExtensionRenewed.setStartdate(startDateRenew);
                     drugorderExtensionRenewed.setOrderstatus("Active");
                     drugorderExtensionRenewed.setAssociateddiagnosis(renewDiagnosis);
@@ -170,12 +172,11 @@ public class DrugordersPageController {
         }
     }
     
-    private void createNewDrugOrder(DrugOrder order, Patient patient, String drugNameConfirmed, String drugRoute, 
+    private int createNewDrugOrder(DrugOrder order, Patient patient, String drugNameConfirmed, String drugRoute, 
                  String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,
                  String drugFrequency, Integer drugDuration, String durationUnits){
 
         order = new DrugOrder();
-        
         order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameConfirmed));
         order.setConcept(Context.getConceptService().getConceptByName(drugNameConfirmed));
         CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
@@ -217,8 +218,9 @@ public class DrugordersPageController {
         order.setDuration(drugDuration);
         order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
         order.setNumRefills(0);
-        DraftOrderList.drugOrderMain.add(order);
-        
+        //DraftOrderList.drugOrderMain.add(order);
+        order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
+        return order.getOrderId();
     }
     
     private OrderFrequency setOrderFrequency(String Frequency){

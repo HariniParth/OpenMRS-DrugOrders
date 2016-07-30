@@ -8,8 +8,6 @@ package org.openmrs.module.drugorders.page.controller;
 import java.util.ArrayList;
 import java.util.List;
 import org.openmrs.DrugOrder;
-import org.openmrs.api.context.Context;
-import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 
 /**
@@ -17,7 +15,6 @@ import org.openmrs.module.drugorders.drugorders;
  * @author harini-geek
  */
 public class DraftOrderList{
-    
     
     public static List<DrugOrder> drugOrderMain = new ArrayList<DrugOrder>();
     public static List<drugorders> drugOrderExtension = new ArrayList<drugorders>();

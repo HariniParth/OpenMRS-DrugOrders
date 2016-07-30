@@ -20,12 +20,6 @@
             <% } %>
         <% } %>
         
-        <% if(disease_name != null) { %>
-            ${ disease_name } ${ medPlanStartDate }
-        <% } else { %>
-            ---
-        <% } %>
-        
         <br/><br/><br/><br/>
         
         <a href="#" onclick="addAnotherOrderWindow()">Add another order</a>

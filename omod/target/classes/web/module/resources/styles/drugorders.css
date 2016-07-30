@@ -41,7 +41,7 @@ and open the template in the editor.
     float: right;
 }
 
-.info-body #orderWindowsBody #addSingleOrderWindow{
+.info-body #orderWindowsBody #addMedicationPlanWindow{
     width: 100%;
 }
 
@@ -104,11 +104,11 @@ and open the template in the editor.
     width: 35px;
 }
 
-#singleOrderWindow{
+#addMedicationPlanWindow{
     display: none;
 }
 
-#medicationPlanWindow{
+#singleOrderDetailsWindow{
     display: none;
 }
 
@@ -121,5 +121,9 @@ and open the template in the editor.
 }
 
 #renewOrderWindow{
+    display: none;
+}
+
+#allergicDrugOrderReasonField{
     display: none;
 }

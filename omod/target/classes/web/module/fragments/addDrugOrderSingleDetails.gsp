@@ -1,20 +1,23 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "drugorders.js")
+    def isAllergic = false;
 %>
 
 <div id="singleOrderDetailsWindow">
     
     <form method="post">
         
-        <h4 id="header">${ ui.message("Order Details") }</h4>
+        <div class="dialog-header">
+            <h3 id="text_heading">${ ui.message("Create Individual Drug Order") }</h3>
+        </div>
                     
         <div class="fields" id="view_order_detail">
             <div id="order_label">
                 <label>Drug name</label>
             </div>
             <div id="order_value" class="select_field">
-                <input type="text" id="drugNameEntered" value="${drugname}" name="drugNameEntered" />
+                <input type="text" id="drugNameEntered" autocomplete="on" oninput="autoCompleteDrug('${drugsNames}')" onchange="showAllergyField()" name="drugNameEntered" />
             </div>
         </div>
         
@@ -25,25 +28,22 @@
                 <label>Start Date</label>
             </div>
             <div id="order_value">
-                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateEntered', label: '', formFieldName: 'startDateEntered', useTime: '', defaultDate: startDate]) }
+                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateEntered', label: '', formFieldName: 'startDateEntered', useTime: '']) }
             </div>
         </div>
 
         <br/><br/><br/>
-        
-        <% if(allergicOrderReason != "") { %>
+        <div id="allergicDrugOrderReasonField">
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
                     <label>Order Reason</label>
                 </div>
                 <div id="order_value">
-                    <input type="textarea" value="${allergicOrderReason}" id="allergicOrderReason" name="allergicOrderReasonEntered" class="select_field" />
+                    <input type="textarea" id="allergicOrderReason" name="allergicOrderReason" class="select_field" />
                 </div>
             </div>
-
             <br/><br/>
-        
-        <% } %>
+        </div>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
@@ -196,7 +196,7 @@
         <br/><br/>
         
         <input type="hidden" name="action" value="addOrderDraft" />
-        <button class="confirm right" id="btn-place" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Confirm") }</button>
+        <button class="confirm right" id="btn-place" type="submit">${ ui.message("Confirm") }</button>
         <button class="cancel" id="btn-place" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
 
     </form>

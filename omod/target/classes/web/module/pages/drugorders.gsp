@@ -2,7 +2,6 @@
     ui.decorateWith("appui", "standardEmrPage");
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "drugorders.js")
-    def isAllergic = false;
     def editAction = false;
 %>
         
@@ -39,7 +38,7 @@
         <div id="individualOrderWindow"> 
             <div>
                 <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
-                    <input id="button" type="submit" value="ADD" onclick="showIndividualDrugOrderWindow()"/>
+                    <input id="button" type="submit" value="ADD" onclick="showIndividualOrderDetailsWindow()"/>
                 </h3>
             </div>
 
@@ -70,37 +69,14 @@
     </div>
     
     <div id="orderWindowsBody">
-    
-        <div id="addSingleOrderWindow">
+        
+        <div id="addMedicationPlanWindow">
             ${ ui.includeFragment("drugorders", "addNewOrder") }
         </div>
         
         <div id="addSingleOrderDetailsWindow">
-            <% if(drugname != "") { %>
-                <% allergies.each { allergy -> %>
-                    <% if(drugname == " ${allergy.allergen}") { %>
-                        <% isAllergic = true; %>
-                    <% } %>
-                <% } %>
-                <% if(isAllergic && allergicOrderReason == "") { %>
-                    ${ ui.includeFragment("drugorders", "allergicDrugOrderReasons") }
-                    
-                    <% if(allergicOrderReason != "") { %>
-                        ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
-                    <% } %>
-            
-                <% } else { %>
-                    ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }                   
-                <% } %>
-            <% } %>
-
+            ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
         </div>
-        
-        <% if(drugNameEntered != "" || disease_name != "") { %>
-            <div id="confirmOrderView">
-                ${ ui.includeFragment("drugorders", "confirmOrder") }
-            </div>
-        <% } %>
         
         <div id="showEditOrderView">
             ${ ui.includeFragment("drugorders", "editDrugOrder") }

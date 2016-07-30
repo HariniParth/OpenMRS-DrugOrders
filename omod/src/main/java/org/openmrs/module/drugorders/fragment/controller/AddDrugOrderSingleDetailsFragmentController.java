@@ -35,12 +35,12 @@ public class AddDrugOrderSingleDetailsFragmentController {
     List<Concept> doses = new ArrayList<Concept>();
     List<Concept> quantities = new ArrayList<Concept>();
     List<Concept> frequencies = new ArrayList<Concept>();
-        
-    public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
-                            @RequestParam(value = "startDate", required = false) Date startDate,
+    List<Concept> drugs = new ArrayList<Concept>();
+    
+    public void controller(PageModel model, 
                             @RequestParam(value = "drugNameEntered", required = false) String drugNameEntered,
                             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
-                            @RequestParam(value = "allergicOrderReasonEntered", required = false) String allergicOrderReasonEntered,
+                            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
                             @RequestParam(value = "drugRoute", required = false) String drugRoute,
                             @RequestParam(value = "drugDose", required = false) String drugDose,
                             @RequestParam(value = "drugDoseUnits", required = false) String drugDoseUnits,
@@ -54,12 +54,10 @@ public class AddDrugOrderSingleDetailsFragmentController {
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
                             @RequestParam("patientId") Patient patient){
         
-        model.addAttribute("drugname", drugname);
-        model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
         model.addAttribute("drugNameEntered", drugNameEntered);
         model.addAttribute("startDateEntered", startDateEntered);
-        model.addAttribute("allergicOrderReasonEntered", allergicOrderReasonEntered);
+        model.addAttribute("allergicOrderReason", allergicOrderReason);
         model.addAttribute("drugRoute", drugRoute);
         model.addAttribute("drugDose", drugDose);
         model.addAttribute("drugDoseUnits", drugDoseUnits);
@@ -72,7 +70,20 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
 
-        ObjectMapper mapper = new ObjectMapper();
+        Concept drugConcept = Context.getConceptService().getConcept(162552);
+        
+        for(ConceptSet drugConcepts : drugConcept.getConceptSets()){
+            Concept drugMember = drugConcepts.getConcept();
+            drugs.add(drugMember);
+        }
+
+        model.addAttribute("drugs", drugs);
+        
+        List<String> drugsNames = new ArrayList<String>();
+        for(Concept drug : drugs){
+            drugsNames.add(drug.getDisplayString());
+        }
+        model.addAttribute("drugsNames", drugsNames);
         
         Concept durationConcept = Context.getConceptService().getConcept(1732);
         Concept routeConcept = Context.getConceptService().getConcept(162394);

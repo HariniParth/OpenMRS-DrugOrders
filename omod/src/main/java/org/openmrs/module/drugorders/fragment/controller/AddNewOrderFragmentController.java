@@ -25,44 +25,20 @@ public class AddNewOrderFragmentController {
     /**
      *
      * @param model
-     * @param drugname
-     * @param allergicOrderReason
      * @param startDate
      * @param patient
      */
-    
-    List<Concept> drugs = new ArrayList<Concept>();
+
     List<Concept> diseases = new ArrayList<Concept>();
     
-    public void controller(PageModel model, @RequestParam(value = "drugname", required = false) String drugname,
+    public void controller(PageModel model, 
             @RequestParam(value = "disease_name", required = false) String disease_name,
-            @RequestParam(value = "startDate", required = false) Date startDate,
             @RequestParam(value = "medPlanStartDate", required = false) Date medPlanStartDate,
-            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam("patientId") Patient patient){
 
-        model.addAttribute("drugname", drugname);
         model.addAttribute("disease_name", disease_name);
         model.addAttribute("medPlanStartDate", medPlanStartDate);
-        model.addAttribute("startDate", startDate);
         model.addAttribute("patientid", patient.getPatientId());
-        model.addAttribute("allergicOrderReason", allergicOrderReason);
-        
-        Concept drugConcept = Context.getConceptService().getConcept(162552);
-        
-        for(ConceptSet drugConcepts : drugConcept.getConceptSets()){
-            Concept drugMember = drugConcepts.getConcept();
-            drugs.add(drugMember);
-        }
-
-        model.addAttribute("drugs", drugs);
-        
-        List<String> drugsNames = new ArrayList<String>();
-        for(Concept drug : drugs){
-            drugsNames.add(drug.getDisplayString());
-        }
-        model.addAttribute("drugsNames", drugsNames);
-        
         
         Concept diseaseConcept = Context.getConceptService().getConcept(160168);
         
