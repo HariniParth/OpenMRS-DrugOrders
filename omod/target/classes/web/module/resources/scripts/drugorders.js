@@ -9,6 +9,7 @@
 $(document).ready( function() {
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersWindow").hide();
+    jq("#confirmOrderView").hide();
     jq("#showDiscontinueOrderView").hide();
 });
 

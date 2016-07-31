@@ -18,7 +18,7 @@
  
 
 <div class="info-body">
-
+    
     <div id="orderSummaryBody">
         
         <div id="allergyList">
