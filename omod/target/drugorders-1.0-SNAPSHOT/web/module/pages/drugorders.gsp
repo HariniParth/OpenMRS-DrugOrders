@@ -78,10 +78,12 @@
             ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }  
         </div>
         
-        <div id="confirmOrderView">
-            ${ ui.includeFragment("drugorders", "confirmOrder") }
-        </div>
-
+        <% if(drugOrderExtension.size() > 0) { %>
+            <div id="confirmOrderView">
+                ${ ui.includeFragment("drugorders", "confirmOrder") }
+            </div>
+        <% } %>
+        
         <div id="showEditOrderView">
             ${ ui.includeFragment("drugorders", "editDrugOrder") }
         </div>

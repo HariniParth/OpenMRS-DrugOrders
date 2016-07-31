@@ -101,6 +101,16 @@ public class DrugordersPageController {
                     }                    
                 } 
 
+                if("confirmOrder".equals(action)){
+                    DraftOrderList.drugOrderMain.clear();
+                    DraftOrderList.drugOrderExtension.clear();
+                } 
+                
+                if("cancelOrder".equals(action)){
+                    DraftOrderList.drugOrderMain.clear();
+                    DraftOrderList.drugOrderExtension.clear();
+                } 
+                
                 if("discontinueDrugOrder".equals(action)){
                     drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getNewTable(dis_order_id);
                     drugorderToDiscontinue.setOrderstatus("Discontinued");

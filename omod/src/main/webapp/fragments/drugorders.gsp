@@ -5,10 +5,11 @@
         <i class="icon-pencil edit-action right" title="${ ui.message("Add") }" onclick="location.href='${ui.pageLink("drugorders", "drugorders", [patientId: patient.patient.id])}';"></i>
     </div>
     <div class="info-body">
-        <p>
-            <% drugorders.each { order -> %>
+        <% drugorders.each { order -> %>
+            <% if(order.orderstatus == "Active") { %>
                 ${ order.drugname }
+                <br/>
             <% } %>
-        </p>
+        <% } %>
     </div>
 </div>

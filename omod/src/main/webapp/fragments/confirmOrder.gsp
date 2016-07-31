@@ -25,10 +25,10 @@
         <a href="#" onclick="showIndividualOrderDetailsWindow()">Add another order</a>
         
         <br/><br/>
+
+        <button class="confirm right" id="btn-place" type="submit" name="action" value="confirmOrder">${ ui.message("Submit") }</button>
+        <button class="cancel" id="btn-place" type="submit" name="action" value="cancelOrder">${ ui.message("Cancel") }</button>
         
-        <input type="hidden" name="action" value="confirmOrder" />
-        <button class="confirm right" id="btn-place" type="submit">${ ui.message("Submit") }</button>
-        <button class="cancel" id="btn-place" onclick="hideConfirmOrderWindow()" type="button">${ ui.message("Cancel") }</button>
     </form>
     
 </div>

@@ -127,3 +127,7 @@ and open the template in the editor.
 #allergicDrugOrderReasonField{
     display: none;
 }
+
+#nonActiveOrdersWindow{
+    display: none;
+}
