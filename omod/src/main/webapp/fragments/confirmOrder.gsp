@@ -22,7 +22,7 @@
         
         <br/><br/><br/><br/>
         
-        <a href="#" onclick="addAnotherOrderWindow()">Add another order</a>
+        <a href="#" onclick="showIndividualOrderDetailsWindow()">Add another order</a>
         
         <br/><br/>
         

@@ -74,11 +74,15 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("allergies", patientService.getAllergies(patient));
         
         int number_of_allergic_drugs = patientService.getAllergies(patient).size();
-        ArrayList<String> allergen = new ArrayList<String>();
-        for(int i=1;i<=number_of_allergic_drugs;i++){
-            allergen.add(patientService.getAllergies(patient).getAllergy(i).getAllergen().toString());
-            model.addAttribute("allergicDrugs", allergen);
-        }
+        if(number_of_allergic_drugs >=1){
+            ArrayList<String> allergen = new ArrayList<String>();
+            for(int i=1;i<=number_of_allergic_drugs;i++){
+                allergen.add(patientService.getAllergies(patient).getAllergy(i).getAllergen().toString());
+                model.addAttribute("allergicDrugs", allergen);
+            }
+        } else {
+            model.addAttribute("allergicDrugs", "null");
+        }        
         
         Concept drugConcept = Context.getConceptService().getConcept(162552);
         

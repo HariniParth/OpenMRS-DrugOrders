@@ -29,10 +29,19 @@ function showIndividualOrderDetailsWindow(){
 function hideIndividualOrderDetailsWindow(){
     jq("#singleOrderDetailsWindow").hide();
     jq("#allergicDrugOrderReasonField").hide();
-}
-
-function showConfirmOrderWindow(){
-    jq("#singleOrderDetailsWindow").hide();
+    $("#drugNameEntered").val("");
+    $("#allergicOrderReason").val("");
+    $("#drugRoute").text("");
+    $("#drugDose").val("");
+    $("#drugDoseUnits").text("");
+    $("#drugQuantity").val("");
+    $("#quantityUnits").text("");
+    $("#drugDuration").val("");
+    $("#durationUnits").text("");
+    $("#drugFrequency").text("");
+    $("#associatedDiagnosis").val("")
+    $("#patientInstructions").val("");
+    $("#pharmacistInstructions").val("");
 }
 
 function hideConfirmOrderWindow(){

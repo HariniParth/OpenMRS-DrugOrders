@@ -10,7 +10,6 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -98,18 +97,9 @@ public class DrugordersPageController {
                         drugorders.setPatientid(Integer.toString(patient.getPatientId()));
                         drugorders.setOrderstatus("Active");
                         drugorders.setOrderId(order);
-                        //DraftOrderList.drugOrderExtension.add(drugorders);
+                        DraftOrderList.drugOrderExtension.add(drugorders);
                         Context.getService(drugordersService.class).saveNewTable(drugorders);
-                    }
-                    
-//                        List<DrugOrder> drugOrders = DraftOrderList.getDrugOrderMain();
-//                        for(DrugOrder dorderMain : drugOrders){ 
-//                            dorderMain = (DrugOrder)Context.getOrderService().saveOrder(dorderMain, null);
-//                            DraftOrderList.drugOrderExtension.get(0).setOrderId(dorderMain.getOrderId());
-//                            Context.getService(drugordersService.class).saveNewTable(DraftOrderList.drugOrderExtension.get(0));
-//                            DraftOrderList.drugOrderExtension.remove(0);
-//                        }
-                    
+                    }                    
                 } 
 
                 if("discontinueDrugOrder".equals(action)){
@@ -220,7 +210,7 @@ public class DrugordersPageController {
         order.setDuration(drugDuration);
         order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
         order.setNumRefills(0);
-        //DraftOrderList.drugOrderMain.add(order);
+        DraftOrderList.drugOrderMain.add(order);
         order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
         return order.getOrderId();
     }

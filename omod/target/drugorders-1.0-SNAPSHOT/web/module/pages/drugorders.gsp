@@ -75,9 +75,13 @@
         </div>
         
         <div id="addSingleOrderDetailsWindow">
-            ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }
+            ${ ui.includeFragment("drugorders", "addDrugOrderSingleDetails") }  
         </div>
         
+        <div id="confirmOrderView">
+            ${ ui.includeFragment("drugorders", "confirmOrder") }
+        </div>
+
         <div id="showEditOrderView">
             ${ ui.includeFragment("drugorders", "editDrugOrder") }
         </div>
