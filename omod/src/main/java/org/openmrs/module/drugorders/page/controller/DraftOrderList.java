@@ -19,12 +19,6 @@ public class DraftOrderList{
     public static List<DrugOrder> drugOrderMain = new ArrayList<DrugOrder>();
     public static List<drugorders> drugOrderExtension = new ArrayList<drugorders>();
     
-    public static List<DrugOrder> getDrugOrderMain(){
-        return drugOrderMain;
-    }
     
-    public static List<drugorders> getDrugOrderExtension(){
-        return drugOrderExtension;
-    }
 
 }

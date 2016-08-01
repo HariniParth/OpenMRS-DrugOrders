@@ -32,5 +32,4 @@
 	
 	<context:component-scan base-package="org.openmrs.module.drugorders.web.controller" />
  
-		
 </beans>

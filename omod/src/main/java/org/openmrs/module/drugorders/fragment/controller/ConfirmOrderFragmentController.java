@@ -5,9 +5,11 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
-import org.openmrs.Patient;
+import java.util.ArrayList;
+import java.util.List;
+import org.openmrs.DrugOrder;
+import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -15,8 +17,19 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class ConfirmOrderFragmentController {
     
-    public void controller(PageModel model, @RequestParam("patientId") Patient patient){
+    public static List<DrugOrder> drugOrderMain = new ArrayList<DrugOrder>();
+    public static List<drugorders> drugOrderExtension = new ArrayList<drugorders>();
 
+    public void controller(){
+        
+    }
+    
+    public static List<DrugOrder> getDrugOrderMain(){
+        return drugOrderMain;
+    }
+    
+    public static List<drugorders> getDrugOrderExtension(){
+        return drugOrderExtension;
     }
     
 }
