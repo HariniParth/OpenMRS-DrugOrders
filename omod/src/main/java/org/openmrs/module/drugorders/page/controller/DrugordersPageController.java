@@ -14,6 +14,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -33,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
 
-    
+   
     public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
                             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
                             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
@@ -105,7 +107,13 @@ public class DrugordersPageController {
                     List<DrugOrder> drugOrderMain = ConfirmOrderFragmentController.getDrugOrderMain();
                     for(int i=0;i<drugOrderMain.size();i++){
                         DrugOrder order = drugOrderMain.get(i);
-                        order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
+                        
+                        try{
+                            order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
+                        } catch (Exception e){
+                            System.out.println(e.getMessage());
+                        }
+                        
                         int dOrderMainID = order.getOrderId();
                         drugorders dOrderExtension = ConfirmOrderFragmentController.drugOrderExtension.get(0);
                         dOrderExtension.setOrderId(dOrderMainID);
@@ -182,6 +190,7 @@ public class DrugordersPageController {
             }
         }
     }
+    
     
     private int createNewDrugOrder(DrugOrder order, Patient patient, String drugNameConfirmed, String drugRoute, 
                  String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,

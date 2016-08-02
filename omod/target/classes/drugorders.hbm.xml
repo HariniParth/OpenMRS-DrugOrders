@@ -12,7 +12,7 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="id" insert="false" />
-                <property name="orderId"  column="order_id" not-null="false"  ></property>
+                <property name="orderId"  column="order_id" not-null="false" ></property>
 		<property name="uuid" type="java.lang.String" column="uuid"
 			length="38" unique="true" />
                 <property name="patientid" type="java.lang.String" column="patientid" ></property>
