@@ -11,7 +11,7 @@
         
         <% if(drugOrderExtension != null) { %>
             <% drugOrderExtension.each { dorderExtension -> %>
-                <a href="#" class="fields">${dorderExtension.drugname} ${dorderExtension.startdate}</a>
+                <a href="#" class="fields">${dorderExtension.value.drugname} ${dorderExtension.value.startdate}</a>
                 <span id="button">
                     <i class="icon-pencil edit-action" title="${ ui.message("Edit") }"></i>
                     <i class="icon-remove delete-action" title="${ ui.message("Delete") }"></i>

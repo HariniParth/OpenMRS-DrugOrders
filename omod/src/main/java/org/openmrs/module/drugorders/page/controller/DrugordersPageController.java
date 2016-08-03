@@ -12,10 +12,11 @@ package org.openmrs.module.drugorders.page.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
 
-   
+    
     public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
                             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
                             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
@@ -77,6 +78,7 @@ public class DrugordersPageController {
         if(StringUtils.isNotBlank(action)){
             try {
                 if("addOrderDraft".equals(action)){
+                    
                     if(!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
                         DrugOrder drugOrder = null;
                         int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits, "create");
@@ -99,29 +101,22 @@ public class DrugordersPageController {
                         drugorders.setPatientid(Integer.toString(patient.getPatientId()));
                         drugorders.setOrderstatus("Active");
                         drugorders.setOrderId(order);
-                        ConfirmOrderFragmentController.drugOrderExtension.add(drugorders);
+                        int i = ConfirmOrderFragmentController.getCurrentDraftOrderIndex();
+                        ConfirmOrderFragmentController.drugOrderExtension.put(i, drugorders);
                     }                    
                 } 
 
                 if("confirmOrder".equals(action)){
-                    List<DrugOrder> drugOrderMain = ConfirmOrderFragmentController.getDrugOrderMain();
-                    for(int i=0;i<drugOrderMain.size();i++){
-                        DrugOrder order = drugOrderMain.get(i);
-                        
-                        try{
-                            order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
-                        } catch (Exception e){
-                            System.out.println(e.getMessage());
-                        }
-                        
-                        int dOrderMainID = order.getOrderId();
-                        drugorders dOrderExtension = ConfirmOrderFragmentController.drugOrderExtension.get(0);
-                        dOrderExtension.setOrderId(dOrderMainID);
-                        Context.getService(drugordersService.class).saveNewTable(dOrderExtension);
-                        ConfirmOrderFragmentController.drugOrderExtension.remove(0);
+
+                    Set<Map.Entry<Integer, DrugOrder>> drugSet = ConfirmOrderFragmentController.drugOrderMain.entrySet();
+                    Iterator it = drugSet.iterator();
+                    while(it.hasNext())
+                    {
+                        System.out.println(it.next());
                     }
                     ConfirmOrderFragmentController.drugOrderMain.clear();
                     ConfirmOrderFragmentController.drugOrderExtension.clear();
+                    
                 } 
                 
                 if("cancelOrder".equals(action)){
@@ -244,7 +239,9 @@ public class DrugordersPageController {
             order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
             orderID = order.getOrderId();
         } else if(action.equals("create")){
-            ConfirmOrderFragmentController.drugOrderMain.add(order);
+            ConfirmOrderFragmentController.setCurrentDraftOrderIndex(ConfirmOrderFragmentController.getCurrentDraftOrderIndex() + 1);
+            int i = ConfirmOrderFragmentController.getCurrentDraftOrderIndex(); 
+            ConfirmOrderFragmentController.drugOrderMain.put(i, order); 
             orderID = 0;
         }
         return orderID;

@@ -5,10 +5,10 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import org.openmrs.DrugOrder;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.ui.framework.page.PageModel;
 
 /**
  *
@@ -16,18 +16,27 @@ import org.openmrs.module.drugorders.drugorders;
  */
 public class ConfirmOrderFragmentController {
     
-    public static List<DrugOrder> drugOrderMain = new ArrayList<DrugOrder>();
-    public static List<drugorders> drugOrderExtension = new ArrayList<drugorders>();
+    public static int currentDraftOrderIndex;
+    public static HashMap<Integer,DrugOrder> drugOrderMain = new HashMap<Integer,DrugOrder> ();
+    public static HashMap<Integer,drugorders>  drugOrderExtension = new HashMap<Integer,drugorders>();
 
-    public void controller(){
+    public void controller(PageModel model){
         
     }
     
-    public static List<DrugOrder> getDrugOrderMain(){
+    public static int getCurrentDraftOrderIndex(){
+        return currentDraftOrderIndex;
+    }
+    
+    public static void setCurrentDraftOrderIndex(int currentDraftOrderIndex){
+        ConfirmOrderFragmentController.currentDraftOrderIndex = currentDraftOrderIndex;
+    }
+    
+    public static HashMap<Integer,DrugOrder> getDrugOrderMain(){
         return drugOrderMain;
     }
     
-    public static List<drugorders> getDrugOrderExtension(){
+    public static HashMap<Integer,drugorders> getDrugOrderExtension(){
         return drugOrderExtension;
     }
     
