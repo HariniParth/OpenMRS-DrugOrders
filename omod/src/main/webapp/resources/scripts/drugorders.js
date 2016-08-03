@@ -169,3 +169,11 @@ function autoCompleteDisease(disease){
        source : list
     });
 }
+
+function editDraftOrder(editDraftOrderID){
+    alert(editDraftOrderID);
+}
+
+function deleteDraftOrder(deleteDraftOrderID){
+    alert(deleteDraftOrderID);
+}

@@ -10,13 +10,18 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -36,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
 
+    SessionFactory sessionFactory;
     
     public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
                             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
@@ -65,7 +71,7 @@ public class DrugordersPageController {
                             @RequestParam(value = "renewDrugQuantity", required = false) String renewDrugQuantity, @RequestParam(value = "renewQuantityUnits", required = false) String renewQuantityUnits,
                             @RequestParam(value = "renewDrugDuration", required = false) Integer renewDrugDuration, @RequestParam(value = "renewDurationUnits", required = false) String renewDurationUnits,
                             @RequestParam(value = "renewPatientInstructions", required = false) String renewPatientInstructions, @RequestParam(value = "renewPharmacistInstructions", required = false) String renewPharmacistInstructions) {
-
+        
         String drugNameEntered = drugNameSelected.replace(" ", "");
  	model.addAttribute("patient", patient);
         model.addAttribute("drugNameEntered", drugNameEntered);
@@ -107,16 +113,9 @@ public class DrugordersPageController {
                 } 
 
                 if("confirmOrder".equals(action)){
-
-                    Set<Map.Entry<Integer, DrugOrder>> drugSet = ConfirmOrderFragmentController.drugOrderMain.entrySet();
-                    Iterator it = drugSet.iterator();
-                    while(it.hasNext())
-                    {
-                        System.out.println(it.next());
-                    }
+                    saveOrder();
                     ConfirmOrderFragmentController.drugOrderMain.clear();
                     ConfirmOrderFragmentController.drugOrderExtension.clear();
-                    
                 } 
                 
                 if("cancelOrder".equals(action)){
@@ -239,9 +238,11 @@ public class DrugordersPageController {
             order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
             orderID = order.getOrderId();
         } else if(action.equals("create")){
+            Session session = sessionFactory.getCurrentSession();
             ConfirmOrderFragmentController.setCurrentDraftOrderIndex(ConfirmOrderFragmentController.getCurrentDraftOrderIndex() + 1);
             int i = ConfirmOrderFragmentController.getCurrentDraftOrderIndex(); 
             ConfirmOrderFragmentController.drugOrderMain.put(i, order); 
+            session.save(ConfirmOrderFragmentController.drugOrderMain);
             orderID = 0;
         }
         return orderID;
@@ -254,6 +255,42 @@ public class DrugordersPageController {
         orderFrequency.setConcept(Context.getConceptService().getConceptByName(Frequency));
         orderFrequency = (OrderFrequency) Context.getOrderService().saveOrderFrequency(orderFrequency);
         return orderFrequency;                
+
+    }
+    
+    private void saveOrder(){
+        
+        Session session = sessionFactory.getCurrentSession();
+        session.update(ConfirmOrderFragmentController.drugOrderMain);
+        
+        HashMap <Integer,DrugOrder> orderToConfirmMain = ConfirmOrderFragmentController.getDrugOrderMain();
+        HashMap <Integer,drugorders> orderToConfirmExtension = ConfirmOrderFragmentController.getDrugOrderExtension();
+
+        Set<Entry<Integer, DrugOrder>> setMain = orderToConfirmMain.entrySet();
+        Set<Entry<Integer, drugorders>> setExtension = orderToConfirmExtension.entrySet();
+        List<DrugOrder> confirmedListMain = new ArrayList<DrugOrder>();
+        List<drugorders> confirmedListExtension = new ArrayList<drugorders>();
+
+        Iterator it1 = setMain.iterator();
+        while(it1.hasNext()){
+            Map.Entry me1 = (Map.Entry) it1.next();
+            confirmedListMain.add((DrugOrder) me1.getValue());
+        }
+        
+        Iterator it2 = setExtension.iterator();
+        while(it2.hasNext()){
+            Map.Entry me2 = (Map.Entry) it2.next();
+            confirmedListExtension.add((drugorders) me2.getValue());
+        }
+        
+        for(int i=0;i<confirmedListMain.size();i++){
+            DrugOrder order = confirmedListMain.get(i);
+            order = (DrugOrder)Context.getOrderService().saveOrder(order, null);
+            int orderId = order.getOrderId();
+            confirmedListExtension.get(i).setOrderId(orderId);
+            Context.getService(drugordersService.class).saveNewTable(confirmedListExtension.get(i));
+        }
+        session.close();
 
     }
     

@@ -11,12 +11,16 @@
         
         <% if(drugOrderExtension != null) { %>
             <% drugOrderExtension.each { dorderExtension -> %>
-                <a href="#" class="fields">${dorderExtension.value.drugname} ${dorderExtension.value.startdate}</a>
-                <span id="button">
-                    <i class="icon-pencil edit-action" title="${ ui.message("Edit") }"></i>
-                    <i class="icon-remove delete-action" title="${ ui.message("Delete") }"></i>
-                </span>
-                <br/><br/>
+                <% drugOrderMain.each { dorderMain -> %>
+                    <% if(dorderMain.key == dorderExtension.key) { %>
+                        <a href="#" class="fields">${dorderExtension.value.drugname} ${dorderExtension.value.startdate}</a>
+                        <span id="button">
+                            <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="editDraftOrder('${dorderMain.key}')" ></i>
+                            <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="deleteDraftOrder('${dorderMain.key}')"></i>
+                        </span>
+                        <br/><br/>
+                    <% } %>
+                <% } %>
             <% } %>
         <% } %>
         
