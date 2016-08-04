@@ -11,7 +11,7 @@
             <h3 id="text_heading">${ ui.message("Create Individual Drug Order") }</h3>
         </div>
               
-        <br/>
+        <br/><input type="hidden" id="orderID" name="orderID" class="select_field" />
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">

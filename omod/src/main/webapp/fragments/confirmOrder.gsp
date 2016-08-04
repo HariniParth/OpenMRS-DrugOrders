@@ -15,7 +15,7 @@
                     <% if(dorderMain.key == dorderExtension.key) { %>
                         <a href="#" class="fields">${dorderExtension.value.drugname} ${dorderExtension.value.startdate}</a>
                         <span id="button">
-                            <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="editDraftOrder('${dorderMain.key}')" ></i>
+                            <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="editDraftOrder('${dorderMain.key}','${dorderExtension.value.drugname}','${dorderExtension.value.startdate}','${ dorderMain.value.dose }','${ dorderMain.value.doseUnits.getDisplayString() }','${ dorderMain.value.route.getDisplayString() }','${ dorderMain.value.duration }','${ dorderMain.value.durationUnits.getDisplayString() }','${ dorderMain.value.quantity }','${ dorderMain.value.quantityUnits.getDisplayString() }','${ dorderMain.value.frequency }','${ dorderExtension.value.associateddiagnosis }','${ dorderExtension.value.patientinstructions }','${ dorderExtension.value.pharmacistinstructions }')" ></i>
                             <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="deleteDraftOrder('${dorderMain.key}')"></i>
                         </span>
                         <br/><br/>

@@ -31,7 +31,7 @@ function hideIndividualOrderDetailsWindow(){
     jq("#allergicDrugOrderReasonField").hide();
     $("#drugNameEntered").val("");
     $("#allergicOrderReason").val("");
-    $("#drugRoute").val("")
+    $("#drugRoute").val("");
     $("#drugDose").val("");
     $("#drugDoseUnits").val("");
     $("#drugQuantity").val("");
@@ -39,7 +39,7 @@ function hideIndividualOrderDetailsWindow(){
     $("#drugDuration").val("");
     $("#durationUnits").val("");
     $("#drugFrequency").val("");
-    $("#associatedDiagnosis").val("")
+    $("#associatedDiagnosis").val("");
     $("#patientInstructions").val("");
     $("#pharmacistInstructions").val("");
 }
@@ -170,8 +170,24 @@ function autoCompleteDisease(disease){
     });
 }
 
-function editDraftOrder(editDraftOrderID){
-    alert(editDraftOrderID);
+function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,diagnosis,patientinstructions,pharmacistinstructions){
+    jq("#confirmOrderView").hide();
+    $("#orderID").val(editDraftOrderID);
+    $("#drugNameEntered").val(drugname);
+    $("#allergicOrderReason").val("");
+    $("#drugRoute").val(route);
+    $("#drugDose").val(dose);
+    $("#drugDoseUnits").val(doseUnits);
+    $("#drugQuantity").val(quantity);
+    $("#quantityUnits").val(quantityUnits);
+    $("#drugDuration").val(duration);
+    $("#durationUnits").val(durationUnits);
+    $("#drugFrequency").val(frequency);
+    $("#associatedDiagnosis").val(diagnosis);
+    $("#patientInstructions").val(patientinstructions);
+    $("#pharmacistInstructions").val(pharmacistinstructions);
+    jq("#singleOrderDetailsWindow").show();
+    document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
 function deleteDraftOrder(deleteDraftOrderID){
