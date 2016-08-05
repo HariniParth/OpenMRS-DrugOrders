@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
 
+
     public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
@@ -71,9 +72,11 @@ public class DrugordersPageController {
         String associatedDiagnosis = selectedDiagnosis.replace(" ", "");
         PatientIdentifier patientIdentifier = Context.getPatientService().getPatientByExample(patient).getPatientIdentifier();
         model.addAttribute("patientIdentifier", patientIdentifier.getIdentifier());
+
         model.addAttribute("drugOrderMain", ConfirmOrderFragmentController.drugOrderMain);
         model.addAttribute("drugOrderExtension", ConfirmOrderFragmentController.drugOrderExtension);
 
+        
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("addOrderDraft".equals(action)) {
@@ -244,7 +247,7 @@ public class DrugordersPageController {
             } else {
                 i = ConfirmOrderFragmentController.getCurrentDraftOrderIndex();
             }
-
+            
             ConfirmOrderFragmentController.drugOrderMain.put(i, order);
             orderID = 0;
         }
@@ -265,32 +268,36 @@ public class DrugordersPageController {
 
         HashMap<Integer, DrugOrder> orderToConfirmMain = ConfirmOrderFragmentController.getDrugOrderMain();
         HashMap<Integer, drugorders> orderToConfirmExtension = ConfirmOrderFragmentController.getDrugOrderExtension();
-
+  
         Set<Entry<Integer, DrugOrder>> setMain = orderToConfirmMain.entrySet();
         Set<Entry<Integer, drugorders>> setExtension = orderToConfirmExtension.entrySet();
         List<DrugOrder> confirmedListMain = new ArrayList<DrugOrder>();
         List<drugorders> confirmedListExtension = new ArrayList<drugorders>();
 
         Iterator it1 = setMain.iterator();
-        while (it1.hasNext()) {
+        while(it1.hasNext()) {
             Map.Entry me1 = (Map.Entry) it1.next();
             confirmedListMain.add((DrugOrder) me1.getValue());
         }
 
         Iterator it2 = setExtension.iterator();
-        while (it2.hasNext()) {
+        while(it2.hasNext()) {
             Map.Entry me2 = (Map.Entry) it2.next();
             confirmedListExtension.add((drugorders) me2.getValue());
         }
 
         for (int i = 0; i < confirmedListMain.size(); i++) {
             DrugOrder order = confirmedListMain.get(i);
-            order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
-            int orderId = order.getOrderId();
-            confirmedListExtension.get(i).setOrderId(orderId);
-            Context.getService(drugordersService.class).saveNewTable(confirmedListExtension.get(i));
-        }
+            try{
+                order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
+                int orderId = order.getOrderId();
+                confirmedListExtension.get(i).setOrderId(orderId);
+                Context.getService(drugordersService.class).saveNewTable(confirmedListExtension.get(i));
 
+            } catch(Exception e){
+                System.out.println("Message"+e.getMessage());
+            }
+        }
     }
 
     private Date defaultStartDate() {
