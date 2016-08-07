@@ -104,7 +104,7 @@ and open the template in the editor.
     width: 35px;
 }
 
-#addMedicationPlanWindow{
+#medicationPlanWindow{
     display: none;
 }
 
@@ -129,5 +129,19 @@ and open the template in the editor.
 }
 
 #nonActiveOrdersWindow{
+    display: none;
+}
+
+.info-body #selectionWindow{
+    width: 60%;
+    float: left;
+}
+
+.info-body #creationWindow{
+    width: 40%;
+    float: right;
+}
+
+#createNewPlanWindow{
     display: none;
 }

@@ -8,16 +8,17 @@
 
 $(document).ready( function() {
     jq("#nonActiveOrdersLinkHide").hide();
+    jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
 });
 
 function showMedicationPlanOrderWindow(){
-    jq("#addMedicationPlanWindow").show();
-    document.getElementById("addMedicationPlanWindow").style.display = 'block';
+    jq("#medicationPlanWindow").show();
+    document.getElementById("medicationPlanWindow").style.display = 'block';
 }
 
 function hideMedicationPlanOrderWindow(){
-    jq("#addMedicationPlanWindow").hide();
+    jq("#medicationPlanWindow").hide();
 }
 
 function showIndividualOrderDetailsWindow(){
@@ -192,4 +193,20 @@ function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route
 
 function deleteDraftOrder(deleteDraftOrderID){
     alert(deleteDraftOrderID);
+}
+
+function displayPlanCreationWindow(){
+    jq("#medicationPlanWindow").hide();
+    jq("#createNewPlanWindow").show();
+    document.getElementById("createNewPlanWindow").style.display = 'block';
+}
+
+function showExistingMedicationPlans(){
+    jq("#existingPlansLinkView").hide();
+    jq("#existingPlansLinkHide").show();
+}
+   
+function hideExistingMedicationPlans(){
+    jq("#existingPlansLinkHide").hide();
+    jq("#existingPlansLinkView").show();
 }
