@@ -171,6 +171,14 @@ function autoCompleteDisease(disease){
     });
 }
 
+function autoCompletePlanItem(drugs){
+    var list = drugs.split(',');
+    console.log(list);
+    $("#drug_name").autocomplete({
+       source : list
+    });
+}
+
 function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,diagnosis,patientinstructions,pharmacistinstructions){
     jq("#confirmOrderView").hide();
     $("#orderID").val(editDraftOrderID);
@@ -199,6 +207,10 @@ function displayPlanCreationWindow(){
     jq("#medicationPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
+}
+
+function hideMedPlanCreateWIndow(){
+    jq("#createNewPlanWindow").hide();
 }
 
 function showExistingMedicationPlans(){

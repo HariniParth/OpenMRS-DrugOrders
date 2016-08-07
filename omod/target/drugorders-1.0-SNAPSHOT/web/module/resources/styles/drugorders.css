@@ -145,3 +145,7 @@ and open the template in the editor.
 #createNewPlanWindow{
     display: none;
 }
+
+#adminLink{
+    color: #00463f;
+}

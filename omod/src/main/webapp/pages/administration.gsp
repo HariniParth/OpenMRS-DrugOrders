@@ -4,6 +4,7 @@
     ui.includeJavascript("drugorders", "drugorders.js")
 %>
 
+<a href="/openmrs-standalone/admin/index.htm" id="adminLink">Administration</a>
 <h3>${ ui.message("DRUG ORDERS ADMINISTRATION") }</h3>
 
 <br/><br/>
