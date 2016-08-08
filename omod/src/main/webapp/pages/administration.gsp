@@ -26,6 +26,10 @@
     <div id="creationWindow"> 
         <div id="newPlanWindow"> 
             ${ ui.includeFragment("drugorders", "administration") }
+            
+            <% if(diseasePlanName.size() > 0) { %>
+                ${ ui.includeFragment("drugorders", "administrationAction") }
+            <% } %>
         </div>
     </div>
     

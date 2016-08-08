@@ -9,21 +9,23 @@
     <div class="createMedicationPlanWindow">
         <form method="post">
             
-            <div class="fields">
+            <div class="fields" id="disease_field">
                 <label>Disease name </label>
-                <input id="disease_name" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="disease_name"/>
+                <input id="disease_name" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
             </div>
             
             <br/><br/>
             
-            <p class="fields">Create Standard Formulations</p>
+            <p class="fields">Create Standard Formulation</p>
+            
+            <br/>
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
                     <label id="label">Drug Name</label>
                 </div>
                 <div id="order_value">
-                    <input id="drug_name" type="text" autocomplete="on" oninput="autoCompletePlanItem('${drugsNames}')" name="drug_name"/>
+                    <input id="drug_name" type="text" autocomplete="on" oninput="autoCompletePlanItem('${drugsNames}')" name="drugName"/>
                 </div>
             </div>
             
@@ -143,7 +145,7 @@
             <br/><br/><br/>
 
             <input type="hidden" name="action" value="addPlanItem" />
-            <button class="confirm right" id="btn-place" name="confirmDrug" type="submit" onclick="showMedPlanCreateWIndow()">${ ui.message("Next") }</button>
+            <button class="confirm right" id="btn-place" name="saveDrug" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Next") }</button>
             <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanCreateWIndow()">${ ui.message("Cancel") }</button>
         </form>
     </div>

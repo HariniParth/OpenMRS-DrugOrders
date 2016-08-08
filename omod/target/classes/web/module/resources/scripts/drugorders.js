@@ -204,13 +204,16 @@ function deleteDraftOrder(deleteDraftOrderID){
 }
 
 function displayPlanCreationWindow(){
-    jq("#medicationPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
 }
 
-function hideMedPlanCreateWIndow(){
+function hideMedPlanCreateWindow(){
     jq("#createNewPlanWindow").hide();
+}
+
+function hideMedPlanConfirmWindow(){
+    jq("#confirmNewPlanWindow").hide();
 }
 
 function showExistingMedicationPlans(){
