@@ -17,11 +17,11 @@ public class medicationplans {
     private Integer drugid;
     private Integer route;
     private Integer frequency;
-    private String dose;
+    private Double dose;
     private Integer doseunits;
     private Integer duration;
     private Integer durationunits;
-    private String quantity;
+    private Double quantity;
     private Integer quantityunits;
     
     public medicationplans(){
@@ -76,11 +76,11 @@ public class medicationplans {
             this.frequency = frequency;
     }
 
-    public String getDose() {
+    public Double getDose() {
             return dose;
     }
 
-    public void setDose(String dose) {
+    public void setDose(Double dose) {
             this.dose = dose;
     }
 
@@ -92,11 +92,11 @@ public class medicationplans {
             this.doseunits = doseunits;
     }
 
-    public String getQuantity() {
+    public Double getQuantity() {
             return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Double quantity) {
             this.quantity = quantity;
     }
 

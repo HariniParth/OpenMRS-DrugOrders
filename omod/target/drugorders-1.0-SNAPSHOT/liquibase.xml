@@ -65,9 +65,9 @@
             <column name="uuid" type="varchar(255)"></column>
             <column name="diseaseid" type="int"></column>
             <column name="drugid" type="int"></column>
-            <column name="dose" type="varchar(10)"></column>
+            <column name="dose" type="double precision"></column>
             <column name="doseunits" type="int"></column>
-            <column name="quantity" type="varchar(10)"></column>
+            <column name="quantity" type="double precision"></column>
             <column name="quantityunits" type="int"></column>
             <column name="duration" type="int"></column>
             <column name="durationunits" type="int"></column>

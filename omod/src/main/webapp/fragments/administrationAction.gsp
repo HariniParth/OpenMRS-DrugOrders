@@ -5,8 +5,10 @@
 <div id="confirmNewPlanWindow">
     
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("Confirm Plan") }</h4>
+        <h4 id="text_heading">${ ui.message("Confirm New Medication Plan") }</h4>
     </div>
+    
+    <br/><br/>
     
     <div class="confirmMedicationPlanWindow">
         <form method="post">

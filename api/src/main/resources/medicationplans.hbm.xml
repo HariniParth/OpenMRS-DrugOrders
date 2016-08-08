@@ -14,9 +14,9 @@
             <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
             <property name="diseaseid" column="diseaseid" ></property>
             <property name="drugid" column="drugid" ></property>
-            <property name="dose" type="java.lang.String" length="10" column="dose" ></property>
+            <property name="dose" type="java.lang.Double" length="10" column="dose" ></property>
             <property name="doseunits" column="doseunits" ></property>
-            <property name="quantity" type="java.lang.String" length="10" column="quantity" ></property>
+            <property name="quantity" type="java.lang.Double" length="10" column="quantity" ></property>
             <property name="quantityunits" column="quantityunits" ></property>
             <property name="duration" column="duration" ></property>
             <property name="durationunits" column="durationunits" ></property>
