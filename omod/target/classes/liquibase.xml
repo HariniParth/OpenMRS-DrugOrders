@@ -45,5 +45,36 @@
             
         </createTable>
     </changeSet>
+    
+    <changeSet id="harini_table_3" author="harini">
+        <sql>
+            drop table if exists standard_disease_plan;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="harini" id="harini_table_4">
+        <preConditions onFail="WARN" onError="WARN">
+            <not>
+                <tableExists tableName="standard_disease_plan" />
+            </not>
+        </preConditions>
+        <createTable tableName="standard_disease_plan">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column> 
+            <column name="uuid" type="varchar(255)"></column>
+            <column name="diseaseid" type="int"></column>
+            <column name="drugid" type="int"></column>
+            <column name="dose" type="varchar(10)"></column>
+            <column name="doseunits" type="int"></column>
+            <column name="quantity" type="varchar(10)"></column>
+            <column name="quantityunits" type="int"></column>
+            <column name="duration" type="int"></column>
+            <column name="durationunits" type="int"></column>
+            <column name="route" type="int"></column>
+            <column name="frequency" type="int"></column>
+            
+        </createTable>
+    </changeSet>
        
 </databaseChangeLog>

@@ -37,6 +37,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private String discontinuereason;
         private String discontinuationreasons;
         private Integer approvalrequired;
+
 	
         public drugorders(){
             
@@ -173,5 +174,5 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	public void setApprovalrequired(Integer approvalrequired) {
 		this.approvalrequired = approvalrequired;
 	}
-	
+        
 }
