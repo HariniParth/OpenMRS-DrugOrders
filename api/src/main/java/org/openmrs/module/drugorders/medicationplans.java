@@ -5,6 +5,8 @@
  */
 package org.openmrs.module.drugorders;
 
+import org.openmrs.Concept;
+
 /**
  *
  * @author harini-geek
@@ -13,16 +15,16 @@ public class medicationplans {
     
     private Integer id;
     private String Uuid;
-    private Integer diseaseid;
-    private Integer drugid;
-    private Integer route;
-    private Integer frequency;
+    private Concept diseaseid;
+    private Concept drugid;
+    private Concept route;
+    private Concept frequency;
     private Double dose;
-    private Integer doseunits;
+    private Concept doseunits;
     private Integer duration;
-    private Integer durationunits;
+    private Concept durationunits;
     private Double quantity;
-    private Integer quantityunits;
+    private Concept quantityunits;
     
     public medicationplans(){
         
@@ -44,35 +46,35 @@ public class medicationplans {
             this.Uuid = Uuid;
     }
     
-    public Integer getDiseaseid() {
+    public Concept getDiseaseid() {
             return diseaseid;
     }
 
-    public void setDiseaseid(Integer diseaseid) {
+    public void setDiseaseid(Concept diseaseid) {
             this.diseaseid = diseaseid;
     }
 
-    public Integer getDrugid() {
+    public Concept getDrugid() {
             return drugid;
     }
 
-    public void setDrugid(Integer drugid) {
+    public void setDrugid(Concept drugid) {
             this.drugid = drugid;
     }
 
-    public Integer getRoute() {
+    public Concept getRoute() {
             return route;
     }
 
-    public void setRoute(Integer route) {
+    public void setRoute(Concept route) {
             this.route = route;
     }
 
-    public Integer getFrequency() {
+    public Concept getFrequency() {
             return frequency;
     }
 
-    public void setFrequency(Integer frequency) {
+    public void setFrequency(Concept frequency) {
             this.frequency = frequency;
     }
 
@@ -84,11 +86,11 @@ public class medicationplans {
             this.dose = dose;
     }
 
-    public Integer getDoseunits() {
+    public Concept getDoseunits() {
             return doseunits;
     }
 
-    public void setDoseunits(Integer doseunits) {
+    public void setDoseunits(Concept doseunits) {
             this.doseunits = doseunits;
     }
 
@@ -100,11 +102,11 @@ public class medicationplans {
             this.quantity = quantity;
     }
 
-    public Integer getQuantityunits() {
+    public Concept getQuantityunits() {
             return quantityunits;
     }
 
-    public void setQuantityunits(Integer quantityunits) {
+    public void setQuantityunits(Concept quantityunits) {
             this.quantityunits = quantityunits;
     }
 
@@ -116,11 +118,11 @@ public class medicationplans {
             this.duration = duration;
     }
 
-    public Integer getDurationunits() {
+    public Concept getDurationunits() {
             return durationunits;
     }
 
-    public void setDurationunits(Integer durationunits) {
+    public void setDurationunits(Concept durationunits) {
             this.durationunits = durationunits;
     }
         

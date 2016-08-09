@@ -6,7 +6,6 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.HashMap;
-import org.openmrs.DrugOrder;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.page.PageModel;
@@ -18,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AdministrationActionFragmentController {
     
-
+    HashMap<String, medicationplans> diseaseplans = new HashMap<String,medicationplans>();
+    
     public void controller(PageModel model, @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
             @RequestParam(value = "drugName", required = false) String drugNameSelected,
             @RequestParam(value = "drugRoute", required = false) String drugRoute,
@@ -38,14 +38,19 @@ public class AdministrationActionFragmentController {
         medicationplans medPlans = new medicationplans();
         medPlans.setDose(Double.valueOf(drugDose));
         medPlans.setQuantity(Double.valueOf(drugQuantity));
-        medPlans.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName).getConceptId());
-        medPlans.setDrugid(Context.getConceptService().getConceptByName(drugName).getConceptId());
-        medPlans.setDoseunits(Context.getConceptService().getConceptByName(drugDoseUnits).getConceptId());
+        medPlans.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName));
+        medPlans.setDrugid(Context.getConceptService().getConceptByName(drugName));
+        medPlans.setDoseunits(Context.getConceptService().getConceptByName(drugDoseUnits));
         medPlans.setDuration(drugDuration);
-        medPlans.setDurationunits(Context.getConceptService().getConceptByName(durationUnits).getConceptId());
-        medPlans.setQuantityunits(Context.getConceptService().getConceptByName(quantityUnits).getConceptId());
-        medPlans.setRoute(Context.getConceptService().getConceptByName(drugRoute).getConceptId());
-        medPlans.setFrequency(Context.getConceptService().getConceptByName(drugFrequency).getConceptId());
+        medPlans.setDurationunits(Context.getConceptService().getConceptByName(durationUnits));
+        medPlans.setQuantityunits(Context.getConceptService().getConceptByName(quantityUnits));
+        medPlans.setRoute(Context.getConceptService().getConceptByName(drugRoute));
+        medPlans.setFrequency(Context.getConceptService().getConceptByName(drugFrequency));
+    
+        diseaseplans.put(diseaseName, medPlans);
+        
+        model.addAttribute("diseaseplans", diseaseplans);
+        
     }
     
 }
