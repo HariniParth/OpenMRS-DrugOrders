@@ -6,7 +6,9 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.HashMap;
+import org.apache.commons.lang.StringUtils;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AdministrationActionFragmentController {
     
-    HashMap<String, medicationplans> diseaseplans = new HashMap<String,medicationplans>();
+    public final HashMap<String, medicationplans> diseaseplans = new HashMap<String,medicationplans>();
     
     public void controller(PageModel model, @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
             @RequestParam(value = "drugName", required = false) String drugNameSelected,
@@ -28,7 +30,8 @@ public class AdministrationActionFragmentController {
             @RequestParam(value = "quantityUnits", required = false) String quantityUnits,
             @RequestParam(value = "drugDuration", required = false) Integer drugDuration,
             @RequestParam(value = "durationUnits", required = false) String durationUnits,
-            @RequestParam(value = "drugFrequency", required = false) String drugFrequency){
+            @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
+            @RequestParam(value = "action", required = false) String action){
         
         String diseaseName = diseaseNameSelected.replace(" ", "");
         String drugName = drugNameSelected.replace(" ", "");
@@ -49,8 +52,19 @@ public class AdministrationActionFragmentController {
     
         diseaseplans.put(diseaseName, medPlans);
         
+        model.addAttribute("medicationplans", medPlans);
         model.addAttribute("diseaseplans", diseaseplans);
-        
+
+        if (StringUtils.isNotBlank(action)) {
+            try {
+                if ("addPlanItem".equals(action)) {
+                    System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
+                    Context.getService(medicationplansService.class).saveNewTable(medPlans);
+                }
+            } catch(Exception e){
+                System.out.println("Error message "+e.getMessage());
+            }
+        }
     }
     
 }
