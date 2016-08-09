@@ -149,3 +149,7 @@ and open the template in the editor.
 #adminLink{
     color: #00463f;
 }
+
+#nonActiveOrdersLinkHide{
+    display: none;
+}

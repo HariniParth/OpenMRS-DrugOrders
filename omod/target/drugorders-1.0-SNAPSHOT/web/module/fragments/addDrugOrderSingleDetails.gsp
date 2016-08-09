@@ -37,12 +37,9 @@
         
         <div id="allergicDrugOrderReasonField">
             <div class="fields" id="view_order_detail">
-                <div id="order_label">
-                    <label>Order Reason</label>
-                </div>
-                <div id="order_value">
-                    <input type="textarea" id="allergicOrderReason" name="allergicOrderReason" class="select_field" />
-                </div>
+                <label>Note: The patient is allergic to this drug</label>
+                <label>Enter the reasons for ordering this drug</label>
+                <input type="textarea" id="allergicOrderReason" name="allergicOrderReason" class="select_field" />
             </div>
             <br/><br/>
         </div>
@@ -169,10 +166,10 @@
             </div>
         </div>
 
-        <br/><br/>
+        <br/><br/><br/>
         
         <div class="fields" id="view_order_detail">
-            <label>Instructions from Physician for -</label>
+            <label>Instructions from the Physician for -</label>
         </div>  
             
         <div class="fields" id="view_order_detail">

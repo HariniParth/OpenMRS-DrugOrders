@@ -8,28 +8,6 @@
         
     <div class="fields" id="view_order_detail">
         <div id="order_label">
-            <label>Patient ID</label>
-        </div>
-        <div id="order_value">
-            <label id="patient_id">${ patientIdentifier }</label>
-        </div>
-    </div>
-    
-    <br/><br/>
-        
-    <div class="fields" id="view_order_detail">
-        <div id="order_label">
-            <label>Patient Name</label>
-        </div>
-        <div id="order_value">
-            <label id="patient_name"></label>
-        </div>
-    </div>
-        
-    <br/><br/>
-    
-    <div class="fields" id="view_order_detail">
-        <div id="order_label">
             <label>Start Date</label>
         </div>
         <div id="order_value">
@@ -51,7 +29,7 @@
     <br/><br/><br/>
         
     <div class="fields" id="view_order_detail">
-        <label>Physician instructions for</label>
+        <label>Instructions from Physician for</label>
     </div>
     
     <br/>

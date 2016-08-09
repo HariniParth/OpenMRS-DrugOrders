@@ -7,7 +7,6 @@
 /* global diagnosis */
 
 $(document).ready( function() {
-    jq("#nonActiveOrdersLinkHide").hide();
     jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
 });
@@ -121,6 +120,7 @@ function showDiscontinuedFulfilledOrders(){
     jq("#nonActiveOrdersWindow").show();
     document.getElementById("nonActiveOrdersWindow").style.display = 'block';
     jq("#nonActiveOrdersLinkView").hide();
+    document.getElementById("nonActiveOrdersLinkHide").style.display = 'block';
     jq("#nonActiveOrdersLinkHide").show();
 }
    
