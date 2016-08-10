@@ -47,9 +47,7 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-
             drugorders.hbm.xml
-				
 	</mappingFiles>
 
 	<!-- Internationalization -->
