@@ -8,7 +8,7 @@
     <form method="post">
 
         <div class="dialog-header">
-            <h3 id="text_heading">${ ui.message("Create Individual Drug Order") }</h3>
+            <h3 id="text_heading">${ ui.message("Create Drug Order") }</h3>
         </div>
               
         <br/><input type="hidden" id="orderID" name="orderID" class="select_field" />

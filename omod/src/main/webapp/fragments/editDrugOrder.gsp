@@ -6,6 +6,8 @@
 
     <h4 id="header">${ ui.message("View Order") }</h4>
         
+    <br/><br/>
+    
     <div class="fields" id="view_order_detail">
         <div id="order_label">
             <label>Start Date</label>
