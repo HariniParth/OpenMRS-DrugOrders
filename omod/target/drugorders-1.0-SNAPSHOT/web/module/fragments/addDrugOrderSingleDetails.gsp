@@ -8,7 +8,7 @@
     <form method="post">
 
         <div class="dialog-header">
-            <h3 id="text_heading">${ ui.message("Create Drug Order") }</h3>
+            <span id="text_heading"><h3 name="action" id="orderType"></h3></span>
         </div>
               
         <br/><input type="hidden" id="orderID" name="orderID" class="select_field" />
@@ -194,7 +194,8 @@
 
         <br/><br/>
         
-        <input type="hidden" name="action" value="addOrderDraft" />
+        <input type="hidden" id="orderAction" name="action" value=""/>
+        <input type="hidden" id="order_id" name="order_id"/>
         <button class="confirm right" id="btn-place" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Confirm") }</button>
         <button class="cancel" id="btn-place" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
 

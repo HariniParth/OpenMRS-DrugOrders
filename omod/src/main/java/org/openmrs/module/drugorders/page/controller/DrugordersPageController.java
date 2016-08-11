@@ -43,20 +43,9 @@ public class DrugordersPageController {
             @RequestParam(value = "patientInstructions", required = false) String patientInstructions, @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
             @RequestParam(value = "orderID", required = false) String orderID, @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
-            @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, @RequestParam(value = "edit_order_id", required = false) Integer edit_order_id,
-            @RequestParam(value = "startDateNew", required = false) Date startDateNew,
-            @RequestParam(value = "editDrugRoute", required = false) String editDrugRoute, @RequestParam(value = "editDrugFrequency", required = false) String editDrugFrequency,
-            @RequestParam(value = "editDrugDose", required = false) String editDrugDose, @RequestParam(value = "editDrugDoseUnits", required = false) String editDrugDoseUnits,
-            @RequestParam(value = "editDrugQuantity", required = false) String editDrugQuantity, @RequestParam(value = "editQuantityUnits", required = false) String editQuantityUnits,
-            @RequestParam(value = "editDrugDuration", required = false) Integer editDrugDuration, @RequestParam(value = "editDurationUnits", required = false) String editDurationUnits,
-            @RequestParam(value = "editPatientInstructions", required = false) String editPatientInstructions, @RequestParam(value = "editPharmacistInstructions", required = false) String editPharmacistInstructions,
-            @RequestParam(value = "renew_order_id", required = false) Integer renew_order_id,
-            @RequestParam(value = "startDateRenew", required = false) Date startDateRenew, @RequestParam(value = "renewDiagnosis", required = false) String renewDiagnosis,
-            @RequestParam(value = "renewDrugRoute", required = false) String renewDrugRoute, @RequestParam(value = "renewDrugFrequency", required = false) String renewDrugFrequency,
-            @RequestParam(value = "renewDrugDose", required = false) String renewDrugDose, @RequestParam(value = "renewDrugDoseUnits", required = false) String renewDrugDoseUnits,
-            @RequestParam(value = "renewDrugQuantity", required = false) String renewDrugQuantity, @RequestParam(value = "renewQuantityUnits", required = false) String renewQuantityUnits,
-            @RequestParam(value = "renewDrugDuration", required = false) Integer renewDrugDuration, @RequestParam(value = "renewDurationUnits", required = false) String renewDurationUnits,
-            @RequestParam(value = "renewPatientInstructions", required = false) String renewPatientInstructions, @RequestParam(value = "renewPharmacistInstructions", required = false) String renewPharmacistInstructions) {
+            @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, 
+
+            @RequestParam(value = "order_id", required = false) Integer order_id) {
 
         String patientID = Integer.toString(patient.getPatientId());
         String drugNameEntered = drugNameSelected.replace(" ", "");
@@ -65,8 +54,7 @@ public class DrugordersPageController {
 
         if (StringUtils.isNotBlank(action)) {
             try {
-                if ("addOrderDraft".equals(action)) {
-
+                if ("Create Drug Order".equals(action)) {
                     if (!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
@@ -81,38 +69,33 @@ public class DrugordersPageController {
                     Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                 }
 
-                if ("editDrugOrder".equals(action)) {
-                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(edit_order_id);
+                if ("Edit Drug Order".equals(action)) {
+                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
                     String drugName = originalOrderExtension.getDrugname();
                     Date startDate = originalOrderExtension.getStartdate();
                     String diagnosis = originalOrderExtension.getAssociateddiagnosis();
 
-                    Context.getService(drugordersService.class).deleteNewTable(Context.getService(drugordersService.class).getNewTable(edit_order_id));
-                    Context.getOrderService().purgeOrder(Context.getOrderService().getOrder(edit_order_id), true);
+                    Context.getService(drugordersService.class).deleteNewTable(Context.getService(drugordersService.class).getNewTable(order_id));
+                    Context.getOrderService().purgeOrder(Context.getOrderService().getOrder(order_id), true);
 
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
 
-                    int order = createNewDrugOrder(drugOrder, patient, drugName, editDrugRoute, editDrugDose, editDrugDoseUnits, editDrugQuantity, editQuantityUnits, editDrugFrequency, editDrugDuration, editDurationUnits);
-                    Date editedStartDate;
-                    if (startDateNew != null) {
-                        editedStartDate = startDateNew;
-                    } else {
-                        editedStartDate = startDate;
-                    }
-                    
-                    createDrugOrderExtension(drugorder, order, patientID, drugName, editedStartDate, allergicOrderReason, diagnosis, editPatientInstructions, editPharmacistInstructions);
+                    int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                    Date editedStartDate = startDate;
+
+                    createDrugOrderExtension(drugorder, order, patientID, drugName, editedStartDate, allergicOrderReason, diagnosis, patientInstructions, pharmacistInstructions);
                 
                 }
 
-                if ("renewDrugOrder".equals(action)) {
-                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(renew_order_id);
+                if ("Renew Drug Order".equals(action)) {
+                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
                     String drugName = originalOrderExtension.getDrugname();
 
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
-                    int order = createNewDrugOrder(drugOrder, patient, drugName, renewDrugRoute, renewDrugDose, renewDrugDoseUnits, renewDrugQuantity, renewQuantityUnits, renewDrugFrequency, renewDrugDuration, renewDurationUnits);
-                    createDrugOrderExtension(drugorder, order, patientID, drugName, startDateRenew, allergicOrderReason, renewDiagnosis, renewPatientInstructions, renewPharmacistInstructions);
+                    int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                    createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
                 }
                 
             } catch (Exception e) {

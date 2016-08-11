@@ -20,8 +20,9 @@ function hideMedicationPlanOrderWindow(){
     jq("#medicationPlanWindow").hide();
 }
 
-function showIndividualOrderDetailsWindow(){
-    jq("#confirmOrderView").hide();
+function showIndividualOrderDetailsWindow(orderType){
+    $("#orderType").text(orderType);
+    $("#orderAction").val(orderType);
     jq("#singleOrderDetailsWindow").show();
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
@@ -60,40 +61,44 @@ function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
 }
 
-function showEditIndividualDrugOrderWindow(orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
-    $("#edit_order_id").val(orderId);
-    $("#drug_name").text(drugName);
-    $("#SelectedOrderDate").text(startDate);
-    $("#SelectedDrugRoute").text(route);
-    $("#editDrugDose").val(dose);
-    $("#SelectedDrugDoseUnits").text(doseUnits);
-    $("#editDrugQuantity").val(quantity);
-    $("#SelectedDrugQuantityUnits").text(quantityUnits);
-    $("#editDrugDuration").val(duration);
-    $("#SelectedDrugDurationUnits").text(durationUnits);
-    $("#SelectedDrugFrequency").text(frequency);
-    $("#editPatientInstructions").val(patientinstructions);
-    $("#editPharmacistInstructions").val(pharmacistinstructions);
-    jq("#editOrderWindow").show();
-    document.getElementById("editOrderWindow").style.display = 'block';
+function showEditIndividualDrugOrderWindow(orderType,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
+    $("#orderType").text(orderType);
+    $("#orderAction").val(orderType);
+    $("#order_id").val(orderId);
+    $("#drugNameEntered").val(drugName);
+    $("#drugRoute").val(route);
+    $("#drugDose").val(dose);
+    $("#drugDoseUnits").val(doseUnits);
+    $("#drugQuantity").val(quantity);
+    $("#quantityUnits").val(quantityUnits);
+    $("#drugDuration").val(duration);
+    $("#durationUnits").val(durationUnits);
+    $("#drugFrequency").val(frequency);
+    $("#associatedDiagnosis").val(associateddiagnosis);
+    $("#patientInstructions").val(patientinstructions);
+    $("#pharmacistInstructions").val(pharmacistinstructions);
+    jq("#singleOrderDetailsWindow").show();
+    document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
-function showRenewIndividualDrugOrderWindow(orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
-    $("#renew_order_id").val(orderId);
-    $("#renew_drug_name").text(drugName);
-    $("#renew_DrugRoute").text(route);
-    $("#renewDrugDose").val(dose);
-    $("#renew_DrugDoseUnits").text(doseUnits);
-    $("#renewDrugQuantity").val(quantity);
-    $("#renew_DrugQuantityUnits").text(quantityUnits);
-    $("#renewDrugDuration").val(duration);
-    $("#renew_DrugDurationUnits").text(durationUnits);
-    $("#renew_DrugFrequency").text(frequency);
-    $("#renewDiagnosis").val(associateddiagnosis);
-    $("#renewPatientInstructions").val(patientinstructions);
-    $("#renewPharmacistInstructions").val(pharmacistinstructions);
-    jq("#renewOrderWindow").show();
-    document.getElementById("renewOrderWindow").style.display = 'block';
+function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
+    $("#orderType").text(orderType);
+    $("#orderAction").val(orderType);
+    $("#order_id").val(orderId);
+    $("#drugNameEntered").val(drugName);
+    $("#drugRoute").val(route);
+    $("#drugDose").val(dose);
+    $("#drugDoseUnits").val(doseUnits);
+    $("#drugQuantity").val(quantity);
+    $("#quantityUnits").val(quantityUnits);
+    $("#drugDuration").val(duration);
+    $("#durationUnits").val(durationUnits);
+    $("#drugFrequency").val(frequency);
+    $("#associatedDiagnosis").val(associateddiagnosis);
+    $("#patientInstructions").val(patientinstructions);
+    $("#pharmacistInstructions").val(pharmacistinstructions);
+    jq("#singleOrderDetailsWindow").show();
+    document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
 function hideEditOrderWindow(){
