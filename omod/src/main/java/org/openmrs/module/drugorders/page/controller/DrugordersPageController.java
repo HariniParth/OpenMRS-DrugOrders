@@ -32,19 +32,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DrugordersPageController {
 
     
-    public void controller(PageModel model, @RequestParam("patientId") Patient patient, @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
+    public void controller(PageModel model, @RequestParam("patientId") Patient patient, 
+            @RequestParam(value = "drugNameEntered", required = false) String drugNameSelected,
             @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam(value = "associatedDiagnosis", required = false) String selectedDiagnosis,
-            @RequestParam(value = "drugRoute", required = false) String drugRoute, @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
-            @RequestParam(value = "drugDose", required = false) String drugDose, @RequestParam(value = "drugDoseUnits", required = false) String drugDoseUnits,
-            @RequestParam(value = "drugQuantity", required = false) String drugQuantity, @RequestParam(value = "quantityUnits", required = false) String quantityUnits,
-            @RequestParam(value = "drugDuration", required = false) Integer drugDuration, @RequestParam(value = "durationUnits", required = false) String durationUnits,
-            @RequestParam(value = "patientInstructions", required = false) String patientInstructions, @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
-            @RequestParam(value = "orderID", required = false) String orderID, @SpringBean("allergyService") PatientService patientService,
+            @RequestParam(value = "drugRoute", required = false) String drugRoute, 
+            @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
+            @RequestParam(value = "drugDose", required = false) String drugDose, 
+            @RequestParam(value = "drugDoseUnits", required = false) String drugDoseUnits,
+            @RequestParam(value = "drugQuantity", required = false) String drugQuantity, 
+            @RequestParam(value = "quantityUnits", required = false) String quantityUnits,
+            @RequestParam(value = "drugDuration", required = false) Integer drugDuration, 
+            @RequestParam(value = "durationUnits", required = false) String durationUnits,
+            @RequestParam(value = "patientInstructions", required = false) String patientInstructions, 
+            @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
+            @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, 
-
             @RequestParam(value = "order_id", required = false) Integer order_id) {
 
         String patientID = Integer.toString(patient.getPatientId());

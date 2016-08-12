@@ -6,6 +6,7 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.openmrs.Concept;
@@ -71,6 +72,9 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
         model.addAttribute("allergies", patientService.getAllergies(patient));
+        
+        Date startDate = Calendar.getInstance().getTime();
+        model.addAttribute("startDate", startDate);
         
         int number_of_allergic_drugs = patientService.getAllergies(patient).size();
         if(number_of_allergic_drugs >=1){

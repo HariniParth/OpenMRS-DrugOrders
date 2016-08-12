@@ -11,11 +11,12 @@
             <span id="text_heading"><h3 name="action" id="orderType"></h3></span>
         </div>
               
-        <br/><input type="hidden" id="orderID" name="orderID" class="select_field" />
+        <br/>
+        <span id="asterisk">Fields marked with asterisk (*) are required</span><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Drug name</label>
+                <label>Drug name <span id="asterisk">*</span></label>
             </div>
             <div id="order_value" class="select_field">
                 <input type="text" id="drugNameEntered" autocomplete="on" oninput="autoCompleteDrug('${drugsNames}','${allergicDrugs}')" name="drugNameEntered" />
@@ -26,10 +27,10 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Start Date</label>
+                <label>Start Date <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
-                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateEntered', label: '', formFieldName: 'startDateEntered', useTime: '', defaultDate: '']) }
+                ${ ui.includeFragment("uicommons", "field/datetimepicker", [ id: 'startDateEntered', label: '', formFieldName: 'startDateEntered', useTime: '', defaultDate: startDate ]) }
             </div>
         </div>
 
@@ -46,7 +47,7 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Route</label>
+                <label>Route <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="drugRoute" name="drugRoute" class="select_field">
@@ -62,7 +63,7 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Dose</label>
+                <label>Dose <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <input type="text" id="drugDose" name="drugDose" class="select_field" />
@@ -73,7 +74,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Dose units</label>
+                <label>Dose units <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="drugDoseUnits" name="drugDoseUnits" class="select_field">
@@ -89,7 +90,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Quantity</label>
+                <label>Quantity <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <input type="text" id="drugQuantity" name="drugQuantity" class="select_field" />
@@ -100,7 +101,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Quantity units</label>
+                <label>Quantity units <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="quantityUnits" name="quantityUnits" class="select_field">
@@ -116,7 +117,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Duration</label>
+                <label>Duration <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <input type="text" id="drugDuration" name="drugDuration" class="select_field" />
@@ -127,7 +128,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Duration units</label>
+                <label>Duration units <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="durationUnits" name="durationUnits" class="select_field">
@@ -143,7 +144,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Frequency </label>
+                <label>Frequency <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="drugFrequency" name="drugFrequency" class="select_field">

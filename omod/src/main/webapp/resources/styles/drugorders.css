@@ -150,6 +150,13 @@ and open the template in the editor.
     color: #00463f;
 }
 
+#asterisk{
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    vertical-align: top;
+}
+
 #nonActiveOrdersLinkHide{
     display: none;
 }
