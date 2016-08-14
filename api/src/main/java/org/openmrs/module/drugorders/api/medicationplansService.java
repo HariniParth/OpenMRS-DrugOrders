@@ -7,13 +7,11 @@ package org.openmrs.module.drugorders.api;
 
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.drugorders.medicationplans;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author harini-geek
  */
-@Transactional
 public interface medicationplansService extends OpenmrsService{
     
     public medicationplans saveNewTable(medicationplans newTable);

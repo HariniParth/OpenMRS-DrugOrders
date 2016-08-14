@@ -5,13 +5,15 @@
  */
 package org.openmrs.module.drugorders;
 
+import java.io.Serializable;
+import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Concept;
 
 /**
  *
  * @author harini-geek
  */
-public class medicationplans {
+public class medicationplans extends BaseOpenmrsObject implements Serializable{
     
     private Integer id;
     private String Uuid;
@@ -30,18 +32,22 @@ public class medicationplans {
         
     }
     
+    @Override
     public Integer getId() {
             return id;
     }
 
+    @Override
     public void setId(Integer id) {
             this.id = id;
     }
     
+    @Override
     public String getUuid() {
             return Uuid;
     }
 
+    @Override
     public void setUuid(String Uuid) {
             this.Uuid = Uuid;
     }
