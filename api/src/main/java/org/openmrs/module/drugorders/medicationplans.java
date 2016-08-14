@@ -8,6 +8,7 @@ package org.openmrs.module.drugorders;
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Concept;
+import org.openmrs.OrderFrequency;
 
 /**
  *
@@ -20,7 +21,7 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
     private Concept diseaseid;
     private Concept drugid;
     private Concept route;
-    private Concept frequency;
+    private OrderFrequency frequency;
     private Double dose;
     private Concept doseunits;
     private Integer duration;
@@ -76,11 +77,11 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
             this.route = route;
     }
 
-    public Concept getFrequency() {
+    public OrderFrequency getFrequency() {
             return frequency;
     }
 
-    public void setFrequency(Concept frequency) {
+    public void setFrequency(OrderFrequency frequency) {
             this.frequency = frequency;
     }
 

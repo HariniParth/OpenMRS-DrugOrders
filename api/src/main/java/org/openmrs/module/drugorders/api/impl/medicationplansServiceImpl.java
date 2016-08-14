@@ -5,8 +5,10 @@
  */
 package org.openmrs.module.drugorders.api.impl;
 
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.drugorders.api.db.medicationplansDAO;
 import org.openmrs.module.drugorders.api.medicationplansService;
@@ -44,5 +46,11 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     @Override
     public medicationplans saveNewTable(medicationplans doe) {
         return dao.saveNewTable(doe);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<medicationplans> getMedicationPlansByDisease(Concept concept){
+        return dao.getMedicationPlansByDisease(concept);
     }
 }

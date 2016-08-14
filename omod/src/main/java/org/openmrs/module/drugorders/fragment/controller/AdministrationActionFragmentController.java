@@ -6,7 +6,11 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang.StringUtils;
+import org.openmrs.Concept;
+import org.openmrs.OrderFrequency;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
@@ -19,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AdministrationActionFragmentController {
     
-    public final HashMap<String, medicationplans> diseaseplans = new HashMap<String,medicationplans>();
+    public final Map<String, medicationplans> diseaseplans = new HashMap<String,medicationplans>();
     
     public void controller(PageModel model, @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
             @RequestParam(value = "drugName", required = false) String drugNameSelected,
@@ -48,8 +52,14 @@ public class AdministrationActionFragmentController {
         medPlans.setDurationunits(Context.getConceptService().getConceptByName(durationUnits));
         medPlans.setQuantityunits(Context.getConceptService().getConceptByName(quantityUnits));
         medPlans.setRoute(Context.getConceptService().getConceptByName(drugRoute));
-        medPlans.setFrequency(Context.getConceptService().getConceptByName(drugFrequency));
-    
+        
+        OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));
+        if (orderFrequency == null) {
+            medPlans.setFrequency(setOrderFrequency(drugFrequency));
+        } else {
+            medPlans.setFrequency(orderFrequency);
+        }   
+            
         diseaseplans.put(diseaseName, medPlans);
         
         model.addAttribute("medicationplans", medPlans);
@@ -65,6 +75,20 @@ public class AdministrationActionFragmentController {
                 System.out.println("Error message "+e.getMessage());
             }
         }
+        
+        Concept diseaseConcept = Context.getConceptService().getConceptByName(diseaseName);
+        List<medicationplans> existingMedplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(diseaseConcept);
+        model.addAttribute("existingMedplans", existingMedplans);
+    }
+    
+    private OrderFrequency setOrderFrequency(String Frequency) {
+
+        OrderFrequency orderFrequency = new OrderFrequency();
+        orderFrequency.setFrequencyPerDay(0.0);
+        orderFrequency.setConcept(Context.getConceptService().getConceptByName(Frequency));
+        orderFrequency = (OrderFrequency) Context.getOrderService().saveOrderFrequency(orderFrequency);
+        return orderFrequency;
+
     }
     
 }

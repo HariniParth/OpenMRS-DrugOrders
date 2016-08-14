@@ -5,6 +5,8 @@
  */
 package org.openmrs.module.drugorders.api;
 
+import java.util.List;
+import org.openmrs.Concept;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.drugorders.medicationplans;
 
@@ -15,4 +17,6 @@ import org.openmrs.module.drugorders.medicationplans;
 public interface medicationplansService extends OpenmrsService{
     
     public medicationplans saveNewTable(medicationplans newTable);
+    public List<medicationplans> getMedicationPlansByDisease(Concept concept);
+    
 }

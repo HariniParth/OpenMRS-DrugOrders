@@ -5,11 +5,16 @@
  */
 package org.openmrs.module.drugorders.api.db.hibernate;
 
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.openmrs.Concept;
 import org.openmrs.module.drugorders.api.db.medicationplansDAO;
 import org.openmrs.module.drugorders.medicationplans;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -35,6 +40,18 @@ public class HibernatemedicationplansDAO implements medicationplansDAO {
         return newTable;
     }
 
+    ;
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<medicationplans> getMedicationPlansByDisease(Concept concept){
+        
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                medicationplans.class);
+        crit.add(Restrictions.eq("diseaseid", concept));
+        return crit.list();
+    }
+    
     ;
     
 }

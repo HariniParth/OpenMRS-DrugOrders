@@ -5,6 +5,8 @@
  */
 package org.openmrs.module.drugorders.api.db;
 
+import java.util.List;
+import org.openmrs.Concept;
 import org.openmrs.module.drugorders.medicationplans;
 
 /**
@@ -14,5 +16,6 @@ import org.openmrs.module.drugorders.medicationplans;
 public interface medicationplansDAO {
     
     public medicationplans saveNewTable(medicationplans newTable);
+    public List<medicationplans> getMedicationPlansByDisease(Concept concept);
     
 }
