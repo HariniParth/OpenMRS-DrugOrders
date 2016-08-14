@@ -160,3 +160,7 @@ and open the template in the editor.
 #nonActiveOrdersLinkHide{
     display: none;
 }
+
+#detailsLink{
+    font-size: 10px;
+}

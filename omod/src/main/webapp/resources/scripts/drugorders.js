@@ -9,6 +9,7 @@
 $(document).ready( function() {
     jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
+    jq("#planItemDetails").hide();
 });
 
 function showMedicationPlanOrderWindow(){
@@ -217,10 +218,6 @@ function hideMedPlanCreateWindow(){
     jq("#createNewPlanWindow").hide();
 }
 
-function hideMedPlanConfirmWindow(){
-    jq("#confirmNewPlanWindow").hide();
-}
-
 function showExistingMedicationPlans(){
     jq("#existingPlansLinkView").hide();
     jq("#existingPlansLinkHide").show();
@@ -229,4 +226,8 @@ function showExistingMedicationPlans(){
 function hideExistingMedicationPlans(){
     jq("#existingPlansLinkHide").hide();
     jq("#existingPlansLinkView").show();
+}
+
+function displayPlanItemDetails(){
+    jq("#planItemDetails").toggle();
 }

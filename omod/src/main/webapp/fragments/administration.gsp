@@ -145,8 +145,8 @@
             <br/><br/><br/>
 
             <input type="hidden" name="action" value="addPlanItem" />
-            <button class="confirm right" id="btn-place" name="saveDrug" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Next") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanCreateWIndow()">${ ui.message("Cancel") }</button>
+            <button class="confirm right" id="btn-place" name="saveDrug" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Save") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanCreateWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
 </div>
