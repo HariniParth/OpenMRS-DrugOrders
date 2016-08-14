@@ -20,7 +20,7 @@
                     <a href="#" onclick="displayPlanItemDetails()" id="detailsLink">Details</a>
                     <span id="button">
                         <i class="icon-remove delete-action right" title="${ ui.message("Delete") }" onclick=""></i>
-                        <i class="icon-pencil edit-action right" title="${ ui.message("Edit") }" onclick=""></i>
+                        <i class="icon-pencil edit-action right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${diseaseName}','${diseaseplan.value.drugid.getDisplayString()}','${diseaseplan.value.dose}','${diseaseplan.value.doseunits.getDisplayString()}','${diseaseplan.value.route.getDisplayString()}','${diseaseplan.value.quantity}','${diseaseplan.value.quantityunits.getDisplayString()}','${diseaseplan.value.duration}','${diseaseplan.value.durationunits.getDisplayString()}','${diseaseplan.value.frequency.getDisplayString()}')"></i>
                     </span>
                 </p><br/>
                 

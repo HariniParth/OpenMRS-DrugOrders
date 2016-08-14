@@ -210,6 +210,7 @@ function deleteDraftOrder(deleteDraftOrderID){
 }
 
 function displayPlanCreationWindow(){
+    jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
 }
@@ -230,4 +231,20 @@ function hideExistingMedicationPlans(){
 
 function displayPlanItemDetails(){
     jq("#planItemDetails").toggle();
+}
+
+function editPlanItemDetails(diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+    jq("#confirmNewPlanWindow").hide();
+    jq("#createNewPlanWindow").show();
+    document.getElementById("createNewPlanWindow").style.display = 'block';
+    $("#disease_name").val(diseaseName);
+    $("#drug_name").val(drugName);
+    $("#drugDose").val(dose);
+    $("#drugDoseUnits").val(doseunits);
+    $("#drugRoute").val(route);
+    $("#drugQuantity").val(quantity);
+    $("#quantityUnits").val(quantityunits);
+    $("#drugDuration").val(duration);
+    $("#durationUnits").val(durationunits);
+    $("#drugFrequency").val(frequency);
 }
