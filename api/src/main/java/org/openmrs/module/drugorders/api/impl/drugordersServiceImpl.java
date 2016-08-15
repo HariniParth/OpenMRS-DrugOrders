@@ -73,6 +73,7 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
         return dao.getNewTablesByPatient(patient);
     }
 
+    @Transactional
     @Override
     public void deleteNewTable(drugorders newTable) {
         dao.deleteNewTable(newTable);

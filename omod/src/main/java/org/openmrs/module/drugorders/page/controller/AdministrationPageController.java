@@ -24,6 +24,7 @@ public class AdministrationPageController {
     
     public void controller(PageModel model, @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
                             @RequestParam(value = "drugName", required = false) String drugNameSelected,
+                            @RequestParam(value = "medPlan_id", required = false) String medPlan_id,
                             @RequestParam(value = "action", required = false) String action){
         
         String diseaseName = diseaseNameSelected.replace(" ", "");
@@ -39,6 +40,10 @@ public class AdministrationPageController {
                     medicationplans medPlans = (medicationplans) model.getAttribute("medicationplans");
                     System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
                     Context.getService(medicationplansService.class).saveNewTable(medPlans);
+                }
+                if ("deletePlanItem".equals(action)) {
+                    medicationplans medPlans = Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(medPlan_id));
+                    Context.getService(medicationplansService.class).deleteMedicationPlan(medPlans);
                 }
             } catch(Exception e){
                 System.out.println("Error message "+e.getMessage());

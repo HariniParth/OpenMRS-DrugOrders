@@ -233,7 +233,7 @@ function displayPlanItemDetails(){
     jq("#planItemDetails").toggle();
 }
 
-function editPlanItemDetails(diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
@@ -247,4 +247,20 @@ function editPlanItemDetails(diseaseName,drugName,dose,doseunits,route,quantity,
     $("#drugDuration").val(duration);
     $("#durationUnits").val(durationunits);
     $("#drugFrequency").val(frequency);
+}
+
+function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+    jq("#deleteMedPlanWindow").show();
+    document.getElementById("deleteMedPlanWindow").style.display = 'block';
+    $("#medPlan_id").val(planid);
+    $("#disease_value").text(diseaseName);
+    $("#drug_value").text(drugName);
+    $("#dose_value").text(dose);
+    $("#dose_units_value").text(doseunits);
+    $("#route_value").text(route);
+    $("#quantity_value").text(quantity);
+    $("#quantity_units_value").text(quantityunits);
+    $("#duration_value").text(duration);
+    $("#duration_units_value").text(durationunits);
+    $("#frequency_value").text(frequency);
 }

@@ -146,6 +146,10 @@ and open the template in the editor.
     display: none;
 }
 
+#deleteMedPlanWindow{
+    display: none;
+}
+
 #adminLink{
     color: #00463f;
 }

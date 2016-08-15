@@ -64,4 +64,19 @@ public class HibernatemedicationplansDAO implements medicationplansDAO {
     }
     
     ;
+
+    @Transactional
+    @Override
+    public void deleteMedicationPlan(medicationplans plan){
+        sessionFactory.getCurrentSession().delete(plan);
+    }
+    
+    ;
+    
+    @Override
+    public medicationplans getMedicationPlan(Integer id){
+        return (medicationplans) sessionFactory.getCurrentSession().get(medicationplans.class, id);
+    }
+    
+    ;
 }

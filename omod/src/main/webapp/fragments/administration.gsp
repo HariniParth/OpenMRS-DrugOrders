@@ -150,3 +150,40 @@
         </form>
     </div>
 </div>
+
+<div id="deleteMedPlanWindow">
+    <div class="dialog-header">
+        <h4 id="text_heading">${ ui.message("Discard Medication Plan") }</h4>
+    </div><br/>
+    <div class="deleteMedicationPlanWindow">
+        <form method="post">
+            <input type="hidden" id="medPlan_id" name="medPlan_id" />
+            <label class="fields" id="order_label">Disease:</label>
+            <label class="fields" id="disease_value"></label>
+            <label class="fields" id="order_label">Drug:</label>
+            <label class="fields" id="drug_value"></label>
+            <label class="fields" id="order_label">Dose:</label>
+            <label class="fields" id="dose_value"></label>
+            <label class="fields" id="order_label">Dose units:</label>
+            <label class="fields" id="dose_units_value"></label>
+            <label class="fields" id="order_label">Route:</label>
+            <label class="fields" id="route_value"></label>
+            <label class="fields" id="order_label">Quantity:</label>
+            <label class="fields" id="quantity_value"></label>
+            <label class="fields" id="order_label">Qnty units:</label>
+            <label class="fields" id="quantity_units_value"></label>
+            <label class="fields" id="order_label">Duration:</label>
+            <label class="fields" id="duration_value"></label>
+            <label class="fields" id="order_label">Durn units:</label>
+            <label class="fields" id="duration_units_value"></label>
+            <label class="fields" id="order_label">Frequency:</label>
+            <label class="fields" id="frequency_value"></label>
+            
+            <br/>
+
+            <input type="hidden" name="action" value="deletePlanItem" />
+            <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Discard") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
+        </form>
+    </div>
+</div>
