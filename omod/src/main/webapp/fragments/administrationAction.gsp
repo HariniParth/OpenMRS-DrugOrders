@@ -41,8 +41,9 @@
                     <span id="order_value">${existingMedplan.durationunits.getDisplayString()}</span><br/>
                     <span id="order_label">Frequency:</span>
                     <span id="order_value">${existingMedplan.frequency}</span>
+                    <br/><br/>
                 </div>
-                <br/>
+                
             <% } %>
             
             <br/><br/>

@@ -18,5 +18,6 @@ public interface medicationplansService extends OpenmrsService{
     
     public medicationplans saveNewTable(medicationplans newTable);
     public List<medicationplans> getMedicationPlansByDisease(Concept concept);
+    public List<medicationplans> getAllMedicationPlans();
     
 }

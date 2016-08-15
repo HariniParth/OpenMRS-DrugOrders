@@ -17,5 +17,6 @@ public interface medicationplansDAO {
     
     public medicationplans saveNewTable(medicationplans newTable);
     public List<medicationplans> getMedicationPlansByDisease(Concept concept);
+    public List<medicationplans> getAllMedicationPlans();
     
 }

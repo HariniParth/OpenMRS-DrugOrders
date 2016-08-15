@@ -53,4 +53,10 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     public List<medicationplans> getMedicationPlansByDisease(Concept concept){
         return dao.getMedicationPlansByDisease(concept);
     }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<medicationplans> getAllMedicationPlans(){
+        return dao.getAllMedicationPlans();
+    }
 }

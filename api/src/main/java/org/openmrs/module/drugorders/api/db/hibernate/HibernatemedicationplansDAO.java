@@ -54,4 +54,14 @@ public class HibernatemedicationplansDAO implements medicationplansDAO {
     
     ;
     
+    @Transactional(readOnly = true)
+    @Override
+    public List<medicationplans> getAllMedicationPlans(){
+        
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                medicationplans.class);
+        return crit.list();
+    }
+    
+    ;
 }

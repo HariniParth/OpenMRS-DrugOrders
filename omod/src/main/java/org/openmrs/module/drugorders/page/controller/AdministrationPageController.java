@@ -8,7 +8,6 @@ package org.openmrs.module.drugorders.page.controller;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
-import org.openmrs.Concept;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
@@ -45,6 +44,9 @@ public class AdministrationPageController {
                 System.out.println("Error message "+e.getMessage());
             }
         }
+        
+        List<medicationplans> allMedicationPlans = Context.getService(medicationplansService.class).getAllMedicationPlans();
+        model.addAttribute("allMedicationPlans", allMedicationPlans);
 
     }
 }
