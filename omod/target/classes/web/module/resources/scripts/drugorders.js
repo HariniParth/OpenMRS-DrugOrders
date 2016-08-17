@@ -9,7 +9,7 @@
 $(document).ready( function() {
     jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
-    jq("#planItemDetails").hide();
+    jq(".planItemDetails").hide();
 });
 
 function showMedicationPlanOrderWindow(){
@@ -229,10 +229,6 @@ function hideExistingMedicationPlans(){
     jq("#existingPlansLinkView").show();
 }
 
-function displayPlanItemDetails(){
-    jq("#planItemDetails").toggle();
-}
-
 function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
@@ -250,6 +246,7 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
 }
 
 function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+    jq("#confirmNewPlanWindow").hide();
     jq("#deleteMedPlanWindow").show();
     document.getElementById("deleteMedPlanWindow").style.display = 'block';
     $("#medPlan_id").val(planid);
