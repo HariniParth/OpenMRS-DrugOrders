@@ -25,13 +25,19 @@
 
         <div id="existingMedPlansWindow">
             <% allMedicationPlans.each { medPlan -> %>
-                <p>${medPlan.diseaseid.getDisplayString()}
-                    <span id="button">
-                        <i class="icon-remove delete-action right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${medPlan.id}','${medPlan.diseaseid.getDisplayString()}','${medPlan.drugid.getDisplayString()}','${medPlan.dose}','${medPlan.doseunits.getDisplayString()}','${medPlan.route.getDisplayString()}','${medPlan.quantity}','${medPlan.quantityunits.getDisplayString()}','${medPlan.duration}','${medPlan.durationunits.getDisplayString()}','${medPlan.frequency}')"></i>
-                        <i class="icon-pencil edit-action right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${medPlan.id}','${medPlan.diseaseid.getDisplayString()}','${medPlan.drugid.getDisplayString()}','${medPlan.dose}','${medPlan.doseunits.getDisplayString()}','${medPlan.route.getDisplayString()}','${medPlan.quantity}','${medPlan.quantityunits.getDisplayString()}','${medPlan.duration}','${medPlan.durationunits.getDisplayString()}','${medPlan.frequency}')"></i>
-                    </span>
-                </p>
-                <p>${medPlan.drugid.getDisplayString()} ${medPlan.dose} ${medPlan.doseunits.getDisplayString()} ${medPlan.route.getDisplayString()} ${medPlan.quantity} ${medPlan.quantityunits.getDisplayString()} ${medPlan.duration} ${medPlan.durationunits.getDisplayString()} ${medPlan.frequency}</p>
+                <% if(medPlan.value.size() > 0) { %>
+                
+                    <p>${medPlan.key.getDisplayString()}</p> <br/>
+                    
+                    <% medPlan.value.each { med -> %>
+                        <p>${med.drugid.getDisplayString()} ${med.dose} ${med.doseunits.getDisplayString()} ${med.route.getDisplayString()} ${med.quantity} ${med.quantityunits.getDisplayString()} ${med.duration} ${med.durationunits.getDisplayString()} ${med.frequency}
+                            <span id="button">
+                                <i class="icon-remove delete-action pull-right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
+                                <i class="icon-pencil edit-action pull-right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
+                            </span> <br/>
+                        </p> <br/>
+                    <% } %> <br/>
+                <% } %>
             <% } %>
         </div>
         

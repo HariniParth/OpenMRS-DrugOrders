@@ -47,6 +47,7 @@ public class AdministrationFragmentController {
             Concept diseaseMember = diseaseConcepts.getConcept();
             diseases.add(diseaseMember);
         }
+        model.addAttribute("diseases", diseases);
                 
         List<String> diseaseNames = new ArrayList<String>();
         for(Concept diagnosisName : diseases){

@@ -168,3 +168,7 @@ and open the template in the editor.
 #detailsLink{
     font-size: 10px;
 }
+
+#existingMedPlansWindow{
+    display: none;
+}

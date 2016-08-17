@@ -5,9 +5,14 @@
  */
 package org.openmrs.module.drugorders.page.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
+import org.openmrs.Concept;
+import org.openmrs.ConceptSet;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
@@ -50,7 +55,29 @@ public class AdministrationPageController {
             }
         }
         
-        List<medicationplans> allMedicationPlans = Context.getService(medicationplansService.class).getAllMedicationPlans();
+        HashMap<Concept,List<medicationplans>> allMedicationPlans = new HashMap<Concept,List<medicationplans>>();
+        List<Concept> diseases = new ArrayList<Concept>();
+        Concept diseaseConcept = Context.getConceptService().getConcept(160168);
+        
+        for(ConceptSet diseaseConcepts : diseaseConcept.getConceptSets()){
+            Concept diseaseMember = diseaseConcepts.getConcept();
+            diseases.add(diseaseMember);
+        }
+        model.addAttribute("diseases", diseases);
+        
+        for(Concept disease : diseases){
+            List<medicationplans> medicationPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(disease);
+            Collections.sort(medicationPlans,new Comparator<medicationplans>(){
+
+                @Override
+                public int compare(medicationplans p1, medicationplans p2) {
+                    return p1.getDiseaseid().getDisplayString().compareTo(p2.getDiseaseid().getDisplayString());
+                }
+
+            });
+            allMedicationPlans.put(disease, medicationPlans);
+        }
+        
         model.addAttribute("allMedicationPlans", allMedicationPlans);
 
     }

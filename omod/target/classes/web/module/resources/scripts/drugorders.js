@@ -222,11 +222,14 @@ function hideMedPlanCreateWindow(){
 function showExistingMedicationPlans(){
     jq("#existingPlansLinkView").hide();
     jq("#existingPlansLinkHide").show();
+    document.getElementById("existingMedPlansWindow").style.display = 'block';
+    jq("#existingMedPlansWindow").show();
 }
    
 function hideExistingMedicationPlans(){
     jq("#existingPlansLinkHide").hide();
     jq("#existingPlansLinkView").show();
+    jq("#existingMedPlansWindow").hide();
 }
 
 function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
