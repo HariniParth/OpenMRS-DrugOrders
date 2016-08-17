@@ -26,6 +26,7 @@ public class AdministrationActionFragmentController {
     public final Map<String, medicationplans> diseaseplans = new HashMap<String,medicationplans>();
     
     public void controller(PageModel model, @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
+            @RequestParam(value = "planId", required = false) String planId,
             @RequestParam(value = "drugName", required = false) String drugNameSelected,
             @RequestParam(value = "drugRoute", required = false) String drugRoute,
             @RequestParam(value = "drugDose", required = false) String drugDose,
@@ -68,6 +69,9 @@ public class AdministrationActionFragmentController {
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("addPlanItem".equals(action)) {
+                    if(!(planId.equals(""))){
+                        Context.getService(medicationplansService.class).deleteMedicationPlan(Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(planId)));
+                    }
                     System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
                     Context.getService(medicationplansService.class).saveNewTable(medPlans);
                 }

@@ -217,6 +217,17 @@ function displayPlanCreationWindow(){
 
 function hideMedPlanCreateWindow(){
     jq("#createNewPlanWindow").hide();
+    $("#disease_name").val("");
+    $("#planId").val("");
+    $("#drug_name").val("");
+    $("#drugRoute").val("");
+    $("#drugDose").val("");
+    $("#drugDoseUnits").val("");
+    $("#drugQuantity").val("");
+    $("#quantityUnits").val("");
+    $("#drugDuration").val("");
+    $("#durationUnits").val("");
+    $("#drugFrequency").val("");
 }
 
 function showExistingMedicationPlans(){
@@ -236,6 +247,7 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
+    $("#planId").val(planid);
     $("#disease_name").val(diseaseName);
     $("#drug_name").val(drugName);
     $("#drugDose").val(dose);
@@ -263,4 +275,8 @@ function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quan
     $("#duration_value").text(duration);
     $("#duration_units_value").text(durationunits);
     $("#frequency_value").text(frequency);
+}
+
+function hideMedPlanDeleteWindow(){
+    jq("#deleteMedPlanWindow").hide();
 }

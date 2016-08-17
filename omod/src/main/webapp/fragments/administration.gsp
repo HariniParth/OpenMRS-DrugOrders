@@ -9,6 +9,8 @@
     <div class="createMedicationPlanWindow">
         <form method="post">
             
+            <input type="hidden" id="planId" name="planId" />
+            
             <div class="fields" id="disease_field">
                 <label>Disease name </label>
                 <input id="disease_name" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
