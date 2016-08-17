@@ -170,7 +170,7 @@ function autoCompleteDrug(drug, allergies){
 }
 
 function autoCompleteDisease(disease){
-    var list = disease.split(',');
+    var list = disease.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#disease_name").autocomplete({
        source : list

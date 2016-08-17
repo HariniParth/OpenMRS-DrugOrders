@@ -137,7 +137,7 @@ function hideDiscontinuedFulfilledOrders(){
 }
 
 function autoCompleteDiagnosis(diagnosis){
-    var list = diagnosis.split(',');
+    var list = diagnosis.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#associatedDiagnosis").autocomplete({
        source : list
@@ -145,7 +145,7 @@ function autoCompleteDiagnosis(diagnosis){
 }
 
 function autoCompleteDrug(drug, allergies){
-    var list = drug.split(',');
+    var list = drug.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#drugNameEntered").autocomplete({
        source : list,
@@ -170,7 +170,7 @@ function autoCompleteDrug(drug, allergies){
 }
 
 function autoCompleteDisease(disease){
-    var list = disease.split(',');
+    var list = disease.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#disease_name").autocomplete({
        source : list
@@ -178,7 +178,7 @@ function autoCompleteDisease(disease){
 }
 
 function autoCompletePlanItem(drugs){
-    var list = drugs.split(',');
+    var list = drugs.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#drug_name").autocomplete({
        source : list
