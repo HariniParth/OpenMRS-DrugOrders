@@ -24,7 +24,9 @@ import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +51,7 @@ public class DrugordersPageController {
             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
             @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
+            @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, 
             @RequestParam(value = "order_id", required = false) Integer order_id) {
 
@@ -56,6 +59,11 @@ public class DrugordersPageController {
         String drugNameEntered = drugNameSelected.replace(" ", "");
         String associatedDiagnosis = selectedDiagnosis.replace(" ", "");
         model.addAttribute("allergies", patientService.getAllergies(patient));
+
+        String diseaseNameEntered = diseaseNameSelected.replace(" ", "");
+        model.addAttribute("diseaseName", diseaseNameEntered);
+        List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseNameEntered));
+        model.addAttribute("medplans", medplans);
 
         if (StringUtils.isNotBlank(action)) {
             try {

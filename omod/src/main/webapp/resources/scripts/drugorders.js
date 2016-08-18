@@ -172,7 +172,7 @@ function autoCompleteDrug(drug, allergies){
 function autoCompleteDisease(disease){
     var list = disease.replace("[","").replace("]","").split(',');
     console.log(list);
-    $("#disease_name").autocomplete({
+    $("#diseaseName").autocomplete({
        source : list
     });
 }
@@ -217,7 +217,7 @@ function displayPlanCreationWindow(){
 
 function hideMedPlanCreateWindow(){
     jq("#createNewPlanWindow").hide();
-    $("#disease_name").val("");
+    $("#diseaseName").val("");
     $("#planId").val("");
     $("#drug_name").val("");
     $("#drugRoute").val("");
@@ -248,7 +248,7 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
     $("#planId").val(planid);
-    $("#disease_name").val(diseaseName);
+    $("#diseaseName").val(diseaseName);
     $("#drug_name").val(drugName);
     $("#drugDose").val(dose);
     $("#drugDoseUnits").val(doseunits);

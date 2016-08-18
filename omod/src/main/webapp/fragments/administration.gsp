@@ -13,7 +13,7 @@
             
             <div class="fields" id="disease_field">
                 <label>Disease name </label>
-                <input id="disease_name" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
+                <input id="diseaseName" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
             </div>
             
             <br/><br/>
