@@ -76,5 +76,31 @@
             
         </createTable>
     </changeSet>
+    
+    <changeSet id="harini_table_5" author="harini">
+        <sql>
+            drop table if exists drug_order_diseases;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="harini" id="harini_table_6">
+        <preConditions onFail="WARN" onError="WARN">
+            <not>
+                <tableExists tableName="drug_order_diseases" />
+            </not>
+        </preConditions>
+        <createTable tableName="drug_order_diseases">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="orderid" type="int">
+                <constraints nullable="true" foreignKeyName="disease_order_id" references="orders(order_id)" />
+            </column>
+            <column name="uuid" type="varchar(255)"></column>
+            <column name="diseaseid" type="int"></column>
+            <column name="patientid" type="varchar(50)"></column>
+            
+        </createTable>
+    </changeSet>
        
 </databaseChangeLog>

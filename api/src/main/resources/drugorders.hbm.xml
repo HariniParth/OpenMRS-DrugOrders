@@ -48,4 +48,16 @@
 
     </class>
     
+    <class name="drugordersdiseases" table="drug_order_diseases">
+
+        <id name="id" type="int" column="id" unsaved-value="0">
+            <generator class="native" />
+        </id>
+        <discriminator column="id" insert="false" />
+        <property name="orderid" column="orderid" not-null="false" ></property>
+        <property name="patientid" type="java.lang.String" column="patientid" ></property>
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
+        <many-to-one name="diseaseid" class="org.openmrs.Concept" column="diseaseid" />
+    </class>
+    
 </hibernate-mapping>
