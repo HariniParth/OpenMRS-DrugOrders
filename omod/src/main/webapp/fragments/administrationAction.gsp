@@ -21,7 +21,7 @@
                     <span id="button">
                         <i class="icon-remove delete-action right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${existingMedplan.id}','${existingMedplan.diseaseid.getDisplayString()}','${existingMedplan.drugid.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseunits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityunits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationunits.getDisplayString()}','${existingMedplan.frequency}')"></i>
                         <i class="icon-pencil edit-action right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${existingMedplan.id}','${diseaseName}','${existingMedplan.drugid.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseunits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityunits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationunits.getDisplayString()}','${existingMedplan.frequency}')"></i>
-                    </span><br/>
+                    </span><br/><br/>
                     
                     <span class="planItemDetails">
                         <span id="order_label">Dose:</span>
@@ -40,19 +40,19 @@
                         <span id="order_value">${existingMedplan.durationunits.getDisplayString()}</span>
                         <span id="order_label">Frequency:</span>
                         <span id="order_value">${existingMedplan.frequency}</span>
-                        <br/><br/>
-                    </span>
-                    
-                    <script type="text/javascript">
-                        jq(".detailsLink").click(function(){
-                            jq(this).nextAll(".planItemDetails").toggle();
-                        });
-                    </script>
+                        <span id="view_order_detail"></span>
+                    </span><br/>
                 </p>
                 
             <% } %>
             
-            <br/><br/>
+            <script type="text/javascript">
+                jq(".detailsLink").click(function(){
+                    jq(this).nextAll(".planItemDetails").toggle();
+                });
+            </script>
+            
+            <br/>
             
             <input type="hidden" name="action" value="confirmPlanItem" />
             <button class="confirm right" id="btn-place" type="submit" onclick="hideMedPlanConfirmWindow()">${ ui.message("Close") }</button>
