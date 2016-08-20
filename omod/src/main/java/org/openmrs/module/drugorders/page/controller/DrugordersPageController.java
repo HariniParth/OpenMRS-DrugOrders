@@ -81,6 +81,13 @@ public class DrugordersPageController {
                     drugorderToDiscontinue.setOrderstatus("Discontinued");
                     Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                 }
+                
+                if ("confirmOrderGroup".equals(action)) {
+                    List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
+                    for(drugorders order : newDrugOrders){
+                        order.setOrderstatus("Active");
+                    }
+                }
 
                 if ("Edit Drug Order".equals(action)) {
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
@@ -186,7 +193,7 @@ public class DrugordersPageController {
         drugorder.setDrugname(drugName);
         drugorder.setStartdate(startDate);
         drugorder.setPatientid(patientID);
-        drugorder.setOrderstatus("Active");
+        drugorder.setOrderstatus("New");
         if(!(diagnosis).equals(""))
             drugorder.setAssociateddiagnosis(diagnosis);
         if(!(allergicOrderReason).equals(""))

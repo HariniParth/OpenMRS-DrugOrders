@@ -23,61 +23,62 @@ import org.openmrs.module.drugorders.drugorders;
  * It is a default implementation of  {@link drugordersDAO}.
  */
 public class HibernatedrugordersDAO implements drugordersDAO {
-	protected final Log log = LogFactory.getLog(this.getClass());
+    
+    protected final Log log = LogFactory.getLog(this.getClass());
+
+    private SessionFactory sessionFactory;
 	
-	private SessionFactory sessionFactory;
-	
-	/**
-     * @param sessionFactory the sessionFactory to set
-     */
+    /**
+    * @param sessionFactory the sessionFactory to set
+    */
     public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
+        this.sessionFactory = sessionFactory;
     }
     
-	/**
-     * @return the sessionFactory
-     */
+    /**
+    * @return the sessionFactory
+    */
     public SessionFactory getSessionFactory() {
-	    return sessionFactory;
+        return sessionFactory;
     }
     
-        @Override
+    @Override
     public drugorders getNewTable(Integer id) {
         return (drugorders) sessionFactory.getCurrentSession().get(drugorders.class, id);
-    }
+    };
 
-    ;
-
-        @Override
-	public drugorders getNewTableByUuid(String uuid) {
+    @Override
+    public drugorders getNewTableByUuid(String uuid) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
         crit.add(Restrictions.eq("uuid", uuid));
         return (drugorders) crit.uniqueResult();
-    }
+    };
 
-    ;
-
-        @Override
-	public drugorders saveNewTable(drugorders newTable) {
+    @Override
+    public drugorders saveNewTable(drugorders newTable) {
         sessionFactory.getCurrentSession().saveOrUpdate(newTable);
         return newTable;
-    }
-
-    ;
-        @Override
-	public void deleteNewTable(drugorders newTable) {
+    };
+        
+    @Override
+    public void deleteNewTable(drugorders newTable) {
         sessionFactory.getCurrentSession().delete(newTable);
-    }
+    };
 
-    ;
-
-        @Override
+    @Override
     public List<drugorders> getNewTablesByPatient(Patient patient) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
         crit.add(Restrictions.eq("patientid", patient));
         return crit.list();
-    }
-;
+    };
+    
+    @Override
+    public List<drugorders> getDrugOrdersByStatus(String status){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("orderstatus", status));
+        return crit.list();
+    };
 }

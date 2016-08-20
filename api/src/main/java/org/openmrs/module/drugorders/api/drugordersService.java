@@ -38,5 +38,6 @@ public interface drugordersService extends OpenmrsService {
     public drugorders getNewTable(Integer id);
     public drugorders getNewTableByUuid(String uuid);
     public List<drugorders> getNewTablesByPatient(Patient patient);
+    public List<drugorders> getDrugOrdersByStatus(String status);
     
 }

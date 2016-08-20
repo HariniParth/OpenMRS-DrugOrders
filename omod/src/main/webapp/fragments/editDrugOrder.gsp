@@ -89,3 +89,26 @@
     </div>
 
 </div>
+
+<% if(newDrugOrders.size() > 0) { %>
+    <div id="confirmOrderView">
+        <div class="dialog-header">
+            <h3 id="text_heading">${ ui.message("Order Confirmed") }</h3>
+        </div>
+        <br/><br/>
+        <div class="fields">
+            <form method="post">
+                <% newDrugOrders.each { order -> %>
+                    <p class="fields">${order.drugname}</p>
+                <% } %>
+                
+                <br/><br/>
+                
+                <input type="hidden" id="confirmOrderGroup" name="action" value="confirmOrderGroup" />
+                <button class="confirm right" id="btn-place" type="submit" onclick="confirmOrderGroup()">${ ui.message("Group") }</button>
+                <button class="cancel" id="btn-place" type="button" onclick="cancelOrderGroup()">${ ui.message("Close") }</button>
+        
+            </form>
+        </div>
+    </div>
+<% } %>

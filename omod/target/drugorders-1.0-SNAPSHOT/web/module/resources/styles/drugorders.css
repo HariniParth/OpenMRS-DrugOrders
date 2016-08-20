@@ -57,10 +57,6 @@ and open the template in the editor.
     width: 100%;
 }
 
-.info-body #orderWindowsBody #confirmOrderView{
-    width: 100%;
-}
-
 #btn-place{
     margin: 10px;
 }

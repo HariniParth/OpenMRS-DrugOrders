@@ -31,4 +31,6 @@ public interface drugordersDAO {
         public void deleteNewTable(drugorders newTable);
 
         public List<drugorders> getNewTablesByPatient(Patient patient);
+        
+        public List<drugorders> getDrugOrdersByStatus(String status);
 }
