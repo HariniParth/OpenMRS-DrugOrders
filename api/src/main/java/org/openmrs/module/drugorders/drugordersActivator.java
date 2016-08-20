@@ -12,6 +12,9 @@ package org.openmrs.module.drugorders;
 
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.GlobalProperty;
+import org.openmrs.api.AdministrationService;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.ModuleActivator;
 
 /**
@@ -47,7 +50,12 @@ public class drugordersActivator implements ModuleActivator {
 	 */
 	public void started() {
 		log.info("drugorders Module started");
-	}
+                AdministrationService administrationService = Context.getAdministrationService();
+                setGlobalProperties(administrationService, "order.drugDispensingUnitsConceptUuid", "162384AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                setGlobalProperties(administrationService, "order.drugDosingUnitsConceptUuid", "162384AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                setGlobalProperties(administrationService, "order.drugRoutesConceptUuid", "162394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                setGlobalProperties(administrationService, "order.durationUnitsConceptUuid", "1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
 	
 	/**
 	 * @see ModuleActivator${symbol_pound}willStop()
@@ -62,5 +70,12 @@ public class drugordersActivator implements ModuleActivator {
 	public void stopped() {
 		log.info("drugorders Module stopped");
 	}
-		
+        
+        public void setGlobalProperties(AdministrationService administrationService, String propertyName, String propertyValue){
+            
+            GlobalProperty glbProp = administrationService.getGlobalPropertyObject(propertyName);
+            glbProp.setPropertyValue(propertyValue);
+            administrationService.saveGlobalProperty(glbProp);
+        }
+
 }
