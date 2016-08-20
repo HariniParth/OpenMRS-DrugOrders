@@ -99,9 +99,11 @@
         <div class="fields">
             <form method="post">
                 <% newDrugOrders.each { order -> %>
-                    <p class="fields">${order.drugname}</p>
+                    <p><input type="checkbox" name="${order.orderId}" value="${order.orderId}">  ${order.drugname} ${order.startdate}</p>
                 <% } %>
                 
+                <br/>
+                <i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('Create Drug Order')"></i>
                 <br/><br/>
                 
                 <input type="hidden" id="confirmOrderGroup" name="action" value="confirmOrderGroup" />

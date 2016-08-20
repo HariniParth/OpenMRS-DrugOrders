@@ -24,6 +24,7 @@ function hideMedicationPlanOrderWindow(){
 function showIndividualOrderDetailsWindow(orderType){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
+    jq("#confirmOrderView").hide();
     jq("#singleOrderDetailsWindow").show();
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
