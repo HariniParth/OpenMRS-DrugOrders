@@ -174,7 +174,11 @@ function autoCompleteDisease(disease){
     var list = disease.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#diseaseName").autocomplete({
-       source : list
+       source : list,
+       select : function( event , ui ) {
+           $("#diseaseName").val(ui.item.label);
+           $("#diseaseForm").submit();
+       }
     });
 }
 
@@ -214,6 +218,13 @@ function displayPlanCreationWindow(){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
+}
+
+function addPlanItemWindow(diseaseName){
+    jq("#confirmNewPlanWindow").hide();
+    jq("#createNewPlanWindow").show();
+    document.getElementById("createNewPlanWindow").style.display = 'block';
+    $("#diseaseName").val(diseaseName);
 }
 
 function hideMedPlanCreateWindow(){

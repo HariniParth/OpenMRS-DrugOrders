@@ -88,6 +88,10 @@ public class DrugordersPageController {
                         order.setOrderstatus("Active");
                     }
                 }
+                
+                if ("confirmDiseasePlan".equals(action)) {
+                    medplans.clear();
+                }
 
                 if ("Edit Drug Order".equals(action)) {
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);

@@ -41,7 +41,7 @@
                         <span id="order_label">Frequency:</span>
                         <span id="order_value">${existingMedplan.frequency}</span>
                         <span id="view_order_detail"></span>
-                    </span><br/>
+                    </span>
                 </p>
                 
             <% } %>
@@ -52,7 +52,9 @@
                 });
             </script>
             
-            <br/>
+            <span class="fields"><i class="icon-plus edit-action" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${diseaseName}')"></i></span>
+                
+            <br/><br/>
             
             <input type="hidden" name="action" value="confirmPlanItem" />
             <button class="confirm right" id="btn-place" type="submit" onclick="hideMedPlanConfirmWindow()">${ ui.message("Close") }</button>
