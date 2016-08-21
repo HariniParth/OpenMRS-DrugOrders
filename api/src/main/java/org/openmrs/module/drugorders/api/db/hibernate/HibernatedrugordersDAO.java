@@ -48,12 +48,20 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     };
 
     @Override
+    public drugorders getDrugOrderByOrderID(Integer id){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("orderId", id));
+        return (drugorders) crit.uniqueResult();
+    }
+    
+    @Override
     public drugorders getNewTableByUuid(String uuid) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
         crit.add(Restrictions.eq("uuid", uuid));
         return (drugorders) crit.uniqueResult();
-    };
+    }
 
     @Override
     public drugorders saveNewTable(drugorders newTable) {

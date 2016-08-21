@@ -29,6 +29,8 @@ public interface drugordersDAO {
 	public drugorders saveNewTable(drugorders newTable);
         
         public void deleteNewTable(drugorders newTable);
+        
+        public drugorders getDrugOrderByOrderID(Integer id);
 
         public List<drugorders> getNewTablesByPatient(Patient patient);
         

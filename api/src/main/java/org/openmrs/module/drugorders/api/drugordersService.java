@@ -36,6 +36,7 @@ public interface drugordersService extends OpenmrsService {
     public drugorders saveNewTable(drugorders newTable);
     public void deleteNewTable(drugorders newTable);
     public drugorders getNewTable(Integer id);
+    public drugorders getDrugOrderByOrderID(Integer id);
     public drugorders getNewTableByUuid(String uuid);
     public List<drugorders> getNewTablesByPatient(Patient patient);
     public List<drugorders> getDrugOrdersByStatus(String status);

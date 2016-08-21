@@ -30,10 +30,7 @@
                     <span id="order_label">${medplan.drugid.getDisplayString()}</span>
 
                     <a href="#" class="detailsLink">Details</a>
-                    <span id="button">
-                        <i class="icon-remove delete-action pull-right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${medplan.id}','${diseaseName}','${medplan.drugid.getDisplayString()}','${medplan.dose}','${medplan.doseunits.getDisplayString()}','${medplan.route.getDisplayString()}','${medplan.quantity}','${medplan.quantityunits.getDisplayString()}','${medplan.duration}','${medplan.durationunits.getDisplayString()}','${medplan.frequency}')"></i>
-                        <i class="icon-pencil edit-action pull-right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${medplan.id}','${diseaseName}','${medplan.drugid.getDisplayString()}','${medplan.dose}','${medplan.doseunits.getDisplayString()}','${medplan.route.getDisplayString()}','${medplan.quantity}','${medplan.quantityunits.getDisplayString()}','${medplan.duration}','${medplan.durationunits.getDisplayString()}','${medplan.frequency}')"></i>
-                    </span><br/><br/>
+                    <br/><br/>
 
                     <span class="planItemDetails">
                         <span id="order_label">Dose:</span>
@@ -67,7 +64,7 @@
             <br/><br/>
 
             <input type="hidden" id="confirmDiseasePlan" name="action" value="confirmDiseasePlan" />
-            <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Submit") }</button>
+            <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
             <button class="cancel" id="btn-place" type="submit" onclick="hideMedicationPlansWindow()">${ ui.message("Cancel") }</button>
         </div>
     <% } %>

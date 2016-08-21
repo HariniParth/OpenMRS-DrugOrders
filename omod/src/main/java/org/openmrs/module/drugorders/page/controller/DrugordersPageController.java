@@ -24,8 +24,10 @@ import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
@@ -88,10 +90,14 @@ public class DrugordersPageController {
                     List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
                     
                     for(medicationplans medplan : medplans){
+                        
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
                         int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
                         createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
+                        createDiseasePlan(order,patientID,diseaseForPlan);
+                        
                     }
                 }
                 
@@ -210,6 +216,16 @@ public class DrugordersPageController {
             drugorder.setPharmacistinstructions(pharmacistInstructions);
         
         Context.getService(drugordersService.class).saveNewTable(drugorder);
+    }
+    
+    private void createDiseasePlan(int drugOrderID, String patientID, String diseaseName){
+        
+        drugordersdiseases diseaseDrugOrder = new drugordersdiseases();
+        diseaseDrugOrder.setOrderid(drugOrderID);
+        diseaseDrugOrder.setPatientid(patientID);
+        diseaseDrugOrder.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName));
+        Context.getService(drugordersdiseasesService.class).saveDrugOrder(diseaseDrugOrder);
+        
     }
 
     private Date defaultStartDate() {
