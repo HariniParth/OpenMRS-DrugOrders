@@ -51,7 +51,7 @@ public class DrugordersPageController {
             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
             @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
-            @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
+            @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, 
             @RequestParam(value = "order_id", required = false) Integer order_id) {
 
@@ -59,11 +59,6 @@ public class DrugordersPageController {
         String drugNameEntered = drugNameSelected.replace(" ", "");
         String associatedDiagnosis = selectedDiagnosis.replace(" ", "");
         model.addAttribute("allergies", patientService.getAllergies(patient));
-
-        String diseaseNameEntered = diseaseNameSelected.replace(" ", "");
-        model.addAttribute("diseaseName", diseaseNameEntered);
-        List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseNameEntered));
-        model.addAttribute("medplans", medplans);
 
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -90,9 +85,16 @@ public class DrugordersPageController {
                 }
                 
                 if ("confirmDiseasePlan".equals(action)) {
-                    medplans.clear();
+                    List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
+                    
+                    for(medicationplans medplan : medplans){
+                        DrugOrder drugOrder = null;
+                        drugorders drugorder = null;
+                        int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
+                        createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                    }
                 }
-
+                
                 if ("Edit Drug Order".equals(action)) {
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
                     String drugName = originalOrderExtension.getDrugname();

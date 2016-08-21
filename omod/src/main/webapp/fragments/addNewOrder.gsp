@@ -19,9 +19,10 @@
 <form method="post">
     <% if(medplans.size() > 0) { %>
         <div id="medPlanDetailsWindow">
-            <h4 id="text_heading">${ ui.message("Standard Medication Plan") }</h4>
+            <h3 id="text_heading">${ ui.message("Standard Medication Plan") }</h3>
             <br/><br/>
-
+            <input type="hidden" id="diseaseForPlan" name="diseaseForPlan" value="${diseaseName}" />
+            
             <div id="medPlansForDisease" class="fields">
 
                 <h5>${diseaseName}</h5> <br/>
@@ -53,13 +54,16 @@
                         <span id="order_value">${medplan.frequency}</span>
                     </span>
 
-                    <script type="text/javascript">
-                        jq(".detailsLink").click(function(){
-                            jq(this).nextAll(".planItemDetails").toggle();
-                        });
-                    </script>
                 <% } %>
+                
+                <script type="text/javascript">
+                    jq(".detailsLink").click(function(){
+                        jq(this).nextAll(".planItemDetails").toggle();
+                    });
+                </script>
+            
             </div>
+            
             <br/><br/>
 
             <input type="hidden" id="confirmDiseasePlan" name="action" value="confirmDiseasePlan" />

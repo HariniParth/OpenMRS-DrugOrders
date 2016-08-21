@@ -12,6 +12,8 @@ import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.drugorders.api.medicationplansService;
+import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,12 +35,19 @@ public class AddNewOrderFragmentController {
     
     public void controller(PageModel model, 
             @RequestParam(value = "disease_name", required = false) String disease_name,
+            @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
             @RequestParam(value = "medPlanStartDate", required = false) Date medPlanStartDate,
             @RequestParam("patientId") Patient patient){
 
         model.addAttribute("disease_name", disease_name);
         model.addAttribute("medPlanStartDate", medPlanStartDate);
         model.addAttribute("patientid", patient.getPatientId());
+        
+        String diseaseNameEntered = diseaseNameSelected.replace(" ", "");
+        model.addAttribute("diseaseName", diseaseNameEntered);
+        
+        List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseNameEntered));
+        model.addAttribute("medplans", medplans);
         
         Concept diseaseConcept = Context.getConceptService().getConcept(160168);
         
