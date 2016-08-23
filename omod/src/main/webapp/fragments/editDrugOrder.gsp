@@ -109,7 +109,7 @@
                             </span>
                             <br/><br/>
 
-                            <span class="planItemDetails">
+                            <div class="planItemDetails">
                                 <span id="order_label">Dose:</span>
                                 <span id="order_value">${mainOrder.value.dose}</span>
                                 <span id="order_label">Dose units:</span>
@@ -126,7 +126,7 @@
                                 <span id="order_value">${mainOrder.value.durationUnits.getDisplayString()}</span>
                                 <span id="order_label">Frequency:</span>
                                 <span id="order_value">${mainOrder.value.frequency}</span>
-                            </span>
+                            </div>
                         <% } %>
                     <% } %>
                 <% } %>
@@ -137,14 +137,16 @@
                     });
                 </script>
                 
-                <br/>
-                <i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('Create Drug Order')"></i>
+                <br/><br/>
+                
+                <span class="fields"><a href="#" id="groupSelected">Group Selected</a></span>
+                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('Create Drug Order')"></i></span>
+                
                 <br/><br/>
                 
                 <input type="hidden" id="confirmOrderGroup" name="action" value="confirmOrderGroup" />
-                <button class="confirm right" id="btn-place" type="submit" onclick="confirmOrderGroup()">${ ui.message("Group") }</button>
-                <button class="cancel" id="btn-place" type="button" onclick="cancelOrderGroup()">${ ui.message("Close") }</button>
-        
+                <button class="confirm right" id="btn-place" type="submit" onclick="confirmOrderGroup()">${ ui.message("Close") }</button>
+                
             </form>
         </div>
     </div>

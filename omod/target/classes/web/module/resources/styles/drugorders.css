@@ -69,6 +69,10 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
+.icon-plus{
+    padding-right: 10px;
+}
+
 #header{
     text-align: center;
 }
