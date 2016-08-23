@@ -32,6 +32,13 @@ public class EditDrugOrderFragmentController {
         }
         model.addAttribute("newDrugOrders", newDrugOrders);
         
+        List<drugorders> planOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("Plan");
+        HashMap<Integer,drugorders> planDrugOrders = new HashMap<Integer,drugorders>();
+        for(drugorders order : planOrders){
+            planDrugOrders.put(order.getOrderId(), order);
+        }
+        model.addAttribute("planDrugOrders", planDrugOrders);
+        
         List<DrugOrder> orderMainData = getDrugOrderMainDataByPatient(patient);
         HashMap<Integer,DrugOrder> newOrderMainData = new HashMap<Integer,DrugOrder>();
         for(DrugOrder order : orderMainData){

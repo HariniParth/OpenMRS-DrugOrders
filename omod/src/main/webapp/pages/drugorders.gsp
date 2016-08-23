@@ -66,6 +66,10 @@
             
         </div>
         
+        <div id="currentMedPlansWindow">
+            ${ ui.includeFragment("drugorders", "medicationPlans") }
+        </div>
+        
     </div>
     
     <div id="orderWindowsBody">

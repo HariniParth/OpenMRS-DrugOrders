@@ -42,6 +42,15 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     }
     ;
     
+    @Override
+    public drugordersdiseases getDrugOrderByOrderID(Integer id){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugordersdiseases.class);
+        crit.add(Restrictions.eq("orderid", id));
+        return (drugordersdiseases) crit.uniqueResult();
+    }
+    ;
+    
     @Transactional(readOnly = true)
     @Override
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept){
@@ -54,10 +63,10 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient){
+    public List<drugordersdiseases> getDrugOrdersByPatient(String patientID){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
-        crit.add(Restrictions.eq("patientid", patient));
+        crit.add(Restrictions.eq("patientid", patientID));
         return crit.list();
     }
     ;

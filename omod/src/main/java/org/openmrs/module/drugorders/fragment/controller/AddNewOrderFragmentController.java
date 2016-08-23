@@ -6,6 +6,7 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.openmrs.Concept;
@@ -36,11 +37,9 @@ public class AddNewOrderFragmentController {
     public void controller(PageModel model, 
             @RequestParam(value = "disease_name", required = false) String disease_name,
             @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
-            @RequestParam(value = "medPlanStartDate", required = false) Date medPlanStartDate,
             @RequestParam("patientId") Patient patient){
 
         model.addAttribute("disease_name", disease_name);
-        model.addAttribute("medPlanStartDate", medPlanStartDate);
         model.addAttribute("patientid", patient.getPatientId());
         
         String diseaseNameEntered = diseaseNameSelected.replace(" ", "");

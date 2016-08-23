@@ -18,8 +18,9 @@ import org.openmrs.module.drugorders.drugordersdiseases;
 public interface drugordersdiseasesService extends OpenmrsService{
     
     public drugordersdiseases saveDrugOrder(drugordersdiseases order);
+    public drugordersdiseases getDrugOrderByOrderID(Integer id);
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept);
-    public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient);
+    public List<drugordersdiseases> getDrugOrdersByPatient(String patientID);
     public void deleteDrugOrder(drugordersdiseases order);
     
 }

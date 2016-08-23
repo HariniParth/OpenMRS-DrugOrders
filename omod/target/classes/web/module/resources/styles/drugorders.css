@@ -36,6 +36,10 @@ and open the template in the editor.
     width: 100%;
 }
 
+.info-body #orderSummaryBody #currentMedPlansWindow{
+    width: 100%;
+}
+
 .info-body #orderWindowsBody{
     width: 40%;
     float: right;

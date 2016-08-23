@@ -102,9 +102,9 @@ public class DrugordersPageController {
                 }
                 
                 if ("Edit Drug Order".equals(action)) {
+                    
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
                     String drugName = originalOrderExtension.getDrugname();
-                    Date startDate = originalOrderExtension.getStartdate();
 
                     Context.getService(drugordersService.class).deleteNewTable(Context.getService(drugordersService.class).getNewTable(order_id));
                     Context.getOrderService().purgeOrder(Context.getOrderService().getOrder(order_id), true);
@@ -113,8 +113,7 @@ public class DrugordersPageController {
                     drugorders drugorder = null;
 
                     int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
-                    Date editedStartDate = startDate;
-                    createDrugOrderExtension(drugorder, order, patientID, drugName, editedStartDate, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                    createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
               
                 }
 
@@ -182,7 +181,7 @@ public class DrugordersPageController {
         order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
         order.setNumRefills(0);
         order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
-        orderID = order.getOrderId();System.out.println("two"+orderID);
+        orderID = order.getOrderId();
         return orderID; 
     }
 
