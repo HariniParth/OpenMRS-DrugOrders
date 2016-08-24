@@ -74,7 +74,7 @@ public class DrugordersPageController {
                 }
 
                 if ("discontinueDrugOrder".equals(action)) {
-                    drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getNewTable(dis_order_id);
+                    drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
                     drugorderToDiscontinue.setOrderstatus("Discontinued");
                     Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                 }
@@ -103,10 +103,10 @@ public class DrugordersPageController {
                 
                 if ("Edit Drug Order".equals(action)) {
                     
-                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
+                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
                     String drugName = originalOrderExtension.getDrugname();
 
-                    Context.getService(drugordersService.class).deleteNewTable(Context.getService(drugordersService.class).getNewTable(order_id));
+                    Context.getService(drugordersService.class).deleteDrugOrder(Context.getService(drugordersService.class).getDrugOrderByID(order_id));
                     Context.getOrderService().purgeOrder(Context.getOrderService().getOrder(order_id), true);
 
                     DrugOrder drugOrder = null;
@@ -118,7 +118,7 @@ public class DrugordersPageController {
                 }
 
                 if ("Renew Drug Order".equals(action)) {
-                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getNewTable(order_id);
+                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
                     String drugName = originalOrderExtension.getDrugname();
 
                     DrugOrder drugOrder = null;
@@ -212,7 +212,7 @@ public class DrugordersPageController {
         if(!(pharmacistInstructions).equals(""))
             drugorder.setPharmacistinstructions(pharmacistInstructions);
 
-        Context.getService(drugordersService.class).saveNewTable(drugorder);
+        Context.getService(drugordersService.class).saveDrugOrder(drugorder);
     }
     
     private void createDiseasePlan(int drugOrderID, String patientID, String diseaseName){

@@ -34,7 +34,7 @@ public class DrugordersFragmentController {
         
         for (Order order : orders) {
             if (order.getOrderType().getOrderTypeId() == drugOrderTypeId) {
-                drugOrder = Context.getService(drugordersService.class).getNewTable(order.getOrderId());
+                drugOrder = Context.getService(drugordersService.class).getDrugOrderByID(order.getOrderId());
                 drugOrders.add(new OrderAndDrugOrder(order, drugOrder));
             }
         }

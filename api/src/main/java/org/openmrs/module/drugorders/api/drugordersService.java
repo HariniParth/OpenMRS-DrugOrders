@@ -27,17 +27,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface drugordersService extends OpenmrsService {
-     
-	/*
-	 * Add service methods here
-	 * 
-	 */
-    
-    public drugorders saveNewTable(drugorders newTable);
-    public void deleteNewTable(drugorders newTable);
-    public drugorders getNewTable(Integer id);
+
+    public drugorders getDrugOrderByID(Integer id);
     public drugorders getDrugOrderByOrderID(Integer id);
-    public drugorders getNewTableByUuid(String uuid);
+    public void deleteDrugOrder(drugorders drugOrder);
+    public drugorders saveDrugOrder(drugorders drugOrder);
     public List<drugorders> getNewTablesByPatient(Patient patient);
     public List<drugorders> getDrugOrdersByStatus(String status);
     

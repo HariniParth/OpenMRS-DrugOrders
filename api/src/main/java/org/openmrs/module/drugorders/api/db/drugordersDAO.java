@@ -19,20 +19,11 @@ import org.openmrs.module.drugorders.drugorders;
  */
 public interface drugordersDAO {
 	
-	/*
-	 * Add DAO methods here
-	 */
-    	public drugorders getNewTable(Integer id);
-
-	public drugorders getNewTableByUuid(String uuid);
-
-	public drugorders saveNewTable(drugorders newTable);
-        
-        public void deleteNewTable(drugorders newTable);
-        
-        public drugorders getDrugOrderByOrderID(Integer id);
-
-        public List<drugorders> getNewTablesByPatient(Patient patient);
-        
-        public List<drugorders> getDrugOrdersByStatus(String status);
+    public drugorders getDrugOrderByID(Integer id);
+    public drugorders getDrugOrderByOrderID(Integer id);
+    public void deleteDrugOrder(drugorders drugOrder);
+    public drugorders saveDrugOrder(drugorders drugOrder);
+    public List<drugorders> getNewTablesByPatient(Patient patient);
+    public List<drugorders> getDrugOrdersByStatus(String status);
+    
 }

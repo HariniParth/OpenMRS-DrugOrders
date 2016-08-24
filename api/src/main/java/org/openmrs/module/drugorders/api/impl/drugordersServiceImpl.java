@@ -46,17 +46,11 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     public drugordersDAO getDao() {
 	    return dao;
     }
-    
-    @Transactional(readOnly = true)
-    @Override
-    public drugorders getNewTableByUuid(String uuid) {
-        return dao.getNewTableByUuid(uuid);
-    }
 
     @Transactional(readOnly = true)
     @Override
-    public drugorders getNewTable(Integer id) {
-        return dao.getNewTable(id);
+    public drugorders getDrugOrderByID(Integer id) {
+        return dao.getDrugOrderByID(id);
     }
 
     @Transactional(readOnly = true)
@@ -67,8 +61,14 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     
     @Transactional
     @Override
-    public drugorders saveNewTable(drugorders doe) {
-        return dao.saveNewTable(doe);
+    public drugorders saveDrugOrder(drugorders doe) {
+        return dao.saveDrugOrder(doe);
+    }
+    
+    @Transactional
+    @Override
+    public void deleteDrugOrder(drugorders newTable) {
+        dao.deleteDrugOrder(newTable);
     }
 
     @Transactional(readOnly = true)
@@ -83,9 +83,4 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
         return dao.getDrugOrdersByStatus(status);
     }
 
-    @Transactional
-    @Override
-    public void deleteNewTable(drugorders newTable) {
-        dao.deleteNewTable(newTable);
-    }
 }

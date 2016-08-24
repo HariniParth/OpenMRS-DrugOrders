@@ -28,22 +28,16 @@ public class HibernatedrugordersDAO implements drugordersDAO {
 
     private SessionFactory sessionFactory;
 	
-    /**
-    * @param sessionFactory the sessionFactory to set
-    */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
-    /**
-    * @return the sessionFactory
-    */
+
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
     
     @Override
-    public drugorders getNewTable(Integer id) {
+    public drugorders getDrugOrderByID(Integer id) {
         return (drugorders) sessionFactory.getCurrentSession().get(drugorders.class, id);
     };
 
@@ -53,25 +47,17 @@ public class HibernatedrugordersDAO implements drugordersDAO {
                 drugorders.class);
         crit.add(Restrictions.eq("orderId", id));
         return (drugorders) crit.uniqueResult();
-    }
-    
-    @Override
-    public drugorders getNewTableByUuid(String uuid) {
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
-                drugorders.class);
-        crit.add(Restrictions.eq("uuid", uuid));
-        return (drugorders) crit.uniqueResult();
-    }
+    };
 
     @Override
-    public drugorders saveNewTable(drugorders newTable) {
-        sessionFactory.getCurrentSession().saveOrUpdate(newTable);
-        return newTable;
+    public drugorders saveDrugOrder(drugorders drugOrder) {
+        sessionFactory.getCurrentSession().saveOrUpdate(drugOrder);
+        return drugOrder;
     };
         
     @Override
-    public void deleteNewTable(drugorders newTable) {
-        sessionFactory.getCurrentSession().delete(newTable);
+    public void deleteDrugOrder(drugorders drugOrder) {
+        sessionFactory.getCurrentSession().delete(drugOrder);
     };
 
     @Override
