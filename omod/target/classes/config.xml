@@ -12,7 +12,7 @@
 		helps to place drug orders
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/drugorders/update.rdf</updateURL>
-	<require_version>1.11.2</require_version>
+	<require_version>1.11.4</require_version>
 	<!-- / Module Properties -->
 
         
