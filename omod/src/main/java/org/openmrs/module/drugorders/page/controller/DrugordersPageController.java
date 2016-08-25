@@ -86,7 +86,7 @@ public class DrugordersPageController {
                     }
                 }
                 
-                if ("confirmDiseasePlan".equals(action)) {
+                if ("selectMedPlan".equals(action)) {
                     List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
                     
                     for(medicationplans medplan : medplans){
@@ -98,6 +98,13 @@ public class DrugordersPageController {
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
                         createDiseasePlan(order,patientID,diseaseForPlan);
                         
+                    }
+                }
+                
+                if ("confirmMedPlan".equals(action)) {
+                    List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("Plan");
+                    for(drugorders order : newDrugOrders){
+                        order.setOrderstatus("Active-Plan");
                     }
                 }
                 

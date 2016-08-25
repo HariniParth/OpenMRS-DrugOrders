@@ -5,15 +5,16 @@
 <% drugOrderMainPlan.each { drugOrderMain -> %>
     <% drugOrderExtensionPlan.each { drugOrderExtension -> %>
         <% if(drugOrderMain.key == drugOrderExtension.key) { %>
-            <p>${drugOrderMain.key.getDisplayString()}</p>
+            <p>${drugOrderMain.key.getDisplayString()}</p><br/>
             
             <% drugOrderMain.value.each { drugOrderMn -> %>
                 <% drugOrderExtension.value.each { drugOrderExtn -> %>
-                    <% if(drugOrderMn.orderId == drugOrderExtn.orderId) { %>
+                    <% if(drugOrderMn.orderId == drugOrderExtn.orderId && drugOrderExtn.orderstatus == "Active-Plan") { %>
+                                              
                         <p class="fields">
                             <span id="order_label">${drugOrderExtn.drugname}</span>
-                            <a href="#" class="detailsLink">Details</a>
-                            <br/><br/>
+                            <a href="#" class="detailsLink">Details</a><br/>
+                            
                             <span class="planItemDetails">
                                 <span id="order_label">Dose:</span>
                                 <span id="order_value">${drugOrderMn.dose}</span>
