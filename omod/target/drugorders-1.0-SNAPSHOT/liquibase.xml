@@ -39,7 +39,7 @@
             <column name="pharmacistinstructions" type="varchar(255)"></column> 
             <column name="orderstatus" type="varchar(50)"></column>
             <column name="discontinued" type="tinyint(1)"></column>
-            <column name="discontinuereason" type="varchar(50)"></column>
+            <column name="discontinuereason" type="int"></column>
             <column name="discontinuationreasons" type="varchar(255)"></column>
             <column name="approvalrequired" type="tinyint(1)"></column>
             

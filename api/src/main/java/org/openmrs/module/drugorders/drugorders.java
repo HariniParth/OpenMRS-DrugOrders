@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
+import org.openmrs.Concept;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
@@ -34,7 +35,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private String pharmacistinstructions;
         private String orderstatus;
         private Integer discontinued;
-        private String discontinuereason;
+        private Concept discontinuereason;
         private String discontinuationreasons;
         private Integer approvalrequired;
 
@@ -151,11 +152,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.discontinued = discontinued;
 	}
         
-        public String getDiscontinuereason() {
+        public Concept getDiscontinuereason() {
 		return discontinuereason;
 	}
 
-	public void setDiscontinuereason(String discontinuereason) {
+	public void setDiscontinuereason(Concept discontinuereason) {
 		this.discontinuereason = discontinuereason;
 	}
         

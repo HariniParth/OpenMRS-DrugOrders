@@ -51,6 +51,8 @@ public class DrugordersPageController {
             @RequestParam(value = "durationUnits", required = false) String durationUnits,
             @RequestParam(value = "patientInstructions", required = false) String patientInstructions, 
             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
+            @RequestParam(value = "discontinueOrderReasonCoded", required = false) String discontinueOrderReasonCoded,
+            @RequestParam(value = "discontinueOrderReasonNonCoded", required = false) String discontinueOrderReasonNonCoded,
             @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
@@ -76,6 +78,16 @@ public class DrugordersPageController {
                 if ("discontinueDrugOrder".equals(action)) {
                     drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
                     drugorderToDiscontinue.setOrderstatus("Discontinued");
+                    
+                    if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
+                        String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
+                        drugorderToDiscontinue.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
+                    }
+                    
+                    if(!(discontinueOrderReasonNonCoded.equals(""))){
+                        drugorderToDiscontinue.setDiscontinuationreasons(discontinueOrderReasonCoded);
+                    }
+                    
                     Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                 }
                 

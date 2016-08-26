@@ -64,9 +64,12 @@
             
             <label class="fields">Select the reason to discontinue </label>
 
-            <div class="fields">
-                <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded">
+            <div class="fields">                
+                <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded" class="select_field">
                     <option value="">Choose option</option>
+                    <% discontinueReasons.each { discontinueReason -> %>
+                        <option value="${ discontinueReason.getDisplayString() }">${ discontinueReason.getDisplayString() }</option>
+                    <% } %>
                 </select>
             </div>
 

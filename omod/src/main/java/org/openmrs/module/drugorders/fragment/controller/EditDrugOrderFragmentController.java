@@ -8,6 +8,8 @@ package org.openmrs.module.drugorders.fragment.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.openmrs.Concept;
+import org.openmrs.ConceptSet;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
@@ -23,8 +25,19 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class EditDrugOrderFragmentController {
     
+    List<Concept> discontinueReasons = new ArrayList<Concept>();
+    
     public void controller(PageModel model,@RequestParam("patientId") Patient patient){
 
+        Concept discontinueReasonsConcept = Context.getConceptService().getConcept(162825);
+        
+        for(ConceptSet discontinueConcepts : discontinueReasonsConcept.getConceptSets()){
+            Concept discontinueReason = discontinueConcepts.getConcept();
+            discontinueReasons.add(discontinueReason);
+        }
+        
+        model.addAttribute("discontinueReasons", discontinueReasons);
+        
         List<drugorders> drugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
         HashMap<Integer,drugorders> newDrugOrders = new HashMap<Integer,drugorders>();
         for(drugorders order : drugOrders){

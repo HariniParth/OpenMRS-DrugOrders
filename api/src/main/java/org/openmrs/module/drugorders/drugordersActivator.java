@@ -17,7 +17,6 @@ import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
 import org.openmrs.ConceptDatatype;
 import org.openmrs.ConceptName;
-import org.openmrs.ConceptSet;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
@@ -68,7 +67,7 @@ public class drugordersActivator implements ModuleActivator {
                 conceptClass.setName("Discontinue Order Reasons");
                 conceptClass.setDescription("Reasons to discontinue a drug order");
                 cs.saveConceptClass(conceptClass);
-                
+
                 Concept setConcept = new Concept();
                 setConcept.setConceptClass(conceptClass);
                 ConceptName setConceptName = new ConceptName("Discontinue Order Reasons",Locale.US);
@@ -76,7 +75,7 @@ public class drugordersActivator implements ModuleActivator {
                 ConceptDatatype setConceptDatatype = cs.getConceptDatatype(3);
                 setConcept.setDatatype(setConceptDatatype);
                 cs.saveConcept(setConcept);
-                    
+
                 String orderDiscontinueReasons[] = {"Allergic","Alternative","Ineffective","Not for Sale","Recuperated","Unavailable","Wrong Diagnosis"};
                 for(int i=0;i<orderDiscontinueReasons.length;i++){
                     Concept concept = new Concept();
@@ -89,6 +88,7 @@ public class drugordersActivator implements ModuleActivator {
                     cs.saveConcept(concept);
                     setConcept.addSetMember(concept);
                 }
+                
         }
 	
 	/**

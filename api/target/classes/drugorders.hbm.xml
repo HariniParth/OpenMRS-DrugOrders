@@ -19,7 +19,7 @@
         <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
         <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>
         <property name="discontinued" column="discontinued" ></property>
-        <property name="discontinuereason" type="java.lang.String" column="discontinuereason" ></property>
+        <many-to-one name="discontinuereason" class="org.openmrs.Concept" column="discontinuereason" />
         <property name="discontinuationreasons" type="java.lang.String" column="discontinuationreasons" ></property>
         <property name="associateddiagnosis" type="java.lang.String" column="associateddiagnosis" length="255" ></property> 
         <property name="patientinstructions" type="java.lang.String" column="patientinstructions" length="255" ></property> 
