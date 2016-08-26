@@ -30,11 +30,11 @@
             </column>  
             <column name="uuid" type="varchar(255)"></column>
             <column name="patientid" type="varchar(50)"></column>
-            <column name="drugname" type="varchar(255)"></column>
+            <column name="drugname" type="int"></column>
             <column name="startdate" type="datetime"></column>
             <column name="isallergic" type="tinyint(1)"></column>
             <column name="isallergicorderreasons" type="varchar(255)"></column>          
-            <column name="associateddiagnosis" type="varchar(255)"></column>
+            <column name="associateddiagnosis" type="int"></column>
             <column name="patientinstructions" type="varchar(255)"></column>
             <column name="pharmacistinstructions" type="varchar(255)"></column> 
             <column name="orderstatus" type="varchar(50)"></column>

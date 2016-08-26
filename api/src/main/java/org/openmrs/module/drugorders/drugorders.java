@@ -27,10 +27,10 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private String Uuid;
         private String patientid;
         private Date startdate;
-        private String drugname;
+        private Concept drugname;
         private Integer isallergic;
         private String isallergicorderreasons;
-        private String associateddiagnosis;
+        private Concept associateddiagnosis;
         private String patientinstructions;
         private String pharmacistinstructions;
         private String orderstatus;
@@ -80,11 +80,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.patientid = patientid;
 	}
         
-        public String getDrugname() {
+        public Concept getDrugname() {
 		return drugname;
 	}
 
-	public void setDrugname(String drugname) {
+	public void setDrugname(Concept drugname) {
 		this.drugname = drugname;
 	}
         
@@ -112,11 +112,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.isallergicorderreasons = isallergicorderreasons;
 	}
         
-        public String getAssociateddiagnosis() {
+        public Concept getAssociateddiagnosis() {
 		return associateddiagnosis;
 	}
 
-	public void setAssociateddiagnosis(String associateddiagnosis) {
+	public void setAssociateddiagnosis(Concept associateddiagnosis) {
 		this.associateddiagnosis = associateddiagnosis;
 	}
         

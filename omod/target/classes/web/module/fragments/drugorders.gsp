@@ -7,7 +7,7 @@
     <div class="info-body">
         <% drugorders.each { order -> %>
             <% if(order.orderstatus == "Active") { %>
-                ${ order.drugname }
+                ${ order.drugname.getDisplayString() }
                 <br/>
             <% } %>
         <% } %>

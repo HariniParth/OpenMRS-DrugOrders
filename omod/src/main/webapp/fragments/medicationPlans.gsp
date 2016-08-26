@@ -12,7 +12,7 @@
                     <% if(drugOrderMn.orderId == drugOrderExtn.orderId && drugOrderExtn.orderstatus == "Active-Plan") { %>
                                               
                         <p class="fields">
-                            <span id="order_label">${drugOrderExtn.drugname}</span>
+                            <span id="order_label">${drugOrderExtn.drugname.getDisplayString()}</span>
                             <a href="#" class="detailsLink">Details</a><br/>
                             
                             <span class="planItemDetails">

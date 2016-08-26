@@ -123,7 +123,7 @@ public class DrugordersPageController {
                 if ("Edit Drug Order".equals(action)) {
                     
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
-                    String drugName = originalOrderExtension.getDrugname();
+                    String drugName = originalOrderExtension.getDrugname().getDisplayString();
 
                     Context.getService(drugordersService.class).deleteDrugOrder(Context.getService(drugordersService.class).getDrugOrderByID(order_id));
                     Context.getOrderService().purgeOrder(Context.getOrderService().getOrder(order_id), true);
@@ -138,7 +138,7 @@ public class DrugordersPageController {
 
                 if ("Renew Drug Order".equals(action)) {
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
-                    String drugName = originalOrderExtension.getDrugname();
+                    String drugName = originalOrderExtension.getDrugname().getDisplayString();
 
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
@@ -217,13 +217,13 @@ public class DrugordersPageController {
     private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, String patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String patientInstructions, String pharmacistInstructions){
         drugorder = new drugorders();
         drugorder.setOrderId(drugOrderID);
-        drugorder.setDrugname(drugName);
+        drugorder.setDrugname(Context.getConceptService().getConceptByName(drugName));
         drugorder.setStartdate(startDate);
         drugorder.setPatientid(patientID);
         drugorder.setOrderstatus("New");
         
         if(!(diagnosis).equals(""))
-            drugorder.setAssociateddiagnosis(diagnosis);
+            drugorder.setAssociateddiagnosis(Context.getConceptService().getConceptByName(diagnosis));
         if(!(allergicOrderReason).equals(""))
             drugorder.setIsallergicorderreasons(allergicOrderReason);
         if(!(patientInstructions).equals(""))
