@@ -10,10 +10,17 @@
 package org.openmrs.module.drugorders;
 
 
+import java.util.Locale;
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
+import org.openmrs.ConceptClass;
+import org.openmrs.ConceptDatatype;
+import org.openmrs.ConceptName;
+import org.openmrs.ConceptSet;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.ModuleActivator;
 
@@ -55,6 +62,33 @@ public class drugordersActivator implements ModuleActivator {
                 setGlobalProperties(administrationService, "order.drugDosingUnitsConceptUuid", "162384AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 setGlobalProperties(administrationService, "order.drugRoutesConceptUuid", "162394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 setGlobalProperties(administrationService, "order.durationUnitsConceptUuid", "1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        
+                ConceptService cs = Context.getConceptService();
+                ConceptClass conceptClass = new ConceptClass();
+                conceptClass.setName("Discontinue Order Reasons");
+                conceptClass.setDescription("Reasons to discontinue a drug order");
+                cs.saveConceptClass(conceptClass);
+                
+                Concept setConcept = new Concept();
+                setConcept.setConceptClass(conceptClass);
+                ConceptName setConceptName = new ConceptName("Discontinue Order Reasons",Locale.US);
+                setConcept.setFullySpecifiedName(setConceptName);
+                ConceptDatatype setConceptDatatype = cs.getConceptDatatype(3);
+                setConcept.setDatatype(setConceptDatatype);
+                cs.saveConcept(setConcept);
+                    
+                String orderDiscontinueReasons[] = {"Allergic","Alternative","Ineffective","Not for Sale","Recuperated","Unavailable","Wrong Diagnosis"};
+                for(int i=0;i<orderDiscontinueReasons.length;i++){
+                    Concept concept = new Concept();
+                    concept.setConceptClass(conceptClass);
+                    ConceptName conceptName = new ConceptName(orderDiscontinueReasons[i],Locale.US);
+                    concept.setFullySpecifiedName(conceptName);
+                    concept.addName(conceptName);
+                    ConceptDatatype conceptDatatype = cs.getConceptDatatype(3);
+                    concept.setDatatype(conceptDatatype);
+                    cs.saveConcept(concept);
+                    setConcept.addSetMember(concept);
+                }
         }
 	
 	/**
