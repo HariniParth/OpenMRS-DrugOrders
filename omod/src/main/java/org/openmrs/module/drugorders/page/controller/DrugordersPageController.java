@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
@@ -224,6 +225,7 @@ public class DrugordersPageController {
         drugorder.setStartdate(startDate);
         drugorder.setPatientid(patientID);
         drugorder.setOrderstatus("New");
+        drugorder.setUuid(UUID.randomUUID().toString());
         
         if(!(diagnosis).equals(""))
             drugorder.setAssociateddiagnosis(Context.getConceptService().getConceptByName(diagnosis));
@@ -240,6 +242,7 @@ public class DrugordersPageController {
     private void createDiseasePlan(int drugOrderID, String patientID, String diseaseName){
         
         drugordersdiseases diseaseDrugOrder = new drugordersdiseases();
+        diseaseDrugOrder.setUuid(UUID.randomUUID().toString());
         diseaseDrugOrder.setOrderid(drugOrderID);
         diseaseDrugOrder.setPatientid(patientID);
         diseaseDrugOrder.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName));

@@ -8,6 +8,7 @@ package org.openmrs.module.drugorders.fragment.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.Concept;
 import org.openmrs.OrderFrequency;
@@ -44,6 +45,7 @@ public class AdministrationActionFragmentController {
         model.addAttribute("diseaseName", diseaseName);
         
         medicationplans medPlans = new medicationplans();
+        medPlans.setUuid(UUID.randomUUID().toString());
         medPlans.setDose(Double.valueOf(drugDose));
         medPlans.setQuantity(Double.valueOf(drugQuantity));
         medPlans.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName));
