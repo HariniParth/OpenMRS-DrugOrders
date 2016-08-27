@@ -11,7 +11,6 @@
         </id>
         <discriminator column="id" insert="false" />
         <property name="orderId" column="order_id" not-null="false" ></property>
-        <property name="groupId" column="groupId" not-null="false" ></property>
         <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
         <property name="patientid" type="java.lang.String" column="patientid" ></property>
         <many-to-one name="drugname" class="org.openmrs.Concept" column="drugname" />
@@ -59,6 +58,16 @@
         <property name="patientid" type="java.lang.String" column="patientid" ></property>
         <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
         <many-to-one name="diseaseid" class="org.openmrs.Concept" column="diseaseid" />
+    </class>
+    
+    <class name="drugordersgroups" table="drug_order_groups">
+
+        <id name="id" type="int" column="id" unsaved-value="0">
+            <generator class="native" />
+        </id>
+        <discriminator column="id" insert="false" />
+        <property name="groupid" column="groupid" not-null="false" ></property>
+        <property name="orderid" column="orderid" not-null="false" ></property>
     </class>
     
 </hibernate-mapping>

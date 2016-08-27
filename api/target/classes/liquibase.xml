@@ -28,7 +28,6 @@
             <column name="order_id" type="int">
                 <constraints nullable="true" foreignKeyName="order_id" references="orders(order_id)" />
             </column>  
-            <column name="groupId" type="int"></column>
             <column name="uuid" type="varchar(255)"></column>
             <column name="patientid" type="varchar(50)"></column>
             <column name="drugname" type="int"></column>
@@ -100,6 +99,30 @@
             <column name="uuid" type="varchar(255)"></column>
             <column name="diseaseid" type="int"></column>
             <column name="patientid" type="varchar(50)"></column>
+            
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="harini_table_7" author="harini">
+        <sql>
+            drop table if exists drug_order_groups;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="harini" id="harini_table_8">
+        <preConditions onFail="WARN" onError="WARN">
+            <not>
+                <tableExists tableName="drug_order_groups" />
+            </not>
+        </preConditions>
+        <createTable tableName="drug_order_groups">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="groupid" type="int"></column>
+            <column name="orderid" type="int">
+                <constraints nullable="true" foreignKeyName="group_order_id" references="orders(order_id)" />
+            </column>
             
         </createTable>
     </changeSet>
