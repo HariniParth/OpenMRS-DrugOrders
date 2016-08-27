@@ -104,7 +104,7 @@
                 <% newOrderMainData.each { mainOrder -> %>
                     <% newDrugOrders.each { order -> %>
                         <% if(mainOrder.key == order.key) { %>
-                        <span id="order_label"><input type="checkbox" name="${order.key}" value="${order.key}">  ${order.value.drugname.getDisplayString()}</span>
+                        <span id="order_label"><input type="checkbox" name="groupCheckBox" value="${order.key}">  ${order.value.drugname.getDisplayString()}</span>
                             <a href="#" class="detailsLink">Details</a>
                             <span id="button" class="pull-right">
                                 <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('Edit Drug Order','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.associateddiagnosis.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>

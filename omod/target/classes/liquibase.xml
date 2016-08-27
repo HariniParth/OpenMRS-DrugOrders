@@ -28,6 +28,7 @@
             <column name="order_id" type="int">
                 <constraints nullable="true" foreignKeyName="order_id" references="orders(order_id)" />
             </column>  
+            <column name="groupId" type="int"></column>
             <column name="uuid" type="varchar(255)"></column>
             <column name="patientid" type="varchar(50)"></column>
             <column name="drugname" type="int"></column>

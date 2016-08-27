@@ -10,6 +10,7 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -55,6 +56,7 @@ public class DrugordersPageController {
             @RequestParam(value = "discontinueOrderReasonNonCoded", required = false) String discontinueOrderReasonNonCoded,
             @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
+            @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, 
             @RequestParam(value = "order_id", required = false) Integer order_id) {
@@ -95,6 +97,7 @@ public class DrugordersPageController {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
+                        System.out.println(Arrays.toString(groupCheckBox));
                     }
                 }
                 
