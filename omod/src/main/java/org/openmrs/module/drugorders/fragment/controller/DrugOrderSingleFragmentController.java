@@ -30,7 +30,8 @@ public class DrugOrderSingleFragmentController {
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
-            dorders.add(dorder);
+            if((dorder.getOrderstatus().equals("Active")))
+                dorders.add(dorder);
         }
                 
         model.addAttribute("existingDrugOrdersExtension", dorders);
