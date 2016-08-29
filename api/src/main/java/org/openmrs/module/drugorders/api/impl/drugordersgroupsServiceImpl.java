@@ -48,4 +48,11 @@ public class drugordersgroupsServiceImpl extends BaseOpenmrsService implements d
     public List<drugordersgroups> getDrugOrdersByGroupID(Integer id){
         return dao.getDrugOrdersByGroupID(id);
     }
+        
+    @Transactional
+    @Override
+    public drugordersgroups saveDrugOrderGroup(drugordersgroups groupItem){
+        return dao.saveDrugOrderGroup(groupItem);
+    }
+    
 }

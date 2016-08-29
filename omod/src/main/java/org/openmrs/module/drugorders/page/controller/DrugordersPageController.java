@@ -10,7 +10,6 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -27,9 +26,11 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.drugordersgroupsService;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.drugordersgroups;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
@@ -66,7 +67,7 @@ public class DrugordersPageController {
         String drugNameEntered = drugNameSelected.replace(" ", "");
         String associatedDiagnosis = selectedDiagnosis.replace(" ", "");
         model.addAttribute("allergies", patientService.getAllergies(patient));
-
+        
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("Create Drug Order".equals(action)) {
@@ -98,7 +99,13 @@ public class DrugordersPageController {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
-                        System.out.println(Arrays.toString(groupCheckBox));
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            drugordersgroups groupItem = new drugordersgroups();
+                            groupItem.setGroupid(orderID);
+                            groupItem.setOrderid(orderID);
+                            Context.getService(drugordersgroupsService.class).saveDrugOrderGroup(groupItem);
+                        }
                     }
                 }
                 

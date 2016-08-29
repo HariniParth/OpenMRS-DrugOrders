@@ -39,4 +39,11 @@ public class HibernatedrugordersgroupsDAO implements drugordersgroupsDAO {
         crit.add(Restrictions.eq("groupid", id));
         return crit.list();
     }
+    
+    @Override
+    public drugordersgroups saveDrugOrderGroup(drugordersgroups groupItem){
+        sessionFactory.getCurrentSession().saveOrUpdate(groupItem);
+        return groupItem;
+    }
+    
 }
