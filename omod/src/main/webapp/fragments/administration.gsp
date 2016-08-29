@@ -4,7 +4,7 @@
 
 <div id="createNewPlanWindow">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("Create New Medication Plan") }</h4>
+        <h4 id="text_heading">${ ui.message("CREATE NEW MEDICATION PLAN") }</h4>
     </div>
     <div class="createMedicationPlanWindow">
         <form method="post">

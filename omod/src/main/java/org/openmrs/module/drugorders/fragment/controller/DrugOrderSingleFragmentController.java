@@ -30,7 +30,7 @@ public class DrugOrderSingleFragmentController {
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
-            if((dorder.getOrderstatus().equals("Active")))
+            if((dorder.getOrderstatus().equals("Active")) || (dorder.getOrderstatus().equals("Discontinued")))
                 dorders.add(dorder);
         }
                 

@@ -8,7 +8,7 @@
     <form method="post">
 
         <div class="dialog-header">
-            <span id="text_heading"><h3 name="action" id="orderType"></h3></span>
+            <span id="text_heading"><h4 name="action" id="orderType"></h4></span>
         </div>
               
         <br/>
@@ -101,7 +101,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Quantity units <span id="asterisk">*</span></label>
+                <label>Qnty units <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="quantityUnits" name="quantityUnits" class="select_field">
@@ -128,7 +128,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Duration units <span id="asterisk">*</span></label>
+                <label>Durn units <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <select id="durationUnits" name="durationUnits" class="select_field">

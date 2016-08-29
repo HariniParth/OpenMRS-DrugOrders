@@ -19,26 +19,26 @@
 
 <div class="info-body">
     
-    <div id="orderSummaryBody">
-        
-        <div id="allergyList">
-            Drug Allergies:
-            <% if (allergies.allergyStatus != "See list") { %>
-                ${ ui.message(allergies.allergyStatus) }
-            <% } else { %>
-                <% allergies.each { allergy -> %>
-                    ${ allergy.allergen }
-                <% } %>
+    <div id="allergyList">
+        Drug Allergies:
+        <% if (allergies.allergyStatus != "See list") { %>
+            ${ ui.message(allergies.allergyStatus) }
+        <% } else { %>
+            <% allergies.each { allergy -> %>
+                ${ allergy.allergen }
             <% } %>
-            
-        </div>
-        
-        <br/><br/>
+        <% } %>
 
+    </div>
+
+    <br/><br/>
+        
+    <div id="orderSummaryBody">
+ 
         <div id="individualOrderWindow"> 
             <div>
                 <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
-                    <input id="button" type="submit" value="ADD" onclick="showIndividualOrderDetailsWindow('Create Drug Order')"/>
+                    <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE DRUG ORDER") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
                 </h3>
             </div>
 
@@ -57,7 +57,7 @@
         <div id="medicationPlanOrderWindow">
             <div>
                 <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
-                    <input id="button" type="submit" value="ADD" onclick="showMedicationPlanOrderWindow()"/>
+                    <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="showMedicationPlanOrderWindow()"></i></span>
                 </h3>
             </div>
 

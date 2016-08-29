@@ -13,8 +13,8 @@
     
     <div id="selectionWindow"> 
         <div>
-            <h4>${ ui.message("Create New Medication Plan") }
-                <input id="button" type="submit" value="ADD" onclick="displayPlanCreationWindow()"/>
+            <h4>${ ui.message("CREATE NEW MEDICATION PLAN") }
+                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="displayPlanCreationWindow()"></i></span>
             </h4>
         </div>
         

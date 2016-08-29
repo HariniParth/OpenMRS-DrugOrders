@@ -4,7 +4,7 @@
 
 <div id="medicationPlanWindow">
     <div class="dialog-header">
-        <h3 id="text_heading">${ ui.message("Create Medication Plan Order") }</h3>
+        <h4 id="text_heading">${ ui.message("CREATE MEDICATION PLAN ORDER") }</h4>
     </div><br/>
     <div class="addMedicationPlanWindow">
         <form method="post" id="diseaseForm">
@@ -19,7 +19,7 @@
 <form method="post">
     <% if(medplans.size() > 0) { %>
         <div id="medPlanDetailsWindow">
-            <h3 id="text_heading">${ ui.message("Standard Medication Plan") }</h3>
+            <h4 id="text_heading">${ ui.message("STANDARD MEDICATION PLAN") }</h4>
             <br/><br/>
             <input type="hidden" id="diseaseForPlan" name="diseaseForPlan" value="${diseaseName}" />
             

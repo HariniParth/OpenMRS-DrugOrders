@@ -5,7 +5,7 @@
 <div id="confirmNewPlanWindow">
     
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("Medication Plan") }</h4>
+        <h4 id="text_heading">${ ui.message("MEDICATION PLAN") }</h4>
     </div>
     
     <br/>

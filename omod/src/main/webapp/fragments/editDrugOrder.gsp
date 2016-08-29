@@ -4,7 +4,7 @@
 
 <div id="showDrugOrderView">
 
-    <h4 id="header">${ ui.message("View Order") }</h4>
+    <h4 id="header">${ ui.message("VIEW ORDER") }</h4>
         
     <br/><br/>
     
@@ -60,7 +60,7 @@
     
     <div id="showDiscontinueOrderView">
         <form method="post">
-            <h4 id="header">${ ui.message("Discontinue Order") }</h4>
+            <h4 id="header">${ ui.message("DISCONTINUE ORDER") }</h4>
             
             <label class="fields">Select the reason to discontinue </label>
 
@@ -96,7 +96,7 @@
 <% if(newDrugOrders.size() > 0) { %>
     <div id="confirmOrderView">
         <div class="dialog-header">
-            <h3 id="text_heading">${ ui.message("Order Confirmed") }</h3>
+            <h4 id="text_heading">${ ui.message("ORDER CONFIRMED") }</h4>
         </div>
         <br/><br/>
         <div class="fields">
@@ -143,7 +143,7 @@
                 <br/><br/>
                 
                 <span class="fields"><a href="#" id="groupSelected">Group Selected</a></span>
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('Create Drug Order')"></i></span>
+                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
                 
                 <br/><br/>
                 
@@ -158,7 +158,7 @@
 <% if(planDrugOrders.size() > 0) { %>
     <div id="confirmOrderView">
         <div class="dialog-header">
-            <h3 id="text_heading">${ ui.message("Plan Confirmed") }</h3>
+            <h4 id="text_heading">${ ui.message("PLAN CONFIRMED") }</h4>
         </div>
         <br/>
         <div class="fields">

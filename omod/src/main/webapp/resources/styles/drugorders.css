@@ -176,3 +176,10 @@ and open the template in the editor.
 #existingMedPlansWindow{
     display: none;
 }
+
+#createNewPlanWindow, #deleteMedPlanWindow, #confirmNewPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView{
+    background: #F9F9F9;
+    border: 1px solid #eee;
+    padding: 5px;
+    color: #363463;
+}

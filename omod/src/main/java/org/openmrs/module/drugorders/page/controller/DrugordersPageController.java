@@ -70,7 +70,7 @@ public class DrugordersPageController {
         
         if (StringUtils.isNotBlank(action)) {
             try {
-                if ("Create Drug Order".equals(action)) {
+                if ("CREATE DRUG ORDER".equals(action)) {
                     if (!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
@@ -131,7 +131,7 @@ public class DrugordersPageController {
                     }
                 }
                 
-                if ("Edit Drug Order".equals(action)) {
+                if ("EDIT DRUG ORDER".equals(action)) {
                     
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
                     String drugName = originalOrderExtension.getDrugname().getDisplayString();
@@ -147,7 +147,7 @@ public class DrugordersPageController {
               
                 }
 
-                if ("Renew Drug Order".equals(action)) {
+                if ("RENEW DRUG ORDER".equals(action)) {
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
                     String drugName = originalOrderExtension.getDrugname().getDisplayString();
 
