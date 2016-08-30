@@ -163,7 +163,8 @@
         <br/>
         <div class="fields">
             <form method="post">
-                <label>Click on the 'Edit' icons to update the Start Date and specify additional Instructions</label><br/>
+                <label>Click on the 'Edit' icons to specify the Start Date and additional Instructions</label><br/>
+                <p>${diseaseForPlan}</p>
                 
                 <% newOrderMainData.each { mainOrder -> %>
                     <% planDrugOrders.each { order -> %>
@@ -171,8 +172,8 @@
                         <span id="order_label">${order.value.drugname.getDisplayString()}</span>
                             <a href="#" class="detailsLink">Details</a>
                             <span id="button" class="pull-right">
-                                <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('Edit Drug Order','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }',null,null,null)"></i>
-                                <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }',null,'${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }',null,null)"></i>
+                                <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('Edit Drug Order','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ diseaseForPlan }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                                <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                             </span>
                             <br/><br/>
 
