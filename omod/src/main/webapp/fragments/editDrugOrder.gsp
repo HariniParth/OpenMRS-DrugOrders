@@ -101,6 +101,8 @@
         <br/><br/>
         <div class="fields">
             <form method="post">
+                <p>Check Orders To Be Grouped</p><br/>
+                
                 <% newOrderMainData.each { mainOrder -> %>
                     <% newDrugOrders.each { order -> %>
                         <% if(mainOrder.key == order.key) { %>
@@ -141,8 +143,7 @@
                 </script>
                 
                 <br/><br/>
-                
-                <span class="fields"><a href="#" id="groupSelected">Group Selected</a></span>
+
                 <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
                 
                 <br/><br/>

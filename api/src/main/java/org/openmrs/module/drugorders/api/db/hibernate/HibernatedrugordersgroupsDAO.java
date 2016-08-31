@@ -5,11 +5,14 @@
  */
 package org.openmrs.module.drugorders.api.db.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.module.drugorders.api.db.drugordersgroupsDAO;
 import org.openmrs.module.drugorders.drugordersgroups;
@@ -44,6 +47,22 @@ public class HibernatedrugordersgroupsDAO implements drugordersgroupsDAO {
     public drugordersgroups saveDrugOrderGroup(drugordersgroups groupItem){
         sessionFactory.getCurrentSession().saveOrUpdate(groupItem);
         return groupItem;
+    }
+    
+    @Override
+    public int getLastGroupID(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugordersgroups.class);
+        crit.setProjection(Projections.property("id"));
+        List l=crit.list();
+        Iterator it=l.iterator();
+        int groupID = 0;
+        if(it.hasNext()){
+            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugordersgroups.class).setProjection(Projections.max("groupid"));
+            groupID = (Integer)critMax.uniqueResult();
+        }
+            
+        return groupID;
     }
     
 }

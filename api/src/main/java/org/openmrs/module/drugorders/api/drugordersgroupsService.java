@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface drugordersgroupsService extends OpenmrsService {
     
+    public int getLastGroupID();
     public List<drugordersgroups> getDrugOrdersByGroupID(Integer id);
     public drugordersgroups saveDrugOrderGroup(drugordersgroups groupItem);
     

@@ -55,4 +55,9 @@ public class drugordersgroupsServiceImpl extends BaseOpenmrsService implements d
         return dao.saveDrugOrderGroup(groupItem);
     }
     
+    @Transactional(readOnly = true)
+    @Override
+    public int getLastGroupID(){
+        return dao.getLastGroupID();
+    }
 }

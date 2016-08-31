@@ -14,6 +14,7 @@ import org.openmrs.module.drugorders.drugordersgroups;
  */
 public interface drugordersgroupsDAO {
     
+    public int getLastGroupID();
     public List<drugordersgroups> getDrugOrdersByGroupID(Integer id);
     public drugordersgroups saveDrugOrderGroup(drugordersgroups groupItem);
     

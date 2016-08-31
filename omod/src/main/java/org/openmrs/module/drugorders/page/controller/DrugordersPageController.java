@@ -97,15 +97,16 @@ public class DrugordersPageController {
                 
                 if ("confirmOrderGroup".equals(action)) {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
+                    int groupID = Context.getService(drugordersgroupsService.class).getLastGroupID() + 1;
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
-                        for(int i=0;i<groupCheckBox.length;i++){
-                            int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
-                            drugordersgroups groupItem = new drugordersgroups();
-                            groupItem.setGroupid(orderID);
-                            groupItem.setOrderid(orderID);
-                            Context.getService(drugordersgroupsService.class).saveDrugOrderGroup(groupItem);
-                        }
+                    }
+                    for(int i=0;i<groupCheckBox.length;i++){
+                        int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                        drugordersgroups groupItem = new drugordersgroups();
+                        groupItem.setGroupid(groupID);
+                        groupItem.setOrderid(orderID);
+                        Context.getService(drugordersgroupsService.class).saveDrugOrderGroup(groupItem);
                     }
                 }
                 
