@@ -146,7 +146,19 @@ and open the template in the editor.
     float: right;
 }
 
+.existingMedPlansDetailsWindow{
+    display: none;
+}
+
+#viewPlanWindow{
+    display: none;
+}
+
 #createNewPlanWindow{
+    display: none;
+}
+
+#deleteMedPlanItemWindow{
     display: none;
 }
 
@@ -173,11 +185,7 @@ and open the template in the editor.
     font-size: 10px;
 }
 
-#existingMedPlansWindow{
-    display: none;
-}
-
-#createNewPlanWindow, #deleteMedPlanWindow, #confirmNewPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView{
+#createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView{
     background: #F9F9F9;
     border: 1px solid #eee;
     padding: 5px;

@@ -2,9 +2,65 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
+<div id="viewPlanWindow">
+    <div class="dialog-header">
+        <h4 id="text_heading">${ ui.message("VIEW PLAN") }</h4>
+    </div><br/><br/>
+    
+    <div id="viewMedPlanWindow">
+        <span id="order_label">
+            <label id="plan_drug"></label>
+        </span><br/><br/>
+
+        <span id="order_label">Dose:</span>
+        <span id="order_value">
+            <label id="plan_dose"></label>
+        </span>
+
+        <span id="order_label">Dose units:</span>
+        <span id="order_value">
+            <label id="plan_dose_units"></label>
+        </span>
+
+        <span id="order_label">Route:</span>
+        <span id="order_value">
+            <label id="plan_route"></label>
+        </span>
+
+        <span id="order_label">Quantity:</span>
+        <span id="order_value">
+            <label id="plan_quantity"></label>
+        </span>
+
+        <span id="order_label">Qnty units:</span>
+        <span id="order_value">
+            <label id="plan_quantity_units"></label>
+        </span>
+
+        <span id="order_label">Duration:</span>
+        <span id="order_value">
+            <label id="plan_duration"></label>
+        </span>
+
+        <span id="order_label">Durn units:</span>
+        <span id="order_value">
+            <label id="plan_duration_units"></label>
+        </span>
+
+        <span id="order_label">Frequency:</span>
+        <span id="order_value">
+            <label id="plan_frequency"></label>
+        </span>
+    </div><br/>
+    
+    <div id="view_window_close_btn">
+        <button class="cancel pull-right" id="btn-place" type="button" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button>
+    </div>
+</div>
+
 <div id="createNewPlanWindow">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("CREATE NEW MEDICATION PLAN") }</h4>
+        <h4 id="text_heading">${ ui.message("CREATE NEW PLAN") }</h4>
     </div>
     <div class="createMedicationPlanWindow">
         <form method="post">
@@ -12,15 +68,11 @@
             <input type="hidden" id="planId" name="planId" />
             
             <div class="fields" id="disease_field">
-                <label>Disease name </label>
+                <label>Plan name </label>
                 <input id="diseaseName" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
-            </div>
+            </div><br/>
             
-            <br/><br/>
-            
-            <p class="fields">Create Standard Formulation</p>
-            
-            <br/>
+            <p class="fields">Standard Formulation</p><br/>
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
@@ -155,12 +207,31 @@
 
 <div id="deleteMedPlanWindow">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("Discard Medication Plan") }</h4>
+        <h4 id="text_heading">${ ui.message("DISCARD PLAN") }</h4>
     </div><br/>
-    <div class="deleteMedicationPlanWindow">
+    
+    <div id="deleteMedicationPlanWindow">
+        <form method="post">
+            <span id="text_heading">
+                <label class="fields" id="disease_name"></label>
+            </span><br/>
+            
+            <input type="hidden" name="action" value="deletePlan" />
+            <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Discard") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
+        </form>
+    </div>
+</div>
+
+<div id="deleteMedPlanItemWindow">
+    <div class="dialog-header">
+        <h4 id="text_heading">${ ui.message("DISCARD PLAN ITEM") }</h4>
+    </div><br/>
+    
+    <div id="deleteMedicationPlanItemWindow">
         <form method="post">
             <input type="hidden" id="medPlan_id" name="medPlan_id" />
-            <label class="fields" id="order_label">Disease:</label>
+            <label class="fields" id="order_label">Plan:</label>
             <label class="fields" id="disease_value"></label>
             <label class="fields" id="order_label">Drug:</label>
             <label class="fields" id="drug_value"></label>
@@ -179,13 +250,11 @@
             <label class="fields" id="order_label">Durn units:</label>
             <label class="fields" id="duration_units_value"></label>
             <label class="fields" id="order_label">Frequency:</label>
-            <label class="fields" id="frequency_value"></label>
-            
-            <br/>
+            <label class="fields" id="frequency_value"></label><br/>
 
             <input type="hidden" name="action" value="deletePlanItem" />
-            <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Discard") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
+            <button class="confirm right" id="btn-place" name="deletePlanItem" type="submit" onclick="">${ ui.message("Discard") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanItemDeleteWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
 </div>

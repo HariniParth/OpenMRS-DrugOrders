@@ -242,19 +242,6 @@ function hideMedPlanCreateWindow(){
     $("#drugFrequency").val("");
 }
 
-function showExistingMedicationPlans(){
-    jq("#existingPlansLinkView").hide();
-    jq("#existingPlansLinkHide").show();
-    document.getElementById("existingMedPlansWindow").style.display = 'block';
-    jq("#existingMedPlansWindow").show();
-}
-   
-function hideExistingMedicationPlans(){
-    jq("#existingPlansLinkHide").hide();
-    jq("#existingPlansLinkView").show();
-    jq("#existingMedPlansWindow").hide();
-}
-
 function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
@@ -272,10 +259,16 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
     $("#drugFrequency").val(frequency);
 }
 
-function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
-    jq("#confirmNewPlanWindow").hide();
+function deleteMedPlan(diseaseName){
     jq("#deleteMedPlanWindow").show();
     document.getElementById("deleteMedPlanWindow").style.display = 'block';
+    $("#disease_name").text(diseaseName);
+}
+
+function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+    jq("#confirmNewPlanWindow").hide();
+    jq("#deleteMedPlanItemWindow").show();
+    document.getElementById("deleteMedPlanItemWindow").style.display = 'block';
     $("#medPlan_id").val(planid);
     $("#disease_value").text(diseaseName);
     $("#drug_value").text(drugName);
@@ -291,4 +284,26 @@ function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quan
 
 function hideMedPlanDeleteWindow(){
     jq("#deleteMedPlanWindow").hide();
+}
+
+function hideMedPlanItemDeleteWindow(){
+    jq("#deleteMedPlanItemWindow").hide();
+}
+
+function viewMedPlanWindow(drugname,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+    jq("#viewPlanWindow").show();
+    document.getElementById("viewPlanWindow").style.display = 'block';
+    $("#plan_drug").text(drugname);
+    $("#plan_dose").text(dose);
+    $("#plan_dose_units").text(doseunits);
+    $("#plan_route").text(route);
+    $("#plan_quantity").text(quantity);
+    $("#plan_quantity_units").text(quantityunits);
+    $("#plan_duration").text(duration);
+    $("#plan_duration_units").text(durationunits);
+    $("#plan_frequency").text(frequency);
+}
+
+function hideMedPlanWindow(){
+    jq("#viewPlanWindow").hide();
 }
