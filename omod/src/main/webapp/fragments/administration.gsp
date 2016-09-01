@@ -212,12 +212,13 @@
     
     <div id="deleteMedicationPlanWindow">
         <form method="post">
-            <span id="text_heading">
-                <label class="fields" id="disease_name"></label>
-            </span><br/>
+            
+            <label class="fields">Discard Medication Plan 
+                <input id="disease_name" name="disease_name" readonly="true"/>
+            </label><br/><br/>
             
             <input type="hidden" name="action" value="deletePlan" />
-            <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Discard") }</button>
+            <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
             <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>

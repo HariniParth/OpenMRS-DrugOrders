@@ -262,7 +262,7 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
 function deleteMedPlan(diseaseName){
     jq("#deleteMedPlanWindow").show();
     document.getElementById("deleteMedPlanWindow").style.display = 'block';
-    $("#disease_name").text(diseaseName);
+    $("#disease_name").val(diseaseName);
 }
 
 function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){

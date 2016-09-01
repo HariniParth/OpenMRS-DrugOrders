@@ -11,6 +11,7 @@ import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
+import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,6 +41,9 @@ public class AdministrationFragmentController {
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency){
 
         model.addAttribute("disease_name", disease_name);
+        List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
+        model.addAttribute("medPlans", medPlans);
+        System.out.println(medPlans);
         
         Concept diseaseConcept = Context.getConceptService().getConcept(160168);
         

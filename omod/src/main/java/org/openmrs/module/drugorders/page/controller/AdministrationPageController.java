@@ -27,7 +27,8 @@ public class AdministrationPageController {
     
     private final HashMap<String,String> diseasePlanName = new HashMap<String,String>();
     
-    public void controller(PageModel model, @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
+    public void controller(PageModel model, @RequestParam(value = "disease_name", required = false) String disease_name,
+                            @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
                             @RequestParam(value = "drugName", required = false) String drugNameSelected,
                             @RequestParam(value = "medPlan_id", required = false) String medPlan_id,
                             @RequestParam(value = "action", required = false) String action){
@@ -46,9 +47,15 @@ public class AdministrationPageController {
                     System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
                     Context.getService(medicationplansService.class).saveNewTable(medPlans);
                 }
+                if ("deletePlan".equals(action)) {
+                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
+                    for(medicationplans medPlan : medPlans){
+                        Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
+                    }
+                }
                 if ("deletePlanItem".equals(action)) {
-                    medicationplans medPlans = Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(medPlan_id));
-                    Context.getService(medicationplansService.class).deleteMedicationPlan(medPlans);
+                    medicationplans medPlan = Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(medPlan_id));
+                    Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
                 }
             } catch(Exception e){
                 System.out.println("Error message "+e.getMessage());
