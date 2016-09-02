@@ -11,7 +11,7 @@
         <span id="order_label">Disease:</span>
         <span id="order_label">
             <label id="plan_disease"></label>
-        </span>
+        </span><br/>
         
         <span id="order_label">Drug:</span>
         <span id="order_label">
@@ -66,7 +66,7 @@
 
 <div id="createNewPlanWindow">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("CREATE NEW PLAN") }</h4>
+        <span id="text_heading"><h4 id="adminActionType"></h4></span>
     </div>
     <div class="createMedicationPlanWindow">
         <form method="post">
@@ -245,7 +245,7 @@
         <form method="post">
             
             <label class="fields">Discard Medication Plan 
-                <input id="disease_name" name="disease_name" readonly="true"/>
+                <input id="plan_name" name="plan_name" readonly="true"/>
             </label><br/><br/>
             
             <input type="hidden" name="action" value="deletePlan" />

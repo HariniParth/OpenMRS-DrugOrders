@@ -27,7 +27,8 @@ public class AdministrationPageController {
     
     private final HashMap<String,String> diseasePlanName = new HashMap<String,String>();
     
-    public void controller(PageModel model, @RequestParam(value = "disease_name", required = false) String disease_name,
+    public void controller(PageModel model, @RequestParam(value = "plan_name", required = false) String plan_name,
+                            @RequestParam(value = "disease_name", required = false) String disease_name,
                             @RequestParam(value = "new_disease_name", required = false) String new_disease_name,
                             @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
                             @RequestParam(value = "drugName", required = false) String drugNameSelected,
@@ -36,6 +37,7 @@ public class AdministrationPageController {
         
         String diseaseName = diseaseNameSelected.replace(" ", "");
         String drugName = drugNameSelected.replace(" ", "");
+        String disease_plan_name = disease_name.replace(" ", "");
         
         if(!diseaseName.isEmpty() && !drugName.isEmpty())
             diseasePlanName.put(diseaseName, drugName);
@@ -49,14 +51,14 @@ public class AdministrationPageController {
                     Context.getService(medicationplansService.class).saveNewTable(medPlans);
                 }
                 if ("editPlan".equals(action)) {
-                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
+                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_plan_name));
                     for(medicationplans medPlan : medPlans){
                         medPlan.setDiseaseid(Context.getConceptService().getConceptByName(new_disease_name));
                         Context.getService(medicationplansService.class).saveNewTable(medPlan);
                     }
                 }
                 if ("deletePlan".equals(action)) {
-                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
+                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(plan_name));
                     for(medicationplans medPlan : medPlans){
                         Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
                     }

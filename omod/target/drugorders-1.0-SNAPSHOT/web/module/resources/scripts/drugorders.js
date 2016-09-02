@@ -226,12 +226,14 @@ function displayPlanCreationWindow(){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
+    $("#adminActionType").text("CREATE NEW PLAN");
 }
 
 function addPlanItemWindow(diseaseName){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
+    $("#adminActionType").text("CREATE NEW PLAN");
     $("#diseaseName").val(diseaseName);
 }
 
@@ -254,6 +256,7 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
+    $("#adminActionType").text("EDIT PLAN");
     $("#planId").val(planid);
     $("#diseaseName").val(diseaseName);
     $("#drug_name").val(drugName);
@@ -270,7 +273,7 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
 function deleteMedPlan(diseaseName){
     jq("#deleteMedPlanWindow").show();
     document.getElementById("deleteMedPlanWindow").style.display = 'block';
-    $("#disease_name").val(diseaseName);
+    $("#plan_name").val(diseaseName);
 }
 
 function editPlanDetails(diseaseName){
