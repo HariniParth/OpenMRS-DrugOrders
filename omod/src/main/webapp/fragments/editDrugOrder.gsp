@@ -4,7 +4,7 @@
 
 <div id="showDrugOrderView">
 
-    <h4 id="header">${ ui.message("VIEW ORDER") }</h4>
+    <h4 id="text_heading">${ ui.message("VIEW ORDER") }</h4>
         
     <br/><br/>
     
@@ -60,7 +60,7 @@
     
     <div id="showDiscontinueOrderView">
         <form method="post">
-            <h4 id="header">${ ui.message("DISCONTINUE ORDER") }</h4>
+            <h4 id="text_heading">${ ui.message("DISCONTINUE ORDER") }</h4>
             
             <label class="fields">Select the reason to discontinue </label>
 

@@ -28,6 +28,7 @@ public class AdministrationPageController {
     private final HashMap<String,String> diseasePlanName = new HashMap<String,String>();
     
     public void controller(PageModel model, @RequestParam(value = "disease_name", required = false) String disease_name,
+                            @RequestParam(value = "new_disease_name", required = false) String new_disease_name,
                             @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
                             @RequestParam(value = "drugName", required = false) String drugNameSelected,
                             @RequestParam(value = "medPlan_id", required = false) String medPlan_id,
@@ -46,6 +47,13 @@ public class AdministrationPageController {
                     medicationplans medPlans = (medicationplans) model.getAttribute("medicationplans");
                     System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
                     Context.getService(medicationplansService.class).saveNewTable(medPlans);
+                }
+                if ("editPlan".equals(action)) {
+                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
+                    for(medicationplans medPlan : medPlans){
+                        medPlan.setDiseaseid(Context.getConceptService().getConceptByName(new_disease_name));
+                        Context.getService(medicationplansService.class).saveNewTable(medPlan);
+                    }
                 }
                 if ("deletePlan".equals(action)) {
                     List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));

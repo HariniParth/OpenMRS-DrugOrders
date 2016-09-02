@@ -78,7 +78,8 @@ and open the template in the editor.
 }
 
 #header{
-    text-align: center;
+    text-align: left;
+    font-weight: bold;
 }
 
 #entries{
@@ -148,6 +149,7 @@ and open the template in the editor.
 
 .existingMedPlansDetailsWindow{
     display: none;
+    padding-bottom: 10px;
 }
 
 #viewPlanWindow{
@@ -163,6 +165,10 @@ and open the template in the editor.
 }
 
 #deleteMedPlanWindow{
+    display: none;
+}
+
+#editMedPlanWindow{
     display: none;
 }
 
@@ -185,7 +191,7 @@ and open the template in the editor.
     font-size: 10px;
 }
 
-#createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView{
+#createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #editMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView{
     background: #F9F9F9;
     border: 1px solid #eee;
     padding: 5px;

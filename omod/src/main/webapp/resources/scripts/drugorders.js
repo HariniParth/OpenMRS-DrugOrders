@@ -180,6 +180,14 @@ function autoCompleteDisease(disease){
            $("#diseaseForm").submit();
        }
     });
+    
+    $("#new_disease_name").autocomplete({
+       source : list,
+       select : function( event , ui ) {
+           $("#diseaseName").val(ui.item.label);
+           $("#diseaseForm").submit();
+       }
+    });
 }
 
 function autoCompletePlanItem(drugs){
@@ -265,6 +273,16 @@ function deleteMedPlan(diseaseName){
     $("#disease_name").val(diseaseName);
 }
 
+function editPlanDetails(diseaseName){
+    jq("#editMedPlanWindow").show();
+    document.getElementById("editMedPlanWindow").style.display = 'block';
+    $("#disease_name").val(diseaseName);
+}
+
+function hideMedPlanEditWindow(){
+    jq("#editMedPlanWindow").hide();
+}
+
 function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
     jq("#confirmNewPlanWindow").hide();
     jq("#deleteMedPlanItemWindow").show();
@@ -290,9 +308,10 @@ function hideMedPlanItemDeleteWindow(){
     jq("#deleteMedPlanItemWindow").hide();
 }
 
-function viewMedPlanWindow(drugname,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+function viewMedPlanWindow(diseasename,drugname,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
     jq("#viewPlanWindow").show();
     document.getElementById("viewPlanWindow").style.display = 'block';
+    $("#plan_disease").text(diseasename);
     $("#plan_drug").text(drugname);
     $("#plan_dose").text(dose);
     $("#plan_dose_units").text(doseunits);

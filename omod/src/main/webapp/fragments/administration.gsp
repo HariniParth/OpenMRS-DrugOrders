@@ -8,6 +8,12 @@
     </div><br/><br/>
     
     <div id="viewMedPlanWindow">
+        <span id="order_label">Disease:</span>
+        <span id="order_label">
+            <label id="plan_disease"></label>
+        </span>
+        
+        <span id="order_label">Drug:</span>
         <span id="order_label">
             <label id="plan_drug"></label>
         </span><br/><br/>
@@ -51,7 +57,7 @@
         <span id="order_value">
             <label id="plan_frequency"></label>
         </span>
-    </div><br/>
+    </div><br/><br/><br/>
     
     <div id="view_window_close_btn">
         <button class="cancel pull-right" id="btn-place" type="button" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button>
@@ -72,7 +78,8 @@
                 <input id="diseaseName" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
             </div><br/>
             
-            <p class="fields">Standard Formulation</p><br/>
+            <p class="fields">Standard Formulation</p>
+            <span class="fields" id="asterisk">Note: All Fields are required to be filled/updated</span><br/>
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
@@ -201,6 +208,30 @@
             <input type="hidden" name="action" value="addPlanItem" />
             <button class="confirm right" id="btn-place" name="saveDrug" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Save") }</button>
             <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanCreateWindow()">${ ui.message("Cancel") }</button>
+        </form>
+    </div>
+</div>
+
+<div id="editMedPlanWindow">
+    <div class="dialog-header">
+        <h4 id="text_heading">${ ui.message("EDIT PLAN") }</h4>
+    </div><br/>
+    
+    <div id="editMedicationPlanWindow">
+        <form method="post">
+            
+            <label class="fields">Given Plan 
+                <input id="disease_name" name="disease_name" readonly="true"/>
+            </label><br/>
+            
+            <label class="fields">Enter Plan Name
+                <input id="new_disease_name" name="new_disease_name" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" />
+            </label>
+            <br/><br/>
+            
+            <input type="hidden" name="action" value="editPlan" />
+            <button class="confirm right" id="btn-place" name="editPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanEditWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
 </div>
