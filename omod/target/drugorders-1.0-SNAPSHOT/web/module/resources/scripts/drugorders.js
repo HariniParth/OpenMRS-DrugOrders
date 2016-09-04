@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* global diagnosis */
+/* global diagnosis, jq */
 
 $(document).ready( function() {
     jq("#existingPlansLinkHide").hide();
@@ -142,6 +142,20 @@ function hideDiscontinuedFulfilledOrders(){
     jq("#nonActiveOrdersWindow").hide();
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersLinkView").show();
+}
+
+function showDiscontinuedFulfilledPlans(){
+    jq("#drugOrderPlanDiscontinued").show();
+    document.getElementById("drugOrderPlanDiscontinued").style.display = 'block';
+    jq("#nonActivePlansLinkView").hide();
+    document.getElementById("nonActivePlansLinkHide").style.display = 'block';
+    jq("#nonActivePlansLinkHide").show();
+}
+
+function hideDiscontinuedFulfilledPlans(){
+    jq("#drugOrderPlanDiscontinued").hide();
+    jq("#nonActivePlansLinkHide").hide();
+    jq("#nonActivePlansLinkView").show();
 }
 
 function discardMedPlanOrder(action,planName){

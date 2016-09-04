@@ -152,6 +152,10 @@ and open the template in the editor.
     padding-bottom: 10px;
 }
 
+#drugOrderPlanDiscontinued{
+    display: none;
+}
+
 #viewPlanWindow{
     display: none;
 }
@@ -184,6 +188,10 @@ and open the template in the editor.
 }
 
 #nonActiveOrdersLinkHide{
+    display: none;
+}
+
+#nonActivePlansLinkHide{
     display: none;
 }
 

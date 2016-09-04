@@ -29,7 +29,7 @@ public class MedicationPlansFragmentController {
         
         //Get list of disease related Drug Orders for the Patient
         List<drugordersdiseases> diseaseDrugOrdersByPatient = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(patient.getPatientId().toString());
-       
+        
         //Get list of diseases from the disease related Drug Orders for the Patient
         List<Concept> diseases = new ArrayList<Concept>();
         for(drugordersdiseases diseaseDrugOrderByPatient : diseaseDrugOrdersByPatient){
@@ -42,35 +42,50 @@ public class MedicationPlansFragmentController {
             diseaseOrderIDs.add(diseaseDrugOrderByPatient.getOrderid());
         }
         
-        //Data structure to store the 'Drug Order' object properties for all the orders for the given disease
-        HashMap<Concept,ArrayList<Order>> drugOrderMainPlan = new HashMap <Concept,ArrayList<Order>>();
+        //Data structure to store the 'Drug Order' object properties for all the active orders for the given disease
+        HashMap<Concept,ArrayList<Order>> drugOrderMainPlanActive = new HashMap <Concept,ArrayList<Order>>();
 
-        //Data structure to store the 'drugorders' object properties for all the orders for the given disease
-        HashMap <Concept,ArrayList<drugorders>> drugOrderExtensionPlan = new HashMap <Concept,ArrayList<drugorders>>();
+        //Data structure to store the 'drugorders' object properties for all the active orders for the given disease
+        HashMap <Concept,ArrayList<drugorders>> drugOrderExtensionPlanActive = new HashMap <Concept,ArrayList<drugorders>>();
 
+        //Data structure to store the 'Drug Order' object properties for all the non-active orders for the given disease
+        HashMap<Concept,ArrayList<Order>> drugOrderMainPlanNonActive = new HashMap <Concept,ArrayList<Order>>();
+
+        //Data structure to store the 'drugorders' object properties for all the non-active orders for the given disease
+        HashMap <Concept,ArrayList<drugorders>> drugOrderExtensionPlanNonActive = new HashMap <Concept,ArrayList<drugorders>>();
+        
         for(Concept disease : diseases){
             
             ArrayList<Order> drugOrderMain = new ArrayList<Order>();
             ArrayList<drugorders> drugOrderExtension = new ArrayList<drugorders>();
             
             for(Integer diseaseOrderID : diseaseOrderIDs){
-                if((disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()) && (Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Active-Plan")){
+                if((disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()) && ((Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Active-Plan") || (Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Discontinued-Plan"))){
                     drugOrderMain.add(Context.getOrderService().getOrder(diseaseOrderID));
                     drugOrderExtension.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID));
                 }
             }
             
-            //Get the list of Active Medication Plans from the list of Med Plans
+            //Get the list of Active/Discontinued Medication Plans from the list of Med Plans
             for (drugorders drugOrderExtn : drugOrderExtension) {
+                
                 if (drugOrderExtn.getOrderstatus().equals("Active-Plan")) {
-                    drugOrderMainPlan.put(disease, drugOrderMain);
-                    drugOrderExtensionPlan.put(disease, drugOrderExtension);
+                    drugOrderMainPlanActive.put(disease, drugOrderMain);
+                    drugOrderExtensionPlanActive.put(disease, drugOrderExtension);
+                }
+                
+                if (drugOrderExtn.getOrderstatus().equals("Discontinued-Plan")) {
+                    drugOrderMainPlanNonActive.put(disease, drugOrderMain);
+                    drugOrderExtensionPlanNonActive.put(disease, drugOrderExtension);
                 }
             }
         }
         
-        model.addAttribute("drugOrderMainPlan", drugOrderMainPlan);
-        model.addAttribute("drugOrderExtensionPlan", drugOrderExtensionPlan);
+        model.addAttribute("drugOrderMainPlanActive", drugOrderMainPlanActive);
+        model.addAttribute("drugOrderExtensionPlanActive", drugOrderExtensionPlanActive);
+        
+        model.addAttribute("drugOrderMainPlanNonActive", drugOrderMainPlanNonActive);
+        model.addAttribute("drugOrderExtensionPlanNonActive", drugOrderExtensionPlanNonActive);
         
     }
 

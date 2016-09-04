@@ -61,7 +61,8 @@
                 </h3>
             </div>
 
-            <a href="#"><span class="show">(Click to view discontinued/canceled/fulfilled orders)</span></a>
+            <a href="#" id="nonActivePlansLinkView" onclick="showDiscontinuedFulfilledPlans()">(Click to view discontinued/canceled/fulfilled orders)</a>
+            <a href="#" id="nonActivePlansLinkHide" onclick="hideDiscontinuedFulfilledPlans()">(Click to hide discontinued/canceled/fulfilled orders)</a>
             <br/><br/>
             
         </div>
