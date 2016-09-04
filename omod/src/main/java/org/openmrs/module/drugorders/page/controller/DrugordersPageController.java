@@ -129,6 +129,7 @@ public class DrugordersPageController {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("Plan");
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active-Plan");
+                        order.setStartdate(Calendar.getInstance().getTime());
                     }
                 }
                 

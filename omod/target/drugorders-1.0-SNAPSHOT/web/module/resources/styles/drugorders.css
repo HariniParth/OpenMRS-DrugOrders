@@ -201,3 +201,11 @@ and open the template in the editor.
 #disease_name{
     outline: none;
 }
+
+.orderDetails{
+    display: none;
+}
+
+.icon-minus.edit-action{
+    display: none;
+}
