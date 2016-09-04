@@ -4,9 +4,7 @@
 
 <div id="showDrugOrderView">
 
-    <h4 id="text_heading">${ ui.message("VIEW ORDER") }</h4>
-        
-    <br/><br/>
+    <h4 id="text_heading"><label id="activeOrderAction"></label></h4><br/>
     
     <div class="fields" id="view_order_detail">
         <div id="order_label">
@@ -60,7 +58,6 @@
     
     <div id="showDiscontinueOrderView">
         <form method="post">
-            <h4 id="text_heading">${ ui.message("DISCONTINUE ORDER") }</h4>
             
             <label class="fields">Select the reason to discontinue </label>
 
@@ -92,6 +89,7 @@
     </div>
 
 </div>
+
 
 <% if(newDrugOrders.size() > 0) { %>
     <div id="confirmOrderView">
@@ -155,6 +153,7 @@
         </div>
     </div>
 <% } %>
+
 
 <% if(planDrugOrders.size() > 0) { %>
     <div id="confirmOrderView">
