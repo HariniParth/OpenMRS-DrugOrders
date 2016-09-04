@@ -6,58 +6,64 @@
 
     <h4 id="text_heading"><label id="activeOrderAction"></label></h4><br/>
     
-    <div class="fields" id="view_order_detail">
-        <div id="order_label">
-            <label>Order Details</label>
+    <div id="singleOrderView">
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Order Details</label>
+            </div>
+            <div id="order_value">
+                <label id="order_details"></label>
+            </div>
         </div>
-        <div id="order_value">
-            <label id="order_details"></label>
-        </div>
-    </div>
-    
-    <br/><br/><br/>
-    
-    <div class="fields" id="view_order_detail">
-        <div id="order_label">
-            <label>Start Date</label>
-        </div>
-        <div id="order_value">
-            <label id="start_date"></label>
-        </div>
-    </div>
-    
-    <br/><br/>
 
-    <div class="fields" id="view_order_detail">
-        <label>Instructions from Physician for</label>
-    </div>
-    
-    <br/>
-    
-    <div class="fields" id="view_order_detail">
-        <div id="order_label">
-            <label>Patient</label>
-        </div>
-        <div id="order_value">
-            <label id="patient_instructions"></label>
-        </div>
-    </div>
+        <br/><br/><br/>
 
-    <br/><br/>
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Start Date</label>
+            </div>
+            <div id="order_value">
+                <label id="start_date"></label>
+            </div>
+        </div>
 
-    <div class="fields" id="view_order_detail">
-        <div id="order_label">
-            <label>Pharmacist</label>
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <label>Instructions from Physician for</label>
         </div>
-        <div id="order_value">
-            <label id="pharmacist_instructions"></label>
+
+        <br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Patient</label>
+            </div>
+            <div id="order_value">
+                <label id="patient_instructions"></label>
+            </div>
         </div>
+
+        <br/><br/>
+
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Pharmacist</label>
+            </div>
+            <div id="order_value">
+                <label id="pharmacist_instructions"></label>
+            </div>
+        </div><br/><br/>
     </div>
         
-    <br/><br/>
-    
     <div id="showDiscontinueOrderView">
         <form method="post">
+            
+            <div id="planOrderView">
+                <div class="fields">
+                    <input type="text" id="planDiscontinued" name="planDiscontinued" />
+                </div>
+            </div><br/>
             
             <label class="fields">Select the reason to discontinue </label>
 

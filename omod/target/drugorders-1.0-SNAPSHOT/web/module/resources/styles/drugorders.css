@@ -209,3 +209,11 @@ and open the template in the editor.
 .icon-minus.edit-action{
     display: none;
 }
+
+#planOrderView{
+    display: none;
+}
+
+#singleOrderView{
+    display: none;
+}

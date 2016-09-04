@@ -10,6 +10,7 @@ package org.openmrs.module.drugorders.page.controller;
  * @author harini-geek
  */
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +61,8 @@ public class DrugordersPageController {
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
-            @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id, 
+            @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
+            @RequestParam(value = "planDiscontinued", required = false) String planDiscontinued, 
             @RequestParam(value = "order_id", required = false) Integer order_id) {
 
         String patientID = Integer.toString(patient.getPatientId());
@@ -80,19 +82,45 @@ public class DrugordersPageController {
                 }
 
                 if ("discontinueDrugOrder".equals(action)) {
-                    drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
-                    drugorderToDiscontinue.setOrderstatus("Discontinued");
                     
-                    if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
-                        String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
-                        drugorderToDiscontinue.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
+                    if(!(planDiscontinued.equals(""))){
+                        List<drugordersdiseases> drugorders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDisease(Context.getConceptService().getConceptByName(planDiscontinued));
+                        ArrayList<drugorders> dorders = new ArrayList<drugorders>();
+                        
+                        for(drugordersdiseases drugorder : drugorders){
+                            dorders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(drugorder.getOrderid()));
+                        }
+                        
+                        for(drugorders dorder : dorders){
+                            dorder.setOrderstatus("Discontinued-Plan");
+                            if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
+                                String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
+                                dorder.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
+                            }
+
+                            if(!(discontinueOrderReasonNonCoded.equals(""))){
+                                dorder.setDiscontinuationreasons(discontinueOrderReasonCoded);
+                            }
+
+                            Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dorder.getOrderId()), "Discontinued");
+                        }
+                        
+                    } else {
+                        drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
+                        drugorderToDiscontinue.setOrderstatus("Discontinued");
+
+                        if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
+                            String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
+                            drugorderToDiscontinue.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
+                        }
+
+                        if(!(discontinueOrderReasonNonCoded.equals(""))){
+                            drugorderToDiscontinue.setDiscontinuationreasons(discontinueOrderReasonCoded);
+                        }
+
+                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                     }
                     
-                    if(!(discontinueOrderReasonNonCoded.equals(""))){
-                        drugorderToDiscontinue.setDiscontinuationreasons(discontinueOrderReasonCoded);
-                    }
-                    
-                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                 }
                 
                 if ("confirmOrderGroup".equals(action)) {
@@ -118,7 +146,7 @@ public class DrugordersPageController {
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
                         int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
-                        createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                        createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, patientInstructions, pharmacistInstructions);
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
                         createDiseasePlan(order,patientID,diseaseForPlan);
                         

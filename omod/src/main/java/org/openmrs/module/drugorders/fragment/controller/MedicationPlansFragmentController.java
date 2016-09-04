@@ -54,13 +54,19 @@ public class MedicationPlansFragmentController {
             ArrayList<drugorders> drugOrderExtension = new ArrayList<drugorders>();
             
             for(Integer diseaseOrderID : diseaseOrderIDs){
-                if(disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()){
+                if((disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()) && (Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Active-Plan")){
                     drugOrderMain.add(Context.getOrderService().getOrder(diseaseOrderID));
                     drugOrderExtension.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID));
                 }
             }
-            drugOrderMainPlan.put(disease, drugOrderMain);
-            drugOrderExtensionPlan.put(disease, drugOrderExtension);
+            
+            //Get the list of Active Medication Plans from the list of Med Plans
+            for (drugorders drugOrderExtn : drugOrderExtension) {
+                if (drugOrderExtn.getOrderstatus().equals("Active-Plan")) {
+                    drugOrderMainPlan.put(disease, drugOrderMain);
+                    drugOrderExtensionPlan.put(disease, drugOrderExtension);
+                }
+            }
         }
         
         model.addAttribute("drugOrderMainPlan", drugOrderMainPlan);

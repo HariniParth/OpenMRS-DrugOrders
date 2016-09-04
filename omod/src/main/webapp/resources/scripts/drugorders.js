@@ -56,6 +56,8 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
     $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
     $("#patient_instructions").text(patientinstructions);
     $("#pharmacist_instructions").text(pharmacistinstructions);
+    jq("#singleOrderView").show();
+    document.getElementById("singleOrderView").style.display = 'block';
     jq("#showDrugOrderView").show();
     document.getElementById("showDrugOrderView").style.display = 'block';
 }
@@ -114,6 +116,7 @@ function hideRenewOrderWindow(){
 
 function showDiscontinueIndividualDrugOrderWindow(action,orderid,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
     jq("#view_window_close_btn").hide();
+    jq("#planOrderView").hide();
     $("#activeOrderAction").text(action);
     $("#dis_order_id").val(orderid);
     $("#patient_name").text(givenName+" "+lastName);
@@ -121,6 +124,8 @@ function showDiscontinueIndividualDrugOrderWindow(action,orderid,givenName,lastN
     $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
     $("#patient_instructions").text(patientinstructions);
     $("#pharmacist_instructions").text(pharmacistinstructions);
+    jq("#singleOrderView").show();
+    document.getElementById("singleOrderView").style.display = 'block';
     jq("#showDiscontinueOrderView").show();
     jq("#showDrugOrderView").show();
 }
@@ -137,6 +142,17 @@ function hideDiscontinuedFulfilledOrders(){
     jq("#nonActiveOrdersWindow").hide();
     jq("#nonActiveOrdersLinkHide").hide();
     jq("#nonActiveOrdersLinkView").show();
+}
+
+function discardMedPlanOrder(action,planName){
+    jq("#singleOrderView").hide();
+    jq("#view_window_close_btn").hide();
+    document.getElementById("planOrderView").style.display = 'block';
+    $("#activeOrderAction").text(action);
+    $("#planDiscontinued").val(planName);
+    jq("#planOrderView").show();
+    jq("#showDiscontinueOrderView").show();
+    jq("#showDrugOrderView").show();
 }
 
 function autoCompleteDiagnosis(diagnosis){

@@ -14,7 +14,7 @@
                 ${drugOrderMain.key.getDisplayString()}
                 
                 <span id="button" class="pull-right">
-                    <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick=""></i>
+                    <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="discardMedPlanOrder('DISCONTINUE PLAN','${drugOrderMain.key.getDisplayString()}')"></i>
                 </span>
                 
             </p><br/>
