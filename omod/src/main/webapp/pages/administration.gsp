@@ -17,24 +17,25 @@
 
 <div class="info-body">
     
-    <div id="selectionWindow"> 
-        <div>
-            <h3 id="header">${ ui.message("AVAILABLE MEDICATION PLANS") }
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="displayPlanCreationWindow()"></i></span>
-            </h3>
-        </div>
-        
-        <br/><br/>
+    <div id="selectionWindow">
+        <h3 id="header">${ ui.message("AVAILABLE MEDICATION PLANS") }
+            <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="displayPlanCreationWindow()"></i></span>
+        </h3><br/><br/>
 
         <div id="existingMedPlansWindow">
             <% allMedicationPlans.each { medPlan -> %>
                 <% if(medPlan.value.size() > 0) { %>
                 
-                    <span id="order_label">${ medPlan.key.getDisplayString().toUpperCase() }</span>
-                    <a href="#" class="detailsLink">Details</a>
+                    <span class="viewDetails">
+                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                    </span>
+                    
+                    ${ medPlan.key.getDisplayString().toUpperCase() }
+                    
                     <span id="button">
-                        <i class="icon-remove delete-action pull-right" title="${ ui.message("Delete") }" onclick="deleteMedPlan('${medPlan.key.getDisplayString()}')"></i>
-                        <i class="icon-pencil edit-action pull-right" title="${ ui.message("Edit") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
+                        <i class="icon-remove delete-action pull-right" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${medPlan.key.getDisplayString()}')"></i>
+                        <i class="icon-pencil edit-action pull-right" title="${ ui.message("Change Plan Name") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
                         <i class="icon-plus edit-action pull-right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${medPlan.key.getDisplayString()}')"></i>
                     </span><br/><br/>
                     
@@ -51,16 +52,25 @@
                         <% } %> 
                     </div>
                 <% } %>
-            <% } %>
-            
-            <script type="text/javascript">
-                jq(".detailsLink").click(function(){
-                    jq(this).nextAll(".existingMedPlansDetailsWindow").toggle();
-                });
-            </script>
-            
-        </div>
-        
+            <% } %>            
+        </div> 
+
+        <script type="text/javascript">
+            jq(".icon-plus-sign").click(function(){
+                jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().show();
+                jq(this).hide();
+                jq(this).nextAll(".icon-minus-sign").show();
+            });
+        </script>
+
+        <script type="text/javascript">
+            jq(".icon-minus-sign").click(function(){
+                jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().hide();
+                jq(this).hide();
+                jq(this).prevAll(".icon-plus-sign").show();
+            });
+        </script>
+
     </div>
 
     <div id="creationWindow"> 

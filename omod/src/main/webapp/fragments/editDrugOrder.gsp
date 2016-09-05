@@ -110,13 +110,18 @@
                 <% newOrderMainData.each { mainOrder -> %>
                     <% newDrugOrders.each { order -> %>
                         <% if(mainOrder.key == order.key) { %>
-                        <span id="order_label"><input type="checkbox" name="groupCheckBox" value="${order.key}">  ${order.value.drugname.getDisplayString()}</span>
-                            <a href="#" class="detailsLink">Details</a>
+                        
+                            <input type="checkbox" name="groupCheckBox" value="${order.key}">  
+                            <span class="viewDetails">
+                                <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                            </span>
+                            ${order.value.drugname.getDisplayString()}
+                            
                             <span id="button" class="pull-right">
                                 <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('Edit Drug Order','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.associateddiagnosis.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                                 <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
-                            </span>
-                            <br/><br/>
+                            </span><br/><br/>
 
                             <div class="planItemDetails">
                                 <span id="order_label">Dose:</span>
@@ -138,19 +143,9 @@
                             </div>
                         <% } %>
                     <% } %>
-                <% } %>
-    
-                <script type="text/javascript">
-                    jq(".detailsLink").click(function(){
-                        jq(this).nextAll(".planItemDetails").toggle();
-                    });
-                </script>
-                
-                <br/><br/>
+                <% } %><br/><br/>
 
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
-                
-                <br/><br/>
+                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span><br/><br/>
                 
                 <input type="hidden" id="confirmOrderGroup" name="action" value="confirmOrderGroup" />
                 <button class="confirm right" id="btn-place" type="submit" onclick="confirmOrderGroup()">${ ui.message("Close") }</button>
@@ -175,8 +170,13 @@
                 <% newOrderMainData.each { mainOrder -> %>
                     <% planDrugOrders.each { order -> %>
                         <% if(mainOrder.key == order.key) { %>
-                        <span id="order_label">${order.value.drugname.getDisplayString()}</span>
-                            <a href="#" class="detailsLink">Details</a>
+                        
+                            <span class="viewDetails">
+                                <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                            </span>
+                            ${order.value.drugname.getDisplayString()}
+
                             <span id="button" class="pull-right">
                                 <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('Edit Drug Order','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ diseaseForPlan }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                                 <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
@@ -203,19 +203,7 @@
                             </div>
                         <% } %>
                     <% } %>
-                <% } %>
-    
-                <script type="text/javascript">
-                    jq(".detailsLink").click(function(){
-                        jq(this).nextAll(".planItemDetails").toggle();
-                    });
-                </script>
-                
-                <br/><br/>
-                
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showMedicationPlanOrderWindow()"></i></span>
-                
-                <br/><br/>
+                <% } %><br/><br/>
                 
                 <input type="hidden" id="confirmMedPlan" name="action" value="confirmMedPlan" />
                 <button class="confirm right" id="btn-place" type="submit" onclick="confirmMedPlan()">${ ui.message("Close") }</button>
@@ -224,3 +212,20 @@
         </div>
     </div>
 <% } %>
+
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().nextAll(".planItemDetails").first().show();
+        jq(this).hide();
+        jq(this).nextAll(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().nextAll(".planItemDetails").first().hide();
+        jq(this).hide();
+        jq(this).prevAll(".icon-plus-sign").show();
+    });
+</script>

@@ -109,7 +109,7 @@ and open the template in the editor.
     width: 35px;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #nonActiveOrdersWindow, #allergicDrugOrderReasonField, #drugOrderPlanDiscontinued, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus.edit-action{
+#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #nonActiveOrdersWindow, #allergicDrugOrderReasonField, #drugOrderPlanDiscontinued, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action{
     display: none;
 }
 

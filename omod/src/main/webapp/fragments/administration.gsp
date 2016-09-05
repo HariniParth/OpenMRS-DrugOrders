@@ -8,12 +8,12 @@
     </div><br/><br/>
     
     <div id="viewMedPlanWindow">
-        <span id="order_label">Disease:</span>
+        <span id="order_label">Plan Name:</span>
         <span id="order_label">
             <label id="plan_disease"></label>
         </span><br/>
         
-        <span id="order_label">Drug:</span>
+        <span id="order_label">Drug Name:</span>
         <span id="order_label">
             <label id="plan_drug"></label>
         </span><br/><br/>
@@ -67,18 +67,18 @@
 <div id="createNewPlanWindow">
     <div class="dialog-header">
         <span id="text_heading"><h4 id="adminActionType"></h4></span>
-    </div>
+    </div><br/>
     <div class="createMedicationPlanWindow">
         <form method="post">
             
             <input type="hidden" id="planId" name="planId" />
             
             <div class="fields" id="disease_field">
-                <label>Plan name </label>
+                <label>Enter Plan Name </label>
                 <input id="diseaseName" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
             </div><br/>
             
-            <p class="fields">Standard Formulation</p>
+            <p class="fields">Specify Standard Formulation</p>
             <span class="fields" id="asterisk">Note: All Fields are required to be filled/updated</span><br/>
             
             <div class="fields" id="view_order_detail">
@@ -121,7 +121,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Dose units</label>
+                    <label>Dose Units</label>
                 </div>
                 <div id="order_value">
                     <select id="drugDoseUnits" name="drugDoseUnits" class="select_field">
@@ -148,7 +148,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Quantity units</label>
+                    <label>Quantity Units</label>
                 </div>
                 <div id="order_value">
                     <select id="quantityUnits" name="quantityUnits" class="select_field">
@@ -175,7 +175,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Duration units</label>
+                    <label>Duration Units</label>
                 </div>
                 <div id="order_value">
                     <select id="durationUnits" name="durationUnits" class="select_field">
@@ -214,13 +214,13 @@
 
 <div id="editMedPlanWindow">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("EDIT PLAN") }</h4>
+        <h4 id="text_heading">${ ui.message("CHANGE PLAN NAME") }</h4>
     </div><br/>
     
     <div id="editMedicationPlanWindow">
         <form method="post">
             
-            <label class="fields">Given Plan 
+            <label class="fields">Given Plan Name
                 <input id="disease_name" name="disease_name" readonly="true"/>
             </label><br/>
             
@@ -263,23 +263,23 @@
     <div id="deleteMedicationPlanItemWindow">
         <form method="post">
             <input type="hidden" id="medPlan_id" name="medPlan_id" />
-            <label class="fields" id="order_label">Plan:</label>
+            <label class="fields" id="order_label">Plan Name:</label>
             <label class="fields" id="disease_value"></label>
-            <label class="fields" id="order_label">Drug:</label>
+            <label class="fields" id="order_label">Drug Name:</label>
             <label class="fields" id="drug_value"></label>
             <label class="fields" id="order_label">Dose:</label>
             <label class="fields" id="dose_value"></label>
-            <label class="fields" id="order_label">Dose units:</label>
+            <label class="fields" id="order_label">Dose Units:</label>
             <label class="fields" id="dose_units_value"></label>
             <label class="fields" id="order_label">Route:</label>
             <label class="fields" id="route_value"></label>
             <label class="fields" id="order_label">Quantity:</label>
             <label class="fields" id="quantity_value"></label>
-            <label class="fields" id="order_label">Qnty units:</label>
+            <label class="fields" id="order_label">Qnty Units:</label>
             <label class="fields" id="quantity_units_value"></label>
             <label class="fields" id="order_label">Duration:</label>
             <label class="fields" id="duration_value"></label>
-            <label class="fields" id="order_label">Durn units:</label>
+            <label class="fields" id="order_label">Durn Units:</label>
             <label class="fields" id="duration_units_value"></label>
             <label class="fields" id="order_label">Frequency:</label>
             <label class="fields" id="frequency_value"></label><br/>

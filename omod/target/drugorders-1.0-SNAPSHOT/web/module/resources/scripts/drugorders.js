@@ -265,7 +265,7 @@ function addPlanItemWindow(diseaseName){
     jq("#confirmNewPlanWindow").hide();
     jq("#createNewPlanWindow").show();
     document.getElementById("createNewPlanWindow").style.display = 'block';
-    $("#adminActionType").text("CREATE NEW PLAN");
+    $("#adminActionType").text("ADD DRUG TO PLAN");
     $("#diseaseName").val(diseaseName);
 }
 

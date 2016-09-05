@@ -25,12 +25,14 @@
             
             <div id="medPlansForDisease" class="fields">
 
-                <h5>${diseaseName}</h5> <br/>
+                <h5>${diseaseName}</h5><br/>
                 <% medplans.each { medplan -> %>
-                    <span id="order_label">${medplan.drugid.getDisplayString()}</span>
-
-                    <a href="#" class="detailsLink">Details</a>
-                    <br/><br/>
+                
+                    <span class="viewDetails">
+                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                    </span>
+                    ${medplan.drugid.getDisplayString()}<br/><br/>
 
                     <span class="planItemDetails">
                         <span id="order_label">Dose:</span>
@@ -52,16 +54,7 @@
                     </span>
 
                 <% } %>
-                
-                <script type="text/javascript">
-                    jq(".detailsLink").click(function(){
-                        jq(this).nextAll(".planItemDetails").toggle();
-                    });
-                </script>
-            
-            </div>
-            
-            <br/><br/>
+            </div><br/><br/>
 
             <input type="hidden" id="selectMedPlan" name="action" value="selectMedPlan" />
             <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
@@ -69,3 +62,19 @@
         </div>
     <% } %>
 </form>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().nextAll(".planItemDetails").first().show();
+        jq(this).hide();
+        jq(this).nextAll(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().nextAll(".planItemDetails").first().hide();
+        jq(this).hide();
+        jq(this).prevAll(".icon-plus-sign").show();
+    });
+</script>

@@ -7,11 +7,11 @@
         <% if(drugOrderMain.key == drugOrderExtension.key) { %>
             <p>
                 <span class="viewDetails">
-                    <i class="icon-plus edit-action" title="${ ui.message("View Details") }"></i>
-                    <i class="icon-minus edit-action" title="${ ui.message("Hide Details") }"></i>
+                    <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
                 </span>
                 
-                ${drugOrderMain.key.getDisplayString()}
+                ${drugOrderMain.key.getDisplayString().toUpperCase()}
                 
                 <span id="button" class="pull-right">
                     <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="discardMedPlanOrder('DISCONTINUE PLAN','${drugOrderMain.key.getDisplayString()}')"></i>
@@ -51,11 +51,11 @@
             <% if(drugOrderMain.key == drugOrderExtension.key) { %>
                 <p>
                     <span class="viewDetails">
-                        <i class="icon-plus edit-action" title="${ ui.message("View Details") }"></i>
-                        <i class="icon-minus edit-action" title="${ ui.message("Hide Details") }"></i>
+                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
                     </span>
 
-                    ${drugOrderMain.key.getDisplayString()}
+                    ${drugOrderMain.key.getDisplayString().toUpperCase()}
 
                     <span id="button" class="pull-right">
                         <i class="icon-edit delete-action" title="${ ui.message("Renew") }" onclick=""></i>
@@ -84,17 +84,17 @@
 
 
 <script type="text/javascript">
-    jq(".icon-plus").click(function(){
-        jq(this).parent().parent().nextAll(".orderDetails").show();
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().parent().nextAll(".orderDetails").first().show();
         jq(this).hide();
-        jq(this).nextAll(".icon-minus").show();
+        jq(this).nextAll(".icon-minus-sign").show();
     });
 </script>
 
 <script type="text/javascript">
-    jq(".icon-minus").click(function(){
-        jq(this).parent().parent().nextAll(".orderDetails").hide();
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().parent().nextAll(".orderDetails").first().hide();
         jq(this).hide();
-        jq(this).prevAll(".icon-plus").show();
+        jq(this).prevAll(".icon-plus-sign").show();
     });
 </script>
