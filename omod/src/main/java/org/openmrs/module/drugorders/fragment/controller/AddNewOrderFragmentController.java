@@ -6,8 +6,6 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSet;

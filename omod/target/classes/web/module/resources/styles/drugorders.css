@@ -109,31 +109,7 @@ and open the template in the editor.
     width: 35px;
 }
 
-#medicationPlanWindow{
-    display: none;
-}
-
-#singleOrderDetailsWindow{
-    display: none;
-}
-
-#showDrugOrderView{
-    display: none;
-}
-
-#editOrderWindow{
-    display: none;
-}
-
-#renewOrderWindow{
-    display: none;
-}
-
-#allergicDrugOrderReasonField{
-    display: none;
-}
-
-#nonActiveOrdersWindow{
+#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #nonActiveOrdersWindow, #allergicDrugOrderReasonField, #drugOrderPlanDiscontinued, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus.edit-action{
     display: none;
 }
 
@@ -152,30 +128,6 @@ and open the template in the editor.
     padding-bottom: 10px;
 }
 
-#drugOrderPlanDiscontinued{
-    display: none;
-}
-
-#viewPlanWindow{
-    display: none;
-}
-
-#createNewPlanWindow{
-    display: none;
-}
-
-#deleteMedPlanItemWindow{
-    display: none;
-}
-
-#deleteMedPlanWindow{
-    display: none;
-}
-
-#editMedPlanWindow{
-    display: none;
-}
-
 #adminLink{
     color: #00463f;
 }
@@ -185,14 +137,6 @@ and open the template in the editor.
     font-size: 10px;
     font-weight: bold;
     vertical-align: top;
-}
-
-#nonActiveOrdersLinkHide{
-    display: none;
-}
-
-#nonActivePlansLinkHide{
-    display: none;
 }
 
 #detailsLink{
@@ -208,20 +152,4 @@ and open the template in the editor.
 
 #disease_name{
     outline: none;
-}
-
-.orderDetails{
-    display: none;
-}
-
-.icon-minus.edit-action{
-    display: none;
-}
-
-#planOrderView{
-    display: none;
-}
-
-#singleOrderView{
-    display: none;
 }
