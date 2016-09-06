@@ -12,7 +12,6 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Concept;
-import org.openmrs.Patient;
 import org.openmrs.module.drugorders.api.db.drugordersdiseasesDAO;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +66,16 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
         crit.add(Restrictions.eq("patientid", patientID));
+        return crit.list();
+    }
+    ;
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugordersdiseases.class);
+        crit.add(Restrictions.eq("diseaseid", concept)).add(Restrictions.eq("patientid", patientID));
         return crit.list();
     }
     ;

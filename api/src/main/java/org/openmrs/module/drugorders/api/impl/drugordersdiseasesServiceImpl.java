@@ -9,7 +9,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
-import org.openmrs.Patient;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.drugorders.api.db.drugordersdiseasesDAO;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
@@ -62,8 +61,15 @@ public class drugordersdiseasesServiceImpl extends BaseOpenmrsService implements
         return dao.getDrugOrdersByPatient(patientID);
     }
     
+    @Transactional(readOnly = true)
+    @Override
+    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID){
+        return dao.getDrugOrdersByDiseaseAndPatient(concept, patientID);
+    }
+    
     @Override
     public void deleteDrugOrder(drugordersdiseases order){
         dao.deleteDrugOrder(order);
     }
+    
 }
