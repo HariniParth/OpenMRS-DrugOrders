@@ -58,7 +58,7 @@
                     ${drugOrderMain.key.getDisplayString().toUpperCase()}
 
                     <span id="button" class="pull-right">
-                        <i class="icon-edit delete-action" title="${ ui.message("Renew") }" onclick=""></i>
+                        <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${drugOrderMain.key.getDisplayString()}')"></i>
                     </span>
 
                 </p><br/>

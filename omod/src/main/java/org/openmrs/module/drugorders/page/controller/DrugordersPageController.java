@@ -63,6 +63,7 @@ public class DrugordersPageController {
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
+            @RequestParam(value = "planRenewed", required = false) String planRenewed,
             @RequestParam(value = "planDiscontinued", required = false) String planDiscontinued) {
 
         String patientID = Integer.toString(patient.getPatientId());
@@ -158,6 +159,23 @@ public class DrugordersPageController {
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active-Plan");
                         order.setStartdate(Calendar.getInstance().getTime());
+                    }
+                }
+                
+                if ("renewMedPlan".equals(action)) {
+                    
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(planRenewed), patientID);
+                    
+                    for(drugordersdiseases planOrder : planOrders){
+                        DrugOrder orderMain = (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid());
+                        drugorders orderExtn = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid());
+                        
+                        DrugOrder drugOrder = null;
+                        drugorders drugorder = null;
+                        int order = createNewDrugOrder(drugOrder, patient, orderExtn.getDrugname().getDisplayString(), orderMain.getRoute().getDisplayString(), orderMain.getDose().toString(), orderMain.getDoseUnits().getDisplayString(), orderMain.getQuantity().toString(), orderMain.getQuantityUnits().getDisplayString(), orderMain.getFrequency().getName(), orderMain.getDuration(), orderMain.getDurationUnits().getDisplayString());
+                        createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", planRenewed, "", "");
+                        createDiseasePlan(order,patientID,planRenewed);
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                     }
                 }
                 
@@ -272,7 +290,7 @@ public class DrugordersPageController {
             drugorder.setPatientinstructions(patientInstructions);
         if(!(pharmacistInstructions).equals(""))
             drugorder.setPharmacistinstructions(pharmacistInstructions);
-
+        
         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
     }
     

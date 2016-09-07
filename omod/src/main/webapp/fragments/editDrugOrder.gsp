@@ -97,6 +97,23 @@
 </div>
 
 
+<div id="showRenewOrderView">
+    <form method="post">
+        <div class="dialog-header">
+            <h4 id="text_heading">${ ui.message("RENEW MED PLAN") }</h4>
+        </div><br/><br/>
+        <div class="fields">
+            <input type="text" id="planRenewed" name="planRenewed" />
+        </div><br/>
+
+        <input type="hidden" name="action" value="renewMedPlan"/>
+        <br/>
+        <button class="confirm pull-right" id="btn-place" name="renewMedPlan" type="submit" onclick="showRenewPlanOrderWindow()">${ ui.message("Renew") }</button>
+        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewPlanOrderWindow()">${ ui.message("Close") }</button>
+    </form>
+</div>
+    
+
 <% if(newDrugOrders.size() > 0) { %>
     <div id="confirmOrderView">
         <div class="dialog-header">

@@ -169,6 +169,16 @@ function discardMedPlanOrder(action,planName){
     jq("#showDrugOrderView").show();
 }
 
+function renewMedPlanWindow(planName){
+    $("#planRenewed").val(planName);
+    jq("#showRenewOrderView").show();
+    document.getElementById("showRenewOrderView").style.display = 'block';
+}
+
+function hideRenewPlanOrderWindow(){
+    jq("#showRenewOrderView").hide();
+}
+
 function autoCompleteDiagnosis(diagnosis){
     var list = diagnosis.replace("[","").replace("]","").split(',');
     console.log(list);
