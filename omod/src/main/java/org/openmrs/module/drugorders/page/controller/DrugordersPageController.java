@@ -27,11 +27,9 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
-import org.openmrs.module.drugorders.api.drugordersgroupsService;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.drugorders.drugordersdiseases;
-import org.openmrs.module.drugorders.drugordersgroups;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
@@ -126,16 +124,15 @@ public class DrugordersPageController {
                 
                 if ("confirmOrderGroup".equals(action)) {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
-                    int groupID = Context.getService(drugordersgroupsService.class).getLastGroupID() + 1;
+                    int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
                     }
                     for(int i=0;i<groupCheckBox.length;i++){
                         int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
-                        drugordersgroups groupItem = new drugordersgroups();
-                        groupItem.setGroupid(groupID);
-                        groupItem.setOrderid(orderID);
-                        Context.getService(drugordersgroupsService.class).saveDrugOrderGroup(groupItem);
+                        drugorders orderInGroup = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
+                        orderInGroup.setGroupid(groupID);
+                        orderInGroup.setOrderstatus("Active-Group");
                     }
                 }
                 

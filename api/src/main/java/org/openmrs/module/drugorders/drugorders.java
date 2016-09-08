@@ -24,6 +24,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	
 	private Integer id;
         private Integer orderId;
+        private Integer groupid;
         private String Uuid;
         private String patientid;
         private Date startdate;
@@ -60,6 +61,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 
         public void setOrderId(Integer orderId) {
             this.orderId = orderId;
+        }
+    
+        public Integer getGroupid() {
+            return groupid;
+        }
+
+        public void setGroupid(Integer groupid) {
+            this.groupid = groupid;
         }
     
         @Override

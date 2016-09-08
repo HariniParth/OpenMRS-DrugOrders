@@ -19,10 +19,12 @@ import org.openmrs.module.drugorders.drugorders;
  */
 public interface drugordersDAO {
 	
+    public int getLastGroupID();
     public drugorders getDrugOrderByID(Integer id);
     public drugorders getDrugOrderByOrderID(Integer id);
     public void deleteDrugOrder(drugorders drugOrder);
     public drugorders saveDrugOrder(drugorders drugOrder);
+    public List<drugorders> getDrugOrdersByGroupID(Integer id);
     public List<drugorders> getNewTablesByPatient(Patient patient);
     public List<drugorders> getDrugOrdersByStatus(String status);
     

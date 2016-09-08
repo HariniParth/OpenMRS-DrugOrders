@@ -46,6 +46,12 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     public drugordersDAO getDao() {
 	    return dao;
     }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public int getLastGroupID(){
+        return dao.getLastGroupID();
+    }
 
     @Transactional(readOnly = true)
     @Override
@@ -81,6 +87,12 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     @Override
     public List<drugorders> getDrugOrdersByStatus(String status){
         return dao.getDrugOrdersByStatus(status);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<drugorders> getDrugOrdersByGroupID(Integer id){
+        return dao.getDrugOrdersByGroupID(id);
     }
 
 }

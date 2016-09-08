@@ -28,10 +28,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface drugordersService extends OpenmrsService {
 
+    public int getLastGroupID();
     public drugorders getDrugOrderByID(Integer id);
     public drugorders getDrugOrderByOrderID(Integer id);
     public void deleteDrugOrder(drugorders drugOrder);
     public drugorders saveDrugOrder(drugorders drugOrder);
+    public List<drugorders> getDrugOrdersByGroupID(Integer id);
     public List<drugorders> getNewTablesByPatient(Patient patient);
     public List<drugorders> getDrugOrdersByStatus(String status);
     

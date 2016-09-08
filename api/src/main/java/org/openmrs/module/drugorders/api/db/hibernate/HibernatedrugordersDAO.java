@@ -9,11 +9,13 @@
  */
 package org.openmrs.module.drugorders.api.db.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Patient;
 import org.openmrs.module.drugorders.api.db.drugordersDAO;
@@ -75,4 +77,31 @@ public class HibernatedrugordersDAO implements drugordersDAO {
         crit.add(Restrictions.eq("orderstatus", status));
         return crit.list();
     };
+    
+    @Override
+    public List<drugorders> getDrugOrdersByGroupID(Integer id){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("groupid", id));
+        return crit.list();
+    }
+    
+     @Override
+    public int getLastGroupID(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.setProjection(Projections.property("id"));
+        List l=crit.list();
+        Iterator it=l.iterator();
+        int groupID = 0;
+        if(it.hasNext()){
+            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugorders.class).setProjection(Projections.max("groupid"));
+            if(critMax.uniqueResult() == null)
+                groupID = 0;
+            else
+                groupID = (Integer)critMax.uniqueResult();
+        }
+            
+        return groupID;
+    }
 }
