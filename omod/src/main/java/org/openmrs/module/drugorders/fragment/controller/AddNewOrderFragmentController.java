@@ -57,7 +57,9 @@ public class AddNewOrderFragmentController {
         
         List<String> diseaseNames = new ArrayList<String>();
         for(Concept diagnosisName : diseases){
-            diseaseNames.add(diagnosisName.getDisplayString());
+            if(Context.getService(medicationplansService.class).getMedicationPlansByDisease(diagnosisName).size() > 0){
+                diseaseNames.add(diagnosisName.getDisplayString());
+            }
         }
         model.addAttribute("diseaseNames", diseaseNames);
     }

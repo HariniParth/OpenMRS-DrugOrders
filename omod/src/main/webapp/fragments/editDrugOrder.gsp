@@ -122,7 +122,9 @@
         <br/><br/>
         <div class="fields">
             <form method="post">
-                <p>Check Orders To Be Grouped</p><br/>
+                <p>Check Orders To Be Grouped
+                    <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
+                </p><br/>
                 
                 <% newOrderMainData.each { mainOrder -> %>
                     <% newDrugOrders.each { order -> %>
@@ -162,8 +164,6 @@
                     <% } %>
                 <% } %><br/><br/>
 
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span><br/><br/>
-                
                 <input type="hidden" id="confirmOrderGroup" name="action" value="confirmOrderGroup" />
                 <button class="confirm right" id="btn-place" type="submit" onclick="confirmOrderGroup()">${ ui.message("Close") }</button>
                 

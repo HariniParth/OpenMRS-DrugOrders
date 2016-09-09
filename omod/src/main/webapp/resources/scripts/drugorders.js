@@ -232,6 +232,10 @@ function autoCompleteDisease(disease){
     });
 }
 
+function selectDisease(){
+    $("#diseaseForm").submit();
+}
+
 function autoCompletePlanItem(drugs){
     var list = drugs.replace("[","").replace("]","").split(',');
     console.log(list);

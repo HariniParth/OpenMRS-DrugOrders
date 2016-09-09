@@ -10,7 +10,10 @@
     
     <div class="confirmMedicationPlanWindow">
         <form method="post">
-            <h5 class="fields">${diseaseName}</h5><br/>
+            <h5 class="fields">${diseaseName}
+                <span class="fields" id="button"><i class="icon-plus edit-action right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${diseaseName}')"></i></span>
+            </h5><br/><br/>
+            
             <div>
                 <% existingMedplans.each { existingMedplan -> %>
                     <p class="fields">
@@ -48,10 +51,7 @@
                     </p>
 
                 <% } %>
-            </div><br/>
-            
-            <span class="fields" id="button"><i class="icon-plus edit-action right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${diseaseName}')"></i></span>
-            <br/><br/>
+            </div><br/><br/>
             
             <input type="hidden" name="action" value="confirmPlanItem" />
             <button class="confirm right" id="btn-place" type="submit" onclick="hideMedPlanConfirmWindow()">${ ui.message("Close") }</button>

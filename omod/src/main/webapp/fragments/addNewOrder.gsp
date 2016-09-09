@@ -8,7 +8,15 @@
     </div><br/>
     <div class="addMedicationPlanWindow">
         <form method="post" id="diseaseForm">
-            <div class="fields"><label>Disease name </label><input id="diseaseName" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/></div>
+            <div class="fields"><label>Plan Name </label>
+                <select id="diseaseName" name="diseaseName" class="select_field" onchange="selectDisease()">
+                    <option value="">Choose option</option>
+                    <% diseaseNames.each { diseaseName -> %>
+                        <option value="${ diseaseName }">${ diseaseName }</option>
+                    <% } %>
+                </select>
+            </div>
+            
             <br/><br/>
             
             <button class="cancel pull-right" id="btn-place" type="button" onclick="hideMedicationPlanOrderWindow()">${ ui.message("Cancel") }</button>
