@@ -74,10 +74,16 @@ public class DrugordersPageController {
             try {
                 if ("CREATE DRUG ORDER".equals(action)) {
                     if (!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
-                        DrugOrder drugOrder = null;
-                        drugorders drugorder = null;
-                        int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
-                        createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                        
+                        drugorders o = Context.getService(drugordersService.class).getDrugOrderByDrugAndPatient(Context.getConceptService().getConceptByName(drugNameEntered), patientID);
+                        if(o == null){
+                            DrugOrder drugOrder = null;
+                            drugorders drugorder = null;
+                            int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                            createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                        } else {
+                            System.out.println("Active Order Exists");
+                        }
                     }
                 }
 
@@ -138,17 +144,21 @@ public class DrugordersPageController {
                 }
                 
                 if ("selectMedPlan".equals(action)) {
-                    List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
                     
-                    for(medicationplans medplan : medplans){
-                        
-                        DrugOrder drugOrder = null;
-                        drugorders drugorder = null;
-                        int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
-                        createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, patientInstructions, pharmacistInstructions);
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
-                        createDiseasePlan(order,patientID,diseaseForPlan);
-                        
+                    List<drugordersdiseases> existingMedPlanOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(diseaseForPlan), patientID);
+                    if(existingMedPlanOrders.isEmpty()){
+                        List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
+                    
+                        for(medicationplans medplan : medplans){
+
+                            DrugOrder drugOrder = null;
+                            drugorders drugorder = null;
+                            int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
+                            createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, patientInstructions, pharmacistInstructions);
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
+                            createDiseasePlan(order,patientID,diseaseForPlan);
+
+                        }
                     }
                 }
                 

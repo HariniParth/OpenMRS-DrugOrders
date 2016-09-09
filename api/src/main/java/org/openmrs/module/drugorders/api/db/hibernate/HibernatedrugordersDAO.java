@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.Concept;
 import org.openmrs.Patient;
 import org.openmrs.module.drugorders.api.db.drugordersDAO;
 import org.openmrs.module.drugorders.drugorders;
@@ -84,9 +85,9 @@ public class HibernatedrugordersDAO implements drugordersDAO {
                 drugorders.class);
         crit.add(Restrictions.eq("groupid", id));
         return crit.list();
-    }
+    };
     
-     @Override
+    @Override
     public int getLastGroupID(){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
@@ -103,5 +104,13 @@ public class HibernatedrugordersDAO implements drugordersDAO {
         }
             
         return groupID;
-    }
+    };
+    
+    @Override
+    public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("drugname", drugname)).add(Restrictions.eq("patientid", patientID));
+        return (drugorders) crit.uniqueResult();
+    };
 }

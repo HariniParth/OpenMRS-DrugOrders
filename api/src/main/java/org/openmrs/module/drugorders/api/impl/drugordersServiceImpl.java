@@ -13,6 +13,7 @@ import java.util.List;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
 import org.openmrs.Patient;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.db.drugordersDAO;
@@ -93,6 +94,12 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     @Override
     public List<drugorders> getDrugOrdersByGroupID(Integer id){
         return dao.getDrugOrdersByGroupID(id);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID){
+        return dao.getDrugOrderByDrugAndPatient(drugname, patientID);
     }
 
 }

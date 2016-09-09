@@ -10,6 +10,7 @@
 package org.openmrs.module.drugorders.api.db;
 
 import java.util.List;
+import org.openmrs.Concept;
 import org.openmrs.Patient;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -27,5 +28,6 @@ public interface drugordersDAO {
     public List<drugorders> getDrugOrdersByGroupID(Integer id);
     public List<drugorders> getNewTablesByPatient(Patient patient);
     public List<drugorders> getDrugOrdersByStatus(String status);
+    public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID);
     
 }
