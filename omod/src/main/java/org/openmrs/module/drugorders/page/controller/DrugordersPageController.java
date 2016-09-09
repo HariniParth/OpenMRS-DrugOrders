@@ -58,6 +58,7 @@ public class DrugordersPageController {
             @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "order_id", required = false) Integer order_id,
+            @RequestParam(value = "orderClass", required = false) String orderClass,
             @RequestParam(value = "groupOrderID", required = false) Integer groupOrderID,
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
@@ -198,17 +199,24 @@ public class DrugordersPageController {
                 if ("EDIT DRUG ORDER".equals(action)) {
                     
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
-                    String drugName = originalOrderExtension.getDrugname().getDisplayString();
-
-                    Context.getService(drugordersService.class).deleteDrugOrder(Context.getService(drugordersService.class).getDrugOrderByID(order_id));
-                    Context.getOrderService().purgeOrder(Context.getOrderService().getOrder(order_id), true);
+                    
+                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order_id), "Discontinued");
 
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
 
-                    int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
-                    createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
+                    int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                    createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
                     
+                    if(orderClass.equals("PLAN")){
+                        originalOrderExtension.setOrderstatus("Discontinued-Plan");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
+                        Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderid(order);
+                    } 
+                    else if(orderClass.equals("SINGLE")){
+                        originalOrderExtension.setOrderstatus("Discontinued");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active");
+                    }
                 }
 
                 if ("RENEW DRUG ORDER".equals(action)) {

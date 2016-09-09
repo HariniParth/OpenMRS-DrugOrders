@@ -66,9 +66,10 @@ function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
 }
 
-function showEditIndividualDrugOrderWindow(orderType,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
+function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
+    $("#orderClass").val(orderClass);
     $("#order_id").val(orderId);
     $("#drugNameEntered").val(drugName);
     $("#drugRoute").val(route);
