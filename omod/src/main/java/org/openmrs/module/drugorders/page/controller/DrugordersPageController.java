@@ -58,6 +58,7 @@ public class DrugordersPageController {
             @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "order_id", required = false) Integer order_id,
+            @RequestParam(value = "groupOrderID", required = false) Integer groupOrderID,
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
@@ -173,6 +174,14 @@ public class DrugordersPageController {
                         createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", planRenewed, "", "");
                         createDiseasePlan(order,patientID,planRenewed);
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
+                    }
+                }
+                
+                if ("discardGroupOrder".equals(action)) {
+                    List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
+                    for(drugorders order : orders){
+                        order.setOrderstatus("Discontinued-Group");
+                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
                     }
                 }
                 

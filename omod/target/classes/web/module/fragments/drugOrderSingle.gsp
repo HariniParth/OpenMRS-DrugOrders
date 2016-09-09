@@ -1,5 +1,6 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
+    def orderList = "";
 %>
 
 <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
@@ -29,7 +30,8 @@
                     <span id="entries">
                         <a href="#" id="existingDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingOrder.startdate }','${ existingOrder.drugname.getDisplayString() }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingOrder.patientinstructions }','${ existingOrder.pharmacistinstructions }')">
                             ${ existingOrder.drugname.getDisplayString() } ${ existingOrder.startdate }    
-                        </a>    
+                        </a>
+                        <% orderList = orderList + existingOrder.drugname.getDisplayString() + "," %>
                     </span><br/><br/>
                 <% } %>
             <% } %>
@@ -37,7 +39,7 @@
     </div>
     <span id="button">
         <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditGroupOrderWindow()"></i>
-        <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow()"></i>
+        <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
     </span><br/><br/>
 <% } %>
 

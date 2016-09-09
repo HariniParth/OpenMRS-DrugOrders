@@ -375,3 +375,22 @@ function viewMedPlanWindow(diseasename,drugname,dose,doseunits,route,quantity,qu
 function hideMedPlanWindow(){
     jq("#viewPlanWindow").hide();
 }
+
+function showDiscardGroupOrderWindow(orderID,orderList){
+    $("#groupOrderID").val(orderID);
+    jq("#showDiscardGroupOrderWindow").show();
+    document.getElementById("showDiscardGroupOrderWindow").style.display = 'block';
+    var list = orderList.split(',');
+    var element = document.getElementById("groupOrderBlock");
+    
+    list.forEach(function(entry){
+        var item = document.createElement("p");
+        var itemText = document.createTextNode(entry);
+        item.appendChild(itemText);
+        element.appendChild(item);
+    });
+}
+
+function hideDiscardGroupOrderWindow(){
+    jq("#showDiscardGroupOrderWindow").hide();
+}

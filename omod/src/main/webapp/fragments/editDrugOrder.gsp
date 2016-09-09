@@ -114,6 +114,25 @@
 </div>
     
 
+<div id="showDiscardGroupOrderWindow">
+    <form method="post">
+        <div class="dialog-header">
+            <h4 id="text_heading">${ ui.message("DISCARD GROUP ORDER") }</h4>
+        </div><br/>
+        
+        <div class="fields" id="groupOrderBlock">
+            <label>Drugs Ordered As A Group</label><br/><br/>
+            <input type="hidden" id="groupOrderID" name="groupOrderID" />
+        </div><br/>
+
+        <input type="hidden" name="action" value="discardGroupOrder"/><br/>
+        
+        <button class="confirm pull-right" id="btn-place" name="discardGroupOrder" type="submit" onclick="">${ ui.message("Discard") }</button>
+        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDiscardGroupOrderWindow()">${ ui.message("Close") }</button>
+    </form>
+</div>
+
+
 <% if(newDrugOrders.size() > 0) { %>
     <div id="confirmOrderView">
         <div class="dialog-header">
