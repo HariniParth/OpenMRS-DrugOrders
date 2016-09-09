@@ -6,6 +6,7 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
@@ -26,15 +27,24 @@ public class DrugOrderSingleFragmentController {
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
         
         List<drugorders> dorders = new ArrayList<drugorders>();
+        HashMap<Integer,List<drugorders>> groupDorders = new HashMap<Integer,List<drugorders>>();
+        
         List<OrderAndDrugOrder> drugOrders = getDrugOrdersByPatient(patient);
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
             if((dorder.getOrderstatus().equals("Active")) || (dorder.getOrderstatus().equals("Discontinued")))
                 dorders.add(dorder);
+            else if((dorder.getOrderstatus().equals("Active-Group"))){
+                if(groupDorders.get(dorder.getOrderId()) == null){
+                    groupDorders.put(dorder.getGroupid(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupid()));
+                }
+            }
         }
                 
         model.addAttribute("existingDrugOrdersExtension", dorders);
+        model.addAttribute("existingDrugOrderGroups", groupDorders);
+        
         List<DrugOrder> drugOrderMain = getDrugOrderMainDataByPatient(patient);
         model.addAttribute("existingDrugOrdersMain", drugOrderMain);
                 

@@ -189,7 +189,7 @@ public class DrugordersPageController {
 
                     int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                     createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, patientInstructions, pharmacistInstructions);
-              
+                    
                 }
 
                 if ("RENEW DRUG ORDER".equals(action)) {
