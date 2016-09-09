@@ -5,15 +5,16 @@
  */
 package org.openmrs.module.drugorders;
 
-import java.io.Serializable;
-import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Concept;
+import java.io.Serializable;
 import org.openmrs.OrderFrequency;
+import org.openmrs.BaseOpenmrsObject;
 
 /**
  *
  * @author harini-geek
  */
+
 public class medicationplans extends BaseOpenmrsObject implements Serializable{
     
     private Integer id;

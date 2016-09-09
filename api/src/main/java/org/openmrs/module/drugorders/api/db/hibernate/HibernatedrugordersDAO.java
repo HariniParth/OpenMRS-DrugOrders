@@ -9,41 +9,42 @@
  */
 package org.openmrs.module.drugorders.api.db.hibernate;
 
-import java.util.Iterator;
+
 import java.util.List;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import java.util.Iterator;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
-import org.openmrs.module.drugorders.api.db.drugordersDAO;
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.apache.commons.logging.Log;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.api.db.drugordersDAO;
+
 
 /**
  * It is a default implementation of  {@link drugordersDAO}.
  */
 public class HibernatedrugordersDAO implements drugordersDAO {
     
-    protected final Log log = LogFactory.getLog(this.getClass());
-
     private SessionFactory sessionFactory;
+    protected final Log log = LogFactory.getLog(this.getClass());
 	
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
     
-    @Override
-    public drugorders getDrugOrderByID(Integer id) {
-        return (drugorders) sessionFactory.getCurrentSession().get(drugorders.class, id);
-    };
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
+    @Override
+    public void deleteDrugOrder(drugorders drugOrder) {
+        sessionFactory.getCurrentSession().delete(drugOrder);
+    };
+    
     @Override
     public drugorders getDrugOrderByOrderID(Integer id){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
@@ -56,11 +57,6 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public drugorders saveDrugOrder(drugorders drugOrder) {
         sessionFactory.getCurrentSession().saveOrUpdate(drugOrder);
         return drugOrder;
-    };
-        
-    @Override
-    public void deleteDrugOrder(drugorders drugOrder) {
-        sessionFactory.getCurrentSession().delete(drugOrder);
     };
 
     @Override
@@ -113,4 +109,10 @@ public class HibernatedrugordersDAO implements drugordersDAO {
         crit.add(Restrictions.eq("drugname", drugname)).add(Restrictions.eq("patientid", patientID));
         return (drugorders) crit.uniqueResult();
     };
+    
+    @Override
+    public drugorders getDrugOrderByID(Integer id) {
+        return (drugorders) sessionFactory.getCurrentSession().get(drugorders.class, id);
+    };
+    
 }

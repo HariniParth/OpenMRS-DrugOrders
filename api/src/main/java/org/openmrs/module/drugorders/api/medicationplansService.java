@@ -16,10 +16,14 @@ import org.openmrs.module.drugorders.medicationplans;
  */
 public interface medicationplansService extends OpenmrsService{
     
-    public medicationplans getMedicationPlan(Integer planID);
-    public medicationplans saveNewTable(medicationplans newTable);
-    public List<medicationplans> getMedicationPlansByDisease(Concept concept);
     public List<medicationplans> getAllMedicationPlans();
+    
     public void deleteMedicationPlan(medicationplans plan);
     
+    public medicationplans getMedicationPlan(Integer planID);
+    
+    public medicationplans saveNewTable(medicationplans newTable);
+    
+    public List<medicationplans> getMedicationPlansByDisease(Concept concept);
+        
 }

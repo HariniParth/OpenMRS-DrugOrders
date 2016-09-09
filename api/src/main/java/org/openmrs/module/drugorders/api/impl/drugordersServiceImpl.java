@@ -10,14 +10,14 @@
 package org.openmrs.module.drugorders.api.impl;
 
 import java.util.List;
-import org.openmrs.api.impl.BaseOpenmrsService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.db.drugordersDAO;
-import org.openmrs.module.drugorders.drugorders;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -25,27 +25,23 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class drugordersServiceImpl extends BaseOpenmrsService implements drugordersService {
 	
+    private drugordersDAO dao;
     protected final Log log = LogFactory.getLog(this.getClass());
 
-    private drugordersDAO dao;
-	
     /**
-     * @param dao the dao to set
+     * @return 
     */
-    
-    public void setDao(drugordersDAO dao) {
-	    this.dao = dao;
-    }
     
     public Log getLog() {
         return log;
     }
-    
-    /**
-     * @return the dao
-     */
+        
     public drugordersDAO getDao() {
 	    return dao;
+    }
+    
+    public void setDao(drugordersDAO dao) {
+	    this.dao = dao;
     }
     
     @Transactional(readOnly = true)
@@ -60,12 +56,6 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
         return dao.getDrugOrderByID(id);
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public drugorders getDrugOrderByOrderID(Integer id){
-        return dao.getDrugOrderByOrderID(id);
-    }
-    
     @Transactional
     @Override
     public drugorders saveDrugOrder(drugorders doe) {
@@ -77,11 +67,17 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     public void deleteDrugOrder(drugorders newTable) {
         dao.deleteDrugOrder(newTable);
     }
-
+    
     @Transactional(readOnly = true)
     @Override
-    public List<drugorders> getNewTablesByPatient(Patient patient) {
-        return dao.getNewTablesByPatient(patient);
+    public drugorders getDrugOrderByOrderID(Integer id){
+        return dao.getDrugOrderByOrderID(id);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<drugorders> getDrugOrdersByGroupID(Integer id){
+        return dao.getDrugOrdersByGroupID(id);
     }
     
     @Transactional(readOnly = true)
@@ -92,8 +88,8 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugorders> getDrugOrdersByGroupID(Integer id){
-        return dao.getDrugOrdersByGroupID(id);
+    public List<drugorders> getNewTablesByPatient(Patient patient) {
+        return dao.getNewTablesByPatient(patient);
     }
     
     @Transactional(readOnly = true)

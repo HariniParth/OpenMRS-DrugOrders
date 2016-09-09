@@ -6,15 +6,16 @@
 package org.openmrs.module.drugorders.api.db.hibernate;
 
 import java.util.List;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.apache.commons.logging.Log;
 import org.hibernate.criterion.Restrictions;
-import org.openmrs.Concept;
-import org.openmrs.module.drugorders.api.db.drugordersdiseasesDAO;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.springframework.transaction.annotation.Transactional;
+import org.openmrs.module.drugorders.api.db.drugordersdiseasesDAO;
+
 
 /**
  *
@@ -22,24 +23,28 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     
+    private SessionFactory sessionFactory;
     protected final Log log = LogFactory.getLog(this.getClass());
 	
-    private SessionFactory sessionFactory;
+    public SessionFactory getSessionFactory() {
+	    return sessionFactory;
+    }
 
     public void setSessionFactory(SessionFactory sessionFactory) {
 	    this.sessionFactory = sessionFactory;
     }
     
-    public SessionFactory getSessionFactory() {
-	    return sessionFactory;
-    }
+    @Transactional
+    @Override
+    public void deleteDrugOrder(drugordersdiseases order){
+        sessionFactory.getCurrentSession().delete(order);
+    };
     
     @Override
     public drugordersdiseases saveDrugOrder(drugordersdiseases order){
         sessionFactory.getCurrentSession().saveOrUpdate(order);
         return order;
-    }
-    ;
+    };
     
     @Override
     public drugordersdiseases getDrugOrderByOrderID(Integer id){
@@ -47,8 +52,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
                 drugordersdiseases.class);
         crit.add(Restrictions.eq("orderid", id));
         return (drugordersdiseases) crit.uniqueResult();
-    }
-    ;
+    };
     
     @Transactional(readOnly = true)
     @Override
@@ -57,8 +61,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
                 drugordersdiseases.class);
         crit.add(Restrictions.eq("diseaseid", concept));
         return crit.list();
-    }
-    ;
+    };
     
     @Transactional(readOnly = true)
     @Override
@@ -67,8 +70,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
                 drugordersdiseases.class);
         crit.add(Restrictions.eq("patientid", patientID));
         return crit.list();
-    }
-    ;
+    };
     
     @Transactional(readOnly = true)
     @Override
@@ -77,13 +79,6 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
                 drugordersdiseases.class);
         crit.add(Restrictions.eq("diseaseid", concept)).add(Restrictions.eq("patientid", patientID));
         return crit.list();
-    }
-    ;
+    };
     
-    @Transactional
-    @Override
-    public void deleteDrugOrder(drugordersdiseases order){
-        sessionFactory.getCurrentSession().delete(order);
-    }
-    ;
 }

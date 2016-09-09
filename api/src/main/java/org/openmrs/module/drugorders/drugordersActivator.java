@@ -33,6 +33,7 @@ public class drugordersActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator${symbol_pound}willRefreshContext()
 	 */
+        @Override
 	public void willRefreshContext() {
 		log.info("Refreshing drugorders Module");
 	}
@@ -40,6 +41,7 @@ public class drugordersActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator${symbol_pound}contextRefreshed()
 	 */
+        @Override
 	public void contextRefreshed() {
 		log.info("drugorders Module refreshed");
 	}
@@ -47,6 +49,7 @@ public class drugordersActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator${symbol_pound}willStart()
 	 */
+        @Override
 	public void willStart() {
 		log.info("Starting drugorders Module");
 	}
@@ -54,6 +57,7 @@ public class drugordersActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator${symbol_pound}started()
 	 */
+        @Override
 	public void started() {
 		log.info("drugorders Module started");
                 AdministrationService administrationService = Context.getAdministrationService();
@@ -96,6 +100,7 @@ public class drugordersActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator${symbol_pound}willStop()
 	 */
+        @Override
 	public void willStop() {
 		log.info("Stopping drugorders Module");
 	}
@@ -103,6 +108,7 @@ public class drugordersActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator${symbol_pound}stopped()
 	 */
+        @Override
 	public void stopped() {
 		log.info("drugorders Module stopped");
 	}

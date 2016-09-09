@@ -9,11 +9,11 @@
  */
 package org.openmrs.module.drugorders;
 
-import java.io.Serializable;
 import java.util.Date;
+import org.openmrs.Concept;
+import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
-import org.openmrs.Concept;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.

@@ -12,8 +12,8 @@ package org.openmrs.module.drugorders.api.db;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
-import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.api.drugordersService;
 
 /**
  *  Database methods for {@link drugordersService}.
@@ -22,12 +22,12 @@ public interface drugordersDAO {
 	
     public int getLastGroupID();
     public drugorders getDrugOrderByID(Integer id);
-    public drugorders getDrugOrderByOrderID(Integer id);
     public void deleteDrugOrder(drugorders drugOrder);
+    public drugorders getDrugOrderByOrderID(Integer id);
     public drugorders saveDrugOrder(drugorders drugOrder);
     public List<drugorders> getDrugOrdersByGroupID(Integer id);
-    public List<drugorders> getNewTablesByPatient(Patient patient);
     public List<drugorders> getDrugOrdersByStatus(String status);
+    public List<drugorders> getNewTablesByPatient(Patient patient);
     public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID);
     
 }

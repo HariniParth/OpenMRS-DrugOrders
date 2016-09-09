@@ -5,9 +5,9 @@
  */
 package org.openmrs.module.drugorders;
 
+import org.openmrs.Concept;
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.Concept;
 
 /**
  *

@@ -6,13 +6,13 @@
 package org.openmrs.module.drugorders.api.impl;
 
 import java.util.List;
+import org.openmrs.Concept;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Concept;
 import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.module.drugorders.api.db.medicationplansDAO;
 import org.openmrs.module.drugorders.api.medicationplansService;
-import org.openmrs.module.drugorders.medicationplans;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -21,14 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class medicationplansServiceImpl extends BaseOpenmrsService implements medicationplansService{
     
+    private medicationplansDAO dao;
     protected final Log log = LogFactory.getLog(this.getClass());
 
-    private medicationplansDAO dao;
-	
-    public void setDao(medicationplansDAO dao) {
-	    this.dao = dao;
-    }
-    
     public Log getLog() {
         return log;
     }
@@ -37,22 +32,15 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
 	    return dao;
     }
     
+    public void setDao(medicationplansDAO dao) {
+	    this.dao = dao;
+    }
+    
     /**
      *
      * @param doe
      * @return
      */
-    @Transactional
-    @Override
-    public medicationplans saveNewTable(medicationplans doe) {
-        return dao.saveNewTable(doe);
-    }
-    
-    @Transactional(readOnly = true)
-    @Override
-    public List<medicationplans> getMedicationPlansByDisease(Concept concept){
-        return dao.getMedicationPlansByDisease(concept);
-    }
     
     @Transactional(readOnly = true)
     @Override
@@ -70,4 +58,17 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     public medicationplans getMedicationPlan(Integer planID){
         return dao.getMedicationPlan(planID);
     }
+    
+    @Transactional
+    @Override
+    public medicationplans saveNewTable(medicationplans doe) {
+        return dao.saveNewTable(doe);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<medicationplans> getMedicationPlansByDisease(Concept concept){
+        return dao.getMedicationPlansByDisease(concept);
+    }
+    
 }

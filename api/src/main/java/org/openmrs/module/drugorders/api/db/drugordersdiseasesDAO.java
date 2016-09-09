@@ -15,10 +15,11 @@ import org.openmrs.module.drugorders.drugordersdiseases;
  */
 public interface drugordersdiseasesDAO {
     
-    public drugordersdiseases saveDrugOrder(drugordersdiseases order);
+    public void deleteDrugOrder(drugordersdiseases order);
     public drugordersdiseases getDrugOrderByOrderID(Integer id);
+    public drugordersdiseases saveDrugOrder(drugordersdiseases order);
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept);
     public List<drugordersdiseases> getDrugOrdersByPatient(String patientID);
     public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID);
-    public void deleteDrugOrder(drugordersdiseases order);
+    
 }
