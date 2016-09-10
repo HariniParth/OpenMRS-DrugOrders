@@ -233,7 +233,7 @@ function autoCompleteDisease(disease){
     });
 }
 
-function selectDisease(){
+function selectDisease(drug, allergies){
     $("#diseaseForm").submit();
 }
 

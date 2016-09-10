@@ -1,5 +1,6 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
+    def allergicDrugList = "";
 %>
 
 <div id="medicationPlanWindow">
@@ -9,7 +10,7 @@
     <div class="addMedicationPlanWindow">
         <form method="post" id="diseaseForm">
             <div class="fields"><label>Plan Name </label>
-                <select id="diseaseName" name="diseaseName" class="select_field" onchange="selectDisease()">
+                <select id="diseaseName" name="diseaseName" class="select_field" onchange="selectDisease('${drugsNames}','${allergicDrugs}')">
                     <option value="">Choose option</option>
                     <% diseaseNames.each { diseaseName -> %>
                         <option value="${ diseaseName }">${ diseaseName }</option>
@@ -62,7 +63,26 @@
                     </span>
 
                 <% } %>
-            </div><br/><br/>
+            </div>
+                
+            <% drugsNames.each { drugName -> %>
+                <% allergicDrugs.each { allergicDrug -> %>
+                    <% if(drugName == allergicDrug) { %>
+                        <% allergicDrugList = allergicDrugList + drugName + " " %>
+                    <% } %>
+                <% } %>
+            <% } %>
+            
+            <% if(allergicDrugList != "") { %>
+                <div id="planItemAllergicReasonField">
+                    <div class="fields" id="view_order_detail">
+                        NOTE: The patient is allergic to ${allergicDrugList}<br/>
+                        To Continue with this Plan,<br/>
+                        Enter the Reasons for Ordering the Allergic Drug/s<br/>
+                        <input type="textarea" id="allergicPlanItemOrder" name="allergicPlanItemOrder" class="select_field" />
+                    </div><br/><br/>
+                </div>
+            <% } %>
 
             <input type="hidden" id="selectMedPlan" name="action" value="selectMedPlan" />
             <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
