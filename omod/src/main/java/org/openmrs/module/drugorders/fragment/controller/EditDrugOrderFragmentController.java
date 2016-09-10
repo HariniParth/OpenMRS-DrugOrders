@@ -28,9 +28,11 @@ public class EditDrugOrderFragmentController {
     List<Concept> discontinueReasons = new ArrayList<Concept>();
     
     public void controller(PageModel model,@RequestParam("patientId") Patient patient,
-                            @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan){
+                            @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
+                            @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
 
         model.addAttribute("diseaseForPlan", diseaseForPlan);
+        model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         
         Concept discontinueReasonsConcept = Context.getConceptService().getConcept(162825);
         

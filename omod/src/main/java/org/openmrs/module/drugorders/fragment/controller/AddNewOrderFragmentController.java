@@ -33,13 +33,13 @@ public class AddNewOrderFragmentController {
     List<Concept> diseases = new ArrayList<Concept>();
     
     public void controller(PageModel model, 
-            @RequestParam(value = "disease_name", required = false) String disease_name,
+            @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
             @RequestParam("patientId") Patient patient){
 
-        model.addAttribute("disease_name", disease_name);
+        model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("patientid", patient.getPatientId());
-        
+                
         String diseaseNameEntered = diseaseNameSelected.replace(" ", "");
         model.addAttribute("diseaseName", diseaseNameEntered);
         
