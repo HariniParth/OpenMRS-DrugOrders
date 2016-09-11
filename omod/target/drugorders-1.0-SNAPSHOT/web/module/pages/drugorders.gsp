@@ -16,6 +16,7 @@
 
 </script>
  
+${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
 
 <div class="info-body">
     
