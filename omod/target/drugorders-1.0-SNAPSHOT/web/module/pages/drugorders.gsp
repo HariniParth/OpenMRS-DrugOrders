@@ -37,17 +37,10 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
     <div id="orderSummaryBody">
  
         <div id="individualOrderWindow"> 
-            <div>
-                <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
-                    <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE DRUG ORDER") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
-                </h3>
-            </div>
-
-            <a href="#" id="nonActiveOrdersLinkView" onclick="showDiscontinuedFulfilledOrders()">(Click to view discontinued/canceled/fulfilled orders)</a>
-            <a href="#" id="nonActiveOrdersLinkHide" onclick="hideDiscontinuedFulfilledOrders()">(Click to hide discontinued/canceled/fulfilled orders)</a>
-            <br/><br/>
-            
-        </div>
+            <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
+                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE DRUG ORDER") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
+            </h3>
+        </div><br/>
         
         <div id="currentDrugOrdersWindow">
             ${ ui.includeFragment("drugorders", "drugOrderSingle") }
@@ -56,17 +49,10 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         <br/><br/>
 
         <div id="medicationPlanOrderWindow">
-            <div>
-                <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
-                    <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="showMedicationPlanOrderWindow()"></i></span>
-                </h3>
-            </div>
-
-            <a href="#" id="nonActivePlansLinkView" onclick="showDiscontinuedFulfilledPlans()">(Click to view discontinued/canceled/fulfilled orders)</a>
-            <a href="#" id="nonActivePlansLinkHide" onclick="hideDiscontinuedFulfilledPlans()">(Click to hide discontinued/canceled/fulfilled orders)</a>
-            <br/><br/>
-            
-        </div>
+            <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
+                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="showMedicationPlanOrderWindow()"></i></span>
+            </h3>
+        </div><br/>
         
         <div id="currentMedPlansWindow">
             ${ ui.includeFragment("drugorders", "medicationPlans") }

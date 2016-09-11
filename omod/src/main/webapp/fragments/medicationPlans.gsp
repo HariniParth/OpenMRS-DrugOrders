@@ -43,6 +43,16 @@
     <% } %>
 <% } %>
 
+<br/><br/>
+
+<span id="nonActivePlansLinkView">Show Discontinued/Canceled/Fulfilled Orders
+    <i class="toggle-icon icon-caret-down small" onclick="showDiscontinuedFulfilledPlans()"></i>
+</span>
+<span id="nonActivePlansLinkHide">Hide Discontinued/Canceled/Fulfilled Orders
+    <i class="toggle-icon icon-caret-up small" onclick="hideDiscontinuedFulfilledPlans()"></i>
+</span>
+
+<br/><br/>
 
 <div id="drugOrderPlanDiscontinued">
     

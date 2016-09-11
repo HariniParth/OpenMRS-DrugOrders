@@ -43,8 +43,17 @@
     </span><br/><br/>
 <% } %>
 
-<br/><br/><br/>
+<br/><br/>
 
+<span id="nonActiveOrdersLinkView">Show Discontinued/Canceled/Fulfilled Orders
+    <i class="toggle-icon icon-caret-down small" onclick="showDiscontinuedFulfilledOrders()"></i>
+</span>
+<span id="nonActiveOrdersLinkHide">Hide Discontinued/Canceled/Fulfilled Orders
+    <i class="toggle-icon icon-caret-up small" onclick="hideDiscontinuedFulfilledOrders()"></i>
+</span>
+
+<br/><br/>
+            
 <div id="nonActiveOrdersWindow">
     <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
         <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
