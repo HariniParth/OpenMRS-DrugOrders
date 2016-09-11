@@ -22,7 +22,7 @@
             <div class="orderDetails">
                 <% drugOrderMain.value.each { drugOrderMn -> %>
                     <% drugOrderExtension.value.each { drugOrderExtn -> %>
-                        <% if(drugOrderMn.orderId == drugOrderExtn.orderId) { %>
+                        <% if((drugOrderMn.orderId == drugOrderExtn.orderId) && ((drugOrderExtn.orderstatus).equals("Active-Plan"))) { %>
 
                             <p class="fields">
                                 <span id="order_label">   
