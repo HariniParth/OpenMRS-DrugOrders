@@ -27,9 +27,21 @@
                 <label id="start_date"></label>
             </div>
         </div>
-
+        
         <br/><br/>
-
+        
+        <div id="allergicOrderReasonView">
+            <div class="fields" id="view_order_detail">
+                <div id="order_label">
+                    <label>Order Reason</label>
+                </div>
+                <div id="order_value">
+                    <label id="order_reason"></label>
+                </div>
+            </div>
+            <br/><br/>
+        </div>
+        
         <div class="fields" id="view_order_detail">
             <label>Instructions from Physician for</label>
         </div>

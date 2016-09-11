@@ -47,13 +47,18 @@ function hideIndividualOrderDetailsWindow(){
     $("#pharmacistInstructions").val("");
 }
 
-function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,allergicOrderReason,patientinstructions,pharmacistinstructions){
     jq("#showDiscontinueOrderView").hide();
     jq("#view_window_close_btn").show();
     $("#activeOrderAction").text(action);
     $("#patient_name").text(givenName+" "+lastName);
     $("#start_date").text(startdate);
     $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
+    if(allergicOrderReason !== "" && allergicOrderReason !== "null"){
+        $("#order_reason").text(allergicOrderReason);
+        jq("#allergicOrderReasonView").show();
+        document.getElementById("allergicOrderReasonView").style.display = 'block';
+    }
     $("#patient_instructions").text(patientinstructions);
     $("#pharmacist_instructions").text(pharmacistinstructions);
     jq("#singleOrderView").show();
@@ -66,7 +71,7 @@ function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
 }
 
-function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,patientinstructions,pharmacistinstructions){
+function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,allergicOrderReasons,patientinstructions,pharmacistinstructions){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
     $("#orderClass").val(orderClass);
@@ -81,6 +86,11 @@ function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
     $("#associatedDiagnosis").val(associateddiagnosis);
+    if(allergicOrderReasons !== "" && allergicOrderReasons !== "null"){
+        $("#allergicOrderReason").val(allergicOrderReasons);
+        jq("#allergicDrugOrderReasonField").show();
+        document.getElementById("allergicDrugOrderReasonField").style.display = 'block';
+    }
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
     jq("#singleOrderDetailsWindow").show();

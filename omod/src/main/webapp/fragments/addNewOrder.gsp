@@ -79,7 +79,7 @@
                         NOTE: The patient is allergic to ${allergicDrugList}<br/>
                         To Continue with this Plan,<br/>
                         Enter the Reasons for Ordering the Allergic Drug/s<br/>
-                        <input type="textarea" id="allergicPlanItemOrder" name="allergicPlanItemOrder" class="select_field" />
+                        <input type="textarea" id="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" class="select_field" />
                     </div><br/><br/>
                 </div>
             <% } %>

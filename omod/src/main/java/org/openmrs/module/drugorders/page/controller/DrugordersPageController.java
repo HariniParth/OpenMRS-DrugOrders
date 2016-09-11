@@ -24,6 +24,8 @@ import org.openmrs.OrderFrequency;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.allergyapi.Allergies;
+import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
@@ -64,11 +66,14 @@ public class DrugordersPageController {
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "planRenewed", required = false) String planRenewed,
-            @RequestParam(value = "planDiscontinued", required = false) String planDiscontinued) {
+            @RequestParam(value = "planDiscontinued", required = false) String planDiscontinued,
+            @RequestParam(value = "allergicPlanItemOrderReason", required = false) String allergicPlanItemOrderReason) {
 
         String patientID = Integer.toString(patient.getPatientId());
         String drugNameEntered = drugNameSelected.replace(" ", "");
         String associatedDiagnosis = selectedDiagnosis.replace(" ", "");
+        
+        Allergies allergies = patientService.getAllergies(patient);
         model.addAttribute("allergies", patientService.getAllergies(patient));
         
         if (StringUtils.isNotBlank(action)) {
@@ -151,9 +156,15 @@ public class DrugordersPageController {
                         List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
                     
                         for(medicationplans medplan : medplans){
-
+                            
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;
+                            
+                            for(Allergy allergy : allergies){
+                                if(allergy.getAllergen().toString().equals(medplan.getDrugid().getDisplayString()))
+                                    allergicOrderReason = allergicPlanItemOrderReason;
+                            }
+                                                        
                             int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
                             createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, patientInstructions, pharmacistInstructions);
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
