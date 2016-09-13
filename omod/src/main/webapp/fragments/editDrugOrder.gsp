@@ -32,6 +32,7 @@
         
         <div id="allergicOrderReasonView">
             <div class="fields" id="view_order_detail">
+                <label>Patient Confirmed To Be Allergic To Drug</label><br/><br/>
                 <div id="order_label">
                     <label>Order Reason</label>
                 </div>
@@ -99,7 +100,7 @@
             <input type="hidden" name="action" value="discontinueDrugOrder"/>
             <br/>
             <button class="confirm pull-right" id="btn-place" name="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
-            <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button>
+            <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
     
@@ -122,7 +123,7 @@
         <input type="hidden" name="action" value="renewMedPlan"/>
         <br/>
         <button class="confirm pull-right" id="btn-place" name="renewMedPlan" type="submit" onclick="showRenewPlanOrderWindow()">${ ui.message("Renew") }</button>
-        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewPlanOrderWindow()">${ ui.message("Close") }</button>
+        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewPlanOrderWindow()">${ ui.message("Cancel") }</button>
     </form>
 </div>
     
@@ -141,7 +142,7 @@
         <input type="hidden" name="action" value="discardGroupOrder"/><br/>
         
         <button class="confirm pull-right" id="btn-place" name="discardGroupOrder" type="submit" onclick="">${ ui.message("Discard") }</button>
-        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDiscardGroupOrderWindow()">${ ui.message("Close") }</button>
+        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDiscardGroupOrderWindow()">${ ui.message("Cancel") }</button>
     </form>
 </div>
 
