@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-public class DrugOrderSingleFragmentController {
+public class DrugOrderSingleNonActiveFragmentController {
     
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
         
@@ -34,20 +34,20 @@ public class DrugOrderSingleFragmentController {
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
-            if(dorder.getOrderstatus().equals("Active"))
+            if(dorder.getOrderstatus().equals("Discontinued"))
                 dorders.add(dorder);
-            else if(dorder.getOrderstatus().equals("Active-Group")){
+            else if(dorder.getOrderstatus().equals("Discontinued-Group")){
                 if(groupDorders.get(dorder.getOrderId()) == null){
                     groupDorders.put(dorder.getGroupid(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupid()));
                 }
             }
         }
                 
-        model.addAttribute("existingDrugOrdersExtension", dorders);
-        model.addAttribute("existingDrugOrderGroups", groupDorders);
+        model.addAttribute("oldDrugOrdersExtension", dorders);
+        model.addAttribute("oldDrugOrderGroups", groupDorders);
         
         List<DrugOrder> drugOrderMain = DrugOrderList.getDrugOrderMainDataByPatient(patient);
-        model.addAttribute("existingDrugOrdersMain", drugOrderMain);
+        model.addAttribute("oldDrugOrdersMain", drugOrderMain);
                 
     }
     
