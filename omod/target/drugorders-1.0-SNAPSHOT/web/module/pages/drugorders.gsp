@@ -44,10 +44,19 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         
         <div id="currentDrugOrdersWindow">
             ${ ui.includeFragment("drugorders", "drugOrderSingle") }
-        </div>
+        </div><br/>
+                
+        <span class="viewDetails">
+            <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"> Discontinued/Canceled/Fulfilled Orders</i>
+            <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"> Discontinued/Canceled/Fulfilled Orders</i>
+        </span><br/><br/>
         
-        <br/><br/>
+        <div class="oldDrugOrdersWindow">
+            ${ ui.includeFragment("drugorders", "drugOrderSingleNonActive") }
+        </div>
 
+        <br/><br/>
+        
         <div id="medicationPlanOrderWindow">
             <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
                 <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="showMedicationPlanOrderWindow()"></i></span>
@@ -56,6 +65,15 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         
         <div id="currentMedPlansWindow">
             ${ ui.includeFragment("drugorders", "medicationPlans") }
+        </div><br/>
+        
+        <span class="viewDetails">
+            <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"> Discontinued/Canceled/Fulfilled Orders</i>
+            <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"> Discontinued/Canceled/Fulfilled Orders</i>
+        </span><br/><br/>
+        
+        <div class="oldDrugOrdersWindow">
+            ${ ui.includeFragment("drugorders", "medicationPlansNonActive") }
         </div>
         
     </div>
@@ -76,3 +94,20 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
                
     </div>
 </div>
+
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().nextAll(".oldDrugOrdersWindow").first().show();
+        jq(this).hide();
+        jq(this).nextAll(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().nextAll(".oldDrugOrdersWindow").first().hide();
+        jq(this).hide();
+        jq(this).prevAll(".icon-plus-sign").show();
+    });
+</script>
