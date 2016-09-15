@@ -22,37 +22,36 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-public class MedicationPlansFragmentController {
+public class MedicationPlansNonActiveFragmentController {
     
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
         
-        //Data structure to store the 'Drug Order' object properties for all the active orders for the given disease
-        HashMap<Concept,ArrayList<Order>> drugOrderMainPlanActive = new HashMap <Concept,ArrayList<Order>>();
+        //Data structure to store the 'Drug Order' object properties for all the non-active orders for the given disease
+        HashMap<Concept,ArrayList<Order>> drugOrderMainPlanNonActive = new HashMap <Concept,ArrayList<Order>>();
 
-        //Data structure to store the 'drugorders' object properties for all the active orders for the given disease
-        HashMap <Concept,ArrayList<drugorders>> drugOrderExtensionPlanActive = new HashMap <Concept,ArrayList<drugorders>>();
-
+        //Data structure to store the 'drugorders' object properties for all the non-active orders for the given disease
+        HashMap <Concept,ArrayList<drugorders>> drugOrderExtensionPlanNonActive = new HashMap <Concept,ArrayList<drugorders>>();
+        
         for(Concept disease : MedicationPlans.getPlansOrderedForPatient(patient)){
             
             ArrayList<Order> drugOrderMain = new ArrayList<Order>();
             ArrayList<drugorders> drugOrderExtension = new ArrayList<drugorders>();
             
             for(Integer diseaseOrderID : MedicationPlans.getOrderIDFromPlanOrdersForPatient(patient)){
-                if((disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()) && (Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Active-Plan")){
+                if((disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()) && (Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Discontinued-Plan")){
                     drugOrderMain.add(Context.getOrderService().getOrder(diseaseOrderID));
                     drugOrderExtension.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID));
                 }
             }
             
             if(drugOrderMain.size() > 0 && drugOrderExtension.size() > 0){
-                drugOrderMainPlanActive.put(disease, drugOrderMain);
-                drugOrderExtensionPlanActive.put(disease, drugOrderExtension);
-            }         
+                drugOrderMainPlanNonActive.put(disease, drugOrderMain);
+                drugOrderExtensionPlanNonActive.put(disease, drugOrderExtension);
+            }
         }
+                
+        model.addAttribute("drugOrderMainPlanNonActive", drugOrderMainPlanNonActive);
+        model.addAttribute("drugOrderExtensionPlanNonActive", drugOrderExtensionPlanNonActive);
         
-        model.addAttribute("drugOrderMainPlanActive", drugOrderMainPlanActive);
-        model.addAttribute("drugOrderExtensionPlanActive", drugOrderExtensionPlanActive);
-
     }
-    
 }
