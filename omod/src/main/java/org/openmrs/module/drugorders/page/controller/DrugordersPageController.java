@@ -228,6 +228,12 @@ public class DrugordersPageController {
                         originalOrderExtension.setOrderstatus("Discontinued");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active");
                     }
+                    else if(orderClass.equals("GROUP")){
+                        originalOrderExtension.setOrderstatus("Discontinued-Group");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Group");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(originalOrderExtension.getGroupid());
+                        originalOrderExtension.setGroupid(null);
+                    }
                 }
 
                 if ("RENEW DRUG ORDER".equals(action)) {
