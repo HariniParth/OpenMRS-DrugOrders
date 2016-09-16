@@ -167,7 +167,7 @@ public class DrugordersPageController {
                                                         
                             int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
                             createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, patientInstructions, pharmacistInstructions);
-                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                             createDiseasePlan(order,patientID,diseaseForPlan);
 
                         }
@@ -221,12 +221,12 @@ public class DrugordersPageController {
                     
                     if(orderClass.equals("PLAN")){
                         originalOrderExtension.setOrderstatus("Discontinued-Plan");
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
                         Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderid(order);
                     } 
                     else if(orderClass.equals("SINGLE")){
                         originalOrderExtension.setOrderstatus("Discontinued");
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("New");
                     }
                     else if(orderClass.equals("GROUP")){
                         originalOrderExtension.setOrderstatus("Discontinued-Group");
