@@ -128,20 +128,20 @@
 </div>
     
 
-<div id="showDiscardGroupOrderWindow">
+<div id="showGroupOrderWindow">
     <form method="post">
         <div class="dialog-header">
             <h4 id="text_heading">${ ui.message("DISCARD GROUP ORDER") }</h4>
         </div><br/>
         
         <div class="fields" id="groupOrderBlock">
-            <label>Drugs Ordered As A Group</label><br/><br/>
+            <label>Drugs Ordered In This Group</label><br/><br/>
             <input type="hidden" id="groupOrderID" name="groupOrderID" />
         </div><br/>
-
-        <input type="hidden" name="action" value="discardGroupOrder"/><br/>
         
-        <button class="confirm pull-right" id="btn-place" name="discardGroupOrder" type="submit" onclick="">${ ui.message("Discard") }</button>
+        <input type="hidden" name="action" value="DISCARD GROUP ORDER"/><br/>
+        
+        <button class="confirm pull-right" id="btn-place" type="submit" onclick="">${ ui.message("Confirm") }</button>
         <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDiscardGroupOrderWindow()">${ ui.message("Cancel") }</button>
     </form>
 </div>

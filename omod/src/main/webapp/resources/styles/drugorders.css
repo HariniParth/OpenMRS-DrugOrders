@@ -113,7 +113,7 @@ and open the template in the editor.
     width: 35px;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showDiscardGroupOrderWindow, #allergicOrderReasonView{
+#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView{
     display: none;
 }
 
@@ -147,7 +147,7 @@ and open the template in the editor.
     font-size: 10px;
 }
 
-#createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #showRenewOrderView, #editMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView, #groupOrderList{
+#createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #showRenewOrderView, #editMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView, #groupOrderList, #showGroupOrderWindow{
     background: #F9F9F9;
     border: 1px solid #eee;
     padding: 5px;

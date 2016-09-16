@@ -20,7 +20,7 @@
                     <br/><br/>
             <% } %>
         <% } %>
-    <% } %>
+    <% } %><br/>
     
     <% oldDrugOrderGroups.each { oldDrugOrder -> %>
         <div class="fields">
@@ -28,7 +28,6 @@
                 <% oldDrugOrdersMain.each { oldDrugOrderMain -> %>
                     <% if((oldDrugOrderMain.orderId == oldOrder.orderId) && (!((oldOrder.orderstatus).equals("Active-Group")))) { %>
                         <span id="entries">
-                            [Group ${ oldDrugOrder.key }] 
                             <a href="#" id="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldOrder.startdate }','${ oldOrder.drugname.getDisplayString() }','${ oldDrugOrderMain.dose }','${ oldDrugOrderMain.doseUnits.getDisplayString() }','${ oldDrugOrderMain.route.getDisplayString() }','${ oldDrugOrderMain.duration }','${ oldDrugOrderMain.durationUnits.getDisplayString() }','${ oldDrugOrderMain.quantity }','${ oldDrugOrderMain.quantityUnits.getDisplayString() }','${ oldDrugOrderMain.frequency }','${ oldOrder.isallergicorderreasons }','${ oldOrder.patientinstructions }','${ oldOrder.pharmacistinstructions }')">
                                 ${ oldOrder.drugname.getDisplayString() } ${ oldOrder.startdate }    
                             </a>
@@ -39,7 +38,7 @@
             <% } %>
             
             <span id="button">
-                <i class="icon-pencil edit-action" title="${ ui.message("Renew") }" onclick="showRenewGroupOrderWindow()"></i>
+                <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="showRenewGroupOrderWindow()"></i>
             </span><br/><br/>
         </div>
     <% } %>

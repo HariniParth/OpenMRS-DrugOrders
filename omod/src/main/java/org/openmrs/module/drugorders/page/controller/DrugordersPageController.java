@@ -199,7 +199,7 @@ public class DrugordersPageController {
                     }
                 }
                 
-                if ("discardGroupOrder".equals(action)) {
+                if ("DISCARD GROUP ORDER".equals(action)) {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
                     for(drugorders order : orders){
                         order.setOrderstatus("Discontinued-Group");
