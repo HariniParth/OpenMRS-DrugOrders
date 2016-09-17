@@ -95,6 +95,36 @@ public class drugordersActivator implements ModuleActivator {
                         setConcept.addSetMember(concept);
                     }
                 }
+                
+                if(cs.getConceptByName("Order Priority") == null){
+                    ConceptClass conceptClass = new ConceptClass();
+                    conceptClass.setName("Order Priority");
+                    conceptClass.setDescription("Priority of an drug order");
+                    cs.saveConceptClass(conceptClass);
+                    
+                    Concept setConcept = new Concept();
+                    setConcept.setConceptClass(conceptClass);
+                    ConceptName setConceptName = new ConceptName("Order Priority",Locale.US);
+                    setConcept.setFullySpecifiedName(setConceptName);
+                    ConceptDatatype setConceptDatatype = cs.getConceptDatatype(3);
+                    setConcept.setDatatype(setConceptDatatype);
+                    cs.saveConcept(setConcept);
+                    
+                    String orderPriority[] = {"Normal","High","Exception"};
+                    
+                    for(int i=0;i<orderPriority.length;i++){
+                        Concept concept = new Concept();
+                        concept.setConceptClass(conceptClass);
+                        ConceptName conceptName = new ConceptName(orderPriority[i],Locale.US);
+                        concept.setFullySpecifiedName(conceptName);
+                        concept.addName(conceptName);
+                        ConceptDatatype conceptDatatype = cs.getConceptDatatype(3);
+                        concept.setDatatype(conceptDatatype);
+                        cs.saveConcept(concept);
+                        setConcept.addSetMember(concept);
+                    }
+                    
+                }
         }
 	
 	/**

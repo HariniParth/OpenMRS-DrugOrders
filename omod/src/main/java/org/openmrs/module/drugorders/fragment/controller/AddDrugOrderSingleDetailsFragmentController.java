@@ -37,6 +37,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
     List<Concept> doses = new ArrayList<Concept>();
     List<Concept> quantities = new ArrayList<Concept>();
     List<Concept> frequencies = new ArrayList<Concept>();
+    List<Concept> priorities = new ArrayList<Concept>();
     List<Concept> drugs = new ArrayList<Concept>();
     
     public void controller(PageModel model, 
@@ -51,6 +52,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
                             @RequestParam(value = "drugDuration", required = false) Integer drugDuration,
                             @RequestParam(value = "durationUnits", required = false) String durationUnits,
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
+                            @RequestParam(value = "priority", required = false) String priority,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis,
                             @RequestParam(value = "patientInstructions", required = false) String patientInstructions,
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
@@ -68,6 +70,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("drugDuration", drugDuration);
         model.addAttribute("durationUnits", durationUnits);
         model.addAttribute("drugFrequency", drugFrequency);
+        model.addAttribute("priority", priority);
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
@@ -158,6 +161,15 @@ public class AddDrugOrderSingleDetailsFragmentController {
             diagnosisNames.add(diagnosisName.getDisplayString());
         }
         model.addAttribute("diagnosisNames", diagnosisNames);
+        
+        Concept orderPriority = Context.getConceptService().getConceptByName("Order Priority");
+        
+        for(ConceptSet conceptPriority : orderPriority.getConceptSets()){
+            Concept orderPrio = conceptPriority.getConcept();
+            priorities.add(orderPrio);
+        }
+        
+        model.addAttribute("priorities", priorities);
 
     }
     

@@ -34,6 +34,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private Concept associateddiagnosis;
         private String patientinstructions;
         private String pharmacistinstructions;
+        private Concept priority;
         private String orderstatus;
         private Integer discontinued;
         private Concept discontinuereason;
@@ -144,6 +145,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	public void setPharmacistinstructions(String pharmacistinstructions) {
 		this.pharmacistinstructions = pharmacistinstructions;
 	} 
+        
+        public Concept getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Concept priority) {
+		this.priority = priority;
+	}
         
         public String getOrderstatus() {
 		return orderstatus;

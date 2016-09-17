@@ -38,6 +38,7 @@
             <column name="associateddiagnosis" type="int"></column>
             <column name="patientinstructions" type="varchar(255)"></column>
             <column name="pharmacistinstructions" type="varchar(255)"></column> 
+            <column name="priority" type="int"></column>
             <column name="orderstatus" type="varchar(50)"></column>
             <column name="discontinued" type="tinyint(1)"></column>
             <column name="discontinuereason" type="int"></column>

@@ -160,10 +160,25 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Diagnosis</label>
+                <label>Diagnosis <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
                 <input type="textarea" maxlength="50" id="associatedDiagnosis" autocomplete="on" oninput="autoCompleteDiagnosis('${diagnosisNames}')" name="associatedDiagnosis" class="select_field" />
+            </div>
+        </div>
+
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Priority <span id="asterisk">*</span></label>
+            </div>
+            <div id="order_value">
+                <select id="orderPriority" name="orderPriority" class="select_field">
+                    <% priorities.each { priority -> %>
+                        <option value="${ priority.getDisplayString() }">${ priority.getDisplayString() }</option>
+                    <% } %>
+                </select>
             </div>
         </div>
 
