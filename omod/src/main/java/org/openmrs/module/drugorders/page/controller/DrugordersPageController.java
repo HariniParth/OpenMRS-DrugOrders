@@ -276,7 +276,7 @@ public class DrugordersPageController {
 
         Date start = defaultStartDate(),
                 end = defaultEndDate(start);
-        List<Encounter> encs = Context.getEncounterService().getEncounters(null, null, start, end, null, null, null, false);
+        List<Encounter> encs = Context.getEncounterService().getEncounters(patient, null, start, end, null, null, null, null, null, false);
 
         Encounter encOld = encs.get(0), enc = new Encounter();
         enc.setEncounterDatetime(new Date());
