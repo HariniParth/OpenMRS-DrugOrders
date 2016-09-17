@@ -52,6 +52,12 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
 
     @Transactional(readOnly = true)
     @Override
+    public List<drugorders> getAllDrugOrders() {
+        return dao.getAllDrugOrders();
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
     public drugorders getDrugOrderByID(Integer id) {
         return dao.getDrugOrderByID(id);
     }

@@ -46,6 +46,12 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     };
     
     @Override
+    public List<drugorders> getAllDrugOrders(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(drugorders.class);
+        return crit.list();
+    };
+    
+    @Override
     public drugorders getDrugOrderByOrderID(Integer id){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);

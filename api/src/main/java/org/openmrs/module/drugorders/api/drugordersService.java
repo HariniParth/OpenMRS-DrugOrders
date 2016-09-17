@@ -31,6 +31,8 @@ public interface drugordersService extends OpenmrsService {
 
     public int getLastGroupID();
     
+    public List<drugorders> getAllDrugOrders();
+    
     public drugorders getDrugOrderByID(Integer id);
     
     public void deleteDrugOrder(drugorders drugOrder);

@@ -21,6 +21,7 @@ import org.openmrs.module.drugorders.api.drugordersService;
 public interface drugordersDAO {
 	
     public int getLastGroupID();
+    public List<drugorders> getAllDrugOrders();
     public drugorders getDrugOrderByID(Integer id);
     public void deleteDrugOrder(drugorders drugOrder);
     public drugorders getDrugOrderByOrderID(Integer id);
