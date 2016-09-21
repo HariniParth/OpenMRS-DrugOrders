@@ -32,6 +32,10 @@
                 <require_module version="${htmlwidgetsVersion}">
 			org.openmrs.module.htmlwidgets
 		</require_module>
+                
+                <require_module version="1.7">
+                    org.openmrs.module.uicommons
+                </require_module>
 	</require_modules>
 
 	

@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
@@ -16,6 +17,7 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
+import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +29,7 @@ public class AdministrationPageController {
     
     private final HashMap<String,String> diseasePlanName = new HashMap<String,String>();
     
-    public void controller(PageModel model, @RequestParam(value = "plan_name", required = false) String plan_name,
+    public void controller(PageModel model, HttpSession session, @RequestParam(value = "plan_name", required = false) String plan_name,
                             @RequestParam(value = "disease_name", required = false) String disease_name,
                             @RequestParam(value = "new_disease_name", required = false) String new_disease_name,
                             @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
@@ -53,6 +55,8 @@ public class AdministrationPageController {
                         medPlan.setDiseaseid(Context.getConceptService().getConceptByName(modified_disease_name));
                         Context.getService(medicationplansService.class).saveNewTable(medPlan);
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Modified!");
                 }
                 
                 if ("deletePlan".equals(action)) {
@@ -60,11 +64,14 @@ public class AdministrationPageController {
                     for(medicationplans medPlan : medPlans){
                         Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Discarded!");
                 }
                 
                 if ("deletePlanItem".equals(action)) {
                     medicationplans medPlan = Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(medPlan_id));
                     Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Item Discarded!");
                 }
                 
             } catch(APIException e){

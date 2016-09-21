@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.CareSetting;
 import org.openmrs.DrugOrder;
@@ -23,6 +24,7 @@ import org.openmrs.EncounterRole;
 import org.openmrs.OrderFrequency;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
+import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.Allergies;
 import org.openmrs.module.allergyapi.Allergy;
@@ -35,6 +37,7 @@ import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
+import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public class DrugordersPageController {
@@ -58,7 +61,7 @@ public class DrugordersPageController {
             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
             @RequestParam(value = "discontinueOrderReasonCoded", required = false) String discontinueOrderReasonCoded,
             @RequestParam(value = "discontinueOrderReasonNonCoded", required = false) String discontinueOrderReasonNonCoded,
-            @SpringBean("allergyService") PatientService patientService,
+            @SpringBean("allergyService") PatientService patientService, HttpSession session,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "order_id", required = false) Integer order_id,
             @RequestParam(value = "orderClass", required = false) String orderClass,
@@ -84,12 +87,15 @@ public class DrugordersPageController {
                         
                         drugorders o = Context.getService(drugordersService.class).getDrugOrderByDrugAndPatient(Context.getConceptService().getConceptByName(drugNameEntered), patientID);
                         if(o == null){
+                            
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;
                             int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                             createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, patientInstructions, pharmacistInstructions);
-                        } else {
-                            System.out.println("Active Order Exists");
+                            InfoErrorMessageUtil.flashInfoMessage(session, "Order Saved!");
+                        } 
+                        else {
+                            InfoErrorMessageUtil.flashInfoMessage(session, "Order Exists!");
                         }
                     }
                 }
@@ -134,6 +140,7 @@ public class DrugordersPageController {
                         Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
                     }
                     
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Discontinued!");
                 }
                 
                 if ("confirmOrderGroup".equals(action)) {
@@ -148,6 +155,8 @@ public class DrugordersPageController {
                         orderInGroup.setGroupid(groupID);
                         orderInGroup.setOrderstatus("Active-Group");
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
                 }
                 
                 if ("selectMedPlan".equals(action)) {
@@ -171,9 +180,11 @@ public class DrugordersPageController {
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("Normal"));
                             createDiseasePlan(order,patientID,diseaseForPlan);
-
+                            
                         }
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
                 }
                 
                 if ("confirmMedPlan".equals(action)) {
@@ -182,6 +193,8 @@ public class DrugordersPageController {
                         order.setOrderstatus("Active-Plan");
                         order.setStartdate(Calendar.getInstance().getTime());
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
                 }
                 
                 if ("renewMedPlan".equals(action)) {
@@ -199,6 +212,8 @@ public class DrugordersPageController {
                         createDiseasePlan(order,patientID,planRenewed);
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Renewed!");
                 }
                 
                 if ("DISCARD GROUP ORDER".equals(action)) {
@@ -207,6 +222,8 @@ public class DrugordersPageController {
                         order.setOrderstatus("Discontinued-Group");
                         Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Orders Discontinued!");
                 }
                 
                 if ("EDIT DRUG ORDER".equals(action)) {
@@ -236,9 +253,12 @@ public class DrugordersPageController {
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(originalOrderExtension.getGroupid());
                         originalOrderExtension.setGroupid(null);
                     }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Changes Saved!");
                 }
 
                 if ("RENEW DRUG ORDER".equals(action)) {
+                    
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
                     String drugName = originalOrderExtension.getDrugname().getDisplayString();
 
@@ -246,9 +266,12 @@ public class DrugordersPageController {
                     drugorders drugorder = null;
                     int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                     createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, patientInstructions, pharmacistInstructions);
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Renewed!");
                 }
                 
-            } catch (Exception e) {
+            } catch (APIException e) {
+                System.out.println(e.toString());
+            } catch (NumberFormatException e) {
                 System.out.println(e.toString());
             }
         }

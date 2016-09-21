@@ -403,3 +403,19 @@ table {
   padding: 5px;
   margin: 5px
  }
+
+.disabled {
+  color: $disabled;
+}
+
+.retired, .voided {
+  text-decoration: line-through;
+}
+
+input.ng-touched.ng-invalid {
+  background: #ff8888; border: 1px red solid;
+}
+
+.invisible {
+  visibility: hidden;
+}

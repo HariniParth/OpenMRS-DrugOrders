@@ -840,6 +840,27 @@ table thead th {
   margin: 5px;
 }
 
+/* line 407, ../../../compass/sass-external/uicommons-scss/fragments/_base.scss */
+.disabled {
+  color: #cccccc;
+}
+
+/* line 411, ../../../compass/sass-external/uicommons-scss/fragments/_base.scss */
+.retired, .voided {
+  text-decoration: line-through;
+}
+
+/* line 415, ../../../compass/sass-external/uicommons-scss/fragments/_base.scss */
+input.ng-touched.ng-invalid {
+  background: #ff8888;
+  border: 1px red solid;
+}
+
+/* line 419, ../../../compass/sass-external/uicommons-scss/fragments/_base.scss */
+.invisible {
+  visibility: hidden;
+}
+
 /* line 41, ../../../compass/sass-external/uicommons-scss/fragments/_grid.scss */
 body {
   width: 100%;
@@ -1406,7 +1427,7 @@ header #session-location li {
   margin-bottom: .5em;
 }
 
-/* line 128, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 133, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button, button, input[type="submit"], input[type="button"], input[type="submit"], a.button {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1437,39 +1458,44 @@ header #session-location li {
   border-color: #d0d0d0;
 }
 /* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+.button.active, button.active, input[type="submit"].active, input[type="button"].active, input[type="submit"].active, a.button.active {
+  background: #d8d8d8;
+  border-color: #d0d0d0;
+}
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button i, button i, input[type="submit"] i, input[type="button"] i, input[type="submit"] i, a.button i {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
   line-height: .5em;
 }
-/* line 30, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.big i, .button.medium i, button.big i, button.medium i, input[type="submit"].big i, input[type="submit"].medium i, input[type="button"].big i, input[type="button"].medium i, input[type="submit"].big i, input[type="submit"].medium i, a.button.big i, a.button.medium i {
   display: block;
   font-size: 50px;
   margin: 0 auto;
   padding: 10px;
 }
-/* line 39, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.medium i, button.medium i, input[type="submit"].medium i, input[type="button"].medium i, input[type="submit"].medium i, a.button.medium i {
   font-size: 34px;
 }
-/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 49, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.disabled, .button:disabled, button.disabled, button:disabled, input[type="submit"].disabled, input[type="submit"]:disabled, input[type="button"].disabled, input[type="button"]:disabled, input[type="submit"].disabled, input[type="submit"]:disabled, a.button.disabled, a.button:disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.print, button.print, input[type="submit"].print, input[type="button"].print, input[type="submit"].print, a.button.print {
   padding: 10px;
 }
-/* line 54, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.print i, button.print i, input[type="submit"].print i, input[type="button"].print i, input[type="submit"].print i, a.button.print i {
   font-size: 1.5em;
 }
-/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 64, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.app, button.app, input[type="submit"].app, input[type="button"].app, input[type="submit"].app, a.button.app {
   padding: 20px 10px;
   width: 150px;
@@ -1479,7 +1505,7 @@ header #session-location li {
   margin: 10px;
   text-align: center;
 }
-/* line 69, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 74, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow, button.arrow, input[type="submit"].arrow, input[type="button"].arrow, input[type="submit"].arrow, a.button.arrow {
   box-sizing: border-box;
   position: relative;
@@ -1490,17 +1516,17 @@ header #session-location li {
   border-color: #BBB;
   height: 68px;
 }
-/* line 79, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow span, button.arrow span, input[type="submit"].arrow span, input[type="button"].arrow span, input[type="submit"].arrow span, a.button.arrow span {
   display: block;
   line-height: 1em;
 }
-/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow i, button.arrow i, input[type="submit"].arrow i, input[type="button"].arrow i, input[type="submit"].arrow i, a.button.arrow i {
   line-height: 1em;
   font-size: 2em;
 }
-/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 94, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow .arrow-button, button.arrow .arrow-button, input[type="submit"].arrow .arrow-button, input[type="button"].arrow .arrow-button, input[type="submit"].arrow .arrow-button, a.button.arrow .arrow-button {
   width: 0;
   height: 0;
@@ -1511,7 +1537,7 @@ header #session-location li {
   border-left: 18px solid #81a726;
   position: absolute;
 }
-/* line 100, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 105, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow .arrow-border-button, button.arrow .arrow-border-button, input[type="submit"].arrow .arrow-border-button, input[type="button"].arrow .arrow-border-button, input[type="submit"].arrow .arrow-border-button, a.button.arrow .arrow-border-button {
   width: 0;
   height: 0;
@@ -1522,22 +1548,22 @@ header #session-location li {
   border-left: 18px solid #BBB;
   position: absolute;
 }
-/* line 111, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 116, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow.disabled, button.arrow.disabled, input[type="submit"].arrow.disabled, input[type="button"].arrow.disabled, input[type="submit"].arrow.disabled, a.button.arrow.disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 117, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 122, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow.disabled .arrow-button, button.arrow.disabled .arrow-button, input[type="submit"].arrow.disabled .arrow-button, input[type="button"].arrow.disabled .arrow-button, input[type="submit"].arrow.disabled .arrow-button, a.button.arrow.disabled .arrow-button {
   border-left: 18px solid #eee;
 }
-/* line 121, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 126, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.arrow.disabled .arrow-border-button, button.arrow.disabled .arrow-border-button, input[type="submit"].arrow.disabled .arrow-border-button, input[type="button"].arrow.disabled .arrow-border-button, input[type="submit"].arrow.disabled .arrow-border-button, a.button.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
 }
-/* line 131, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 136, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task, button.task, input[type="submit"].task, input[type="button"].task, input[type="submit"].task, a.button.task {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1571,39 +1597,44 @@ header #session-location li {
   border-color: #524e95;
 }
 /* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+.button.task.active, button.task.active, input[type="submit"].task.active, input[type="button"].task.active, input[type="submit"].task.active, a.button.task.active {
+  background: #57539f;
+  border-color: #524e95;
+}
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task i, button.task i, input[type="submit"].task i, input[type="button"].task i, input[type="submit"].task i, a.button.task i {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
   line-height: .5em;
 }
-/* line 30, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.big i, .button.task.medium i, button.task.big i, button.task.medium i, input[type="submit"].task.big i, input[type="submit"].task.medium i, input[type="button"].task.big i, input[type="button"].task.medium i, input[type="submit"].task.big i, input[type="submit"].task.medium i, a.button.task.big i, a.button.task.medium i {
   display: block;
   font-size: 50px;
   margin: 0 auto;
   padding: 10px;
 }
-/* line 39, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.medium i, button.task.medium i, input[type="submit"].task.medium i, input[type="button"].task.medium i, input[type="submit"].task.medium i, a.button.task.medium i {
   font-size: 34px;
 }
-/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 49, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.disabled, .button.task:disabled, button.task.disabled, button.task:disabled, input[type="submit"].task.disabled, input[type="submit"].task:disabled, input[type="button"].task.disabled, input[type="button"].task:disabled, input[type="submit"].task.disabled, input[type="submit"].task:disabled, a.button.task.disabled, a.button.task:disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.print, button.task.print, input[type="submit"].task.print, input[type="button"].task.print, input[type="submit"].task.print, a.button.task.print {
   padding: 10px;
 }
-/* line 54, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.print i, button.task.print i, input[type="submit"].task.print i, input[type="button"].task.print i, input[type="submit"].task.print i, a.button.task.print i {
   font-size: 1.5em;
 }
-/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 64, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.app, button.task.app, input[type="submit"].task.app, input[type="button"].task.app, input[type="submit"].task.app, a.button.task.app {
   padding: 20px 10px;
   width: 150px;
@@ -1613,7 +1644,7 @@ header #session-location li {
   margin: 10px;
   text-align: center;
 }
-/* line 69, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 74, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow, button.task.arrow, input[type="submit"].task.arrow, input[type="button"].task.arrow, input[type="submit"].task.arrow, a.button.task.arrow {
   box-sizing: border-box;
   position: relative;
@@ -1624,17 +1655,17 @@ header #session-location li {
   border-color: #BBB;
   height: 68px;
 }
-/* line 79, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow span, button.task.arrow span, input[type="submit"].task.arrow span, input[type="button"].task.arrow span, input[type="submit"].task.arrow span, a.button.task.arrow span {
   display: block;
   line-height: 1em;
 }
-/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow i, button.task.arrow i, input[type="submit"].task.arrow i, input[type="button"].task.arrow i, input[type="submit"].task.arrow i, a.button.task.arrow i {
   line-height: 1em;
   font-size: 2em;
 }
-/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 94, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow .arrow-button, button.task.arrow .arrow-button, input[type="submit"].task.arrow .arrow-button, input[type="button"].task.arrow .arrow-button, input[type="submit"].task.arrow .arrow-button, a.button.task.arrow .arrow-button {
   width: 0;
   height: 0;
@@ -1645,7 +1676,7 @@ header #session-location li {
   border-left: 18px solid #81a726;
   position: absolute;
 }
-/* line 100, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 105, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow .arrow-border-button, button.task.arrow .arrow-border-button, input[type="submit"].task.arrow .arrow-border-button, input[type="button"].task.arrow .arrow-border-button, input[type="submit"].task.arrow .arrow-border-button, a.button.task.arrow .arrow-border-button {
   width: 0;
   height: 0;
@@ -1656,31 +1687,31 @@ header #session-location li {
   border-left: 18px solid #BBB;
   position: absolute;
 }
-/* line 111, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 116, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow.disabled, button.task.arrow.disabled, input[type="submit"].task.arrow.disabled, input[type="button"].task.arrow.disabled, input[type="submit"].task.arrow.disabled, a.button.task.arrow.disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 117, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 122, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow.disabled .arrow-button, button.task.arrow.disabled .arrow-button, input[type="submit"].task.arrow.disabled .arrow-button, input[type="button"].task.arrow.disabled .arrow-button, input[type="submit"].task.arrow.disabled .arrow-button, a.button.task.arrow.disabled .arrow-button {
   border-left: 18px solid #eee;
 }
-/* line 121, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 126, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task.arrow.disabled .arrow-border-button, button.task.arrow.disabled .arrow-border-button, input[type="submit"].task.arrow.disabled .arrow-border-button, input[type="button"].task.arrow.disabled .arrow-border-button, input[type="submit"].task.arrow.disabled .arrow-border-button, a.button.task.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
 }
-/* line 138, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 143, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task:visited, button.task:visited, input[type="submit"].task:visited, input[type="button"].task:visited, input[type="submit"].task:visited, a.button.task:visited {
   color: white;
 }
-/* line 142, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 147, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.task i, button.task i, input[type="submit"].task i, input[type="button"].task i, input[type="submit"].task i, a.button.task i {
   font-size: 1em;
   margin: 0px 2px;
 }
-/* line 148, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 153, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm, button.confirm, input[type="submit"].confirm, input[type="button"].confirm, input[type="submit"].confirm, a.button.confirm {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1714,39 +1745,44 @@ header #session-location li {
   border-color: #779b23;
 }
 /* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+.button.confirm.active, button.confirm.active, input[type="submit"].confirm.active, input[type="button"].confirm.active, input[type="submit"].confirm.active, a.button.confirm.active {
+  background: #81a726;
+  border-color: #779b23;
+}
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm i, button.confirm i, input[type="submit"].confirm i, input[type="button"].confirm i, input[type="submit"].confirm i, a.button.confirm i {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
   line-height: .5em;
 }
-/* line 30, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.big i, .button.confirm.medium i, button.confirm.big i, button.confirm.medium i, input[type="submit"].confirm.big i, input[type="submit"].confirm.medium i, input[type="button"].confirm.big i, input[type="button"].confirm.medium i, input[type="submit"].confirm.big i, input[type="submit"].confirm.medium i, a.button.confirm.big i, a.button.confirm.medium i {
   display: block;
   font-size: 50px;
   margin: 0 auto;
   padding: 10px;
 }
-/* line 39, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.medium i, button.confirm.medium i, input[type="submit"].confirm.medium i, input[type="button"].confirm.medium i, input[type="submit"].confirm.medium i, a.button.confirm.medium i {
   font-size: 34px;
 }
-/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 49, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.disabled, .button.confirm:disabled, button.confirm.disabled, button.confirm:disabled, input[type="submit"].confirm.disabled, input[type="submit"].confirm:disabled, input[type="button"].confirm.disabled, input[type="button"].confirm:disabled, input[type="submit"].confirm.disabled, input[type="submit"].confirm:disabled, a.button.confirm.disabled, a.button.confirm:disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.print, button.confirm.print, input[type="submit"].confirm.print, input[type="button"].confirm.print, input[type="submit"].confirm.print, a.button.confirm.print {
   padding: 10px;
 }
-/* line 54, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.print i, button.confirm.print i, input[type="submit"].confirm.print i, input[type="button"].confirm.print i, input[type="submit"].confirm.print i, a.button.confirm.print i {
   font-size: 1.5em;
 }
-/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 64, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.app, button.confirm.app, input[type="submit"].confirm.app, input[type="button"].confirm.app, input[type="submit"].confirm.app, a.button.confirm.app {
   padding: 20px 10px;
   width: 150px;
@@ -1756,7 +1792,7 @@ header #session-location li {
   margin: 10px;
   text-align: center;
 }
-/* line 69, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 74, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow, button.confirm.arrow, input[type="submit"].confirm.arrow, input[type="button"].confirm.arrow, input[type="submit"].confirm.arrow, a.button.confirm.arrow {
   box-sizing: border-box;
   position: relative;
@@ -1767,17 +1803,17 @@ header #session-location li {
   border-color: #BBB;
   height: 68px;
 }
-/* line 79, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow span, button.confirm.arrow span, input[type="submit"].confirm.arrow span, input[type="button"].confirm.arrow span, input[type="submit"].confirm.arrow span, a.button.confirm.arrow span {
   display: block;
   line-height: 1em;
 }
-/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow i, button.confirm.arrow i, input[type="submit"].confirm.arrow i, input[type="button"].confirm.arrow i, input[type="submit"].confirm.arrow i, a.button.confirm.arrow i {
   line-height: 1em;
   font-size: 2em;
 }
-/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 94, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow .arrow-button, button.confirm.arrow .arrow-button, input[type="submit"].confirm.arrow .arrow-button, input[type="button"].confirm.arrow .arrow-button, input[type="submit"].confirm.arrow .arrow-button, a.button.confirm.arrow .arrow-button {
   width: 0;
   height: 0;
@@ -1788,7 +1824,7 @@ header #session-location li {
   border-left: 18px solid #81a726;
   position: absolute;
 }
-/* line 100, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 105, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow .arrow-border-button, button.confirm.arrow .arrow-border-button, input[type="submit"].confirm.arrow .arrow-border-button, input[type="button"].confirm.arrow .arrow-border-button, input[type="submit"].confirm.arrow .arrow-border-button, a.button.confirm.arrow .arrow-border-button {
   width: 0;
   height: 0;
@@ -1799,22 +1835,22 @@ header #session-location li {
   border-left: 18px solid #BBB;
   position: absolute;
 }
-/* line 111, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 116, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow.disabled, button.confirm.arrow.disabled, input[type="submit"].confirm.arrow.disabled, input[type="button"].confirm.arrow.disabled, input[type="submit"].confirm.arrow.disabled, a.button.confirm.arrow.disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 117, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 122, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow.disabled .arrow-button, button.confirm.arrow.disabled .arrow-button, input[type="submit"].confirm.arrow.disabled .arrow-button, input[type="button"].confirm.arrow.disabled .arrow-button, input[type="submit"].confirm.arrow.disabled .arrow-button, a.button.confirm.arrow.disabled .arrow-button {
   border-left: 18px solid #eee;
 }
-/* line 121, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 126, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.confirm.arrow.disabled .arrow-border-button, button.confirm.arrow.disabled .arrow-border-button, input[type="submit"].confirm.arrow.disabled .arrow-border-button, input[type="button"].confirm.arrow.disabled .arrow-border-button, input[type="submit"].confirm.arrow.disabled .arrow-border-button, a.button.confirm.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
 }
-/* line 155, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 160, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel, button.cancel, input[type="submit"].cancel, input[type="button"].cancel, input[type="submit"].cancel, a.button.cancel {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1848,39 +1884,44 @@ header #session-location li {
   border-color: #ff2424;
 }
 /* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+.button.cancel.active, button.cancel.active, input[type="submit"].cancel.active, input[type="button"].cancel.active, input[type="submit"].cancel.active, a.button.cancel.active {
+  background: #ff3333;
+  border-color: #ff2424;
+}
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel i, button.cancel i, input[type="submit"].cancel i, input[type="button"].cancel i, input[type="submit"].cancel i, a.button.cancel i {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
   line-height: .5em;
 }
-/* line 30, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.big i, .button.cancel.medium i, button.cancel.big i, button.cancel.medium i, input[type="submit"].cancel.big i, input[type="submit"].cancel.medium i, input[type="button"].cancel.big i, input[type="button"].cancel.medium i, input[type="submit"].cancel.big i, input[type="submit"].cancel.medium i, a.button.cancel.big i, a.button.cancel.medium i {
   display: block;
   font-size: 50px;
   margin: 0 auto;
   padding: 10px;
 }
-/* line 39, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.medium i, button.cancel.medium i, input[type="submit"].cancel.medium i, input[type="button"].cancel.medium i, input[type="submit"].cancel.medium i, a.button.cancel.medium i {
   font-size: 34px;
 }
-/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 49, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.disabled, .button.cancel:disabled, button.cancel.disabled, button.cancel:disabled, input[type="submit"].cancel.disabled, input[type="submit"].cancel:disabled, input[type="button"].cancel.disabled, input[type="button"].cancel:disabled, input[type="submit"].cancel.disabled, input[type="submit"].cancel:disabled, a.button.cancel.disabled, a.button.cancel:disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.print, button.cancel.print, input[type="submit"].cancel.print, input[type="button"].cancel.print, input[type="submit"].cancel.print, a.button.cancel.print {
   padding: 10px;
 }
-/* line 54, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.print i, button.cancel.print i, input[type="submit"].cancel.print i, input[type="button"].cancel.print i, input[type="submit"].cancel.print i, a.button.cancel.print i {
   font-size: 1.5em;
 }
-/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 64, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.app, button.cancel.app, input[type="submit"].cancel.app, input[type="button"].cancel.app, input[type="submit"].cancel.app, a.button.cancel.app {
   padding: 20px 10px;
   width: 150px;
@@ -1890,7 +1931,7 @@ header #session-location li {
   margin: 10px;
   text-align: center;
 }
-/* line 69, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 74, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow, button.cancel.arrow, input[type="submit"].cancel.arrow, input[type="button"].cancel.arrow, input[type="submit"].cancel.arrow, a.button.cancel.arrow {
   box-sizing: border-box;
   position: relative;
@@ -1901,17 +1942,17 @@ header #session-location li {
   border-color: #BBB;
   height: 68px;
 }
-/* line 79, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow span, button.cancel.arrow span, input[type="submit"].cancel.arrow span, input[type="button"].cancel.arrow span, input[type="submit"].cancel.arrow span, a.button.cancel.arrow span {
   display: block;
   line-height: 1em;
 }
-/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow i, button.cancel.arrow i, input[type="submit"].cancel.arrow i, input[type="button"].cancel.arrow i, input[type="submit"].cancel.arrow i, a.button.cancel.arrow i {
   line-height: 1em;
   font-size: 2em;
 }
-/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 94, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow .arrow-button, button.cancel.arrow .arrow-button, input[type="submit"].cancel.arrow .arrow-button, input[type="button"].cancel.arrow .arrow-button, input[type="submit"].cancel.arrow .arrow-button, a.button.cancel.arrow .arrow-button {
   width: 0;
   height: 0;
@@ -1922,7 +1963,7 @@ header #session-location li {
   border-left: 18px solid #81a726;
   position: absolute;
 }
-/* line 100, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 105, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow .arrow-border-button, button.cancel.arrow .arrow-border-button, input[type="submit"].cancel.arrow .arrow-border-button, input[type="button"].cancel.arrow .arrow-border-button, input[type="submit"].cancel.arrow .arrow-border-button, a.button.cancel.arrow .arrow-border-button {
   width: 0;
   height: 0;
@@ -1933,22 +1974,22 @@ header #session-location li {
   border-left: 18px solid #BBB;
   position: absolute;
 }
-/* line 111, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 116, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow.disabled, button.cancel.arrow.disabled, input[type="submit"].cancel.arrow.disabled, input[type="button"].cancel.arrow.disabled, input[type="submit"].cancel.arrow.disabled, a.button.cancel.arrow.disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 117, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 122, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow.disabled .arrow-button, button.cancel.arrow.disabled .arrow-button, input[type="submit"].cancel.arrow.disabled .arrow-button, input[type="button"].cancel.arrow.disabled .arrow-button, input[type="submit"].cancel.arrow.disabled .arrow-button, a.button.cancel.arrow.disabled .arrow-button {
   border-left: 18px solid #eee;
 }
-/* line 121, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 126, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.cancel.arrow.disabled .arrow-border-button, button.cancel.arrow.disabled .arrow-border-button, input[type="submit"].cancel.arrow.disabled .arrow-border-button, input[type="button"].cancel.arrow.disabled .arrow-border-button, input[type="submit"].cancel.arrow.disabled .arrow-border-button, a.button.cancel.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
 }
-/* line 162, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 167, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed, button.proceed, input[type="submit"].proceed, input[type="button"].proceed, input[type="submit"].proceed, a.button.proceed {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1982,39 +2023,44 @@ header #session-location li {
   border-color: #ff2424;
 }
 /* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+.button.proceed.active, button.proceed.active, input[type="submit"].proceed.active, input[type="button"].proceed.active, input[type="submit"].proceed.active, a.button.proceed.active {
+  background: #ff3333;
+  border-color: #ff2424;
+}
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed i, button.proceed i, input[type="submit"].proceed i, input[type="button"].proceed i, input[type="submit"].proceed i, a.button.proceed i {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
   line-height: .5em;
 }
-/* line 30, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.big i, .button.proceed.medium i, button.proceed.big i, button.proceed.medium i, input[type="submit"].proceed.big i, input[type="submit"].proceed.medium i, input[type="button"].proceed.big i, input[type="button"].proceed.medium i, input[type="submit"].proceed.big i, input[type="submit"].proceed.medium i, a.button.proceed.big i, a.button.proceed.medium i {
   display: block;
   font-size: 50px;
   margin: 0 auto;
   padding: 10px;
 }
-/* line 39, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.medium i, button.proceed.medium i, input[type="submit"].proceed.medium i, input[type="button"].proceed.medium i, input[type="submit"].proceed.medium i, a.button.proceed.medium i {
   font-size: 34px;
 }
-/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 49, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.disabled, .button.proceed:disabled, button.proceed.disabled, button.proceed:disabled, input[type="submit"].proceed.disabled, input[type="submit"].proceed:disabled, input[type="button"].proceed.disabled, input[type="button"].proceed:disabled, input[type="submit"].proceed.disabled, input[type="submit"].proceed:disabled, a.button.proceed.disabled, a.button.proceed:disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.print, button.proceed.print, input[type="submit"].proceed.print, input[type="button"].proceed.print, input[type="submit"].proceed.print, a.button.proceed.print {
   padding: 10px;
 }
-/* line 54, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.print i, button.proceed.print i, input[type="submit"].proceed.print i, input[type="button"].proceed.print i, input[type="submit"].proceed.print i, a.button.proceed.print i {
   font-size: 1.5em;
 }
-/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 64, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.app, button.proceed.app, input[type="submit"].proceed.app, input[type="button"].proceed.app, input[type="submit"].proceed.app, a.button.proceed.app {
   padding: 20px 10px;
   width: 150px;
@@ -2024,7 +2070,7 @@ header #session-location li {
   margin: 10px;
   text-align: center;
 }
-/* line 69, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 74, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow, button.proceed.arrow, input[type="submit"].proceed.arrow, input[type="button"].proceed.arrow, input[type="submit"].proceed.arrow, a.button.proceed.arrow {
   box-sizing: border-box;
   position: relative;
@@ -2035,17 +2081,17 @@ header #session-location li {
   border-color: #BBB;
   height: 68px;
 }
-/* line 79, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow span, button.proceed.arrow span, input[type="submit"].proceed.arrow span, input[type="button"].proceed.arrow span, input[type="submit"].proceed.arrow span, a.button.proceed.arrow span {
   display: block;
   line-height: 1em;
 }
-/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow i, button.proceed.arrow i, input[type="submit"].proceed.arrow i, input[type="button"].proceed.arrow i, input[type="submit"].proceed.arrow i, a.button.proceed.arrow i {
   line-height: 1em;
   font-size: 2em;
 }
-/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 94, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow .arrow-button, button.proceed.arrow .arrow-button, input[type="submit"].proceed.arrow .arrow-button, input[type="button"].proceed.arrow .arrow-button, input[type="submit"].proceed.arrow .arrow-button, a.button.proceed.arrow .arrow-button {
   width: 0;
   height: 0;
@@ -2056,7 +2102,7 @@ header #session-location li {
   border-left: 18px solid #81a726;
   position: absolute;
 }
-/* line 100, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 105, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow .arrow-border-button, button.proceed.arrow .arrow-border-button, input[type="submit"].proceed.arrow .arrow-border-button, input[type="button"].proceed.arrow .arrow-border-button, input[type="submit"].proceed.arrow .arrow-border-button, a.button.proceed.arrow .arrow-border-button {
   width: 0;
   height: 0;
@@ -2067,22 +2113,22 @@ header #session-location li {
   border-left: 18px solid #BBB;
   position: absolute;
 }
-/* line 111, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 116, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow.disabled, button.proceed.arrow.disabled, input[type="submit"].proceed.arrow.disabled, input[type="button"].proceed.arrow.disabled, input[type="submit"].proceed.arrow.disabled, a.button.proceed.arrow.disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 117, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 122, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow.disabled .arrow-button, button.proceed.arrow.disabled .arrow-button, input[type="submit"].proceed.arrow.disabled .arrow-button, input[type="button"].proceed.arrow.disabled .arrow-button, input[type="submit"].proceed.arrow.disabled .arrow-button, a.button.proceed.arrow.disabled .arrow-button {
   border-left: 18px solid #eee;
 }
-/* line 121, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 126, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.proceed.arrow.disabled .arrow-border-button, button.proceed.arrow.disabled .arrow-border-button, input[type="submit"].proceed.arrow.disabled .arrow-border-button, input[type="button"].proceed.arrow.disabled .arrow-border-button, input[type="submit"].proceed.arrow.disabled .arrow-border-button, a.button.proceed.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
 }
-/* line 169, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 174, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color, button.no-color, input[type="submit"].no-color, input[type="button"].no-color, input[type="submit"].no-color, a.button.no-color {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -2113,39 +2159,44 @@ header #session-location li {
   border-color: #d0d0d0;
 }
 /* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+.button.no-color.active, button.no-color.active, input[type="submit"].no-color.active, input[type="button"].no-color.active, input[type="submit"].no-color.active, a.button.no-color.active {
+  background: #d8d8d8;
+  border-color: #d0d0d0;
+}
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color i, button.no-color i, input[type="submit"].no-color i, input[type="button"].no-color i, input[type="submit"].no-color i, a.button.no-color i {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
   line-height: .5em;
 }
-/* line 30, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.big i, .button.no-color.medium i, button.no-color.big i, button.no-color.medium i, input[type="submit"].no-color.big i, input[type="submit"].no-color.medium i, input[type="button"].no-color.big i, input[type="button"].no-color.medium i, input[type="submit"].no-color.big i, input[type="submit"].no-color.medium i, a.button.no-color.big i, a.button.no-color.medium i {
   display: block;
   font-size: 50px;
   margin: 0 auto;
   padding: 10px;
 }
-/* line 39, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.medium i, button.no-color.medium i, input[type="submit"].no-color.medium i, input[type="button"].no-color.medium i, input[type="submit"].no-color.medium i, a.button.no-color.medium i {
   font-size: 34px;
 }
-/* line 44, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 49, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.disabled, .button.no-color:disabled, button.no-color.disabled, button.no-color:disabled, input[type="submit"].no-color.disabled, input[type="submit"].no-color:disabled, input[type="button"].no-color.disabled, input[type="button"].no-color:disabled, input[type="submit"].no-color.disabled, input[type="submit"].no-color:disabled, a.button.no-color.disabled, a.button.no-color:disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.print, button.no-color.print, input[type="submit"].no-color.print, input[type="button"].no-color.print, input[type="submit"].no-color.print, a.button.no-color.print {
   padding: 10px;
 }
-/* line 54, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.print i, button.no-color.print i, input[type="submit"].no-color.print i, input[type="button"].no-color.print i, input[type="submit"].no-color.print i, a.button.no-color.print i {
   font-size: 1.5em;
 }
-/* line 59, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 64, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.app, button.no-color.app, input[type="submit"].no-color.app, input[type="button"].no-color.app, input[type="submit"].no-color.app, a.button.no-color.app {
   padding: 20px 10px;
   width: 150px;
@@ -2155,7 +2206,7 @@ header #session-location li {
   margin: 10px;
   text-align: center;
 }
-/* line 69, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 74, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow, button.no-color.arrow, input[type="submit"].no-color.arrow, input[type="button"].no-color.arrow, input[type="submit"].no-color.arrow, a.button.no-color.arrow {
   box-sizing: border-box;
   position: relative;
@@ -2166,17 +2217,17 @@ header #session-location li {
   border-color: #BBB;
   height: 68px;
 }
-/* line 79, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow span, button.no-color.arrow span, input[type="submit"].no-color.arrow span, input[type="button"].no-color.arrow span, input[type="submit"].no-color.arrow span, a.button.no-color.arrow span {
   display: block;
   line-height: 1em;
 }
-/* line 84, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow i, button.no-color.arrow i, input[type="submit"].no-color.arrow i, input[type="button"].no-color.arrow i, input[type="submit"].no-color.arrow i, a.button.no-color.arrow i {
   line-height: 1em;
   font-size: 2em;
 }
-/* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 94, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow .arrow-button, button.no-color.arrow .arrow-button, input[type="submit"].no-color.arrow .arrow-button, input[type="button"].no-color.arrow .arrow-button, input[type="submit"].no-color.arrow .arrow-button, a.button.no-color.arrow .arrow-button {
   width: 0;
   height: 0;
@@ -2187,7 +2238,7 @@ header #session-location li {
   border-left: 18px solid #81a726;
   position: absolute;
 }
-/* line 100, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 105, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow .arrow-border-button, button.no-color.arrow .arrow-border-button, input[type="submit"].no-color.arrow .arrow-border-button, input[type="button"].no-color.arrow .arrow-border-button, input[type="submit"].no-color.arrow .arrow-border-button, a.button.no-color.arrow .arrow-border-button {
   width: 0;
   height: 0;
@@ -2198,20 +2249,95 @@ header #session-location li {
   border-left: 18px solid #BBB;
   position: absolute;
 }
-/* line 111, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 116, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow.disabled, button.no-color.arrow.disabled, input[type="submit"].no-color.arrow.disabled, input[type="button"].no-color.arrow.disabled, input[type="submit"].no-color.arrow.disabled, a.button.no-color.arrow.disabled {
   background: #EEE;
   border: #CCC 1px solid;
   color: #CCC;
   cursor: default;
 }
-/* line 117, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 122, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow.disabled .arrow-button, button.no-color.arrow.disabled .arrow-button, input[type="submit"].no-color.arrow.disabled .arrow-button, input[type="button"].no-color.arrow.disabled .arrow-button, input[type="submit"].no-color.arrow.disabled .arrow-button, a.button.no-color.arrow.disabled .arrow-button {
   border-left: 18px solid #eee;
 }
-/* line 121, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
+/* line 126, ../../../compass/sass-external/uicommons-scss/fragments/_buttons.scss */
 .button.no-color.arrow.disabled .arrow-border-button, button.no-color.arrow.disabled .arrow-border-button, input[type="submit"].no-color.arrow.disabled .arrow-border-button, input[type="button"].no-color.arrow.disabled .arrow-border-button, input[type="submit"].no-color.arrow.disabled .arrow-border-button, a.button.no-color.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
+}
+
+/* line 5, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 9, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+  float: left;
+}
+/* line 17, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button:hover, .button-group > .button:focus, .button-group > .button:active, .button-group > .button.active {
+  z-index: 2;
+}
+/* line 20, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button:focus {
+  outline: 0;
+}
+
+/* line 32, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group .button + .button,
+.button-group .button + .button-group,
+.button-group .button-group + .button,
+.button-group .button-group + .button-group {
+  margin-left: -1px;
+}
+
+/* line 37, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+/* line 41, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button:first-child {
+  margin-left: 0;
+}
+/* line 43, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button:first-child:not(:last-child):not(.dropdown-toggle) {
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  -o-border-top-right-radius: 0;
+  -ms-border-top-right-radius: 0;
+  -khtml-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -o-border-bottom-right-radius: 0;
+  -ms-border-bottom-right-radius: 0;
+  -khtml-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 48, ../../../compass/sass-external/uicommons-scss/fragments/_buttongroups.scss */
+.button-group > .button:last-child:not(:first-child) {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  -o-border-top-left-radius: 0;
+  -ms-border-top-left-radius: 0;
+  -khtml-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -o-border-bottom-left-radius: 0;
+  -ms-border-bottom-left-radius: 0;
+  -khtml-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 /* line 14, ../../../compass/sass-external/uicommons-scss/fragments/_status-container.scss */
@@ -2358,9 +2484,9 @@ form#retrospectiveCheckin div#error-message {
 .simple-form-ui #confirmation ul > li > .label, .simple-form-ui form #confirmation ul > li > .label {
   text-align: right;
   display: inline-block;
-  margin-left: 25px;
-  margin-right: 10px;
+  margin: 7px 10px 0 25px;
   width: 150px;
+  vertical-align: top;
 }
 /* line 89, ../../../compass/sass-external/uicommons-scss/fragments/_form-navigator-ui.scss */
 .simple-form-ui #confirmation ul > li > strong, .simple-form-ui form #confirmation ul > li > strong {
@@ -3230,25 +3356,55 @@ ul.left-menu li .arrow {
   color: #363463;
 }
 /* line 41, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+.dashboard .info-body p {
+  float: none;
+  display: inline-block;
+  max-width: 210px;
+}
+/* line 47, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+.dashboard .info-body span {
+  display: inline-block;
+}
+/* line 51, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+.dashboard .info-body h3, .dashboard .info-body label {
+  width: 90px;
+  font-size: 0.8em;
+  font-weight: normal;
+  display: inline-block;
+  margin: 3px 5px;
+  text-align: right;
+  vertical-align: top;
+}
+/* line 61, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+.dashboard .info-body fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+/* line 67, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+.dashboard .info-body legend {
+  display: none;
+}
+/* line 71, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .info-body li {
   line-height: 1.1em;
   border-bottom: 1px solid #eee;
   margin-bottom: 5px;
 }
-/* line 46, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 76, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .info-body li:last-child {
   border-bottom: none;
 }
-/* line 50, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 80, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .info-body li small {
   color: #555;
   font-size: 0.85em;
 }
-/* line 56, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 86, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .info-body i {
   font-size: 1em;
 }
-/* line 60, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 90, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .info-body .view-more {
   font-size: 0.8em;
   display: block;
@@ -3256,40 +3412,44 @@ ul.left-menu li .arrow {
   margin-top: 10px;
   cursor: pointer;
 }
-/* line 68, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 98, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .info-body .tag {
   float: right;
   min-width: 66px;
   text-align: center;
 }
-/* line 75, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 104, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+.dashboard .info-body #calculated-bmi {
+  font-size: 1em;
+}
+/* line 110, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .visit-link {
   color: #363463;
   text-decoration: underline;
   cursor: pointer;
 }
-/* line 80, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 115, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .visit-link:hover {
   color: #007fff;
 }
-/* line 85, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 120, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section {
   margin-top: 30px;
   background: white;
   border: 1px solid #ddd;
 }
-/* line 90, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 125, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section ul {
   background: #363463;
   color: white;
   padding: 5px;
 }
-/* line 96, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 131, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section .button {
   margin: 4px;
   width: 58px;
 }
-/* line 101, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 136, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section h3 {
   margin: 0;
   color: white;
@@ -3298,53 +3458,21 @@ ul.left-menu li .arrow {
   font-size: 1em;
   margin-top: 5px;
 }
-/* line 110, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 145, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section a:not(.button) {
   color: white;
 }
-/* line 114, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 149, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section i {
   font-size: 1.1em;
   margin-left: 10px;
 }
-/* line 119, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 154, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .dashboard .action-section li {
   font-size: 0.9em;
 }
-/* line 127, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
-.dashboard .most-recent-encounter htmlform #calculated-bmi {
-  font-size: 1em;
-}
-/* line 130, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
-.dashboard .most-recent-encounter htmlform p {
-  float: none;
-  display: inline-block;
-}
-/* line 134, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
-.dashboard .most-recent-encounter htmlform span {
-  display: inline-block;
-}
-/* line 137, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
-.dashboard .most-recent-encounter htmlform h3, .dashboard .most-recent-encounter htmlform label {
-  width: 120px;
-  font-size: 0.8em;
-  font-weight: normal;
-  display: inline-block;
-  margin: 3px 5px;
-  text-align: right;
-}
-/* line 145, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
-.dashboard .most-recent-encounter htmlform fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-/* line 150, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
-.dashboard .most-recent-encounter htmlform legend {
-  display: none;
-}
 
-/* line 158, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 160, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .tag {
   background: #51A351;
   color: white;
@@ -3354,7 +3482,7 @@ ul.left-menu li .arrow {
   font-size: 0.8em;
 }
 
-/* line 167, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 169, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header {
   position: relative;
   overflow: hidden;
@@ -3365,7 +3493,7 @@ ul.left-menu li .arrow {
   padding: 5px 10px;
 }
 
-/* line 176, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 178, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics {
   display: inline-block;
   position: relative;
@@ -3373,23 +3501,23 @@ ul.left-menu li .arrow {
   vertical-align: top;
 }
 
-/* line 182, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 184, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics .name {
   cursor: pointer;
 }
 
-/* line 185, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 187, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics h1 {
   margin: 0;
   display: inline;
 }
 
-/* line 189, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 191, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics h1 span {
   display: inline-block;
 }
 
-/* line 192, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 194, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics h1 span em {
   font-size: 0.4em;
   color: #888;
@@ -3397,7 +3525,7 @@ ul.left-menu li .arrow {
   display: block;
 }
 
-/* line 198, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 200, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics .gender-age {
   display: inline-block;
   vertical-align: top;
@@ -3406,7 +3534,7 @@ ul.left-menu li .arrow {
   font-size: 0.9em;
 }
 
-/* line 205, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 207, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .demographics .gender-age span {
   margin-right: 5px;
   padding-bottom: 3px;
@@ -3414,7 +3542,7 @@ ul.left-menu li .arrow {
   color: #00463f;
 }
 
-/* line 211, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 213, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .identifiers {
   display: inline;
   float: right;
@@ -3422,7 +3550,7 @@ ul.left-menu li .arrow {
   margin-left: 20px;
 }
 
-/* line 217, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 219, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .identifiers em {
   max-width: 170px;
   min-width: 120px;
@@ -3433,7 +3561,7 @@ ul.left-menu li .arrow {
   border-bottom: 1px solid #DDD;
 }
 
-/* line 226, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 228, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .identifiers span {
   background: #666;
   color: white;
@@ -3447,17 +3575,17 @@ ul.left-menu li .arrow {
   border-radius: 50px;
 }
 
-/* line 238, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 240, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .identifiers span a, .patient-header .identifiers span a:link, .patient-header .identifiers span a:visited {
   color: #FFF;
 }
 
-/* line 241, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 243, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .identifiers span.add-id {
   background: none;
 }
 
-/* line 244, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
+/* line 246, ../../../compass/sass-external/uicommons-scss/fragments/_dashboard.scss */
 .new-patient-header .identifiers span.add-id a, .patient-header .identifiers span.add-id a:link, .patient-header .identifiers span.add-id a:visited {
   color: #007fff;
 }
@@ -3490,7 +3618,21 @@ ul.left-menu li .arrow {
   color: #007fff;
 }
 
-/* line 23, ../../../compass/sass-external/uicommons-scss/fragments/_actions.scss */
+/* line 22, ../../../compass/sass-external/uicommons-scss/fragments/_actions.scss */
+.add-action {
+  position: relative;
+  display: inline;
+  text-decoration: none;
+  color: #bbbbbb;
+  font-size: 1em;
+  cursor: pointer;
+}
+/* line 9, ../../../compass/sass-external/uicommons-scss/fragments/_actions.scss */
+.add-action:hover {
+  color: #00cc00;
+}
+
+/* line 27, ../../../compass/sass-external/uicommons-scss/fragments/_actions.scss */
 .delete-item {
   position: relative;
   display: inline;
@@ -3499,7 +3641,7 @@ ul.left-menu li .arrow {
   font-size: 1em;
   cursor: pointer;
 }
-/* line 31, ../../../compass/sass-external/uicommons-scss/fragments/_actions.scss */
+/* line 35, ../../../compass/sass-external/uicommons-scss/fragments/_actions.scss */
 .delete-item:hover {
   color: #ff6666;
 }

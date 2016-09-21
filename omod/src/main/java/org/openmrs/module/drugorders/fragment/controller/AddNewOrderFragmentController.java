@@ -8,6 +8,7 @@ package org.openmrs.module.drugorders.fragment.controller;
 import java.util.ArrayList;
 import java.util.List;
 import org.openmrs.Concept;
+import org.openmrs.ConceptClass;
 import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
@@ -28,11 +29,11 @@ public class AddNewOrderFragmentController {
     /**
      *
      * @param model
-     * @param startDate
+     * @param diseaseForPlan
+     * @param diseaseNameSelected
      * @param patient
+     * @param patientService
      */
-
-    List<Concept> diseases = new ArrayList<Concept>();
     
     public void controller(PageModel model, 
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
@@ -66,17 +67,12 @@ public class AddNewOrderFragmentController {
         } 
         
         
-        Concept diseaseConcept = Context.getConceptService().getConcept(160168);
-        
-        for(ConceptSet diseaseConcepts : diseaseConcept.getConceptSets()){
-            Concept diseaseMember = diseaseConcepts.getConcept();
-            diseases.add(diseaseMember);
-        }
-        
-        model.addAttribute("diagnosis", diseases);
+        ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
+        List<Concept> diagnosis = Context.getConceptService().getConceptsByClass(diseaseConcept);
+        model.addAttribute("diagnosis", diagnosis);
         
         List<String> diseaseNames = new ArrayList<String>();
-        for(Concept diagnosisName : diseases){
+        for(Concept diagnosisName : diagnosis){
             if(Context.getService(medicationplansService.class).getMedicationPlansByDisease(diagnosisName).size() > 0){
                 diseaseNames.add(diagnosisName.getDisplayString());
             }

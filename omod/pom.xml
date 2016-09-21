@@ -99,6 +99,13 @@
                     <scope>provided</scope>
                 </dependency>
                 
+                <dependency>
+                    <groupId>org.openmrs.module</groupId>
+                    <artifactId>uicommons-omod</artifactId>
+                    <version>1.10-SNAPSHOT</version>
+                    <type>jar</type>
+                </dependency>
+                
 	</dependencies>
 
 	<build>

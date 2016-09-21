@@ -14,8 +14,8 @@ import org.openmrs.module.drugorders.drugorders;
  */
 public class OrderAndDrugOrder {
     
-    private Order order;
-    private drugorders drugorders;
+    private final Order order;
+    private final drugorders drugorders;
     
     public OrderAndDrugOrder(Order order, drugorders drugorders) {
         this.order = order;

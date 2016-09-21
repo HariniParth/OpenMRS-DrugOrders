@@ -9,12 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.Concept;
 import org.openmrs.OrderFrequency;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
+import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,7 +39,7 @@ public class AdministrationActionFragmentController {
             @RequestParam(value = "drugDuration", required = false) Integer drugDuration,
             @RequestParam(value = "durationUnits", required = false) String durationUnits,
             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
-            @RequestParam(value = "action", required = false) String action){
+            @RequestParam(value = "action", required = false) String action, HttpSession session){
         
         String diseaseName = diseaseNameSelected.replace(" ", "");
         String drugName = drugNameSelected.replace(" ", "");
@@ -74,8 +76,9 @@ public class AdministrationActionFragmentController {
                     if(!(planId.equals(""))){
                         Context.getService(medicationplansService.class).deleteMedicationPlan(Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(planId)));
                     }
-                    System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
+                    
                     Context.getService(medicationplansService.class).saveNewTable(medPlans);
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
                 }
             } catch(Exception e){
                 System.out.println("Error message "+e.getMessage());
