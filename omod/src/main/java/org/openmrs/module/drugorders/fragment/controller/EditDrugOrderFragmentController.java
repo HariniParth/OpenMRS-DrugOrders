@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.openmrs.Concept;
-import org.openmrs.ConceptSet;
+import org.openmrs.ConceptClass;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
@@ -24,9 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author harini-geek
  */
 public class EditDrugOrderFragmentController {
-    
-    List<Concept> discontinueReasons = new ArrayList<Concept>();
-    
+        
     public void controller(PageModel model,@RequestParam("patientId") Patient patient,
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
@@ -34,14 +32,10 @@ public class EditDrugOrderFragmentController {
         model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         
-        Concept discontinueReasonsConcept = Context.getConceptService().getConcept(162825);
-        
-        for(ConceptSet discontinueConcepts : discontinueReasonsConcept.getConceptSets()){
-            Concept discontinueReason = discontinueConcepts.getConcept();
-            discontinueReasons.add(discontinueReason);
-        }
-        
+        ConceptClass reasonConcept = Context.getConceptService().getConceptClassByName("Discontinue Order Reasons");
+        List<Concept> discontinueReasons = Context.getConceptService().getConceptsByClass(reasonConcept);
         model.addAttribute("discontinueReasons", discontinueReasons);
+        
         
         List<drugorders> drugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
         HashMap<Integer,drugorders> newDrugOrders = new HashMap<Integer,drugorders>();
@@ -50,12 +44,14 @@ public class EditDrugOrderFragmentController {
         }
         model.addAttribute("newDrugOrders", newDrugOrders);
         
+        
         List<drugorders> planOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("Plan");
         HashMap<Integer,drugorders> planDrugOrders = new HashMap<Integer,drugorders>();
         for(drugorders order : planOrders){
             planDrugOrders.put(order.getOrderId(), order);
         }
         model.addAttribute("planDrugOrders", planDrugOrders);
+        
         
         List<DrugOrder> orderMainData = getDrugOrderMainDataByPatient(patient);
         HashMap<Integer,DrugOrder> newOrderMainData = new HashMap<Integer,DrugOrder>();

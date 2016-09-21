@@ -8,7 +8,8 @@ package org.openmrs.module.drugorders.fragment.controller;
 import java.util.ArrayList;
 import java.util.List;
 import org.openmrs.Concept;
-import org.openmrs.ConceptSet;
+import org.openmrs.ConceptClass;
+import org.openmrs.OrderFrequency;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
@@ -20,14 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author harini-geek
  */
 public class AdministrationFragmentController {
-    
-    List<Concept> drugs = new ArrayList<Concept>();
-    List<Concept> diseases = new ArrayList<Concept>();
-    List<Concept> durations = new ArrayList<Concept>();
-    List<Concept> routes = new ArrayList<Concept>();
-    List<Concept> doses = new ArrayList<Concept>();
-    List<Concept> quantities = new ArrayList<Concept>();
-    List<Concept> frequencies = new ArrayList<Concept>();
     
     public void controller(PageModel model, @RequestParam(value = "disease_name", required = false) String disease_name,
                             @RequestParam(value = "drug_name", required = false) String drug_name,
@@ -43,29 +36,21 @@ public class AdministrationFragmentController {
         model.addAttribute("disease_name", disease_name);
         List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
         model.addAttribute("medPlans", medPlans);
-        System.out.println(medPlans);
         
-        Concept diseaseConcept = Context.getConceptService().getConcept(160168);
         
-        for(ConceptSet diseaseConcepts : diseaseConcept.getConceptSets()){
-            Concept diseaseMember = diseaseConcepts.getConcept();
-            diseases.add(diseaseMember);
-        }
+        ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
+        List<Concept> diseases = Context.getConceptService().getConceptsByClass(diseaseConcept);
         model.addAttribute("diseases", diseases);
                 
         List<String> diseaseNames = new ArrayList<String>();
-        for(Concept diagnosisName : diseases){
-            diseaseNames.add(diagnosisName.getDisplayString());
+        for(Concept disease : diseases){
+            diseaseNames.add(disease.getDisplayString());
         }
         model.addAttribute("diseaseNames", diseaseNames);
         
-        Concept drugConcept = Context.getConceptService().getConcept(162552);
         
-        for(ConceptSet drugConcepts : drugConcept.getConceptSets()){
-            Concept drugMember = drugConcepts.getConcept();
-            drugs.add(drugMember);
-        }
-
+        ConceptClass drugConcept = Context.getConceptService().getConceptClassByName("Drug");
+        List<Concept> drugs = Context.getConceptService().getConceptsByClass(drugConcept);
         model.addAttribute("drugs", drugs);
         
         List<String> drugsNames = new ArrayList<String>();
@@ -74,64 +59,29 @@ public class AdministrationFragmentController {
         }
         model.addAttribute("drugsNames", drugsNames);
         
-        Concept durationConcept = Context.getConceptService().getConcept(1732);
-        Concept routeConcept = Context.getConceptService().getConcept(162394);
         
-        for(ConceptSet durationConcepts : durationConcept.getConceptSets()){
-            Concept durationMember = durationConcepts.getConcept();
-            durations.add(durationMember);
-        }
-                                                                        
-        for(ConceptSet routeConcepts : routeConcept.getConceptSets()){
-            Concept routeMember = routeConcepts.getConcept();
-            routes.add(routeMember);
-        }
-                
-        addDoseMember(162358);
-        addDoseMember(161554);
-        addDoseMember(162262);
-        addDoseMember(162263);
-        addDoseMember(161553);
-        addDoseMember(162366);
-        
-        addQuantityMember(1608);
-        addQuantityMember(162356);
-        addQuantityMember(162377);
-        addQuantityMember(1513);
-        addQuantityMember(162378);
-        addQuantityMember(162379);
-        addQuantityMember(162380);
-        addQuantityMember(162382);
-        
-        addFrequencyMember(160862);
-        addFrequencyMember(160858);
-        addFrequencyMember(160866);
-        addFrequencyMember(160870);
-        addFrequencyMember(1098);
-        addFrequencyMember(1099);
-        addFrequencyMember(162245);
-        addFrequencyMember(162247);
-   
+        ConceptClass durationConcept = Context.getConceptService().getConceptClassByName("Units of Duration");
+        List<Concept> durations = Context.getConceptService().getConceptsByClass(durationConcept);
         model.addAttribute("durations", durations);
+        
+        
+        ConceptClass routeConcept = Context.getConceptService().getConceptClassByName("Routes of drug administration");
+        List<Concept> routes = Context.getConceptService().getConceptsByClass(routeConcept);
         model.addAttribute("routes", routes);
+                                 
+        
+        ConceptClass doseConcept = Context.getConceptService().getConceptClassByName("Units of Dose");
+        List<Concept> doses = Context.getConceptService().getConceptsByClass(doseConcept);
         model.addAttribute("doses", doses);
+        
+        
+        ConceptClass quantityConcept = Context.getConceptService().getConceptClassByName("Units of Quantity");
+        List<Concept> quantities = Context.getConceptService().getConceptsByClass(quantityConcept);
         model.addAttribute("quantities", quantities);
+ 
+        List<OrderFrequency> frequencies = Context.getOrderService().getOrderFrequencies(true);
         model.addAttribute("frequencies", frequencies);
 
     }
     
-    void addDoseMember(int conceptNumber) {
-        Concept doseMember = Context.getConceptService().getConcept(conceptNumber);
-        doses.add(doseMember);
-    }
-    
-    void addQuantityMember(int conceptNumber) {
-        Concept quantityMember = Context.getConceptService().getConcept(conceptNumber);
-        quantities.add(quantityMember);
-    }
-    
-    void addFrequencyMember(int conceptNumber) {
-        Concept frequencyMember = Context.getConceptService().getConcept(conceptNumber);
-        frequencies.add(frequencyMember);
-    }
 }

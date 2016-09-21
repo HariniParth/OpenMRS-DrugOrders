@@ -197,7 +197,7 @@
                     <select id="drugFrequency" name="drugFrequency" class="select_field">
                         <option value="">Choose option</option>
                         <% frequencies.each { frequency -> %>
-                            <option value="${ frequency.getDisplayString() }">${ frequency.getDisplayString() }</option>
+                            <option value="${ frequency.getConcept().getDisplayString() }">${ frequency.getConcept().getDisplayString() }</option>
                         <% } %>
                     </select>
                 </div>

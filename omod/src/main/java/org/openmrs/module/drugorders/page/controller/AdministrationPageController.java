@@ -5,14 +5,14 @@
  */
 package org.openmrs.module.drugorders.page.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.Concept;
-import org.openmrs.ConceptSet;
+import org.openmrs.ConceptClass;
+import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
@@ -38,6 +38,7 @@ public class AdministrationPageController {
         String diseaseName = diseaseNameSelected.replace(" ", "");
         String drugName = drugNameSelected.replace(" ", "");
         String disease_plan_name = disease_name.replace(" ", "");
+        String modified_disease_name = new_disease_name.replace(" ", "");
         
         if(!diseaseName.isEmpty() && !drugName.isEmpty())
             diseasePlanName.put(diseaseName, drugName);
@@ -45,41 +46,38 @@ public class AdministrationPageController {
         
         if (StringUtils.isNotBlank(action)) {
             try {
-                if ("confirmPlanItem".equals(action)) {
-                    medicationplans medPlans = (medicationplans) model.getAttribute("medicationplans");
-                    System.out.println("Saving plan for "+medPlans.getDiseaseid().getDisplayString());
-                    Context.getService(medicationplansService.class).saveNewTable(medPlans);
-                }
+                                
                 if ("editPlan".equals(action)) {
                     List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_plan_name));
                     for(medicationplans medPlan : medPlans){
-                        medPlan.setDiseaseid(Context.getConceptService().getConceptByName(new_disease_name));
+                        medPlan.setDiseaseid(Context.getConceptService().getConceptByName(modified_disease_name));
                         Context.getService(medicationplansService.class).saveNewTable(medPlan);
                     }
                 }
+                
                 if ("deletePlan".equals(action)) {
                     List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(plan_name));
                     for(medicationplans medPlan : medPlans){
                         Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
                     }
                 }
+                
                 if ("deletePlanItem".equals(action)) {
                     medicationplans medPlan = Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(medPlan_id));
                     Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
                 }
-            } catch(Exception e){
+                
+            } catch(APIException e){
+                System.out.println("Error message "+e.getMessage());
+            } catch (NumberFormatException e) {
                 System.out.println("Error message "+e.getMessage());
             }
         }
         
         HashMap<Concept,List<medicationplans>> allMedicationPlans = new HashMap<Concept,List<medicationplans>>();
-        List<Concept> diseases = new ArrayList<Concept>();
-        Concept diseaseConcept = Context.getConceptService().getConcept(160168);
         
-        for(ConceptSet diseaseConcepts : diseaseConcept.getConceptSets()){
-            Concept diseaseMember = diseaseConcepts.getConcept();
-            diseases.add(diseaseMember);
-        }
+        ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
+        List<Concept> diseases = Context.getConceptService().getConceptsByClass(diseaseConcept);
         model.addAttribute("diseases", diseases);
         
         for(Concept disease : diseases){

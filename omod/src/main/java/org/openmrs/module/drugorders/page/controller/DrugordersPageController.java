@@ -265,15 +265,6 @@ public class DrugordersPageController {
         CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
         order.setCareSetting(careSetting);
 
-        if (!(drugFrequency.equals(""))) {
-            OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));
-            if (orderFrequency == null) {
-                order.setFrequency(setOrderFrequency(drugFrequency));
-            } else {
-                order.setFrequency(orderFrequency);
-            }
-        }
-
         Date start = defaultStartDate(),
                 end = defaultEndDate(start);
         List<Encounter> encs = Context.getEncounterService().getEncounters(patient, null, start, end, null, null, null, null, null, false);
@@ -300,20 +291,12 @@ public class DrugordersPageController {
         order.setQuantityUnits(Context.getConceptService().getConceptByName(quantityUnits));
         order.setDuration(drugDuration);
         order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
+        OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));
+        order.setFrequency(orderFrequency);
         order.setNumRefills(0);
         order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
         orderID = order.getOrderId();
         return orderID; 
-    }
-
-    private OrderFrequency setOrderFrequency(String Frequency) {
-
-        OrderFrequency orderFrequency = new OrderFrequency();
-        orderFrequency.setFrequencyPerDay(0.0);
-        orderFrequency.setConcept(Context.getConceptService().getConceptByName(Frequency));
-        orderFrequency = (OrderFrequency) Context.getOrderService().saveOrderFrequency(orderFrequency);
-        return orderFrequency;
-
     }
     
     private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, String patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String orderPriority, String patientInstructions, String pharmacistInstructions){

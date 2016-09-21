@@ -10,7 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.openmrs.Concept;
-import org.openmrs.ConceptSet;
+import org.openmrs.ConceptClass;
+import org.openmrs.OrderFrequency;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
@@ -27,18 +28,24 @@ public class AddDrugOrderSingleDetailsFragmentController {
     /**
      *
      * @param model
-     * @param drugname
+     * @param drugNameEntered
+     * @param startDateEntered
+     * @param allergicOrderReason
+     * @param drugRoute
+     * @param drugDose
+     * @param drugDoseUnits
+     * @param drugQuantity
+     * @param quantityUnits
+     * @param drugDuration
+     * @param durationUnits
+     * @param drugFrequency
+     * @param priority
+     * @param associatedDiagnosis
+     * @param patientInstructions
+     * @param pharmacistInstructions
      * @param patient
+     * @param patientService
      */
-
-    List<Concept> diagnosis = new ArrayList<Concept>();
-    List<Concept> durations = new ArrayList<Concept>();
-    List<Concept> routes = new ArrayList<Concept>();
-    List<Concept> doses = new ArrayList<Concept>();
-    List<Concept> quantities = new ArrayList<Concept>();
-    List<Concept> frequencies = new ArrayList<Concept>();
-    List<Concept> priorities = new ArrayList<Concept>();
-    List<Concept> drugs = new ArrayList<Concept>();
     
     public void controller(PageModel model, 
                             @RequestParam(value = "drugNameEntered", required = false) String drugNameEntered,
@@ -90,13 +97,8 @@ public class AddDrugOrderSingleDetailsFragmentController {
             model.addAttribute("allergicDrugs", "null");
         }        
         
-        Concept drugConcept = Context.getConceptService().getConcept(162552);
-        
-        for(ConceptSet drugConcepts : drugConcept.getConceptSets()){
-            Concept drugMember = drugConcepts.getConcept();
-            drugs.add(drugMember);
-        }
-
+        ConceptClass drugConcept = Context.getConceptService().getConceptClassByName("Drug");
+        List<Concept> drugs = Context.getConceptService().getConceptsByClass(drugConcept);
         model.addAttribute("drugs", drugs);
         
         List<String> drugsNames = new ArrayList<String>();
@@ -105,87 +107,46 @@ public class AddDrugOrderSingleDetailsFragmentController {
         }
         model.addAttribute("drugsNames", drugsNames);
         
-        Concept durationConcept = Context.getConceptService().getConcept(1732);
-        Concept routeConcept = Context.getConceptService().getConcept(162394);
-        Concept diagnosisConcept = Context.getConceptService().getConcept(160168);
         
-        for(ConceptSet durationConcepts : durationConcept.getConceptSets()){
-            Concept durationMember = durationConcepts.getConcept();
-            durations.add(durationMember);
-        }
-                                                                        
-        for(ConceptSet routeConcepts : routeConcept.getConceptSets()){
-            Concept routeMember = routeConcepts.getConcept();
-            routes.add(routeMember);
-        }
-        
-        for(ConceptSet diagnosisConcepts : diagnosisConcept.getConceptSets()){
-            Concept diagnosisMember = diagnosisConcepts.getConcept();
-            diagnosis.add(diagnosisMember);
-        }
-        
-        addDoseMember(162358);
-        addDoseMember(161554);
-        addDoseMember(162262);
-        addDoseMember(162263);
-        addDoseMember(161553);
-        addDoseMember(162366);
-        
-        addQuantityMember(1608);
-        addQuantityMember(162356);
-        addQuantityMember(162377);
-        addQuantityMember(1513);
-        addQuantityMember(162378);
-        addQuantityMember(162379);
-        addQuantityMember(162380);
-        addQuantityMember(162382);
-        
-        addFrequencyMember(160862);
-        addFrequencyMember(160858);
-        addFrequencyMember(160866);
-        addFrequencyMember(160870);
-        addFrequencyMember(1098);
-        addFrequencyMember(1099);
-        addFrequencyMember(162245);
-        addFrequencyMember(162247);
-   
-        model.addAttribute("diagnosis", diagnosis);
+        ConceptClass durationConcept = Context.getConceptService().getConceptClassByName("Units of Duration");
+        List<Concept> durations = Context.getConceptService().getConceptsByClass(durationConcept);
         model.addAttribute("durations", durations);
+                                                                        
+        
+        ConceptClass routeConcept = Context.getConceptService().getConceptClassByName("Routes of drug administration");
+        List<Concept> routes = Context.getConceptService().getConceptsByClass(routeConcept);
         model.addAttribute("routes", routes);
-        model.addAttribute("doses", doses);
-        model.addAttribute("quantities", quantities);
-        model.addAttribute("frequencies", frequencies);
+        
+        
+        ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
+        List<Concept> diagnosis = Context.getConceptService().getConceptsByClass(diseaseConcept);
+        model.addAttribute("diagnosis", diagnosis);
         
         List<String> diagnosisNames = new ArrayList<String>();
-        for(Concept diagnosisName : diagnosis){
-            diagnosisNames.add(diagnosisName.getDisplayString());
+        for(Concept diag : diagnosis){
+            diagnosisNames.add(diag.getDisplayString());
         }
         model.addAttribute("diagnosisNames", diagnosisNames);
         
-        Concept orderPriority = Context.getConceptService().getConceptByName("Order Priority");
         
-        for(ConceptSet conceptPriority : orderPriority.getConceptSets()){
-            Concept orderPrio = conceptPriority.getConcept();
-            priorities.add(orderPrio);
-        }
+        ConceptClass doseConcept = Context.getConceptService().getConceptClassByName("Units of Dose");
+        List<Concept> doses = Context.getConceptService().getConceptsByClass(doseConcept);
+        model.addAttribute("doses", doses);
         
+        
+        ConceptClass quantityConcept = Context.getConceptService().getConceptClassByName("Units of Quantity");
+        List<Concept> quantities = Context.getConceptService().getConceptsByClass(quantityConcept);
+        model.addAttribute("quantities", quantities);
+ 
+        
+        List<OrderFrequency> frequencies = Context.getOrderService().getOrderFrequencies(true);
+        model.addAttribute("frequencies", frequencies);
+        
+        
+        ConceptClass priorityConcept = Context.getConceptService().getConceptClassByName("Order Priority");
+        List<Concept> priorities = Context.getConceptService().getConceptsByClass(priorityConcept);
         model.addAttribute("priorities", priorities);
 
-    }
-    
-    void addDoseMember(int conceptNumber) {
-        Concept doseMember = Context.getConceptService().getConcept(conceptNumber);
-        doses.add(doseMember);
-    }
-    
-    void addQuantityMember(int conceptNumber) {
-        Concept quantityMember = Context.getConceptService().getConcept(conceptNumber);
-        quantities.add(quantityMember);
-    }
-    
-    void addFrequencyMember(int conceptNumber) {
-        Concept frequencyMember = Context.getConceptService().getConcept(conceptNumber);
-        frequencies.add(frequencyMember);
     }
 
 }
