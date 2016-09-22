@@ -92,7 +92,7 @@ public class DrugordersPageController {
                             drugorders drugorder = null;
                             int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                             createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, patientInstructions, pharmacistInstructions);
-                            InfoErrorMessageUtil.flashInfoMessage(session, "Order Saved!");
+                            InfoErrorMessageUtil.flashInfoMessage(session, "Order Created!");
                         } 
                         else {
                             InfoErrorMessageUtil.flashInfoMessage(session, "Order Exists!");
@@ -143,20 +143,27 @@ public class DrugordersPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Order Discontinued!");
                 }
                 
-                if ("confirmOrderGroup".equals(action)) {
+                if ("SingleOrder".equals(action)) {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
-                    int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
                     }
-                    for(int i=0;i<groupCheckBox.length;i++){
-                        int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
-                        drugorders orderInGroup = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
-                        orderInGroup.setGroupid(groupID);
-                        orderInGroup.setOrderstatus("Active-Group");
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Saved!");
+                }
+                
+                if ("GroupOrder".equals(action)) {
+                    if(groupCheckBox.length > 0){
+                        int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            drugorders orderInGroup = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
+                            orderInGroup.setGroupid(groupID);
+                            orderInGroup.setOrderstatus("Active-Group");
+                        }
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
                     }
-                    
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
+                    else
+                        InfoErrorMessageUtil.flashErrorMessage(session, "Check Orders To Be Grouped!");
                 }
                 
                 if ("selectMedPlan".equals(action)) {
@@ -216,7 +223,7 @@ public class DrugordersPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Renewed!");
                 }
                 
-                if ("DISCARD GROUP ORDER".equals(action)) {
+                if ("Discard".equals(action)) {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
                     for(drugorders order : orders){
                         order.setOrderstatus("Discontinued-Group");

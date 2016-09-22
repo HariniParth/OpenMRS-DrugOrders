@@ -149,11 +149,10 @@
             <label>Drugs Ordered In This Group</label><br/><br/>
             <input type="hidden" id="groupOrderID" name="groupOrderID" />
         </div><br/>
-        
-        <input type="hidden" name="action" value="DISCARD GROUP ORDER"/><br/>
-        
-        <button class="confirm pull-right" id="btn-place" type="submit" onclick="">${ ui.message("Confirm") }</button>
-        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDiscardGroupOrderWindow()">${ ui.message("Cancel") }</button>
+                
+        <input class="pull-right" type="submit" id="discardOrderGroup" name="action" value="Discard" />
+        <input class="pull-left" type="submit" id="cancelGroupDiscard" name="action" value="Cancel" onclick="hideDiscardGroupOrderWindow()" />
+                
     </form>
 </div>
 
@@ -165,7 +164,7 @@
         </div>
         <br/><br/>
         <div class="fields">
-            <form method="post">
+            <form method="post" name="groupForm">
                 <p>Check Orders To Be Grouped
                     <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
                 </p><br/>
@@ -174,7 +173,7 @@
                     <% newDrugOrders.each { order -> %>
                         <% if(mainOrder.key == order.key) { %>
                         
-                            <input type="checkbox" name="groupCheckBox" value="${order.key}">  
+                        <input type="checkbox" name="groupCheckBox" value="${order.key}" ng-model="groupCheckBox" />  
                             <span class="viewDetails">
                                 <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                                 <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
@@ -208,8 +207,8 @@
                     <% } %>
                 <% } %><br/><br/>
 
-                <input type="hidden" id="confirmOrderGroup" name="action" value="confirmOrderGroup" />
-                <button class="confirm right" id="btn-place" type="submit" onclick="confirmOrderGroup()">${ ui.message("Close") }</button>
+                <button class="pull-right" type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group</button>
+                <button class="pull-left" type="cancel" id="confirmOrderSingle" name="action" value="SingleOrder">Close</button>
                 
             </form>
         </div>

@@ -208,13 +208,13 @@
             </div>
         </div>
 
-        <br/><br/>
+        <br/><br/><br/>
         
         <input type="hidden" id="orderClass" name="orderClass" />
         <input type="hidden" id="orderAction" name="action" />
         <input type="hidden" id="order_id" name="order_id" />
         
-        <button class="confirm right" id="btn-place" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Confirm") }</button>
+        <button class="confirm right" id="btn-place" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Save") }</button>
         <button class="cancel" id="btn-place" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
 
     </form>
