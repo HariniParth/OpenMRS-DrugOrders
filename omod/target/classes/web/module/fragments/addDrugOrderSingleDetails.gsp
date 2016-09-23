@@ -3,6 +3,31 @@
     ui.includeJavascript("drugorders", "drugorders.js")
 %>
 
+<script type="text/javascript">
+    jq( function() {
+      jq( "#associatedDiagnosis" ).autocomplete({
+        source: function( request, response ) {
+          var results = [];
+          jq.getJSON('${ ui.actionLink("getDiseaseNameSuggestions") }',
+              {
+                'query': request.term, 
+              })
+          .success(function(data) {
+              for (index in data) {
+                  var item = data[index];
+                  results.push(item.name);
+                  }
+              response( results );
+          })
+         .error(function(xhr, status, err) {
+              alert('AJAX error ' + err);
+          });
+        }
+      } )
+  });
+</script>
+
+
 <div id="singleOrderDetailsWindow">
     
     <form method="post">
@@ -163,7 +188,7 @@
                 <label>Diagnosis <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="50" id="associatedDiagnosis" autocomplete="on" oninput="autoCompleteDiagnosis('${diagnosisNames}')" name="associatedDiagnosis" class="select_field" />
+                <input type="textarea" maxlength="50" id="associatedDiagnosis" name="associatedDiagnosis" class="select_field" />
             </div>
         </div>
 

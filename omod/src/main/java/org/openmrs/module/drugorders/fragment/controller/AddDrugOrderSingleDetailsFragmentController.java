@@ -13,8 +13,11 @@ import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
 import org.openmrs.OrderFrequency;
 import org.openmrs.Patient;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
+import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -147,6 +150,18 @@ public class AddDrugOrderSingleDetailsFragmentController {
         List<Concept> priorities = Context.getConceptService().getConceptsByClass(priorityConcept);
         model.addAttribute("priorities", priorities);
 
+    }
+    
+    public List<SimpleObject> getDiseaseNameSuggestions(
+            @RequestParam(value = "query", required = false) String query,
+               @SpringBean("conceptService") ConceptService service,
+            UiUtils ui) {
+        
+        ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
+        List<Concept> diseases = Context.getConceptService().getConceptsByClass(diseaseConcept);
+
+        String[] properties = new String[] { "name"};
+        return SimpleObject.fromCollection(diseases, ui, properties);
     }
 
 }

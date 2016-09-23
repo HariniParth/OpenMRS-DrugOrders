@@ -64,6 +64,32 @@
     </div>
 </div>
 
+
+<script type="text/javascript">
+    jq( function() {
+      jq( "#diseaseName" ).autocomplete({
+        source: function( request, response ) {
+          var results = [];
+          jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
+              {
+                'query': request.term, 
+              })
+          .success(function(data) {
+              for (index in data) {
+                  var item = data[index];
+                  results.push(item.name);
+                  }
+              response( results );
+          })
+         .error(function(xhr, status, err) {
+              alert('AJAX error ' + err);
+          });
+        }
+      } )
+  });
+</script>
+  
+
 <div id="createNewPlanWindow">
     <div class="dialog-header">
         <span id="text_heading"><h4 id="adminActionType"></h4></span>
@@ -75,7 +101,7 @@
             
             <div class="fields" id="disease_field">
                 <label>Enter Plan Name </label>
-                <input id="diseaseName" type="text" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" name="diseaseName"/>
+                <input id="diseaseName" name="diseaseName"/>
             </div><br/>
             
             <p class="fields">Specify Standard Formulation</p>
@@ -212,6 +238,32 @@
     </div>
 </div>
 
+
+<script type="text/javascript">
+    jq( function() {
+      jq( "#new_disease_name" ).autocomplete({
+        source: function( request, response ) {
+          var results = [];
+          jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
+              {
+                'query': request.term, 
+              })
+          .success(function(data) {
+              for (index in data) {
+                  var item = data[index];
+                  results.push(item.name);
+                  }
+              response( results );
+          })
+         .error(function(xhr, status, err) {
+              alert('AJAX error ' + err);
+          });
+        }
+      } )
+  });
+</script>
+
+
 <div id="editMedPlanWindow">
     <div class="dialog-header">
         <h4 id="text_heading">${ ui.message("CHANGE PLAN NAME") }</h4>
@@ -225,7 +277,7 @@
             </label><br/>
             
             <label class="fields">Enter Plan Name
-                <input id="new_disease_name" name="new_disease_name" autocomplete="on" oninput="autoCompleteDisease('${diseaseNames}')" />
+                <input id="new_disease_name" name="new_disease_name" />
             </label>
             <br/><br/>
             
