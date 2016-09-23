@@ -207,8 +207,8 @@
                     <% } %>
                 <% } %><br/><br/>
 
-                <button class="pull-right" type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group</button>
-                <button class="pull-left" type="cancel" id="confirmOrderSingle" name="action" value="SingleOrder">Close</button>
+                <button class="pull-left" type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group</button>
+                <button class="pull-right" type="cancel" id="confirmOrderSingle" name="action" value="SingleOrder">Close</button>
                 
             </form>
         </div>

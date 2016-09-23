@@ -12,6 +12,10 @@
         </tr>
     </thead>
     <tbody>
+        <% if(existingDrugOrdersExtension.size() == 0 && existingDrugOrderGroups.size() == 0) { %>
+            <tr><td colspan="3" align="center">No Orders Found</td></tr>
+        <% } %>
+        
         <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
             <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
                 <% if((existingDrugOrderMain.orderId == existingDrugOrderExtension.orderId) && ((existingDrugOrderExtension.orderstatus).equals("Active"))) { %>
@@ -68,14 +72,3 @@
         <% } %>
     </tbody>
 </table>
-
-<script>
-    jq('#currentDrugOrdersTable').dataTable({
-        "sPaginationType": "full_numbers",
-        "bPaginate": true,
-        "bAutoWidth": false,
-        "bLengthChange": true,
-        "bSort": true,
-        "bJQueryUI": true
-    });
-</script>

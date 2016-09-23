@@ -44,7 +44,7 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         
         <div id="currentDrugOrdersWindow">
             ${ ui.includeFragment("drugorders", "drugOrderSingle") }
-        </div><br/>
+        </div><br/><br/>
                 
         <span class="viewDetails">
             <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"> Discontinued/Canceled/Fulfilled Orders</i>

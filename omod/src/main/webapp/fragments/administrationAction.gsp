@@ -54,7 +54,7 @@
             </div><br/><br/>
             
             <input type="hidden" name="action" value="confirmPlanItem" />
-            <button class="confirm right" id="btn-place" type="submit" onclick="hideMedPlanConfirmWindow()">${ ui.message("Close") }</button>
+            <button class="confirm right" id="btn-place" type="submit" onclick="hideMedPlanConfirmWindow()">${ ui.message("Done") }</button>
         
         </form>
     </div>
