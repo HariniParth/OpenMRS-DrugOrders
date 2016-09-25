@@ -1,32 +1,6 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
-    ui.includeJavascript("drugorders", "drugorders.js")
 %>
-
-<script type="text/javascript">
-    jq( function() {
-      jq( "#associatedDiagnosis" ).autocomplete({
-        source: function( request, response ) {
-          var results = [];
-          jq.getJSON('${ ui.actionLink("getDiseaseNameSuggestions") }',
-              {
-                'query': request.term, 
-              })
-          .success(function(data) {
-              for (index in data) {
-                  var item = data[index];
-                  results.push(item.name);
-                  }
-              response( results );
-          })
-         .error(function(xhr, status, err) {
-              alert('AJAX error ' + err);
-          });
-        }
-      } )
-  });
-</script>
-
 
 <div id="singleOrderDetailsWindow">
     
@@ -44,7 +18,7 @@
                 <label>Drug name <span id="asterisk">*</span></label>
             </div>
             <div id="order_value" class="select_field">
-                <input type="text" id="drugNameEntered" autocomplete="on" oninput="autoCompleteDrug('${drugsNames}','${allergicDrugs}')" name="drugNameEntered" />
+                <input type="text" id="drugNameEntered" oninput="autoCompleteDrug('${drugsNames}','${allergicDrugs}')" name="drugNameEntered" />
             </div>
         </div>
         
@@ -244,3 +218,48 @@
 
     </form>
 </div>
+
+
+<script type="text/javascript">
+    jq( function() {
+        jq( "#drugNameEntered" ).autocomplete({
+            source: function( request, response ) {
+                var results = [];
+                jq.getJSON('${ ui.actionLink("getDrugNameSuggestions") }',
+                    {
+                      'query': request.term, 
+                    })
+                .success(function(data) {
+                    for (index in data) {
+                        var item = data[index];
+                        results.push(item.name);
+                        }
+                    response( results );
+                })
+                .error(function(xhr, status, err) {
+                    alert('AJAX error ' + err);
+                });
+            }
+        } ),
+      
+      jq( "#associatedDiagnosis" ).autocomplete({
+        source: function( request, response ) {
+          var results = [];
+          jq.getJSON('${ ui.actionLink("getDiseaseNameSuggestions") }',
+              {
+                'query': request.term, 
+              })
+          .success(function(data) {
+              for (index in data) {
+                  var item = data[index];
+                  results.push(item.name);
+                  }
+              response( results );
+          })
+         .error(function(xhr, status, err) {
+              alert('AJAX error ' + err);
+          });
+        }
+      } )
+  });
+</script>

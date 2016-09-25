@@ -176,10 +176,7 @@ function autoCompleteDiagnosis(diagnosis){
 }
 
 function autoCompleteDrug(drug, allergies){
-    var list = drug.replace("[","").replace("]","").split(',');
-    console.log(list);
     $("#drugNameEntered").autocomplete({
-       source : list,
        select : function( event , ui ) {
             var allergyList = allergies.split(",");
             var isAllergic = false;

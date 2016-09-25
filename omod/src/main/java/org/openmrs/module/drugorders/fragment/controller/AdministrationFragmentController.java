@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
+import org.openmrs.ConceptSearchResult;
 import org.openmrs.OrderFrequency;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
@@ -88,16 +89,46 @@ public class AdministrationFragmentController {
 
     }
     
+    
+    public List<SimpleObject> getDrugNameSuggestions(
+            @RequestParam(value = "query", required = false) String query,
+               @SpringBean("conceptService") ConceptService service,
+            UiUtils ui) {
+        
+        ConceptClass drugConcept = Context.getConceptService().getConceptClassByName("Drug");
+        List<ConceptClass> requireClasses = new ArrayList<ConceptClass>();
+        requireClasses.add(drugConcept);
+        
+        List<ConceptSearchResult> results = Context.getConceptService().getConcepts(query, null, false, requireClasses, null, null, null, null, 0, 100);
+        
+        List<Concept> names = new ArrayList<Concept>();
+        for (ConceptSearchResult con : results) {
+            names.add(con.getConcept());
+            System.out.println("Concept: " + con.getConceptName());
+        }
+        String[] properties = new String[] { "name"};
+        return SimpleObject.fromCollection(names, ui, properties);
+    }
+    
+    
     public List<SimpleObject> getPlanNameSuggestions(
             @RequestParam(value = "query", required = false) String query,
                @SpringBean("conceptService") ConceptService service,
             UiUtils ui) {
         
         ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
-        List<Concept> diseases = Context.getConceptService().getConceptsByClass(diseaseConcept);
-
+        List<ConceptClass> requireClasses = new ArrayList<ConceptClass>();
+        requireClasses.add(diseaseConcept);
+        
+        List<ConceptSearchResult> results = Context.getConceptService().getConcepts(query, null, false, requireClasses, null, null, null, null, 0, 100);
+        
+        List<Concept> names = new ArrayList<Concept>();
+        for (ConceptSearchResult con : results) {
+            names.add(con.getConcept());
+            System.out.println("Concept: " + con.getConceptName());
+        }
         String[] properties = new String[] { "name"};
-        return SimpleObject.fromCollection(diseases, ui, properties);
+        return SimpleObject.fromCollection(names, ui, properties);
     }
     
 }

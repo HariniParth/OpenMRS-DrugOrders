@@ -63,31 +63,6 @@
         <button class="cancel pull-right" id="btn-place" type="button" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button>
     </div>
 </div>
-
-
-<script type="text/javascript">
-    jq( function() {
-      jq( "#diseaseName" ).autocomplete({
-        source: function( request, response ) {
-          var results = [];
-          jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
-              {
-                'query': request.term, 
-              })
-          .success(function(data) {
-              for (index in data) {
-                  var item = data[index];
-                  results.push(item.name);
-                  }
-              response( results );
-          })
-         .error(function(xhr, status, err) {
-              alert('AJAX error ' + err);
-          });
-        }
-      } )
-  });
-</script>
   
 
 <div id="createNewPlanWindow">
@@ -112,7 +87,7 @@
                     <label id="label">Drug Name</label>
                 </div>
                 <div id="order_value">
-                    <input id="drug_name" type="text" autocomplete="on" oninput="autoCompletePlanItem('${drugsNames}')" name="drugName"/>
+                    <input id="drug_name" type="text" name="drugName"/>
                 </div>
             </div>
             
@@ -239,31 +214,6 @@
 </div>
 
 
-<script type="text/javascript">
-    jq( function() {
-      jq( "#new_disease_name" ).autocomplete({
-        source: function( request, response ) {
-          var results = [];
-          jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
-              {
-                'query': request.term, 
-              })
-          .success(function(data) {
-              for (index in data) {
-                  var item = data[index];
-                  results.push(item.name);
-                  }
-              response( results );
-          })
-         .error(function(xhr, status, err) {
-              alert('AJAX error ' + err);
-          });
-        }
-      } )
-  });
-</script>
-
-
 <div id="editMedPlanWindow">
     <div class="dialog-header">
         <h4 id="text_heading">${ ui.message("CHANGE PLAN NAME") }</h4>
@@ -342,3 +292,69 @@
         </form>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    jq( function() {
+        jq( "#diseaseName" ).autocomplete({
+            source: function( request, response ) {
+                var results = [];
+                jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
+                    {
+                      'query': request.term, 
+                    })
+                .success(function(data) {
+                    for (index in data) {
+                        var item = data[index];
+                        results.push(item.name);
+                    }
+                    response( results );
+                })
+                .error(function(xhr, status, err) {
+                    alert('AJAX error ' + err);
+                });
+            }
+        } ),
+        
+        jq( "#drug_name" ).autocomplete({
+            source: function( request, response ) {
+                var results = [];
+                jq.getJSON('${ ui.actionLink("getDrugNameSuggestions") }',
+                    {
+                      'query': request.term, 
+                    })
+                .success(function(data) {
+                    for (index in data) {
+                        var item = data[index];
+                        results.push(item.name);
+                    }
+                    response( results );
+                })
+                .error(function(xhr, status, err) {
+                    alert('AJAX error ' + err);
+                });
+            }
+        } ),
+        
+        jq( "#new_disease_name" ).autocomplete({
+            source: function( request, response ) {
+                var results = [];
+                jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
+                    {
+                      'query': request.term, 
+                    })
+                .success(function(data) {
+                    for (index in data) {
+                        var item = data[index];
+                        results.push(item.name);
+                    }
+                    response( results );
+                })
+                .error(function(xhr, status, err) {
+                    alert('AJAX error ' + err);
+                });
+            }
+        } )
+    });
+    
+</script>
