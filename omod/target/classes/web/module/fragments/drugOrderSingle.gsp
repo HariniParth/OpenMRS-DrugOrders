@@ -1,5 +1,6 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
+    ui.includeJavascript("drugorders", "dataTables.js")
     def orderList = "";
 %>
 
@@ -72,3 +73,15 @@
         <% } %>
     </tbody>
 </table>
+
+<script>
+    jq('#currentDrugOrdersTable').dataTable({
+        "sPaginationType": "full_numbers",
+        "bPaginate": true,
+        "bAutoWidth": false,
+        "bLengthChange": true,
+        "bSort": true,
+        "bJQueryUI": true
+
+    });
+</script>
