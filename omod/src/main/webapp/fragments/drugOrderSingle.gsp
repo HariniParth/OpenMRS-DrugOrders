@@ -83,7 +83,8 @@
         "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false
+        "bInfo": false,
+        "bFilter": false
 
     });
 </script>
