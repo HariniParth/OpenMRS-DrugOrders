@@ -43,7 +43,7 @@
         
         <div id="allergicOrderReasonView">
             <div class="fields" id="view_order_detail">
-                <label>Patient Confirmed To Be Allergic To Drug</label><br/><br/>
+                <label>Allergy Order Note</label><br/><br/>
                 <div id="order_label">
                     <label>Order Reason</label>
                 </div>

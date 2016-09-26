@@ -60,16 +60,17 @@
                         </tr>
                     <% } %>
                 <% } %>
-                <tr>
-                    <td></td><td></td>
-                    <td>
-                        <span id="button">
-                            <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
-                            <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
-                        </span>
-                    </td>
-                </tr>
             <% } %>
+            <tr>
+                <td><span class="hidden">Group Action</span></td>
+                <td></td>
+                <td>
+                    <span id="button">
+                        <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
+                        <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
+                    </span>
+                </td>
+            </tr>
         <% } %>
     </tbody>
 </table>
@@ -81,7 +82,8 @@
         "bAutoWidth": false,
         "bLengthChange": true,
         "bSort": true,
-        "bJQueryUI": true
+        "bJQueryUI": true,
+        "bInfo": false
 
     });
 </script>

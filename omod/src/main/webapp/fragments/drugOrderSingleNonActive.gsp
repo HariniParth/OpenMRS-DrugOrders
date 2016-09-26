@@ -58,7 +58,7 @@
                     <% } %>
                 <% } %>
                 <tr>
-                    <td></td>
+                    <td><span class="hidden">Group Action</span></td>
                     <td></td>
                     <td>
                         <span id="button">
@@ -78,7 +78,8 @@
         "bAutoWidth": false,
         "bLengthChange": true,
         "bSort": true,
-        "bJQueryUI": true
+        "bJQueryUI": true,
+        "bInfo": false
 
     });
 </script>
