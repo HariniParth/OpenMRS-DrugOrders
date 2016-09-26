@@ -2,6 +2,7 @@
     ui.decorateWith("appui", "standardEmrPage");
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "drugorders.js")
+    ui.includeJavascript("drugorders", "dataTables.js")
 %>
 
 <script type="text/javascript">
@@ -22,55 +23,55 @@
             <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="displayPlanCreationWindow()"></i></span>
         </h3><br/><br/>
 
-        <div id="existingMedPlansWindow">
-            <% allMedicationPlans.each { medPlan -> %>
-                <% if(medPlan.value.size() > 0) { %>
-                
-                    <span class="viewDetails">
-                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                    </span>
-                    
-                    ${ medPlan.key.getDisplayString().toUpperCase() }
-                    
-                    <span id="button">
-                        <i class="icon-remove delete-action pull-right" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${medPlan.key.getDisplayString()}')"></i>
-                        <i class="icon-pencil edit-action pull-right" title="${ ui.message("Change Plan Name") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
-                        <i class="icon-plus edit-action pull-right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${medPlan.key.getDisplayString()}')"></i>
-                    </span><br/><br/>
-                    
-                    <div class="existingMedPlansDetailsWindow">
-                        <% medPlan.value.each { med -> %>
-                            <p>
-                                <a href="#" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">${med.drugid.getDisplayString()}</a>
-
-                                <span id="button">
-                                    <i class="icon-remove delete-action pull-right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
-                                    <i class="icon-pencil edit-action pull-right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
-                                </span><br/>
-                            </p><br/>
-                        <% } %> 
-                    </div>
+        <table id="MedPlansTable">
+            <thead>
+                <tr>
+                    <th>Plan Name</th>
+                    <th style="text-align: right">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(allMedicationPlans.size() == 0) { %>
+                    <tr><td colspan="2" align="center">No Existing Plans</td></tr>
                 <% } %>
-            <% } %>            
-        </div> 
+        
+                <div id="existingMedPlansWindow">
+                    <% allMedicationPlans.each { medPlan -> %>
+                        <% if(medPlan.value.size() > 0) { %>
+                            <tr>
+                                <td class="fields">
+                                    <span class="viewDetails">
+                                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                                    </span>
+                                    ${ medPlan.key.getDisplayString().toUpperCase() }<br/><br/>
 
-        <script type="text/javascript">
-            jq(".icon-plus-sign").click(function(){
-                jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().show();
-                jq(this).hide();
-                jq(this).nextAll(".icon-minus-sign").show();
-            });
-        </script>
+                                    <div class="existingMedPlansDetailsWindow">
+                                        <% medPlan.value.each { med -> %>
+                                        <p class="fields">
+                                                <a href="#" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">${med.drugid.getDisplayString()}</a>
 
-        <script type="text/javascript">
-            jq(".icon-minus-sign").click(function(){
-                jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().hide();
-                jq(this).hide();
-                jq(this).prevAll(".icon-plus-sign").show();
-            });
-        </script>
-
+                                                <span id="button">
+                                                    <i class="icon-remove delete-action pull-right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
+                                                    <i class="icon-pencil edit-action pull-right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
+                                                </span><br/>
+                                            </p>
+                                        <% } %> 
+                                    </div>
+                                </td>
+                                <td>
+                                    <span id="button">
+                                        <i class="icon-remove delete-action pull-right" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${medPlan.key.getDisplayString()}')"></i>
+                                        <i class="icon-pencil edit-action pull-right" title="${ ui.message("Change Plan Name") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
+                                        <i class="icon-plus edit-action pull-right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${medPlan.key.getDisplayString()}')"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>            
+                </div> 
+            </tbody>
+        </table>
     </div>
 
     <div id="creationWindow"> 
@@ -84,3 +85,32 @@
     </div>
     
 </div>
+
+<script>
+    jq('#MedPlansTable').dataTable({
+        "sPaginationType": "full_numbers",
+        "bPaginate": true,
+        "bAutoWidth": false,
+        "bLengthChange": true,
+        "bSort": true,
+        "bJQueryUI": true,
+        "bInfo": false
+
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().show();
+        jq(this).hide();
+        jq(this).nextAll(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().hide();
+        jq(this).hide();
+        jq(this).prevAll(".icon-plus-sign").show();
+    });
+</script>
