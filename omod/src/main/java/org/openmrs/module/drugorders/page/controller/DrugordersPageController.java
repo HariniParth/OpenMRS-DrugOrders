@@ -233,6 +233,22 @@ public class DrugordersPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Orders Discontinued!");
                 }
                 
+                if ("RENEW ORDER GROUP".equals(action)) {
+                    List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
+                    int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
+                    for(drugorders order : orders){
+                        DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
+                        DrugOrder drugOrder = null;
+                        drugorders drugorder = null;
+                        int orderID = createNewDrugOrder(drugOrder, patient, order.getDrugname().getDisplayString(), drugOrderMain.getRoute().getDisplayString(), drugOrderMain.getDose().toString(), drugOrderMain.getDoseUnits().getDisplayString(), drugOrderMain.getQuantity().toString(), drugOrderMain.getQuantityUnits().getDisplayString(), drugOrderMain.getFrequency().getName(), drugOrderMain.getDuration(), drugOrderMain.getDurationUnits().getDisplayString());
+                        createDrugOrderExtension(drugorder, orderID, patientID, order.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", order.getAssociateddiagnosis().getDisplayString(), order.getPriority().getDisplayString(), "", "");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setGroupid(groupID);
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setOrderstatus("Active-Group");
+                    }
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
+                }
+                
                 if ("EDIT DRUG ORDER".equals(action)) {
                     
                     drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);

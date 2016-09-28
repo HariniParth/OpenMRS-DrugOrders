@@ -62,7 +62,7 @@
                     <td></td>
                     <td>
                         <span id="button">
-                            <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="showRenewGroupOrderWindow()"></i>
+                            <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="showRenewGroupOrderWindow('RENEW ORDER GROUP','${oldDrugOrder.key}','${orderList}')"></i>
                         </span>
                     </td>
                 </tr>
