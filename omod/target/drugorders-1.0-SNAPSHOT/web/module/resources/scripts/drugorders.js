@@ -361,7 +361,9 @@ function hideMedPlanWindow(){
     jq("#viewPlanWindow").hide();
 }
 
-function showDiscardGroupOrderWindow(orderID,orderList){
+function showDiscardGroupOrderWindow(groupAction,orderID,orderList){
+    $("#groupOrderAction").text(groupAction);
+    $("#groupAction").val(groupAction);
     $("#groupOrderID").val(orderID);
     jq("#showGroupOrderWindow").show();
     document.getElementById("showGroupOrderWindow").style.display = 'block';
@@ -376,6 +378,6 @@ function showDiscardGroupOrderWindow(orderID,orderList){
     });
 }
 
-function hideDiscardGroupOrderWindow(){
+function hideGroupOrderWindow(){
     jq("#showGroupOrderWindow").hide();
 }

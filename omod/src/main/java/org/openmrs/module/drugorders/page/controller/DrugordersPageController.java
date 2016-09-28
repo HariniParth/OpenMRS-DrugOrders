@@ -223,7 +223,7 @@ public class DrugordersPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Renewed!");
                 }
                 
-                if ("Discard".equals(action)) {
+                if ("DISCARD ORDER GROUP".equals(action)) {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
                     for(drugorders order : orders){
                         order.setOrderstatus("Discontinued-Group");

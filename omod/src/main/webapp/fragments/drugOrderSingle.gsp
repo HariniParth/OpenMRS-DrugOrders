@@ -67,7 +67,7 @@
                 <td>
                     <span id="button">
                         <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
-                        <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
+                        <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('DISCARD ORDER GROUP','${existingDrugOrder.key}','${orderList}')"></i>
                     </span>
                 </td>
             </tr>

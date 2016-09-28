@@ -142,7 +142,7 @@
 <div id="showGroupOrderWindow">
     <form method="post">
         <div class="dialog-header">
-            <h4 id="text_heading">${ ui.message("DISCARD GROUP ORDER") }</h4>
+            <span id="text_heading"><h4 id="groupOrderAction"></h4></span>
         </div><br/>
         
         <div class="fields" id="groupOrderBlock">
@@ -150,8 +150,9 @@
             <input type="hidden" id="groupOrderID" name="groupOrderID" />
         </div><br/>
                 
-        <input class="pull-right" type="submit" id="discardOrderGroup" name="action" value="Discard" />
-        <input class="pull-left" type="submit" id="cancelGroupDiscard" name="action" value="Cancel" onclick="hideDiscardGroupOrderWindow()" />
+        <input type="hidden" id="groupAction" name="action" />
+        <input class="pull-right" type="submit" id="actionOrderGroup" value="Confirm" />
+        <input class="pull-left" type="submit" id="cancelGroupAction" value="Cancel" onclick="hideGroupOrderWindow()" />
                 
     </form>
 </div>
