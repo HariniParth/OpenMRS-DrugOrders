@@ -42,7 +42,7 @@
         <% existingDrugOrderGroups.each { existingDrugOrder -> %>
             <% existingDrugOrder.value.each { existingOrder -> %>
                 <% existingDrugOrdersMain.each { existingDrugOrderMain -> %>
-                    <% if(existingDrugOrderMain.orderId == existingOrder.orderId) { %>
+                    <% if(existingDrugOrderMain.orderId == existingOrder.orderId && existingOrder.orderstatus == "Active-Group") { %>
 
                         <tr>
                             <td class="fields">
@@ -55,6 +55,7 @@
                             <td>
                                 <span id="button">
                                     <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','GROUP','${ existingDrugOrderMain.orderId }','${ existingOrder.drugname.getDisplayString() }','${ existingOrder.startdate }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingOrder.associateddiagnosis.getDisplayString() }','${ existingOrder.isallergicorderreasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientinstructions }','${ existingOrder.pharmacistinstructions }')"></i>
+                                    <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ existingDrugOrderMain.orderId }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingOrder.startdate }','${ existingOrder.drugname.getDisplayString() }','${ existingDrugOrderMain.dose }','${ existingDrugOrderMain.doseUnits.getDisplayString() }','${ existingDrugOrderMain.route.getDisplayString() }','${ existingDrugOrderMain.duration }','${ existingDrugOrderMain.durationUnits.getDisplayString() }','${ existingDrugOrderMain.quantity }','${ existingDrugOrderMain.quantityUnits.getDisplayString() }','${ existingDrugOrderMain.frequency }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientinstructions }','${ existingOrder.pharmacistinstructions }')"></i>
                                 </span>
                             </td>
                         </tr>
@@ -66,8 +67,7 @@
                 <td></td>
                 <td>
                     <span id="button">
-                        <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditGroupOrderWindow('${existingDrugOrder.key}','${orderList}')"></i>
-                        <i class="icon-remove delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('DISCARD ORDER GROUP','${existingDrugOrder.key}','${orderList}')"></i>
+                        <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('DISCARD ORDER GROUP','${existingDrugOrder.key}','${orderList}')"></i>
                     </span>
                 </td>
             </tr>
