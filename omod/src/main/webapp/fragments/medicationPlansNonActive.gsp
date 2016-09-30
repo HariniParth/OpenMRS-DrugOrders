@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <% if(drugOrderMainPlanNonActive.size() == 0) { %>
-                <tr><td colspan="2" align="center">No Existing Plans</td></tr>
+                <tr><td colspan="2" align="center">No Orders Found</td></tr>
             <% } %>
     
             <% drugOrderMainPlanNonActive.each { drugOrderMain -> %>

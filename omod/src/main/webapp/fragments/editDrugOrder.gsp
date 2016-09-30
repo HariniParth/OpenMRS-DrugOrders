@@ -10,7 +10,7 @@
     <div id="singleOrderView">
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Order Details</label>
+                <label><strong>Order Details</strong></label>
             </div>
             <div id="order_value">
                 <label id="order_details"></label>
@@ -21,7 +21,7 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Start Date</label>
+                <label><strong>Start Date</strong></label>
             </div>
             <div id="order_value">
                 <label id="start_date"></label>
@@ -32,7 +32,7 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Priority</label>
+                <label><strong>Priority</strong></label>
             </div>
             <div id="order_value">
                 <label id="order_priority"></label>
@@ -43,9 +43,9 @@
         
         <div id="allergicOrderReasonView">
             <div class="fields" id="view_order_detail">
-                <label>Allergy Order Note</label><br/><br/>
+                <label><strong>Allergy Order Note</strong></label><br/><br/>
                 <div id="order_label">
-                    <label>Order Reason</label>
+                    <label><strong>Order Reason</strong></label>
                 </div>
                 <div id="order_value">
                     <label id="order_reason"></label>
@@ -55,14 +55,14 @@
         </div>
         
         <div class="fields" id="view_order_detail">
-            <label>Instructions from Physician for</label>
+            <label><strong>Instructions from Physician for</strong></label>
         </div>
 
         <br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Patient</label>
+                <label><strong>Patient</strong></label>
             </div>
             <div id="order_value">
                 <label id="patient_instructions"></label>
@@ -73,7 +73,7 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Pharmacist</label>
+                <label><strong>Pharmacist</strong></label>
             </div>
             <div id="order_value">
                 <label id="pharmacist_instructions"></label>
@@ -90,7 +90,7 @@
                 </div>
             </div><br/>
             
-            <label class="fields">Select the reason to discontinue </label>
+            <label class="fields"><strong>Select the reason to discontinue</strong></label>
 
             <div class="fields">                
                 <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded" class="select_field">
@@ -101,7 +101,7 @@
                 </select>
             </div>
 
-            <label class="fields">Enter the reason to discontinue </label>
+            <label class="fields"><strong>Enter the reason to discontinue</strong></label>
             
             <div class="fields" id="view_order_detail">
                 <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/>
@@ -182,8 +182,8 @@
                             ${order.value.drugname.getDisplayString()}
                             
                             <span id="button" class="pull-right">
-                                <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','SINGLE','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.associateddiagnosis.getDisplayString() }','${ order.value.isallergicorderreasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
-                                <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                                <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','SINGLE','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.associateddiagnosis.getDisplayString() }','${ order.value.isallergicorderreasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                                <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                             </span><br/><br/>
 
                             <div class="planItemDetails">
@@ -246,8 +246,8 @@
                             ${order.value.drugname.getDisplayString()}
 
                             <span id="button" class="pull-right">
-                                <i class="icon-pencil edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','PLAN','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ selectedDisease }','${ order.value.isallergicorderreasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
-                                <i class="icon-remove delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                                <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','PLAN','${ mainOrder.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ selectedDisease }','${ order.value.isallergicorderreasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                                <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ mainOrder.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ mainOrder.value.dose }','${ mainOrder.value.doseUnits.getDisplayString() }','${ mainOrder.value.route.getDisplayString() }','${ mainOrder.value.duration }','${ mainOrder.value.durationUnits.getDisplayString() }','${ mainOrder.value.quantity }','${ mainOrder.value.quantityUnits.getDisplayString() }','${ mainOrder.value.frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                             </span>
                             <br/><br/>
 

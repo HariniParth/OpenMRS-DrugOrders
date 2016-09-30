@@ -268,12 +268,12 @@ public class DrugordersPageController {
                     
                     if(orderClass.equals("PLAN")){
                         originalOrderExtension.setOrderstatus("Discontinued-Plan");
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Plan");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                         Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderid(order);
                     } 
                     else if(orderClass.equals("SINGLE")){
                         originalOrderExtension.setOrderstatus("Discontinued");
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("New");
+                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active");
                     }
                     else if(orderClass.equals("GROUP")){
                         originalOrderExtension.setOrderstatus("Discontinued-Group");
