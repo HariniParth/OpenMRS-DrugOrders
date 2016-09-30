@@ -398,3 +398,12 @@ function showDiscardGroupOrderWindow(groupAction,orderID,orderList){
 function hideGroupOrderWindow(){
     jq("#showGroupOrderWindow").hide();
 }
+
+function showAddOrderToGroupWindow(orderType,groupID){
+    $("#order_id").val(groupID);
+    $("#orderType").text(orderType);
+    $("#orderAction").val(orderType);
+    jq("#confirmOrderView").hide();
+    jq("#singleOrderDetailsWindow").show();
+    document.getElementById("singleOrderDetailsWindow").style.display = 'block';
+}

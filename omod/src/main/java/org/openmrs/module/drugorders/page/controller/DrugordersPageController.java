@@ -92,6 +92,11 @@ public class DrugordersPageController {
                             drugorders drugorder = null;
                             int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                             createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, patientInstructions, pharmacistInstructions);
+                            
+                            if(order_id != null){
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(order_id);
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Group");
+                            }
                             InfoErrorMessageUtil.flashInfoMessage(session, "Order Created!");
                         } 
                         else {
