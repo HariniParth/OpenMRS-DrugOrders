@@ -93,7 +93,7 @@
             <label class="fields"><strong>Select the reason to discontinue</strong></label>
 
             <div class="fields">                
-                <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded" class="select_field">
+                <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded" class="select_field" onchange="enterNonCodedReason()">
                     <option value="">Choose option</option>
                     <% discontinueReasons.each { discontinueReason -> %>
                         <option value="${ discontinueReason.getDisplayString() }">${ discontinueReason.getDisplayString() }</option>
@@ -104,7 +104,7 @@
             <label class="fields"><strong>Enter the reason to discontinue</strong></label>
             
             <div class="fields" id="view_order_detail">
-                <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded"/>
+                <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded" disabled="true"/>
             </div>
 
             <input type="hidden" id="dis_order_id" name="dis_order_id"/>

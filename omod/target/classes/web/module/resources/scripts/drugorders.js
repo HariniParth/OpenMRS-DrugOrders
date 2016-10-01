@@ -407,3 +407,9 @@ function showAddOrderToGroupWindow(orderType,groupID){
     jq("#singleOrderDetailsWindow").show();
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
+
+function enterNonCodedReason(){
+    if(document.getElementById("discontinueOrderReasonCoded").value === "Other"){
+        jq("#discontinueOrderReasonNonCoded").removeAttr("disabled");
+    }
+}

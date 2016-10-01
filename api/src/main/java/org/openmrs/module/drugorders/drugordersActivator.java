@@ -82,12 +82,16 @@ public class drugordersActivator implements ModuleActivator {
                 Concept concept = saveConcept(reasons, conceptClass);
                 setConcept.addSetMember(concept);
             }
+            Concept otherConcept = cs.getConceptByName("Other");
+            otherConcept.setConceptClass(conceptClass);
+            cs.saveConcept(otherConcept);
+            setConcept.addSetMember(otherConcept);
         }
 
         if (cs.getConceptClassByName("Order Priority") == null) {
 
             ConceptClass conceptClass = saveConceptClass("Order Priority");
-            Concept setConcept = saveConcept("Order Priority", Context.getConceptService().getConceptClassByName("Units of Measure"));
+            Concept setConcept = saveConcept("Order Priority", cs.getConceptClassByName("Units of Measure"));
             String orderPriority[] = {"Normal", "High", "Exception"};
 
             for (String orderPrio : orderPriority) {
@@ -99,10 +103,10 @@ public class drugordersActivator implements ModuleActivator {
         if (cs.getConceptClassByName("Units of Duration") == null) {
 
             ConceptClass conceptClass = saveConceptClass("Units of Duration");
-            Concept setConcept = saveConcept("Units of Duration", Context.getConceptService().getConceptClassByName("Units of Measure"));
+            Concept setConcept = saveConcept("Units of Duration", cs.getConceptClassByName("Units of Measure"));
 
             List<Concept> durations = new ArrayList<Concept>();
-            Concept durationConcept = Context.getConceptService().getConceptByName("Duration units");
+            Concept durationConcept = cs.getConceptByName("Duration units");
 
             for (ConceptSet durationConcepts : durationConcept.getConceptSets()) {
                 Concept durationMember = durationConcepts.getConcept();
@@ -111,7 +115,7 @@ public class drugordersActivator implements ModuleActivator {
 
             for (Concept duration : durations) {
                 duration.setConceptClass(conceptClass);
-                Context.getConceptService().saveConcept(duration);
+                cs.saveConcept(duration);
                 setConcept.addSetMember(duration);
             }
         }
@@ -119,10 +123,10 @@ public class drugordersActivator implements ModuleActivator {
         if (cs.getConceptClassByName("Routes of drug administration") == null) {
 
             ConceptClass conceptClass = saveConceptClass("Routes of drug administration");
-            Concept setConcept = saveConcept("Routes of drug administration", Context.getConceptService().getConceptClassByName("Procedure"));
+            Concept setConcept = saveConcept("Routes of drug administration", cs.getConceptClassByName("Procedure"));
 
             List<Concept> routes = new ArrayList<Concept>();
-            Concept routeConcept = Context.getConceptService().getConceptByName("Routes of administration");
+            Concept routeConcept = cs.getConceptByName("Routes of administration");
 
             for (ConceptSet routeConcepts : routeConcept.getConceptSets()) {
                 Concept routeMember = routeConcepts.getConcept();
@@ -131,7 +135,7 @@ public class drugordersActivator implements ModuleActivator {
 
             for (Concept route : routes) {
                 route.setConceptClass(conceptClass);
-                Context.getConceptService().saveConcept(route);
+                cs.saveConcept(route);
                 setConcept.addSetMember(route);
             }
         }
@@ -139,17 +143,17 @@ public class drugordersActivator implements ModuleActivator {
         if (cs.getConceptClassByName("Units of Dose") == null) {
 
             ConceptClass conceptClass = saveConceptClass("Units of Dose");
-            Concept setConcept = saveConcept("Units of Dose", Context.getConceptService().getConceptClassByName("Units of Measure"));
+            Concept setConcept = saveConcept("Units of Dose", cs.getConceptClassByName("Units of Measure"));
             String doseUnits[] = {"Fluid ounce", "Gram", "Liter", "Milliliter", "Milligram", "Microgram"};
 
             List<Concept> doses = new ArrayList<Concept>();
             for (String doseUnit : doseUnits) {
-                doses.add(Context.getConceptService().getConceptByName(doseUnit));
+                doses.add(cs.getConceptByName(doseUnit));
             }
 
             for (Concept dose : doses) {
                 dose.setConceptClass(conceptClass);
-                Context.getConceptService().saveConcept(dose);
+                cs.saveConcept(dose);
                 setConcept.addSetMember(dose);
             }
         }
@@ -157,17 +161,17 @@ public class drugordersActivator implements ModuleActivator {
         if (cs.getConceptClassByName("Units of Quantity") == null) {
 
             ConceptClass conceptClass = saveConceptClass("Units of Quantity");
-            Concept setConcept = saveConcept("Units of Quantity", Context.getConceptService().getConceptClassByName("Units of Measure"));
+            Concept setConcept = saveConcept("Units of Quantity", cs.getConceptClassByName("Units of Measure"));
             String quantityUnits[] = {"Capsule", "Drop", "Syringe", "Tablet", "Tablespoon", "Teaspoon", "Tube", "Vial"};
 
             List<Concept> quantities = new ArrayList<Concept>();
             for (String quantityUnit : quantityUnits) {
-                quantities.add(Context.getConceptService().getConceptByName(quantityUnit));
+                quantities.add(cs.getConceptByName(quantityUnit));
             }
 
             for (Concept quantity : quantities) {
                 quantity.setConceptClass(conceptClass);
-                Context.getConceptService().saveConcept(quantity);
+                cs.saveConcept(quantity);
                 setConcept.addSetMember(quantity);
             }
         }
@@ -177,10 +181,10 @@ public class drugordersActivator implements ModuleActivator {
             String frequencyConcepts[] = {"Once daily","Twice daily","Thrice daily","Four times daily","Weekly","Monthly"};
         
             for(String freqConcept : frequencyConcepts){
-                if(Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(freqConcept)) == null){
+                if(Context.getOrderService().getOrderFrequencyByConcept(cs.getConceptByName(freqConcept)) == null){
                     OrderFrequency orderFrequency = new OrderFrequency();
                     orderFrequency.setFrequencyPerDay(0.0);
-                    orderFrequency.setConcept(Context.getConceptService().getConceptByName(freqConcept));
+                    orderFrequency.setConcept(cs.getConceptByName(freqConcept));
                     Context.getOrderService().saveOrderFrequency(orderFrequency);
                 }
 
