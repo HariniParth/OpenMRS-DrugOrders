@@ -44,6 +44,10 @@
             <column name="discontinuereason" type="int"></column>
             <column name="discontinuationreasons" type="varchar(255)"></column>
             <column name="approvalrequired" type="tinyint(1)"></column>
+            <column name="comments" type="varchar(255)"></column>
+            <column name="forwardcomments" type="int"></column>
+            <column name="additionalmessage" type="int"></column>
+            <column name="message" type="varchar(255)"></column>
             
         </createTable>
     </changeSet>

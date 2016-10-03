@@ -40,6 +40,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private Concept discontinuereason;
         private String discontinuationreasons;
         private Integer approvalrequired;
+        
+        private String message;
+        private String comments;
+        private Integer forwardcomments;
+        private Integer additionalmessage;
 
 	
         public drugorders(){
@@ -194,4 +199,35 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.approvalrequired = approvalrequired;
 	}
         
+        public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+        
+        public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+        
+        public Integer getForwardcomments() {
+            return forwardcomments;
+        }
+
+        public void setForwardcomments(Integer forwardcomments) {
+            this.forwardcomments = forwardcomments;
+        }
+        
+        public Integer getAdditionalmessage() {
+            return additionalmessage;
+        }
+
+        public void setAdditionalmessage(Integer additionalmessage) {
+            this.additionalmessage = additionalmessage;
+        }
 }

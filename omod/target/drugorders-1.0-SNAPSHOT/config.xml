@@ -7,9 +7,9 @@
 	<name>drugorders</name>
 	<version>1.0-SNAPSHOT</version>
 	<package>org.openmrs.module.drugorders</package>
-	<author>harini</author>
+	<author>Harini Parthasarathy</author>
 	<description>
-		helps to place drug orders
+            Allows Physicians to place single, group drug orders. Also allows ordering of all drugs to treat specific diseases
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/drugorders/update.rdf</updateURL>
 	<require_version>1.11.4</require_version>

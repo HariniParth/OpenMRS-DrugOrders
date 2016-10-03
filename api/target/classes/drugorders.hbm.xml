@@ -27,6 +27,10 @@
         <property name="patientinstructions" type="java.lang.String" column="patientinstructions" length="255" ></property> 
         <property name="pharmacistinstructions" type="java.lang.String" column="pharmacistinstructions" length="255" ></property>
         <property name="approvalrequired" column="approvalrequired" ></property>
+        <property name="comments" type="java.lang.String" column="comments" length="255"></property> 
+        <property name="forwardcomments" column="forwardcomments" not-null="false"></property>
+        <property name="additionalmessage" column="additionalmessage" not-null="false"></property>
+        <property name="message" type="java.lang.String" column="message" length="255"></property> 
 
     </class>
 

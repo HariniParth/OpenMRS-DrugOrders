@@ -7,9 +7,9 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>harini</author>
+	<author>Harini Parthasarathy</author>
 	<description>
-		${project.parent.description}
+            Allows Physicians to place single, group drug orders. Also allows ordering of all drugs to treat specific diseases
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
 	<require_version>${openMRSVersion}</require_version>
