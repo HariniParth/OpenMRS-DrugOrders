@@ -78,7 +78,23 @@
             <div id="order_value">
                 <label id="pharmacist_instructions"></label>
             </div>
-        </div><br/><br/>
+        </div>
+        
+        <br/><br/>
+        
+        <div id="pharmacistCommentsView">
+            <div class="fields" id="view_order_detail">
+                <label><strong>Pharmacist's Comments for</strong></label><br/><br/>
+                <div id="order_label">
+                    <label><strong>Physician</strong></label>
+                </div>
+                <div id="order_value">
+                    <label id="pharma_comments"></label>
+                </div>
+            </div>
+            <br/><br/>
+        </div>
+        
     </div>
         
     <div id="showDiscontinueOrderView">

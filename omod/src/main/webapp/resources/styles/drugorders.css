@@ -113,7 +113,7 @@ and open the template in the editor.
     width: 35px;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView{
+#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView, #pharmacistCommentsView{
     display: none;
 }
 
