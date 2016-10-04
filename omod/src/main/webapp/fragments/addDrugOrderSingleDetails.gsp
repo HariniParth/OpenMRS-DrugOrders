@@ -159,6 +159,17 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
+                <label>Refills <span id="asterisk">*</span></label>
+            </div>
+            <div id="order_value">
+                <input type="number" id="numRefills" name="numRefills" value="0">
+            </div>
+        </div>
+
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
                 <label>Diagnosis <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">

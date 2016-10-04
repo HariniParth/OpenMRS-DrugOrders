@@ -42,18 +42,20 @@ function hideIndividualOrderDetailsWindow(){
     $("#drugDuration").val("");
     $("#durationUnits").val("");
     $("#drugFrequency").val("");
+    $("#numRefills").val("");
     $("#associatedDiagnosis").val("");
     $("#patientInstructions").val("");
     $("#pharmacistInstructions").val("");
 }
 
-function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){
+function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){
     jq("#showDiscontinueOrderView").hide();
     jq("#view_window_close_btn").show();
     $("#activeOrderAction").text(action);
     $("#patient_name").text(givenName+" "+lastName);
     $("#start_date").text(startdate);
     $("#order_priority").text(priority);
+    $("#order_refills").text(numRefills);
     $("#order_details").text(drugname +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
     
     if(allergicOrderReason !== "" && allergicOrderReason !== "null"){
@@ -65,7 +67,7 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
     $("#patient_instructions").text(patientinstructions);
     $("#pharmacist_instructions").text(pharmacistinstructions);
     
-    if(pharmacomments !== "" && pharmacomments !== "null"){
+    if(pharmacomments !== "" && pharmacomments !== null && pharmacomments !== "null"){
         $("#pharma_comments").text(pharmacomments);
         jq("#pharmacistCommentsView").show();
         document.getElementById("pharmacistCommentsView").style.display = 'block';
@@ -81,7 +83,7 @@ function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
 }
 
-function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,allergicOrderReasons,priority,patientinstructions,pharmacistinstructions){
+function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,associateddiagnosis,allergicOrderReasons,priority,patientinstructions,pharmacistinstructions){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
     $("#orderClass").val(orderClass);
@@ -95,6 +97,7 @@ function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName
     $("#drugDuration").val(duration);
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
+    $("#numRefills").val(numRefills);
     $("#orderPriority").val(priority);
     $("#associatedDiagnosis").val(associateddiagnosis);
     if(allergicOrderReasons !== "" && allergicOrderReasons !== "null"){
@@ -108,7 +111,7 @@ function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
-function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,associateddiagnosis,priority,patientinstructions,pharmacistinstructions){
+function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,associateddiagnosis,priority,patientinstructions,pharmacistinstructions){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
     $("#order_id").val(orderId);
@@ -122,6 +125,7 @@ function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,dose
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
     $("#orderPriority").val(priority);
+    $("#numRefills").val(numRefills);
     $("#associatedDiagnosis").val(associateddiagnosis);
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
@@ -237,7 +241,7 @@ function autoCompletePlanItem(drugs){
     });
 }
 
-function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,diagnosis,patientinstructions,pharmacistinstructions){
+function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,diagnosis,patientinstructions,pharmacistinstructions){
     jq("#confirmOrderView").hide();
     $("#orderID").val(editDraftOrderID);
     $("#drugNameEntered").val(drugname);
@@ -250,6 +254,7 @@ function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route
     $("#drugDuration").val(duration);
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
+    $("#numRefills").val(numRefills);
     $("#associatedDiagnosis").val(diagnosis);
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
