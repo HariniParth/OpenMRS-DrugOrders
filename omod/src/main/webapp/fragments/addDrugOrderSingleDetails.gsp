@@ -173,7 +173,7 @@
                 <label>Diagnosis <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
-                <input type="textarea" maxlength="50" id="associatedDiagnosis" name="associatedDiagnosis" class="select_field" />
+                <input type="text" id="associatedDiagnosis" name="associatedDiagnosis" class="select_field" />
             </div>
         </div>
 

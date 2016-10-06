@@ -109,8 +109,9 @@ and open the template in the editor.
     float: right;
 }
 
-.select_field{
-    width: 35px;
+select, input[type="text"], input[type="number"]{
+    width: 80%;
+    box-sizing: border-box;
 }
 
 #medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView, #pharmacistCommentsView{
