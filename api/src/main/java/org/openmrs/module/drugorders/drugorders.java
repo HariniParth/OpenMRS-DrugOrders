@@ -23,12 +23,12 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+        private String Uuid;
+        private Date startdate;
         private Integer orderId;
         private Integer groupid;
-        private String Uuid;
-        private String patientid;
-        private Date startdate;
         private Concept drugname;
+        private String patientid;
         private Integer isallergic;
         private String isallergicorderreasons;
         private Concept associateddiagnosis;
@@ -44,6 +44,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         
         private String message;
         private String comments;
+        private Date lastdispatchdate;
         private Integer forwardcomments;
         private Integer additionalmessage;
 
@@ -207,6 +208,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	public void setApprovalrequired(Integer approvalrequired) {
 		this.approvalrequired = approvalrequired;
 	}
+        
+        public Date getLastdispatchdate() {
+            return lastdispatchdate;
+        }
+
+        public void setLastdispatchdate(Date lastdispatchdate) {
+            this.lastdispatchdate = lastdispatchdate;
+        }
         
         public String getComments() {
 		return comments;
