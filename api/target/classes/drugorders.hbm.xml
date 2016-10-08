@@ -20,6 +20,7 @@
         <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
         <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>
         <property name="discontinued" column="discontinued" ></property>
+        <property name="refillinterval" column="refillinterval" ></property>
         <many-to-one name="priority" class="org.openmrs.Concept" column="priority" />
         <many-to-one name="discontinuereason" class="org.openmrs.Concept" column="discontinuereason" />
         <property name="discontinuationreasons" type="java.lang.String" column="discontinuationreasons" ></property>

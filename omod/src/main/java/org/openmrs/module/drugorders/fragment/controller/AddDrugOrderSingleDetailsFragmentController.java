@@ -44,6 +44,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
      * @param durationUnits
      * @param drugFrequency
      * @param priority
+     * @param refillInterval
      * @param associatedDiagnosis
      * @param patientInstructions
      * @param pharmacistInstructions
@@ -64,6 +65,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
                             @RequestParam(value = "durationUnits", required = false) String durationUnits,
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
                             @RequestParam(value = "priority", required = false) String priority,
+                            @RequestParam(value = "refillInterval", required = false) Integer refillInterval,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis,
                             @RequestParam(value = "patientInstructions", required = false) String patientInstructions,
                             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
@@ -82,6 +84,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         model.addAttribute("durationUnits", durationUnits);
         model.addAttribute("drugFrequency", drugFrequency);
         model.addAttribute("priority", priority);
+        model.addAttribute("refillInterval", refillInterval);
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         model.addAttribute("patientInstructions", patientInstructions);
         model.addAttribute("pharmacistInstructions", pharmacistInstructions);
