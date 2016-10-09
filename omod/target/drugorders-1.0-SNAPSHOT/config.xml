@@ -12,7 +12,7 @@
             Allows Physicians to place single, group drug orders. Also allows ordering of all drugs to treat specific diseases
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/drugorders/update.rdf</updateURL>
-	<require_version>1.11.4</require_version>
+	<require_version>1.12.0</require_version>
 	<!-- / Module Properties -->
 
         
