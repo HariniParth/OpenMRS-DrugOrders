@@ -42,7 +42,7 @@ function hideIndividualOrderDetailsWindow(){
     $("#drugDuration").val("");
     $("#durationUnits").val("");
     $("#drugFrequency").val("");
-    $("#numRefills").val("0");
+    $("#refill").val("0");
     $("#refillInterval").val("0");
     $("#associatedDiagnosis").val("");
     $("#patientInstructions").val("");
@@ -98,7 +98,7 @@ function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName
     $("#drugDuration").val(duration);
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
-    $("#numRefills").val(numRefills);
+    $("#refill").val(numRefills);
     $("#refillInterval").val(refillInterval);
     $("#orderPriority").val(priority);
     $("#associatedDiagnosis").val(associateddiagnosis);
@@ -127,7 +127,7 @@ function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,dose
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
     $("#orderPriority").val(priority);
-    $("#numRefills").val(numRefills);
+    $("#refill").val(numRefills);
     $("#associatedDiagnosis").val(associateddiagnosis);
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
@@ -256,7 +256,7 @@ function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route
     $("#drugDuration").val(duration);
     $("#durationUnits").val(durationUnits);
     $("#drugFrequency").val(frequency);
-    $("#numRefills").val(numRefills);
+    $("#refill").val(numRefills);
     $("#associatedDiagnosis").val(diagnosis);
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);

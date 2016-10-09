@@ -35,6 +35,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private String patientinstructions;
         private String pharmacistinstructions;
         private Concept priority;
+        private Integer refill;
         private Integer refillinterval;
         private String orderstatus;
         private Integer discontinued;
@@ -167,6 +168,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 
 	public void setRefillinterval(Integer refillinterval) {
 		this.refillinterval = refillinterval;
+	}
+        
+        public Integer getRefill() {
+		return refill;
+	}
+
+	public void setRefill(Integer refill) {
+		this.refill = refill;
 	}
         
         public String getOrderstatus() {

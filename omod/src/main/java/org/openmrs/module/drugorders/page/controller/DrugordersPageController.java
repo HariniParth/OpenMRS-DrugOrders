@@ -55,7 +55,7 @@ public class DrugordersPageController {
             @RequestParam(value = "durationUnits", required = false) String durationUnits,
             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
             @RequestParam(value = "orderPriority", required = false) String orderPriority,
-            @RequestParam(value = "numRefills", required = false) Integer numRefills,
+            @RequestParam(value = "refill", required = false) Integer refill,
             @RequestParam(value = "refillInterval", required = false) Integer refillInterval,
             @RequestParam(value = "associatedDiagnosis", required = false) String selectedDiagnosis,
             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
@@ -92,8 +92,8 @@ public class DrugordersPageController {
                             
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;
-                            int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits, numRefills);
-                            createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refillInterval, patientInstructions, pharmacistInstructions);
+                            int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                            createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                             
                             if(order_id != null){
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(order_id);
@@ -188,8 +188,8 @@ public class DrugordersPageController {
                                     allergicOrderReason = allergicPlanItemOrderReason;
                             }
                                                         
-                            int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString(),0);
-                            createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, refillInterval, patientInstructions, pharmacistInstructions);
+                            int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
+                            createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("Normal"));
                             createDiseasePlan(order,patientID,diseaseForPlan);
@@ -220,8 +220,8 @@ public class DrugordersPageController {
                         
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
-                        int order = createNewDrugOrder(drugOrder, patient, orderExtn.getDrugname().getDisplayString(), orderMain.getRoute().getDisplayString(), orderMain.getDose().toString(), orderMain.getDoseUnits().getDisplayString(), orderMain.getQuantity().toString(), orderMain.getQuantityUnits().getDisplayString(), orderMain.getFrequency().getName(), orderMain.getDuration(), orderMain.getDurationUnits().getDisplayString(),orderMain.getNumRefills());
-                        createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", planRenewed, orderExtn.getPriority().getDisplayString(), orderExtn.getRefillinterval(), "", "");
+                        int order = createNewDrugOrder(drugOrder, patient, orderExtn.getDrugname().getDisplayString(), orderMain.getRoute().getDisplayString(), orderMain.getDose().toString(), orderMain.getDoseUnits().getDisplayString(), orderMain.getQuantity().toString(), orderMain.getQuantityUnits().getDisplayString(), orderMain.getFrequency().getName(), orderMain.getDuration(), orderMain.getDurationUnits().getDisplayString());
+                        createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", planRenewed, orderExtn.getPriority().getDisplayString(), orderExtn.getRefill(), orderExtn.getRefillinterval(), "", "");
                         createDiseasePlan(order,patientID,planRenewed);
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                     }
@@ -246,8 +246,8 @@ public class DrugordersPageController {
                         DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
-                        int orderID = createNewDrugOrder(drugOrder, patient, order.getDrugname().getDisplayString(), drugOrderMain.getRoute().getDisplayString(), drugOrderMain.getDose().toString(), drugOrderMain.getDoseUnits().getDisplayString(), drugOrderMain.getQuantity().toString(), drugOrderMain.getQuantityUnits().getDisplayString(), drugOrderMain.getFrequency().getName(), drugOrderMain.getDuration(), drugOrderMain.getDurationUnits().getDisplayString(), drugOrderMain.getNumRefills());
-                        createDrugOrderExtension(drugorder, orderID, patientID, order.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", order.getAssociateddiagnosis().getDisplayString(), order.getPriority().getDisplayString(), order.getRefillinterval(), "", "");
+                        int orderID = createNewDrugOrder(drugOrder, patient, order.getDrugname().getDisplayString(), drugOrderMain.getRoute().getDisplayString(), drugOrderMain.getDose().toString(), drugOrderMain.getDoseUnits().getDisplayString(), drugOrderMain.getQuantity().toString(), drugOrderMain.getQuantityUnits().getDisplayString(), drugOrderMain.getFrequency().getName(), drugOrderMain.getDuration(), drugOrderMain.getDurationUnits().getDisplayString());
+                        createDrugOrderExtension(drugorder, orderID, patientID, order.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", order.getAssociateddiagnosis().getDisplayString(), order.getPriority().getDisplayString(), order.getRefill(), order.getRefillinterval(), "", "");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setGroupid(groupID);
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setOrderstatus("Active-Group");
                     }
@@ -264,8 +264,8 @@ public class DrugordersPageController {
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
 
-                    int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits, numRefills);
-                    createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refillInterval, patientInstructions, pharmacistInstructions);
+                    int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                    createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                     
                     if(orderClass.equals("PLAN")){
                         originalOrderExtension.setOrderstatus("Discontinued-Plan");
@@ -293,8 +293,8 @@ public class DrugordersPageController {
 
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
-                    int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits, numRefills);
-                    createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refillInterval, patientInstructions, pharmacistInstructions);
+                    int order = createNewDrugOrder(drugOrder, patient, drugName, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
+                    createDrugOrderExtension(drugorder, order, patientID, drugName, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                     InfoErrorMessageUtil.flashInfoMessage(session, "Order Renewed!");
                 }
                 
@@ -308,7 +308,7 @@ public class DrugordersPageController {
 
     private int createNewDrugOrder(DrugOrder order, Patient patient, String drugNameConfirmed, String drugRoute,
             String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,
-            String drugFrequency, Integer drugDuration, String durationUnits, Integer numRefills) {
+            String drugFrequency, Integer drugDuration, String durationUnits) {
 
         int orderID = 0;
         order = new DrugOrder();
@@ -345,18 +345,19 @@ public class DrugordersPageController {
         order.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
         OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));
         order.setFrequency(orderFrequency);
-        order.setNumRefills(numRefills);
+        order.setNumRefills(0);
         order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
         orderID = order.getOrderId();
         return orderID; 
     }
     
-    private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, String patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String orderPriority, int interval, String patientInstructions, String pharmacistInstructions){
+    private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, String patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String orderPriority, int refill, int interval, String patientInstructions, String pharmacistInstructions){
         drugorder = new drugorders();
         drugorder.setOrderId(drugOrderID);
         drugorder.setDrugname(Context.getConceptService().getConceptByName(drugName));
         drugorder.setStartdate(startDate);
         drugorder.setPatientid(patientID);
+        drugorder.setRefill(refill);
         drugorder.setOrderstatus("New");
         drugorder.setPriority(Context.getConceptService().getConceptByName(orderPriority));
         drugorder.setRefillinterval(interval);

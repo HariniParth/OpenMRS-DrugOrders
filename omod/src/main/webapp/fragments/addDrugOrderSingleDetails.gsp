@@ -188,7 +188,7 @@
                 <label>Refills </label>
             </div>
             <div id="order_value">
-                <input type="number" id="numRefills" name="numRefills" value="0">
+                <input type="number" id="refill" name="refill" value="0">
             </div>
         </div>
 

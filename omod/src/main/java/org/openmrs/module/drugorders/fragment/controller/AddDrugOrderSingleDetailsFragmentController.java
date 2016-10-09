@@ -32,64 +32,13 @@ public class AddDrugOrderSingleDetailsFragmentController {
     /**
      *
      * @param model
-     * @param drugNameEntered
-     * @param startDateEntered
-     * @param allergicOrderReason
-     * @param drugRoute
-     * @param drugDose
-     * @param drugDoseUnits
-     * @param drugQuantity
-     * @param quantityUnits
-     * @param drugDuration
-     * @param durationUnits
-     * @param drugFrequency
-     * @param priority
-     * @param refillInterval
-     * @param associatedDiagnosis
-     * @param patientInstructions
-     * @param pharmacistInstructions
      * @param patient
      * @param patientService
      */
     
-    public void controller(PageModel model, 
-                            @RequestParam(value = "drugNameEntered", required = false) String drugNameEntered,
-                            @RequestParam(value = "startDateEntered", required = false) Date startDateEntered,
-                            @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
-                            @RequestParam(value = "drugRoute", required = false) String drugRoute,
-                            @RequestParam(value = "drugDose", required = false) String drugDose,
-                            @RequestParam(value = "drugDoseUnits", required = false) String drugDoseUnits,
-                            @RequestParam(value = "drugQuantity", required = false) String drugQuantity,
-                            @RequestParam(value = "quantityUnits", required = false) String quantityUnits,
-                            @RequestParam(value = "drugDuration", required = false) Integer drugDuration,
-                            @RequestParam(value = "durationUnits", required = false) String durationUnits,
-                            @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
-                            @RequestParam(value = "priority", required = false) String priority,
-                            @RequestParam(value = "refillInterval", required = false) Integer refillInterval,
-                            @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis,
-                            @RequestParam(value = "patientInstructions", required = false) String patientInstructions,
-                            @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
-                            @RequestParam("patientId") Patient patient,@SpringBean("allergyService") PatientService patientService){
-        
-        model.addAttribute("patientid", patient.getPatientId());
-        model.addAttribute("drugNameEntered", drugNameEntered);
-        model.addAttribute("startDateEntered", startDateEntered);
-        model.addAttribute("allergicOrderReason", allergicOrderReason);
-        model.addAttribute("drugRoute", drugRoute);
-        model.addAttribute("drugDose", drugDose);
-        model.addAttribute("drugDoseUnits", drugDoseUnits);
-        model.addAttribute("drugQuantity", drugQuantity);
-        model.addAttribute("quantityUnits", quantityUnits);
-        model.addAttribute("drugDuration", drugDuration);
-        model.addAttribute("durationUnits", durationUnits);
-        model.addAttribute("drugFrequency", drugFrequency);
-        model.addAttribute("priority", priority);
-        model.addAttribute("refillInterval", refillInterval);
-        model.addAttribute("associatedDiagnosis", associatedDiagnosis);
-        model.addAttribute("patientInstructions", patientInstructions);
-        model.addAttribute("pharmacistInstructions", pharmacistInstructions);
-        model.addAttribute("allergies", patientService.getAllergies(patient));
-        
+    public void controller(PageModel model, @RequestParam("patientId") Patient patient,
+                            @SpringBean("allergyService") PatientService patientService){
+                
         Date startDate = Calendar.getInstance().getTime();
         model.addAttribute("startDate", startDate);
         
