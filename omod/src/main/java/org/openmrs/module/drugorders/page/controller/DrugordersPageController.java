@@ -192,20 +192,11 @@ public class DrugordersPageController {
                             int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
                             createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, 0, 0, patientInstructions, pharmacistInstructions);
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setStartdate(Calendar.getInstance().getTime());
                             Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("Normal"));
                             createDiseasePlan(order,patientID,diseaseForPlan);
                             
                         }
-                    }
-                    
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
-                }
-                
-                if ("confirmMedPlan".equals(action)) {
-                    List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("Plan");
-                    for(drugorders order : newDrugOrders){
-                        order.setOrderstatus("Active-Plan");
-                        order.setStartdate(Calendar.getInstance().getTime());
                     }
                     
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
