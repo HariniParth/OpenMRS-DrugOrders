@@ -6,7 +6,9 @@
 package org.openmrs.module.drugorders.page.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
@@ -38,8 +40,8 @@ public class DrugOrderList {
         return drugOrders;
     }
     
-    public static List<org.openmrs.DrugOrder> getDrugOrderMainDataByPatient(Patient p){
-        ArrayList<org.openmrs.DrugOrder> drugOrdersMain = new ArrayList<org.openmrs.DrugOrder>();
+    public static HashMap<Integer,DrugOrder> getDrugOrderMainDataByPatient(Patient p){
+        HashMap<Integer,DrugOrder> drugOrdersMain = new HashMap<Integer,DrugOrder>();
         List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
         int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
         org.openmrs.DrugOrder drugOrderMain;
@@ -47,10 +49,9 @@ public class DrugOrderList {
         for (Order order : orders) {
             if (order.getOrderType().getOrderTypeId() == drugOrderTypeId){
                 drugOrderMain = (org.openmrs.DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                drugOrdersMain.add(drugOrderMain);
+                drugOrdersMain.put(drugOrderMain.getOrderId(),drugOrderMain);
             }
         }
         return drugOrdersMain;
     }
-    
 }

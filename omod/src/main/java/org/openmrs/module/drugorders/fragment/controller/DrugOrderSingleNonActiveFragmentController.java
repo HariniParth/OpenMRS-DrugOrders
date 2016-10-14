@@ -45,9 +45,8 @@ public class DrugOrderSingleNonActiveFragmentController {
         model.addAttribute("oldDrugOrdersExtension", dorders);
         model.addAttribute("oldDrugOrderGroups", groupDorders);
         
-        List<DrugOrder> drugOrderMain = DrugOrderList.getDrugOrderMainDataByPatient(patient);
-        model.addAttribute("oldDrugOrdersMain", drugOrderMain);
+        HashMap<Integer,DrugOrder> oldDrugOrdersMain = DrugOrderList.getDrugOrderMainDataByPatient(patient);
+        model.addAttribute("oldDrugOrdersMain", oldDrugOrdersMain);
                 
     }
-    
 }

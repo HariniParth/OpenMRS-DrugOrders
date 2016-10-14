@@ -19,42 +19,38 @@
             <% } %>
 
             <% oldDrugOrdersExtension.each { oldDrugOrderExtension -> %>
-                <% oldDrugOrdersMain.each { oldDrugOrderMain -> %>
-                    <% if((oldDrugOrderMain.orderId == oldDrugOrderExtension.orderId) && (!((oldDrugOrderExtension.orderstatus).equals("Active")))) { %>
+                <% if(!((oldDrugOrderExtension.orderstatus).equals("Active"))) { %>
 
-                        <tr>
-                            <td class="fields">
-                                <a href="#" id="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldDrugOrderExtension.startdate }','${ oldDrugOrderExtension.drugname.getDisplayString() }','${ oldDrugOrderMain.dose }','${ oldDrugOrderMain.doseUnits.getDisplayString() }','${ oldDrugOrderMain.route.getDisplayString() }','${ oldDrugOrderMain.duration }','${ oldDrugOrderMain.durationUnits.getDisplayString() }','${ oldDrugOrderMain.quantity }','${ oldDrugOrderMain.quantityUnits.getDisplayString() }','${ oldDrugOrderMain.frequency }','${ oldDrugOrderExtension.refill }','${ oldDrugOrderExtension.isallergicorderreasons }','${ oldDrugOrderExtension.priority.getDisplayString() }','${ oldDrugOrderExtension.patientinstructions }','${ oldDrugOrderExtension.pharmacistinstructions }','${ oldDrugOrderExtension.comments }')">
-                                    ${ oldDrugOrderExtension.drugname.getDisplayString().toUpperCase() }
-                                </a>
-                            </td>
-                            <td>${ oldDrugOrderExtension.startdate }</td>
-                            <td>
-                                <span id="button">
-                                    <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="showRenewIndividualDrugOrderWindow('RENEW DRUG ORDER','${ oldDrugOrderMain.orderId }','${ oldDrugOrderExtension.drugname.getDisplayString() }','${ oldDrugOrderMain.dose }','${ oldDrugOrderMain.doseUnits.getDisplayString() }','${ oldDrugOrderMain.route.getDisplayString() }','${ oldDrugOrderMain.duration }','${ oldDrugOrderMain.durationUnits.getDisplayString() }','${ oldDrugOrderMain.quantity }','${ oldDrugOrderMain.quantityUnits.getDisplayString() }','${ oldDrugOrderMain.frequency }','${ oldDrugOrderExtension.refill }','${ oldDrugOrderExtension.refillinterval }','${ oldDrugOrderExtension.associateddiagnosis.getDisplayString() }','${ oldDrugOrderExtension.priority.getDisplayString() }','${ oldDrugOrderExtension.patientinstructions }','${ oldDrugOrderExtension.pharmacistinstructions }')"></i>
-                                </span>
-                            </td>
-                        </tr>
-                    <% } %>
+                    <tr>
+                        <td class="fields">
+                            <a href="#" id="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldDrugOrderExtension.startdate }','${ oldDrugOrderExtension.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).dose }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).duration }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).quantity }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).frequency }','${ oldDrugOrderExtension.refill }','${ oldDrugOrderExtension.isallergicorderreasons }','${ oldDrugOrderExtension.priority.getDisplayString() }','${ oldDrugOrderExtension.patientinstructions }','${ oldDrugOrderExtension.pharmacistinstructions }','${ oldDrugOrderExtension.comments }')">
+                                ${ oldDrugOrderExtension.drugname.getDisplayString().toUpperCase() }
+                            </a>
+                        </td>
+                        <td>${ oldDrugOrderExtension.startdate }</td>
+                        <td>
+                            <span id="button">
+                                <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="showRenewIndividualDrugOrderWindow('RENEW DRUG ORDER','${ oldDrugOrderExtension.orderId }','${ oldDrugOrderExtension.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).dose }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).duration }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).quantity }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).frequency }','${ oldDrugOrderExtension.refill }','${ oldDrugOrderExtension.refillinterval }','${ oldDrugOrderExtension.associateddiagnosis.getDisplayString() }','${ oldDrugOrderExtension.priority.getDisplayString() }','${ oldDrugOrderExtension.patientinstructions }','${ oldDrugOrderExtension.pharmacistinstructions }')"></i>
+                            </span>
+                        </td>
+                    </tr>
                 <% } %>
             <% } %>
     
             <% oldDrugOrderGroups.each { oldDrugOrder -> %>
                 <% oldDrugOrder.value.each { oldOrder -> %>
-                    <% oldDrugOrdersMain.each { oldDrugOrderMain -> %>
-                        <% if((oldDrugOrderMain.orderId == oldOrder.orderId) && (!((oldOrder.orderstatus).equals("Active-Group")))) { %>
-                        
-                            <tr>
-                                <td class="fields">
-                                    <a href="#" id="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldOrder.startdate }','${ oldOrder.drugname.getDisplayString() }','${ oldDrugOrderMain.dose }','${ oldDrugOrderMain.doseUnits.getDisplayString() }','${ oldDrugOrderMain.route.getDisplayString() }','${ oldDrugOrderMain.duration }','${ oldDrugOrderMain.durationUnits.getDisplayString() }','${ oldDrugOrderMain.quantity }','${ oldDrugOrderMain.quantityUnits.getDisplayString() }','${ oldDrugOrderMain.frequency }','${ oldOrder.refill }','${ oldOrder.isallergicorderreasons }','${ oldOrder.priority.getDisplayString() }','${ oldOrder.patientinstructions }','${ oldOrder.pharmacistinstructions }','${ oldOrder.comments }')">
-                                        ${ oldOrder.drugname.getDisplayString().toUpperCase() }
-                                    </a>
-                                    <% orderList = orderList + oldOrder.drugname.getDisplayString() + "," %>
-                                </td>
-                                <td>${ oldOrder.startdate }</td>
-                                <td></td>
-                            </tr>
-                        <% } %>
+                    <% if(!((oldOrder.orderstatus).equals("Active-Group"))) { %>
+
+                        <tr>
+                            <td class="fields">
+                                <a href="#" id="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldOrder.startdate }','${ oldOrder.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).dose }','${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).duration }','${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantity }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).frequency }','${ oldOrder.refill }','${ oldOrder.isallergicorderreasons }','${ oldOrder.priority.getDisplayString() }','${ oldOrder.patientinstructions }','${ oldOrder.pharmacistinstructions }','${ oldOrder.comments }')">
+                                    ${ oldOrder.drugname.getDisplayString().toUpperCase() }
+                                </a>
+                                <% orderList = orderList + oldOrder.drugname.getDisplayString() + "," %>
+                            </td>
+                            <td>${ oldOrder.startdate }</td>
+                            <td></td>
+                        </tr>
                     <% } %>
                 <% } %>
                 <tr>
