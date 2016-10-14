@@ -46,7 +46,12 @@ public class DrugOrderSingleFragmentController {
         model.addAttribute("existingDrugOrderGroups", groupDorders);
         
         List<DrugOrder> drugOrderMain = DrugOrderList.getDrugOrderMainDataByPatient(patient);
-        model.addAttribute("existingDrugOrdersMain", drugOrderMain);
+        HashMap<Integer,DrugOrder> existingDrugOrdersMain = new HashMap<Integer,DrugOrder>();
+        
+        for(DrugOrder orderMain : drugOrderMain){
+            existingDrugOrdersMain.put(orderMain.getOrderId(), orderMain);
+        }
+        model.addAttribute("existingDrugOrdersMain", existingDrugOrdersMain);
                 
     }
     
