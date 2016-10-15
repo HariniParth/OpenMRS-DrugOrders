@@ -3,10 +3,11 @@
     def allergicDrugList = "";
 %>
 
-<div id="medicationPlanWindow">
+<div id="medicationPlanWindow" class="dialog">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("SELECT MEDICATION PLAN") }</h4>
+        <h3 id="dialog-heading">${ ui.message("SELECT MEDICATION PLAN") }</h3>
     </div><br/>
+    
     <div class="addMedicationPlanWindow">
         <form method="post" id="diseaseForm">
             <div class="fields"><label>Plan Name </label>
@@ -27,8 +28,12 @@
 
 <form method="post">
     <% if(medplans.size() > 0) { %>
-        <div id="medPlanDetailsWindow">
-            <h4 id="text_heading">${ ui.message("STANDARD MEDICATION PLAN") }</h4><br/>
+        <div id="medPlanDetailsWindow" class="dialog">
+            
+            <div class="dialog-header">
+                <h3 id="dialog-heading">${ ui.message("STANDARD MEDICATION PLAN") }</h3>
+            </div><br/>
+            
             <input type="hidden" id="diseaseForPlan" name="diseaseForPlan" value="${diseaseName}" />
             
             <div id="medPlansForDisease" class="fields">
@@ -110,4 +115,4 @@
         jq(this).hide();
         jq(this).prevAll(".icon-plus-sign").show();
     });
-</script>
+</script>   

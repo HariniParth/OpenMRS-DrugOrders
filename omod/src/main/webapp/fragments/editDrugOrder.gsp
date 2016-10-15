@@ -3,14 +3,16 @@
     def selectedDisease = "";
 %>
 
-<div id="showDrugOrderView">
+<div id="showDrugOrderView" class="dialog">
 
-    <h4 id="text_heading"><label id="activeOrderAction"></label></h4><br/>
+    <div class="dialog-header">
+        <h3 id="dialog-heading"><label id="activeOrderAction"></label></h3>
+    </div><br/>
     
     <div id="singleOrderView">
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label><strong>Order Details</strong></label>
+                <label><strong>Order</strong></label>
             </div>
             <div id="order_value">
                 <label id="order_details"></label>
@@ -105,8 +107,13 @@
             </div>
             <br/><br/>
         </div>
+
+        <div id="view_window_close_btn">
+            <button class="cancel right" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button>
+        </div>
         
     </div>
+    
         
     <div id="showDiscontinueOrderView">
         <form method="post">
@@ -117,9 +124,9 @@
                 </div>
             </div><br/>
             
-            <label class="fields"><strong>Select the reason to discontinue</strong></label>
-
-            <div class="fields">                
+            <div class="fields" id="view_order_detail">
+                <label><strong>Select the reason to discontinue</strong></label>
+                
                 <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded" class="select_field" onchange="enterNonCodedReason()">
                     <option value="">Choose option</option>
                     <% discontinueReasons.each { discontinueReason -> %>
@@ -128,9 +135,8 @@
                 </select>
             </div>
 
-            <label class="fields"><strong>Enter the reason to discontinue</strong></label>
-            
             <div class="fields" id="view_order_detail">
+                <label><strong>Enter the reason to discontinue</strong></label>
                 <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded" disabled="true"/>
             </div>
 
@@ -141,35 +147,30 @@
             <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
-    
-    <div id="view_window_close_btn">
-        <button class="cancel pull-right" id="btn-place" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button>
-    </div>
-
 </div>
 
 
-<div id="showRenewOrderView">
+<div id="showRenewOrderView" class="dialog">
     <form method="post">
         <div class="dialog-header">
-            <h4 id="text_heading">${ ui.message("RENEW MED PLAN") }</h4>
+            <h3 id="dialog-heading">${ ui.message("RENEW MED PLAN") }</h3>
         </div><br/><br/>
+        
         <div class="fields">
             <input type="text" id="planRenewed" name="planRenewed" />
         </div><br/>
 
-        <input type="hidden" name="action" value="renewMedPlan"/>
-        <br/>
+        <input type="hidden" name="action" value="renewMedPlan"/><br/>
         <button class="confirm pull-right" id="btn-place" name="renewMedPlan" type="submit" onclick="showRenewPlanOrderWindow()">${ ui.message("Renew") }</button>
         <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewPlanOrderWindow()">${ ui.message("Cancel") }</button>
     </form>
 </div>
     
 
-<div id="showGroupOrderWindow">
+<div id="showGroupOrderWindow" class="dialog">
     <form method="post">
         <div class="dialog-header">
-            <span id="text_heading"><h4 id="groupOrderAction"></h4></span>
+            <span id="dialog-heading"><h3 id="groupOrderAction"></h3></span>
         </div><br/>
         
         <div class="fields" id="groupOrderBlock">
@@ -186,9 +187,9 @@
 
 
 <% if(newDrugOrders.size() > 0) { %>
-    <div id="confirmOrderView">
+    <div id="confirmOrderView" class="dialog">
         <div class="dialog-header">
-            <h4 id="text_heading">${ ui.message("ORDER CONFIRMED") }</h4>
+            <h3 id="dialog-heading">${ ui.message("ORDER CONFIRMED") }</h3>
         </div>
         <br/><br/>
         <div class="fields">
@@ -245,11 +246,11 @@
 
 
 <% if(planDrugOrders.size() > 0) { %>
-    <div id="confirmOrderView">
+    <div id="confirmOrderView" class="dialog">
         <div class="dialog-header">
-            <h4 id="text_heading">${ ui.message("PLAN CONFIRMED") }</h4>
-        </div>
-        <br/>
+            <h3 id="dialog-heading">${ ui.message("PLAN CONFIRMED") }</h3>
+        </div><br/>
+        
         <div class="fields">
             <form method="post">
                 <label>Click 'Edit' icon to specify Additional Instructions</label><br/>

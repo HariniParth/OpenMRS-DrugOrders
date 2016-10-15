@@ -45,8 +45,9 @@ and open the template in the editor.
 }
 
 .info-body #orderWindowsBody{
-    width: 40%;
+    width: 38%;
     float: right;
+    margin-right: 2px;
 }
 
 .info-body #orderWindowsBody #addMedicationPlanWindow{
@@ -69,8 +70,8 @@ and open the template in the editor.
     margin: 10px;
 }
 
-#text_heading{
-    text-align: center;
+.dialog .dialog-header{
+    text-align: center !important;
 }
 
 .fields{
@@ -109,12 +110,12 @@ and open the template in the editor.
     float: right;
 }
 
-select, input[type="text"], input[type="number"]{
-    width: 80%;
-    box-sizing: border-box;
+.dialog select, input[type="text"], input[type="number"]{
+    width: 80% !important;
+    box-sizing: border-box !important;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView, #pharmacistCommentsView{
+#medicationPlanWindow, #singleOrderDetailsWindow, .orderDetails, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView, #pharmacistCommentsView, .planItemDetails{
     display: none;
 }
 
@@ -124,8 +125,9 @@ select, input[type="text"], input[type="number"]{
 }
 
 .info-body #creationWindow{
-    width: 40%;
+    width: 38%;
     float: right;
+    margin-right: 2px;
 }
 
 .existingMedPlansDetailsWindow{
@@ -149,7 +151,7 @@ select, input[type="text"], input[type="number"]{
 }
 
 #createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #showRenewOrderView, #editMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView, #groupOrderList, #showGroupOrderWindow{
-    background: #F9F9F9;
+    background: #f3f3f3;
     border: 1px solid #eee;
     padding: 5px;
     color: #363463;

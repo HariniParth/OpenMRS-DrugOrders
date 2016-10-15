@@ -2,9 +2,9 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
-<div id="viewPlanWindow">
+<div id="viewPlanWindow" class="dialog">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("VIEW PLAN") }</h4>
+        <h3 id="dialog-heading">${ ui.message("VIEW PLAN") }</h3>
     </div><br/><br/>
     
     <div id="viewMedPlanWindow">
@@ -56,22 +56,24 @@
         <span id="order_label">Frequency:</span>
         <span id="order_value">
             <label id="plan_frequency"></label>
-        </span>
-    </div><br/><br/><br/>
-    
-    <div id="view_window_close_btn">
-        <button class="cancel pull-right" id="btn-place" type="button" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button>
+        </span><br/><br/>
+        
+        
+        <div id="view_window_close_btn">
+            <button class="cancel right" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button>
+        </div>
+        
     </div>
 </div>
   
 
-<div id="createNewPlanWindow">
+<div id="createNewPlanWindow" class="dialog">
     <div class="dialog-header">
-        <span id="text_heading"><h4 id="adminActionType"></h4></span>
+        <span id="dialog-heading"><h3 id="adminActionType"></h3></span>
     </div><br/>
+    
     <div class="createMedicationPlanWindow">
         <form method="post">
-            
             <input type="hidden" id="planId" name="planId" />
             
             <div class="fields" id="disease_field">
@@ -214,9 +216,9 @@
 </div>
 
 
-<div id="editMedPlanWindow">
+<div id="editMedPlanWindow" class="dialog">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("CHANGE PLAN NAME") }</h4>
+        <h3 id="dialog-heading">${ ui.message("CHANGE PLAN NAME") }</h3>
     </div><br/>
     
     <div id="editMedicationPlanWindow">
@@ -238,9 +240,9 @@
     </div>
 </div>
 
-<div id="deleteMedPlanWindow">
+<div id="deleteMedPlanWindow" class="dialog">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("DISCARD PLAN") }</h4>
+        <h3 id="dialog-heading">${ ui.message("DISCARD PLAN") }</h3>
     </div><br/>
     
     <div id="deleteMedicationPlanWindow">
@@ -257,9 +259,9 @@
     </div>
 </div>
 
-<div id="deleteMedPlanItemWindow">
+<div id="deleteMedPlanItemWindow" class="dialog">
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("DISCARD PLAN ITEM") }</h4>
+        <h3 id="dialog-heading">${ ui.message("DISCARD PLAN ITEM") }</h3>
     </div><br/>
     
     <div id="deleteMedicationPlanItemWindow">

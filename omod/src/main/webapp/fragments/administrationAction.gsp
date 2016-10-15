@@ -2,10 +2,10 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
-<div id="confirmNewPlanWindow">
+<div id="confirmNewPlanWindow" class="dialog">
     
     <div class="dialog-header">
-        <h4 id="text_heading">${ ui.message("MEDICATION PLAN") }</h4>
+        <h3 id="dialog-heading">${ ui.message("MEDICATION PLAN") }</h3>
     </div><br/>
     
     <div class="confirmMedicationPlanWindow">
