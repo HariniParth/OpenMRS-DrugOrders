@@ -73,6 +73,7 @@ public class DrugordersPageController {
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "planRenewed", required = false) String planRenewed,
             @RequestParam(value = "planDiscontinued", required = false) String planDiscontinued,
+            @RequestParam(value = "allergicDrugAction", required = false) String allergicDrugAction,
             @RequestParam(value = "allergicPlanItemOrderReason", required = false) String allergicPlanItemOrderReason) {
 
         String patientID = Integer.toString(patient.getPatientId());
@@ -176,6 +177,7 @@ public class DrugordersPageController {
                 if ("selectMedPlan".equals(action)) {
                     
                     List<drugordersdiseases> existingMedPlanOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(diseaseForPlan), patientID);
+                    
                     if(existingMedPlanOrders.isEmpty()){
                         List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
                     
@@ -183,19 +185,23 @@ public class DrugordersPageController {
                             
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;
+                            boolean isAllergic = false;
                             
                             for(Allergy allergy : allergies){
-                                if(allergy.getAllergen().toString().equals(medplan.getDrugid().getDisplayString()))
+                                if(allergy.getAllergen().toString().equals(medplan.getDrugid().getDisplayString())){
                                     allergicOrderReason = allergicPlanItemOrderReason;
+                                    isAllergic = true;
+                                }
                             }
-                                                        
-                            int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
-                            createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, 0, 0, patientInstructions, pharmacistInstructions);
-                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
-                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setStartdate(Calendar.getInstance().getTime());
-                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("Normal"));
-                            createDiseasePlan(order,patientID,diseaseForPlan);
                             
+                            if(!(allergicDrugAction.equals("discard") && isAllergic==true)){
+                                int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
+                                createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, 0, 0, patientInstructions, pharmacistInstructions);
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setStartdate(Calendar.getInstance().getTime());
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("Normal"));
+                                createDiseasePlan(order,patientID,diseaseForPlan);
+                            }
                         }
                     }
                     

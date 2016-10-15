@@ -28,8 +28,7 @@
 <form method="post">
     <% if(medplans.size() > 0) { %>
         <div id="medPlanDetailsWindow">
-            <h4 id="text_heading">${ ui.message("STANDARD MEDICATION PLAN") }</h4>
-            <br/><br/>
+            <h4 id="text_heading">${ ui.message("STANDARD MEDICATION PLAN") }</h4><br/>
             <input type="hidden" id="diseaseForPlan" name="diseaseForPlan" value="${diseaseName}" />
             
             <div id="medPlansForDisease" class="fields">
@@ -76,10 +75,16 @@
             <% if(allergicDrugList != "") { %>
                 <div id="planItemAllergicReasonField">
                     <div class="fields" id="view_order_detail">
-                        NOTE: The patient is allergic to ${allergicDrugList}<br/>
-                        To Continue with this Plan,<br/>
-                        Enter the Reasons for Ordering the Allergic Drug/s<br/>
-                        <input type="textarea" id="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" class="select_field" />
+                        NOTE: The patient is allergic to ${allergicDrugList}<br/><br/>
+                        
+                        <input type="radio" name="allergicDrugAction" value="continue" checked>
+                        Continue with this Plan<br/>
+                        Enter the Reasons to Order<br/>
+                        <input type="textarea" id="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" class="select_field" /> <br/>
+                    
+                        <input type="radio" name="allergicDrugAction" value="discard">
+                        Discard order of ${allergicDrugList}<br/>
+                        
                     </div><br/><br/>
                 </div>
             <% } %>
