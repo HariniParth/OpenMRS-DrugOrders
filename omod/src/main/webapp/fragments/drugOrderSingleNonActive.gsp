@@ -1,10 +1,10 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "dataTables.js")
-    def orderList = "";
 %>
 
 <div id="nonActiveOrdersWindow">
+    <strong>Non-Active Single Orders</strong><br/><br/>
     <table id="oldDrugOrdersTable">
         <thead>
             <tr>
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <% if(oldDrugOrdersExtension.size() == 0 && oldDrugOrderGroups.size() == 0) { %>
+            <% if(oldDrugOrdersExtension.size() == 0) { %>
                 <tr><td colspan="3" align="center">No Orders Found</td></tr>
             <% } %>
 
@@ -36,8 +36,26 @@
                     </tr>
                 <% } %>
             <% } %>
+        </tbody>
+    </table>
+    <br/><br/>
+    
+    <strong>Non-Active Group Orders</strong><br/><br/>
+    <table id="oldGroupOrdersTable">
+        <thead>
+            <tr>
+                <th>Drug Name</th>
+                <th>Start Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(oldDrugOrderGroups.size() == 0) { %>
+                <tr><td colspan="3" align="center">No Orders Found</td></tr>
+            <% } %>
     
             <% oldDrugOrderGroups.each { oldDrugOrder -> %>
+                <% def orderList = "" %>
                 <% oldDrugOrder.value.each { oldOrder -> %>
                     <% if(!((oldOrder.orderstatus).equals("Active-Group"))) { %>
 
@@ -74,6 +92,19 @@
         "bAutoWidth": false,
         "bLengthChange": true,
         "bSort": true,
+        "bJQueryUI": true,
+        "bInfo": false
+
+    });
+</script>
+
+<script>
+    jq('#oldGroupOrdersTable').dataTable({
+        "sPaginationType": "full_numbers",
+        "bPaginate": true,
+        "bAutoWidth": false,
+        "bLengthChange": true,
+        "ordering": false,
         "bJQueryUI": true,
         "bInfo": false
 
