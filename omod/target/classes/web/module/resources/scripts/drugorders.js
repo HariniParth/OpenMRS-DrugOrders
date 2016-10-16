@@ -113,7 +113,7 @@ function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
-function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,associateddiagnosis,priority,patientinstructions,pharmacistinstructions){
+function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,refillInterval,associateddiagnosis,priority,patientinstructions,pharmacistinstructions){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
     $("#order_id").val(orderId);
@@ -128,6 +128,7 @@ function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,dose
     $("#drugFrequency").val(frequency);
     $("#orderPriority").val(priority);
     $("#refill").val(numRefills);
+    $("#refillInterval").val(refillInterval);
     $("#associatedDiagnosis").val(associateddiagnosis);
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
