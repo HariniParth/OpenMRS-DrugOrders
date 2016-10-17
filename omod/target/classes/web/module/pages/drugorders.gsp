@@ -102,9 +102,7 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         jq(this).hide();
         jq(this).nextAll(".icon-minus-sign").show();
     });
-</script>
-
-<script type="text/javascript">
+    
     jq(".icon-minus-sign").click(function(){
         jq(this).parent().nextAll(".oldDrugOrdersWindow").first().hide();
         jq(this).hide();

@@ -107,12 +107,10 @@
         jq(this).hide();
         jq(this).nextAll(".icon-minus-sign").show();
     });
-</script>
-
-<script type="text/javascript">
+    
     jq(".icon-minus-sign").click(function(){
         jq(this).parent().nextAll(".planItemDetails").first().hide();
         jq(this).hide();
         jq(this).prevAll(".icon-plus-sign").show();
     });
-</script>   
+</script>  

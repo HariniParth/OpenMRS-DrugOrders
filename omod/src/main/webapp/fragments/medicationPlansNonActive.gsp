@@ -59,7 +59,7 @@
     </table>
 </div>
 
-<script>
+<script type="text/javascript">
     jq('#oldMedPlansTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,
@@ -70,17 +70,13 @@
         "bInfo": false
 
     });
-</script>
-
-<script type="text/javascript">
+    
     jq(".icon-plus-sign").click(function(){
         jq(this).parent().nextAll(".orderDetails").first().show();
         jq(this).hide();
         jq(this).nextAll(".icon-minus-sign").show();
     });
-</script>
-
-<script type="text/javascript">
+    
     jq(".icon-minus-sign").click(function(){
         jq(this).parent().nextAll(".orderDetails").first().hide();
         jq(this).hide();
