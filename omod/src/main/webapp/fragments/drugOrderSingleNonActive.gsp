@@ -85,7 +85,7 @@
     </table>
 </div>
 
-<script type="text/javascript">
+<script>
     jq('#oldDrugOrdersTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,
@@ -96,7 +96,9 @@
         "bInfo": false
 
     });
-    
+</script>
+
+<script>
     jq('#oldGroupOrdersTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,

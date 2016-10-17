@@ -74,7 +74,7 @@
     </table>
 </div>
 
-<script type="text/javascript">
+<script>
     jq('#currentDrugOrdersTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,
