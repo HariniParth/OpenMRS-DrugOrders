@@ -19,9 +19,14 @@
 <div class="info-body">
     
     <div id="selectionWindow">
-        <h3 id="header">${ ui.message("AVAILABLE MEDICATION PLANS") }
-            <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="displayPlanCreationWindow()"></i></span>
-        </h3><br/><br/>
+        <div id="line-break"></div>
+        <h3>
+            <i class="icon-medicine"></i>
+            <strong>${ ui.message("AVAILABLE MEDICATION PLANS") }</strong>
+            <i class="icon-plus edit-action right" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="displayPlanCreationWindow()"></i>
+        </h3>
+        <div id="line-break"></div>
+        <br/><br/>
 
         <table id="MedPlansTable">
             <thead>

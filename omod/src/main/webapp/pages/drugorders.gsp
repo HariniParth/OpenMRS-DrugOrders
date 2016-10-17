@@ -21,7 +21,7 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
 <div class="info-body">
     
     <div id="allergyList">
-        Drug Allergies:
+        <strong>Drug Allergies:</strong>
         <% if (allergies.allergyStatus != "See list") { %>
             ${ ui.message(allergies.allergyStatus) }
         <% } else { %>
@@ -37,9 +37,13 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
     <div id="orderSummaryBody">
  
         <div id="individualOrderWindow"> 
-            <h3>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE DRUG ORDER") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
+            <div id="line-break"></div>
+            <h3>
+                <i class="icon-medicine"></i>
+                <strong>${ ui.message("ACTIVE INDIVIDUAL DRUG ORDERS") }</strong>
+                <i class="icon-plus edit-action right" title="${ ui.message("CREATE DRUG ORDER") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i>
             </h3>
+            <div id="line-break"></div>
         </div><br/>
         
         <div id="currentDrugOrdersWindow">
@@ -58,9 +62,13 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         <br/><br/>
         
         <div id="medicationPlanOrderWindow">
-            <h3>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }
-                <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="showMedicationPlanOrderWindow()"></i></span>
+            <div id="line-break"></div>
+            <h3>
+                <i class="icon-medicine"></i>
+                <strong>${ ui.message("ACTIVE MEDICATION PLAN ORDERS") }</strong>
+                <i class="icon-plus edit-action right" title="${ ui.message("CREATE MEDICATION PLAN") }" onclick="showMedicationPlanOrderWindow()"></i>
             </h3>
+            <div id="line-break"></div>
         </div><br/>
         
         <div id="currentMedPlansWindow">
