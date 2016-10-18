@@ -16,7 +16,7 @@
             
             <div>
                 <% existingMedplans.each { existingMedplan -> %>
-                    <p class="fields">
+                    <div id="itemSpace" class="fields">
 
                         <span class="viewDetails">
                             <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
@@ -48,7 +48,7 @@
                             <span id="order_value">${existingMedplan.frequency}</span>
                             <span id="view_order_detail"></span>
                         </span>
-                    </p>
+                    </div>
 
                 <% } %>
             </div><br/><br/>

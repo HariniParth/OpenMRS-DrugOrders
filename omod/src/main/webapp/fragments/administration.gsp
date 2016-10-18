@@ -7,53 +7,53 @@
         <h3 id="dialog-heading">${ ui.message("VIEW PLAN") }</h3>
     </div><br/><br/>
     
-    <div id="viewMedPlanWindow">
-        <span id="order_label">Plan Name:</span>
+    <div id="viewMedPlanWindow" class="fields">
+        <span id="order_label"><strong>Plan Name</strong></span>
         <span id="order_label">
             <label id="plan_disease"></label>
         </span><br/>
         
-        <span id="order_label">Drug Name:</span>
+        <span id="order_label"><strong>Drug Name</strong></span>
         <span id="order_label">
             <label id="plan_drug"></label>
         </span><br/><br/>
 
-        <span id="order_label">Dose:</span>
+        <span id="order_label"><strong>Dose</strong></span>
         <span id="order_value">
             <label id="plan_dose"></label>
         </span>
 
-        <span id="order_label">Dose units:</span>
+        <span id="order_label"><strong>Dose units</strong></span>
         <span id="order_value">
             <label id="plan_dose_units"></label>
         </span>
 
-        <span id="order_label">Route:</span>
+        <span id="order_label"><strong>Route</strong></span>
         <span id="order_value">
             <label id="plan_route"></label>
         </span>
 
-        <span id="order_label">Quantity:</span>
+        <span id="order_label"><strong>Quantity</strong></span>
         <span id="order_value">
             <label id="plan_quantity"></label>
         </span>
 
-        <span id="order_label">Qnty units:</span>
+        <span id="order_label"><strong>Qnty units</strong></span>
         <span id="order_value">
             <label id="plan_quantity_units"></label>
         </span>
 
-        <span id="order_label">Duration:</span>
+        <span id="order_label"><strong>Duration</strong></span>
         <span id="order_value">
             <label id="plan_duration"></label>
         </span>
 
-        <span id="order_label">Durn units:</span>
+        <span id="order_label"><strong>Durn units</strong></span>
         <span id="order_value">
             <label id="plan_duration_units"></label>
         </span>
 
-        <span id="order_label">Frequency:</span>
+        <span id="order_label"><strong>Frequency</strong></span>
         <span id="order_value">
             <label id="plan_frequency"></label>
         </span><br/><br/>

@@ -68,7 +68,7 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
     $("#patient_instructions").text(patientinstructions);
     $("#pharmacist_instructions").text(pharmacistinstructions);
     
-    if(pharmacomments !== "" && pharmacomments !== null && pharmacomments !== "null"){
+    if(pharmacomments !== "" && pharmacomments !== null && pharmacomments !== "null" && pharmacomments !== undefined){
         $("#pharma_comments").text(pharmacomments);
         jq("#pharmacistCommentsView").show();
         document.getElementById("pharmacistCommentsView").style.display = 'block';
