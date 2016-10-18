@@ -77,16 +77,16 @@
             <input type="hidden" id="planId" name="planId" />
             
             <div class="fields" id="disease_field">
-                <label>Enter Plan Name </label>
+                <label><strong>Enter Plan Name</strong></label>
                 <input id="diseaseName" name="diseaseName"/>
             </div><br/>
             
-            <p class="fields">Specify Standard Formulation</p>
+            <p class="fields"><strong>Specify Standard Formulation</strong></p>
             <span class="fields" id="asterisk">Note: All Fields are required to be filled/updated</span><br/>
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label id="label">Drug Name</label>
+                    <label id="label"><strong>Drug Name</strong></label>
                 </div>
                 <div id="order_value">
                     <input id="drug_name" type="text" name="drugName"/>
@@ -97,7 +97,7 @@
 
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Route</label>
+                    <label><strong>Route</strong></label>
                 </div>
                 <div id="order_value">
                     <select id="drugRoute" name="drugRoute" class="select_field">
@@ -113,7 +113,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Dose</label>
+                    <label><strong>Dose</strong></label>
                 </div>
                 <div id="order_value">
                     <input type="text" id="drugDose" name="drugDose" class="select_field" />
@@ -124,7 +124,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Dose Units</label>
+                    <label><strong>Dose Units</strong></label>
                 </div>
                 <div id="order_value">
                     <select id="drugDoseUnits" name="drugDoseUnits" class="select_field">
@@ -140,7 +140,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Quantity</label>
+                    <label><strong>Quantity</strong></label>
                 </div>
                 <div id="order_value">
                     <input type="text" id="drugQuantity" name="drugQuantity" class="select_field" />
@@ -151,7 +151,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Quantity Units</label>
+                    <label><strong>Qnty Units</strong></label>
                 </div>
                 <div id="order_value">
                     <select id="quantityUnits" name="quantityUnits" class="select_field">
@@ -167,7 +167,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Duration</label>
+                    <label><strong>Duration</strong></label>
                 </div>
                 <div id="order_value">
                     <input type="text" id="drugDuration" name="drugDuration" class="select_field"/>
@@ -178,7 +178,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Duration Units</label>
+                    <label><strong>Durn Units</strong></label>
                 </div>
                 <div id="order_value">
                     <select id="durationUnits" name="durationUnits" class="select_field">
@@ -194,7 +194,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
-                    <label>Frequency</label>
+                    <label><strong>Frequency</strong></label>
                 </div>
                 <div id="order_value">
                     <select id="drugFrequency" name="drugFrequency" class="select_field">
@@ -224,11 +224,11 @@
     <div id="editMedicationPlanWindow">
         <form method="post">
             
-            <label class="fields">Given Plan Name
+            <label class="fields"><strong>Given Plan Name</strong>
                 <input id="disease_name" name="disease_name" readonly="true"/>
             </label><br/>
             
-            <label class="fields">Enter Plan Name
+            <label class="fields"><strong>Enter Plan Name</strong>
                 <input id="new_disease_name" name="new_disease_name" />
             </label>
             <br/><br/>
@@ -248,7 +248,7 @@
     <div id="deleteMedicationPlanWindow">
         <form method="post">
             
-            <label class="fields">Discard Medication Plan 
+            <label class="fields"><strong>Discard Medication Plan</strong> 
                 <input id="plan_name" name="plan_name" readonly="true"/>
             </label><br/><br/>
             
@@ -267,25 +267,25 @@
     <div id="deleteMedicationPlanItemWindow">
         <form method="post">
             <input type="hidden" id="medPlan_id" name="medPlan_id" />
-            <label class="fields" id="order_label">Plan Name:</label>
+            <label class="fields" id="order_label"><strong>Plan Name</strong></label>
             <label class="fields" id="disease_value"></label>
-            <label class="fields" id="order_label">Drug Name:</label>
+            <label class="fields" id="order_label"><strong>Drug Name</strong></label>
             <label class="fields" id="drug_value"></label>
-            <label class="fields" id="order_label">Dose:</label>
+            <label class="fields" id="order_label"><strong>Dose</strong></label>
             <label class="fields" id="dose_value"></label>
-            <label class="fields" id="order_label">Dose Units:</label>
+            <label class="fields" id="order_label"><strong>Dose Units</strong></label>
             <label class="fields" id="dose_units_value"></label>
-            <label class="fields" id="order_label">Route:</label>
+            <label class="fields" id="order_label"><strong>Route</strong></label>
             <label class="fields" id="route_value"></label>
-            <label class="fields" id="order_label">Quantity:</label>
+            <label class="fields" id="order_label"><strong>Quantity</strong></label>
             <label class="fields" id="quantity_value"></label>
-            <label class="fields" id="order_label">Qnty Units:</label>
+            <label class="fields" id="order_label"><strong>Qnty Units</strong></label>
             <label class="fields" id="quantity_units_value"></label>
-            <label class="fields" id="order_label">Duration:</label>
+            <label class="fields" id="order_label"><strong>Duration</strong></label>
             <label class="fields" id="duration_value"></label>
-            <label class="fields" id="order_label">Durn Units:</label>
+            <label class="fields" id="order_label"><strong>Durn Units</strong></label>
             <label class="fields" id="duration_units_value"></label>
-            <label class="fields" id="order_label">Frequency:</label>
+            <label class="fields" id="order_label"><strong>Frequency</strong></label>
             <label class="fields" id="frequency_value"></label><br/>
 
             <input type="hidden" name="action" value="deletePlanItem" />

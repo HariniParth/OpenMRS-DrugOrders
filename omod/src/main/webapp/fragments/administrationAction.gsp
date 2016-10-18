@@ -10,7 +10,7 @@
     
     <div class="confirmMedicationPlanWindow">
         <form method="post">
-            <h5 class="fields">${diseaseName}
+            <h5 class="fields"><strong>${diseaseName}</strong>
                 <span class="fields" id="button"><i class="icon-plus edit-action right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${diseaseName}')"></i></span>
             </h5><br/><br/>
             
@@ -22,7 +22,7 @@
                             <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                             <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
                         </span>
-                        ${existingMedplan.drugid.getDisplayString()}
+                        <strong>${existingMedplan.drugid.getDisplayString()}</strong>
 
                         <span id="button">
                             <i class="icon-trash delete-action right" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${existingMedplan.id}','${existingMedplan.diseaseid.getDisplayString()}','${existingMedplan.drugid.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseunits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityunits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationunits.getDisplayString()}','${existingMedplan.frequency}')"></i>
@@ -51,7 +51,7 @@
                     </div>
 
                 <% } %>
-            </div><br/><br/>
+            </div><br/>
             
             <input type="hidden" name="action" value="confirmPlanItem" />
             <button class="confirm right" id="btn-place" type="submit" onclick="hideMedPlanConfirmWindow()">${ ui.message("Done") }</button>
