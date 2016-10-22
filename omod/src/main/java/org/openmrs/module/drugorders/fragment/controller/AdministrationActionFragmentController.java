@@ -41,8 +41,8 @@ public class AdministrationActionFragmentController {
             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
             @RequestParam(value = "action", required = false) String action, HttpSession session){
         
-        String diseaseName = diseaseNameSelected.replace(" ", "");
-        String drugName = drugNameSelected.replace(" ", "");
+        String diseaseName = diseaseNameSelected.trim();
+        String drugName = drugNameSelected.trim();
         
         model.addAttribute("diseaseName", diseaseName);
         

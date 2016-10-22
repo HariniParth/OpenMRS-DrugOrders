@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
-import org.openmrs.ConceptSet;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
@@ -43,7 +42,7 @@ public class AddNewOrderFragmentController {
         model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("patientid", patient.getPatientId());
                 
-        String diseaseNameEntered = diseaseNameSelected.replace(" ", "");
+        String diseaseNameEntered = diseaseNameSelected.trim();
         model.addAttribute("diseaseName", diseaseNameEntered);
         
         List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseNameEntered));

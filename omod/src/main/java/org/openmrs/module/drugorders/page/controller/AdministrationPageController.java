@@ -37,10 +37,10 @@ public class AdministrationPageController {
                             @RequestParam(value = "medPlan_id", required = false) String medPlan_id,
                             @RequestParam(value = "action", required = false) String action){
         
-        String diseaseName = diseaseNameSelected.replace(" ", "");
-        String drugName = drugNameSelected.replace(" ", "");
-        String disease_plan_name = disease_name.replace(" ", "");
-        String modified_disease_name = new_disease_name.replace(" ", "");
+        String diseaseName = diseaseNameSelected.trim();
+        String drugName = drugNameSelected.trim();
+        String oldPlanName = disease_name.trim();
+        String newPlanName = new_disease_name.trim();
         
         if(!diseaseName.isEmpty() && !drugName.isEmpty())
             diseasePlanName.put(diseaseName, drugName);
@@ -50,9 +50,9 @@ public class AdministrationPageController {
             try {
                                 
                 if ("editPlan".equals(action)) {
-                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_plan_name));
+                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(oldPlanName));
                     for(medicationplans medPlan : medPlans){
-                        medPlan.setDiseaseid(Context.getConceptService().getConceptByName(modified_disease_name));
+                        medPlan.setDiseaseid(Context.getConceptService().getConceptByName(newPlanName));
                         Context.getService(medicationplansService.class).saveNewTable(medPlan);
                     }
                     

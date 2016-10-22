@@ -77,8 +77,8 @@ public class DrugordersPageController {
             @RequestParam(value = "allergicPlanItemOrderReason", required = false) String allergicPlanItemOrderReason) {
 
         String patientID = Integer.toString(patient.getPatientId());
-        String drugNameEntered = drugNameSelected.replace(" ", "");
-        String associatedDiagnosis = selectedDiagnosis.replace(" ", "");
+        String drugNameEntered = drugNameSelected.trim();
+        String associatedDiagnosis = selectedDiagnosis.trim();
         
         Allergies allergies = patientService.getAllergies(patient);
         model.addAttribute("allergies", patientService.getAllergies(patient));
