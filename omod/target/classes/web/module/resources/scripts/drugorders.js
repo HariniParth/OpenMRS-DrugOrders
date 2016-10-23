@@ -7,10 +7,25 @@
 /* global diagnosis, jq */
 
 $(document).ready( function() {
+    jq(".planItemDetails").hide();
     jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
-    jq(".planItemDetails").hide();
+    $("#addOrderButton").prop("disabled", true);
+    
+    $('#associatedDiagnosis').autocomplete({
+        select: function (event, ui) { validate(); }
+    });
+    
+    $("#drugRoute, #drugDose, #drugDoseUnits, #drugQuantity, #quantityUnits, #drugDuration, #durationUnits, #drugFrequency").change(function(){
+        validate();
+    });
 });
+
+function validate(){
+    if($("#drugNameEntered").val() !== "" && $("#drugRoute").val() !== "" && $("#drugDose").val() !== "" && $("#drugDoseUnits").val() !== "" && $("#drugQuantity").val() !== "" && $("#quantityUnits").val() !== "" && $("#drugDuration").val() !== "" && $("#durationUnits").val() !== "" && $("#drugFrequency").val() !== "" && $("#associatedDiagnosis").val() !== ""){
+        $("#addOrderButton").prop("disabled", false);
+    }
+}
 
 function showMedicationPlanOrderWindow(){
     jq("#medicationPlanWindow").show();
@@ -47,6 +62,7 @@ function hideIndividualOrderDetailsWindow(){
     $("#associatedDiagnosis").val("");
     $("#patientInstructions").val("");
     $("#pharmacistInstructions").val("");
+    $("#addOrderButton").prop("disabled", true);
 }
 
 function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){
@@ -208,6 +224,7 @@ function autoCompleteDrug(drug, allergies){
             } else {
                 jq("#allergicDrugOrderReasonField").hide();
             }
+            validate();
         }
     });
 }
