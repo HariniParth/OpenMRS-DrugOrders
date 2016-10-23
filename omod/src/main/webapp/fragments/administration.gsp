@@ -78,7 +78,7 @@
             
             <div class="fields" id="disease_field">
                 <label><strong>Enter Plan Name</strong></label>
-                <input id="diseaseName" name="diseaseName"/>
+                <input id="adminPlanName" name="diseaseName"/>
             </div><br/>
             
             <p class="fields"><strong>Specify Standard Formulation</strong></p>
@@ -89,7 +89,7 @@
                     <label id="label"><strong>Drug Name</strong></label>
                 </div>
                 <div id="order_value">
-                    <input id="drug_name" type="text" name="drugName"/>
+                    <input id="adminDrugName" type="text" name="drugName"/>
                 </div>
             </div>
             
@@ -100,7 +100,7 @@
                     <label><strong>Route</strong></label>
                 </div>
                 <div id="order_value">
-                    <select id="drugRoute" name="drugRoute" class="select_field">
+                    <select id="adminRoute" name="drugRoute" class="select_field">
                         <option value="">Choose option</option>
                         <% routes.each { route -> %>
                             <option value="${ route.getDisplayString() }">${ route.getDisplayString() }</option>
@@ -116,7 +116,7 @@
                     <label><strong>Dose</strong></label>
                 </div>
                 <div id="order_value">
-                    <input type="text" id="drugDose" name="drugDose" class="select_field" />
+                    <input type="text" id="adminDose" name="drugDose" class="select_field" />
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                     <label><strong>Dose Units</strong></label>
                 </div>
                 <div id="order_value">
-                    <select id="drugDoseUnits" name="drugDoseUnits" class="select_field">
+                    <select id="adminDoseUnits" name="drugDoseUnits" class="select_field">
                         <option value="">Choose option</option>
                         <% doses.each { dose -> %>
                             <option value="${ dose.getDisplayString() }">${ dose.getDisplayString() }</option>
@@ -143,7 +143,7 @@
                     <label><strong>Quantity</strong></label>
                 </div>
                 <div id="order_value">
-                    <input type="text" id="drugQuantity" name="drugQuantity" class="select_field" />
+                    <input type="text" id="adminQuantity" name="drugQuantity" class="select_field" />
                 </div>
             </div>
 
@@ -154,7 +154,7 @@
                     <label><strong>Qnty Units</strong></label>
                 </div>
                 <div id="order_value">
-                    <select id="quantityUnits" name="quantityUnits" class="select_field">
+                    <select id="adminQuantityUnits" name="quantityUnits" class="select_field">
                         <option value="">Choose option</option>
                         <% quantities.each { quantity -> %>
                             <option value="${ quantity.getDisplayString() }">${ quantity.getDisplayString() }</option>
@@ -170,7 +170,7 @@
                     <label><strong>Duration</strong></label>
                 </div>
                 <div id="order_value">
-                    <input type="text" id="drugDuration" name="drugDuration" class="select_field"/>
+                    <input type="text" id="adminDuration" name="drugDuration" class="select_field"/>
                 </div>
             </div>
 
@@ -181,7 +181,7 @@
                     <label><strong>Durn Units</strong></label>
                 </div>
                 <div id="order_value">
-                    <select id="durationUnits" name="durationUnits" class="select_field">
+                    <select id="adminDurationUnits" name="durationUnits" class="select_field">
                         <option value="">Choose option</option>
                         <% durations.each { duration -> %>
                             <option value="${ duration.getDisplayString() }">${ duration.getDisplayString() }</option>
@@ -197,7 +197,7 @@
                     <label><strong>Frequency</strong></label>
                 </div>
                 <div id="order_value">
-                    <select id="drugFrequency" name="drugFrequency" class="select_field">
+                    <select id="adminFrequency" name="drugFrequency" class="select_field">
                         <option value="">Choose option</option>
                         <% frequencies.each { frequency -> %>
                             <option value="${ frequency.getConcept().getDisplayString() }">${ frequency.getConcept().getDisplayString() }</option>
@@ -209,8 +209,8 @@
             <br/><br/><br/>
 
             <input type="hidden" name="action" value="addPlanItem" />
-            <button class="confirm right" id="btn-place" name="saveDrug" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Save") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanCreateWindow()">${ ui.message("Cancel") }</button>
+            <button class="confirm right" id="adminSavePlan" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Save") }</button>
+            <button class="cancel left" type="button" onclick="hideMedPlanCreateWindow()">${ ui.message("Cancel") }</button><br/><br/>
         </form>
     </div>
 </div>
@@ -234,8 +234,8 @@
             <br/><br/>
             
             <input type="hidden" name="action" value="editPlan" />
-            <button class="confirm right" id="btn-place" name="editPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanEditWindow()">${ ui.message("Cancel") }</button>
+            <button class="confirm right" id="adminEditPlanName" name="editPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
+            <button class="cancel left" type="button" onclick="hideMedPlanEditWindow()">${ ui.message("Cancel") }</button><br/><br/>
         </form>
     </div>
 </div>
@@ -298,7 +298,7 @@
 
 <script type="text/javascript">
     jq( function() {
-        jq( "#diseaseName" ).autocomplete({
+        jq( "#adminPlanName" ).autocomplete({
             source: function( request, response ) {
                 var results = [];
                 jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
@@ -318,7 +318,7 @@
             }
         } ),
         
-        jq( "#drug_name" ).autocomplete({
+        jq( "#adminDrugName" ).autocomplete({
             source: function( request, response ) {
                 var results = [];
                 jq.getJSON('${ ui.actionLink("getDrugNameSuggestions") }',
