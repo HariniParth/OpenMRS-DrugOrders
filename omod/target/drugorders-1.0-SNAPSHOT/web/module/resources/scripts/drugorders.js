@@ -443,6 +443,9 @@ function viewMedPlanWindow(diseasename,drugname,dose,doseunits,route,quantity,qu
 
 function hideMedPlanWindow(){
     jq("#viewPlanWindow").hide();
+    jq(".detailsLink").each(function(){
+        jq(this).children('span').slice(0, 1).css({'background-color':'','color':''});
+    });
 }
 
 function showRenewGroupOrderWindow(groupAction,orderID,orderList){

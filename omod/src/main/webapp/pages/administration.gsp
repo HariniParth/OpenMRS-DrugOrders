@@ -45,22 +45,28 @@
                         <% if(medPlan.value.size() > 0) { %>
                             <tr>
                                 <td class="fields">
-                                    <span class="viewDetails">
-                                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                                    </span>
-                                    ${ medPlan.key.getDisplayString().toUpperCase() }
-
+                                    <div>
+                                        <span class="viewDetails">
+                                            <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                            <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                                        </span>
+                                        ${ medPlan.key.getDisplayString().toUpperCase() }
+                                    </div><br/>
+                                    
                                     <div class="existingMedPlansDetailsWindow">
                                         <% medPlan.value.each { med -> %>
-                                            <p class="fields">
-                                                <a href="#" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">${med.drugid.getDisplayString()}</a>
-
+                                        
+                                            <div class="detailsLink">
+                                                <span class="fields" id="order_value" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">
+                                                    ${med.drugid.getDisplayString()}
+                                                </span>
+                                                
                                                 <span id="button" class="pull-right">
                                                     <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
                                                     <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
                                                 </span><br/>
-                                            </p>
+                                            </div>
+                                            
                                         <% } %> 
                                     </div>
                                 </td>
@@ -106,7 +112,7 @@
 
 <script type="text/javascript">
     jq(".icon-plus-sign").click(function(){
-        jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().show();
+        jq(this).parent().parent().nextAll(".existingMedPlansDetailsWindow").first().show();
         jq(this).hide();
         jq(this).nextAll(".icon-minus-sign").show();
     });
@@ -114,8 +120,14 @@
 
 <script type="text/javascript">
     jq(".icon-minus-sign").click(function(){
-        jq(this).parent().nextAll(".existingMedPlansDetailsWindow").first().hide();
+        jq(this).parent().parent().nextAll(".existingMedPlansDetailsWindow").first().hide();
         jq(this).hide();
         jq(this).prevAll(".icon-plus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".detailsLink").click(function(){
+        jq(this).children('span').slice(0, 1).css({"background": "#75b2f0","color": "white"});
     });
 </script>
