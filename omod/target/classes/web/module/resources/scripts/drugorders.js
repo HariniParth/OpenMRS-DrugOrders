@@ -89,6 +89,16 @@ function hideIndividualOrderDetailsWindow(){
     $("#patientInstructions").val("");
     $("#pharmacistInstructions").val("");
     $("#addOrderButton").prop("disabled", true);
+    
+    jq(".orderRow").each(function(){
+        jq(this).children('td').slice(0, 2).css({'background-color':'','color':''});
+    });
+    jq(".oldOrderRow").each(function(){
+        jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
+    });
+    jq(".detailsLink").each(function(){
+        jq(this).children('span').slice(0, 1).css({'background-color':'','color':''});
+    });    
 }
 
 function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){
@@ -124,6 +134,15 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
 
 function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
+    jq(".orderRow").each(function(){
+        jq(this).children('td').slice(0, 2).css({'background-color':'','color':''});
+    });
+    jq(".oldOrderRow").each(function(){
+        jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
+    });
+    jq(".detailsLink").each(function(){
+        jq(this).children('span').slice(0, 1).css({'background-color':'','color':''});
+    });
 }
 
 function showEditIndividualDrugOrderWindow(orderType,orderClass,orderId,drugName,startDate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,refillInterval,associateddiagnosis,allergicOrderReasons,priority,patientinstructions,pharmacistinstructions){

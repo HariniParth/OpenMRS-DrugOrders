@@ -156,8 +156,20 @@ and open the template in the editor.
     vertical-align: top;
 }
 
-#detailsLink{
-    font-size: 10px;
+.detailsLink{
+    width: 100%;
+    border: 1px solid gainsboro;
+}
+
+.detailsLink #order_value{
+    border-right: 1px solid gainsboro;
+    float: left;
+    width: 70%;
+}
+
+.detailsLink #view_order_detail{
+    float: left;
+    width: 98%;
 }
 
 #createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #showRenewOrderView, #editMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView, #groupOrderList, #showGroupOrderWindow{
@@ -177,4 +189,22 @@ and open the template in the editor.
 
 #itemSpace{
     margin-bottom: 15px;
+}
+
+.orderRow:hover .existingDrugOrdersID{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
+.oldOrderRow:hover .oldDrugOrdersID{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
+.detailsLink:hover span:first-child{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
 }
