@@ -142,8 +142,8 @@
 
             <input type="hidden" id="dis_order_id" name="dis_order_id"/>
             <input type="hidden" name="action" value="discontinueDrugOrder"/>
-            <br/>
-            <button class="confirm pull-right" id="btn-place" name="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
+            <br/><br/>
+            <button class="confirm pull-right" id="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
             <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>

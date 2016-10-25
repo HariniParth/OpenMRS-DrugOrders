@@ -12,6 +12,7 @@ $(document).ready( function() {
     jq("#showDiscontinueOrderView").hide();
     $("#adminSavePlan").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
+    $("#discontinueOrder").prop("disabled", true);
     $("#adminEditPlanName").prop("disabled", true);
     
     $('#adminPlanName').autocomplete({
@@ -26,6 +27,10 @@ $(document).ready( function() {
         select: function (event, ui) { 
             $("#adminEditPlanName").prop("disabled", false); 
         }
+    });
+    
+    $("#discontinueOrderReasonCoded, #discontinueOrderReasonNonCoded").change(function(){
+        enableOrderDiscard();
     });
     
     $("#adminPlanName, #adminDrugName, #adminRoute, #adminDose, #adminDoseUnits, #adminQuantity, #adminQuantityUnits, #adminDuration, #adminDurationUnits, #adminFrequency").change(function(){
@@ -50,6 +55,12 @@ function validate(){
 function adminRecord(){
     if($("#adminPlanName").val() !== "" && $("#adminDrugName").val() !== "" && $("#adminRoute").val() !== "" && $("#adminDose").val() !== "" && $("#adminDoseUnits").val() !== "" && $("#adminQuantity").val() !== "" && $("#adminQuantityUnits").val() !== "" && $("#adminDuration").val() !== "" && $("#adminDurationUnits").val() !== "" && $("#adminFrequency").val() !== ""){
         $("#adminSavePlan").prop("disabled", false);
+    }
+}
+
+function enableOrderDiscard(){
+    if($("#discontinueOrderReasonCoded").val() !== "" || $("#discontinueOrderReasonNonCoded").val() !== ""){
+        $("#discontinueOrder").prop("disabled", false);
     }
 }
 
@@ -134,6 +145,10 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
 
 function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
+    $("#discontinueOrder").prop("disabled", true);
+    $("#discontinueOrderReasonCoded").val("Choose option");
+    $("#discontinueOrderReasonNonCoded").val("");
+    
     jq(".orderRow").each(function(){
         jq(this).children('td').slice(0, 2).css({'background-color':'','color':''});
     });
