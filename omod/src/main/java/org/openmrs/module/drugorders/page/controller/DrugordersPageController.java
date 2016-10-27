@@ -199,7 +199,7 @@ public class DrugordersPageController {
                                 createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, 0, 0, patientInstructions, pharmacistInstructions);
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setStartdate(Calendar.getInstance().getTime());
-                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("Normal"));
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("High"));
                                 createDiseasePlan(order,patientID,diseaseForPlan);
                             }
                         }
