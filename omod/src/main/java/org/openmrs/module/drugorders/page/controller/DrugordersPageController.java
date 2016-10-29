@@ -11,6 +11,7 @@ package org.openmrs.module.drugorders.page.controller;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -69,6 +70,7 @@ public class DrugordersPageController {
             @RequestParam(value = "orderClass", required = false) String orderClass,
             @RequestParam(value = "groupOrderID", required = false) Integer groupOrderID,
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
+            @RequestParam(value = "omitPlanItemCheckBox", required=false) String[] omitPlanItemCheckBox,
             @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "planRenewed", required = false) String planRenewed,
@@ -186,6 +188,7 @@ public class DrugordersPageController {
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;
                             boolean isAllergic = false;
+                            boolean omitPlanItem = false;
                             
                             for(Allergy allergy : allergies){
                                 if(allergy.getAllergen().toString().equals(medplan.getDrugid().getDisplayString())){
@@ -194,7 +197,13 @@ public class DrugordersPageController {
                                 }
                             }
                             
-                            if(!(allergicDrugAction.equals("discard") && isAllergic==true)){
+                            if(omitPlanItemCheckBox.length > 0){
+                                if(Arrays.toString(omitPlanItemCheckBox).contains(medplan.getDrugid().getDisplayString())){
+                                    omitPlanItem = true;
+                                }
+                            }
+                            System.out.println(omitPlanItem);
+                            if(!((allergicDrugAction.equals("discard") && isAllergic==true) || (omitPlanItem==true))){
                                 int order = createNewDrugOrder(drugOrder, patient, medplan.getDrugid().getDisplayString(), medplan.getRoute().getDisplayString(), medplan.getDose().toString(), medplan.getDoseunits().getDisplayString(), medplan.getQuantity().toString(), medplan.getQuantityunits().getDisplayString(), medplan.getFrequency().getName(), medplan.getDuration(), medplan.getDurationunits().getDisplayString());
                                 createDrugOrderExtension(drugorder, order, patientID, medplan.getDrugid().getDisplayString(), startDateEntered, allergicOrderReason, diseaseForPlan, orderPriority, 0, 0, patientInstructions, pharmacistInstructions);
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");

@@ -39,8 +39,11 @@
             <div id="medPlansForDisease" class="fields">
 
                 <h5><strong>${diseaseName}</strong></h5><br/>
+                <p>Check drugs to be omitted from being ordered</p>
+                
                 <% medplans.each { medplan -> %>
                     <div id="itemSpace">
+                        <input type="checkbox" name="omitPlanItemCheckBox" value="${medplan.drugid.getDisplayString()}" /> 
                         <span class="viewDetails">
                             <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                             <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
