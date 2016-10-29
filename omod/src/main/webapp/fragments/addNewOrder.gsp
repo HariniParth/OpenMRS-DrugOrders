@@ -100,7 +100,7 @@
 
             <input type="hidden" id="selectMedPlan" name="action" value="selectMedPlan" />
             <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
-            <button class="cancel" id="btn-place" type="submit" onclick="hideMedicationPlansWindow()">${ ui.message("Cancel") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hideMedicationPlansWindow()">${ ui.message("Cancel") }</button>
         </div>
     <% } %>
 </form>

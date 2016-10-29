@@ -73,6 +73,10 @@ function hideMedicationPlanOrderWindow(){
     jq("#medicationPlanWindow").hide();
 }
 
+function hideMedicationPlansWindow(){
+    jq("#medPlanDetailsWindow").hide();
+}
+
 function showIndividualOrderDetailsWindow(orderType){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
