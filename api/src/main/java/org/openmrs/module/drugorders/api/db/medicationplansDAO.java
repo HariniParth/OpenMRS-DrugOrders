@@ -18,7 +18,7 @@ public interface medicationplansDAO {
     public List<medicationplans> getAllMedicationPlans();
     public void deleteMedicationPlan(medicationplans plan);
     public medicationplans getMedicationPlan(Integer planID);
-    public medicationplans saveNewTable(medicationplans newTable);
+    public medicationplans saveMedicationPlan(medicationplans plan);
     public List<medicationplans> getMedicationPlansByDisease(Concept concept);
         
 }

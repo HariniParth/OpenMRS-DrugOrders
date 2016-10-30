@@ -40,9 +40,9 @@ public class HibernatemedicationplansDAO implements medicationplansDAO {
     };
     
     @Override
-    public medicationplans saveNewTable(medicationplans newTable) {
-        sessionFactory.getCurrentSession().saveOrUpdate(newTable);
-        return newTable;
+    public medicationplans saveMedicationPlan(medicationplans plan) {
+        sessionFactory.getCurrentSession().saveOrUpdate(plan);
+        return plan;
     };
     
     @Transactional(readOnly = true)

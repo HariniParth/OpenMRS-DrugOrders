@@ -38,7 +38,6 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     
     /**
      *
-     * @param doe
      * @return
      */
     
@@ -61,8 +60,8 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     
     @Transactional
     @Override
-    public medicationplans saveMedicationPlan(medicationplans doe) {
-        return dao.saveNewTable(doe);
+    public medicationplans saveMedicationPlan(medicationplans plan) {
+        return dao.saveMedicationPlan(plan);
     }
     
     @Transactional(readOnly = true)

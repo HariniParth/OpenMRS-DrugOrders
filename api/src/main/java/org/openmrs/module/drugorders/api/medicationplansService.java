@@ -22,7 +22,7 @@ public interface medicationplansService extends OpenmrsService{
     
     public medicationplans getMedicationPlan(Integer planID);
     
-    public medicationplans saveMedicationPlan(medicationplans newTable);
+    public medicationplans saveMedicationPlan(medicationplans plan);
     
     public List<medicationplans> getMedicationPlansByDisease(Concept concept);
         

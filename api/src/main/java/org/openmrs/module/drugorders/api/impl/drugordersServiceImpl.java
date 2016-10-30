@@ -64,14 +64,14 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
 
     @Transactional
     @Override
-    public drugorders saveDrugOrder(drugorders doe) {
-        return dao.saveDrugOrder(doe);
+    public drugorders saveDrugOrder(drugorders drugOrder) {
+        return dao.saveDrugOrder(drugOrder);
     }
     
     @Transactional
     @Override
-    public void deleteDrugOrder(drugorders newTable) {
-        dao.deleteDrugOrder(newTable);
+    public void deleteDrugOrder(drugorders drugOrder) {
+        dao.deleteDrugOrder(drugOrder);
     }
     
     @Transactional(readOnly = true)
@@ -95,7 +95,7 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     @Transactional(readOnly = true)
     @Override
     public List<drugorders> getDrugOrdersByPatient(Patient patient) {
-        return dao.getNewTablesByPatient(patient);
+        return dao.getDrugOrdersByPatient(patient);
     }
     
     @Transactional(readOnly = true)
