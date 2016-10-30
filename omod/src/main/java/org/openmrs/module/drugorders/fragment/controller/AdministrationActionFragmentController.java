@@ -77,7 +77,7 @@ public class AdministrationActionFragmentController {
                         Context.getService(medicationplansService.class).deleteMedicationPlan(Context.getService(medicationplansService.class).getMedicationPlan(Integer.parseInt(planId)));
                     }
                     
-                    Context.getService(medicationplansService.class).saveNewTable(medPlans);
+                    Context.getService(medicationplansService.class).saveMedicationPlan(medPlans);
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
                 }
             } catch(Exception e){

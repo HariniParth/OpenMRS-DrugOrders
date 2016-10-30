@@ -53,7 +53,7 @@ public class AdministrationPageController {
                     List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(oldPlanName));
                     for(medicationplans medPlan : medPlans){
                         medPlan.setDiseaseid(Context.getConceptService().getConceptByName(newPlanName));
-                        Context.getService(medicationplansService.class).saveNewTable(medPlan);
+                        Context.getService(medicationplansService.class).saveMedicationPlan(medPlan);
                     }
                     
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Modified!");

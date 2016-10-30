@@ -61,7 +61,7 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     
     @Transactional
     @Override
-    public medicationplans saveNewTable(medicationplans doe) {
+    public medicationplans saveMedicationPlan(medicationplans doe) {
         return dao.saveNewTable(doe);
     }
     
