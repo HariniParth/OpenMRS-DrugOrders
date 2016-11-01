@@ -235,9 +235,11 @@
         <input type="hidden" id="orderAction" name="action" />
         <input type="hidden" id="order_id" name="order_id" />
         
-        <button class="confirm right" id="addOrderButton" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Save") }</button>
-        <button class="cancel" id="btn-place" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
-
+        <div class="fields" id="view_order_detail">
+            <button class="confirm right" id="addOrderButton" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Save") }</button>
+            <button class="cancel" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
+        </div><br/>
+        
     </form>
 </div>
 

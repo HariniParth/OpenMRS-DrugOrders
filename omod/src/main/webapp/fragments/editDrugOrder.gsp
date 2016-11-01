@@ -138,13 +138,15 @@
             <div class="fields" id="view_order_detail">
                 <label><strong>Enter the reason to discontinue</strong></label>
                 <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded" disabled="true"/>
-            </div>
+            </div><br/>
 
             <input type="hidden" id="dis_order_id" name="dis_order_id"/>
             <input type="hidden" name="action" value="discontinueDrugOrder"/>
-            <br/><br/>
-            <button class="confirm pull-right" id="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
-            <button class="cancel pull-left" id="btn-place" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
+            
+            <div class="fields" id="view_order_detail">
+                <button class="confirm right" id="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
+                <button class="cancel" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
+            </div><br/>
         </form>
     </div>
 </div>
