@@ -41,14 +41,15 @@
                                                 <% } %>
 
                                                 <div class="detailsLink">
-                                                    <span class="fields" id="order_value" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ drugOrderExtn.startdate }','${ drugOrderExtn.drugname.getDisplayString() }','${ drugOrderMn.dose }','${ drugOrderMn.doseUnits.getDisplayString() }','${ drugOrderMn.route.getDisplayString() }','${ drugOrderMn.duration }','${ drugOrderMn.durationUnits.getDisplayString() }','${ drugOrderMn.quantity }','${ drugOrderMn.quantityUnits.getDisplayString() }','${ drugOrderMn.frequency }','${ drugOrderExtn.refill }','${ drugOrderExtn.isallergicorderreasons }','${ default_prio }','${ drugOrderExtn.patientinstructions }','${ drugOrderExtn.pharmacistinstructions }')">   
-                                                        ${drugOrderExtn.drugname.getDisplayString().toUpperCase()}
-                                                    </span>
+                                                    <div class="fields" id="order_value" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ drugOrderExtn.startdate }','${ drugOrderExtn.drugname.getDisplayString() }','${ drugOrderMn.dose }','${ drugOrderMn.doseUnits.getDisplayString() }','${ drugOrderMn.route.getDisplayString() }','${ drugOrderMn.duration }','${ drugOrderMn.durationUnits.getDisplayString() }','${ drugOrderMn.quantity }','${ drugOrderMn.quantityUnits.getDisplayString() }','${ drugOrderMn.frequency }','${ drugOrderExtn.refill }','${ drugOrderExtn.isallergicorderreasons }','${ default_prio }','${ drugOrderExtn.patientinstructions }','${ drugOrderExtn.pharmacistinstructions }')">   
+                                                        <div>${drugOrderExtn.drugname.getDisplayString().toUpperCase()} <span class="itemSummary">Start Date: ${ drugOrderExtn.startdate }</span></div>
+                                                        <div><span class="itemSummary">${ drugOrderMn.dose } ${ drugOrderMn.doseUnits.getDisplayString() }, ${ drugOrderMn.duration } ${ drugOrderMn.durationUnits.getDisplayString() }</span></div>
+                                                    </div>
 
-                                                    <span id="button" class="pull-right">
+                                                    <div id="button" class="pull-right">
                                                         <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','PLAN','${ drugOrderMn.orderId }','${ drugOrderExtn.drugname.getDisplayString() }','${ drugOrderExtn.startdate }','${ drugOrderMn.dose }','${ drugOrderMn.doseUnits.getDisplayString() }','${ drugOrderMn.route.getDisplayString() }','${ drugOrderMn.duration }','${ drugOrderMn.durationUnits.getDisplayString() }','${ drugOrderMn.quantity }','${ drugOrderMn.quantityUnits.getDisplayString() }','${ drugOrderMn.frequency }','${ drugOrderExtn.refill }','${ drugOrderExtn.refillinterval }','${drugOrderMain.key.getDisplayString()}','${ drugOrderExtn.isallergicorderreasons }','${ default_prio }','${ drugOrderExtn.patientinstructions }','${ drugOrderExtn.pharmacistinstructions }')"></i>
                                                         <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ drugOrderMn.orderId }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ drugOrderExtn.startdate }','${ drugOrderExtn.drugname.getDisplayString() }','${ drugOrderMn.dose }','${ drugOrderMn.doseUnits.getDisplayString() }','${ drugOrderMn.route.getDisplayString() }','${ drugOrderMn.duration }','${ drugOrderMn.durationUnits.getDisplayString() }','${ drugOrderMn.quantity }','${ drugOrderMn.quantityUnits.getDisplayString() }','${ drugOrderMn.frequency }','${ default_prio }','${ drugOrderExtn.patientinstructions }','${ drugOrderExtn.pharmacistinstructions }')"></i>
-                                                    </span><br/>
+                                                    </div><br/>
                                                 </div>
                                             <% } %>
                                         <% } %>
@@ -102,6 +103,6 @@
 
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
-        jq(this).children('span').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+        jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
     });
 </script>

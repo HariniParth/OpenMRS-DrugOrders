@@ -39,9 +39,10 @@
                                                 <% } %>
 
                                                 <div class="detailsLink">
-                                                    <span class="fields" id="view_order_detail" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ drugOrderExtn.startdate }','${ drugOrderExtn.drugname.getDisplayString() }','${ drugOrderMn.dose }','${ drugOrderMn.doseUnits.getDisplayString() }','${ drugOrderMn.route.getDisplayString() }','${ drugOrderMn.duration }','${ drugOrderMn.durationUnits.getDisplayString() }','${ drugOrderMn.quantity }','${ drugOrderMn.quantityUnits.getDisplayString() }','${ drugOrderMn.frequency }','${ drugOrderExtn.refill }','${ drugOrderExtn.isallergicorderreasons }','${ default_prio }','${ drugOrderExtn.patientinstructions }','${ drugOrderExtn.pharmacistinstructions }')">   
-                                                        ${drugOrderExtn.drugname.getDisplayString().toUpperCase()}
-                                                    </span><br/>
+                                                    <div class="fields" id="view_order_detail" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ drugOrderExtn.startdate }','${ drugOrderExtn.drugname.getDisplayString() }','${ drugOrderMn.dose }','${ drugOrderMn.doseUnits.getDisplayString() }','${ drugOrderMn.route.getDisplayString() }','${ drugOrderMn.duration }','${ drugOrderMn.durationUnits.getDisplayString() }','${ drugOrderMn.quantity }','${ drugOrderMn.quantityUnits.getDisplayString() }','${ drugOrderMn.frequency }','${ drugOrderExtn.refill }','${ drugOrderExtn.isallergicorderreasons }','${ default_prio }','${ drugOrderExtn.patientinstructions }','${ drugOrderExtn.pharmacistinstructions }')">   
+                                                        <div>${drugOrderExtn.drugname.getDisplayString().toUpperCase()} <span class="itemSummary">Start Date: ${ drugOrderExtn.startdate }</span></div>
+                                                        <div><span class="itemSummary">${ drugOrderMn.dose } ${ drugOrderMn.doseUnits.getDisplayString() }, ${ drugOrderMn.duration } ${ drugOrderMn.durationUnits.getDisplayString() }</span></div>
+                                                    </div><br/>
                                                 </div>
                                             <% } %>
                                         <% } %>
@@ -92,6 +93,6 @@
 
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
-        jq(this).children('span').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+        jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
     });
 </script>

@@ -156,9 +156,14 @@ and open the template in the editor.
     vertical-align: top;
 }
 
+.itemSummary{
+    font-size: 14px;
+}
+
 .detailsLink{
     width: 100%;
     border: 1px solid gainsboro;
+    overflow: hidden;
 }
 
 .detailsLink #order_value{
@@ -207,7 +212,7 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-.detailsLink:hover span:first-child{
+.detailsLink:hover div:first-child > *{
     background: #75b2f0;
     color: white;
     cursor: pointer;

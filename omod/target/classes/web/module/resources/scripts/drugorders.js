@@ -112,7 +112,7 @@ function hideIndividualOrderDetailsWindow(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
     });
     jq(".detailsLink").each(function(){
-        jq(this).children('span').slice(0, 1).css({'background-color':'','color':''});
+        jq(this).children('div > *').slice(0, 1).css({'background-color':'','color':''});
     });    
 }
 
@@ -162,7 +162,7 @@ function hideDrugOrderViewWindow(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
     });
     jq(".detailsLink").each(function(){
-        jq(this).children('span').slice(0, 1).css({'background-color':'','color':''});
+        jq(this).children('div > *').slice(0, 1).css({'background-color':'','color':''});
     });
 }
 
