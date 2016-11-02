@@ -135,9 +135,11 @@
                 </select>
             </div>
 
-            <div class="fields" id="view_order_detail">
-                <label><strong>Enter the reason to discontinue</strong></label>
-                <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded" disabled="true"/>
+            <div id="discontinueReasonTextView">
+                <div class="fields" id="view_order_detail">
+                    <label><strong>Enter the reason to discontinue</strong></label>
+                    <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded" disabled="true"/>
+                </div>
             </div><br/>
 
             <input type="hidden" id="dis_order_id" name="dis_order_id"/>

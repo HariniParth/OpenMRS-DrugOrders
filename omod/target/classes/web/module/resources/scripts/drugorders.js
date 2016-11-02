@@ -149,7 +149,9 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
 
 function hideDrugOrderViewWindow(){
     jq("#showDrugOrderView").hide();
+    jq("#discontinueReasonTextView").hide();
     $("#discontinueOrder").prop("disabled", true);
+    $("#discontinueOrderReasonNonCoded").prop("disabled", true);
     $("#discontinueOrderReasonCoded").val("Choose option");
     $("#discontinueOrderReasonNonCoded").val("");
     
@@ -516,6 +518,8 @@ function showAddOrderToGroupWindow(orderType,groupID){
 
 function enterNonCodedReason(){
     if(document.getElementById("discontinueOrderReasonCoded").value === "Other"){
+        jq("#discontinueReasonTextView").show();
+        document.getElementById("discontinueReasonTextView").style.display = 'block';
         jq("#discontinueOrderReasonNonCoded").removeAttr("disabled");
     }
 }
