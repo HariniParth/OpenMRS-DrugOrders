@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <br/><br/><br/>
+        <br/><br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
@@ -193,7 +193,7 @@
 <% if(newDrugOrders.size() > 0) { %>
     <div id="confirmOrderView" class="dialog">
         <div class="dialog-header">
-            <h3 id="dialog-heading">${ ui.message("ORDER CONFIRMED") }</h3>
+            <h3 id="dialog-heading">${ ui.message("NEW INDIVIDUAL ORDERS") }</h3>
         </div>
         <br/><br/>
         <div class="fields">
@@ -213,7 +213,7 @@
 
                         <span id="button" class="pull-right">
                             <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','SINGLE','${ order.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.refill }','${ order.value.refillinterval }','${ order.value.associateddiagnosis.getDisplayString() }','${ order.value.isallergicorderreasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
-                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ order.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate }','${ order.value.drugname.getDisplayString() }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ order.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate.format('yyyy-MM-dd') }','${ order.value.drugname.getDisplayString() }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                         </span><br/><br/>
 
                         <div class="planItemDetails">

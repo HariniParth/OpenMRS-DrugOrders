@@ -222,3 +222,7 @@ and open the template in the editor.
     color: white;
     cursor: pointer;
 }
+
+#singleOrderView div:first-child{
+    overflow: hidden;
+}
