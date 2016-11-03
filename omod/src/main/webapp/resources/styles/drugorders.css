@@ -196,6 +196,11 @@ and open the template in the editor.
     margin-bottom: 15px;
 }
 
+#itemSpace .itemSummary{
+    padding-left: 28px;
+    overflow: hidden;
+}
+
 #addOrderButton, #discontinueOrder{
     margin-right: 20px;
 }

@@ -39,35 +39,15 @@
             <div id="medPlansForDisease" class="fields">
 
                 <h5><strong>${diseaseName}</strong></h5><br/>
-                <p>Check drugs to be omitted from being ordered</p>
+                <p>Check box to omit drug order</p>
                 
                 <% medplans.each { medplan -> %>
                     <div id="itemSpace">
                         <input type="checkbox" name="omitPlanItemCheckBox" value="${medplan.drugid.getDisplayString()}" /> 
-                        <span class="viewDetails">
-                            <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                            <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                        </span>
-                        <strong>${medplan.drugid.getDisplayString()}</strong><br/><br/>
-
-                        <span class="planItemDetails">
-                            <span id="order_label">Dose:</span>
-                            <span id="order_value">${medplan.dose}</span>
-                            <span id="order_label">Dose units:</span>
-                            <span id="order_value">${medplan.doseunits.getDisplayString()}</span>
-                            <span id="order_label">Route:</span>
-                            <span id="order_value">${medplan.route.getDisplayString()}</span>
-                            <span id="order_label">Quantity:</span>
-                            <span id="order_value">${medplan.quantity}</span>
-                            <span id="order_label">Qnty units:</span>
-                            <span id="order_value">${medplan.quantityunits.getDisplayString()}</span>
-                            <span id="order_label">Duration:</span>
-                            <span id="order_value">${medplan.duration}</span>
-                            <span id="order_label">Durn units:</span>
-                            <span id="order_value">${medplan.durationunits.getDisplayString()}</span>
-                            <span id="order_label">Frequency:</span>
-                            <span id="order_value">${medplan.frequency}</span>
-                        </span>
+                        <strong>${medplan.drugid.getDisplayString()}</strong><br/>
+                        <div class="itemSummary">
+                            ${medplan.dose} ${medplan.doseunits.getDisplayString()}, ${medplan.route.getDisplayString()}, ${medplan.quantity} ${medplan.quantityunits.getDisplayString()}, ${medplan.duration} ${medplan.durationunits.getDisplayString()}, ${medplan.frequency}
+                        </div>
                     </div>
                     
                 <% } %>
@@ -104,19 +84,3 @@
         </div>
     <% } %>
 </form>
-
-<script type="text/javascript">
-    jq(".icon-plus-sign").click(function(){
-        jq(this).parent().nextAll(".planItemDetails").first().show();
-        jq(this).hide();
-        jq(this).nextAll(".icon-minus-sign").show();
-    });
-</script>
-
-<script type="text/javascript">
-    jq(".icon-minus-sign").click(function(){
-        jq(this).parent().nextAll(".planItemDetails").first().hide();
-        jq(this).hide();
-        jq(this).prevAll(".icon-plus-sign").show();
-    });
-</script>   
