@@ -205,6 +205,10 @@ and open the template in the editor.
     margin-right: 20px;
 }
 
+#confirmOrderView .planItemDetails{
+    padding-left: 52px;
+}
+
 .orderRow:hover .existingDrugOrdersID{
     background: #75b2f0;
     color: white;

@@ -198,8 +198,10 @@
         <br/><br/>
         <div class="fields">
             <form method="post" name="groupForm">
-                <p><strong>Check Orders To Be Grouped</strong>
-                    <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
+                <p>
+                    <strong>Check Orders To Be Grouped
+                        <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
+                    </strong>
                 </p><br/>
                 
                 <% newDrugOrders.each { order -> %>
