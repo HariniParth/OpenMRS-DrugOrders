@@ -22,7 +22,8 @@
 
                     <tr class="oldOrderRow">
                         <td class="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldDrugOrderExtension.startdate.format('yyyy-MM-dd') }','${ oldDrugOrderExtension.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).dose }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).duration }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).quantity }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).frequency }','${ oldDrugOrderExtension.refill }','${ oldDrugOrderExtension.isallergicorderreasons }','${ oldDrugOrderExtension.priority.getDisplayString() }','${ oldDrugOrderExtension.patientinstructions }','${ oldDrugOrderExtension.pharmacistinstructions }','${ oldDrugOrderExtension.comments }')">
-                            ${ oldDrugOrderExtension.drugname.getDisplayString().toUpperCase() }
+                            <div>${ oldDrugOrderExtension.drugname.getDisplayString().toUpperCase() }</div>
+                            <div><span class="itemSummary">${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).dose } ${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).doseUnits.getDisplayString() }, ${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).duration } ${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).durationUnits.getDisplayString() }</span></div>
                         </td>
                         <td>
                             <span id="button">
