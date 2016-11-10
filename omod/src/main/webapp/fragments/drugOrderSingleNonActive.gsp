@@ -57,7 +57,8 @@
 
                         <tr class="oldOrderRow">
                             <td class="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldOrder.startdate.format('yyyy-MM-dd') }','${ oldOrder.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).dose }','${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).duration }','${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantity }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).frequency }','${ oldOrder.refill }','${ oldOrder.isallergicorderreasons }','${ oldOrder.priority.getDisplayString() }','${ oldOrder.patientinstructions }','${ oldOrder.pharmacistinstructions }','${ oldOrder.comments }')">
-                                ${ oldOrder.drugname.getDisplayString().toUpperCase() }
+                                <div>${ oldOrder.drugname.getDisplayString().toUpperCase() }</div>
+                                <div><span class="itemSummary">${ oldDrugOrdersMain.get(oldOrder.orderId).dose } ${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }, ${ oldDrugOrdersMain.get(oldOrder.orderId).duration } ${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }</span></div>
                             </td>
                             <% orderList = orderList + oldOrder.drugname.getDisplayString() + "," %>
                             
@@ -83,7 +84,7 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": true,
+        "bLengthChange": false,
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": false,
@@ -97,7 +98,7 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": true,
+        "bLengthChange": false,
         "ordering": false,
         "bJQueryUI": true,
         "bInfo": false,
