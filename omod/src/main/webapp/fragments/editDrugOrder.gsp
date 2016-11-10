@@ -17,9 +17,7 @@
             <div id="order_value">
                 <label id="order_details"></label>
             </div>
-        </div>
-
-        <br/><br/>
+        </div><br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
@@ -56,44 +54,40 @@
         
         <div id="allergicOrderReasonView">
             <div class="fields" id="view_order_detail">
-                <label><strong>Allergy Order Note</strong></label><br/><br/>
                 <div id="order_label">
-                    <label><strong>Order Reason</strong></label>
+                    <label><strong>Allergy Note</strong></label>
                 </div>
                 <div id="order_value">
                     <label id="order_reason"></label>
                 </div>
-            </div>
-            <br/><br/>
+            </div><br/>
         </div>
         
         <div class="fields" id="view_order_detail">
             <label><strong>Instructions from Physician for</strong></label>
+        </div><br/>
+
+        <div id="patientInstructions">
+            <div class="fields" id="view_order_detail">
+                <div id="order_label">
+                    <label><strong>Patient</strong></label>
+                </div>
+                <div id="order_value">
+                    <label id="patient_instructions"></label>
+                </div>
+            </div><br/>
         </div>
 
-        <br/>
-
-        <div class="fields" id="view_order_detail">
-            <div id="order_label">
-                <label><strong>Patient</strong></label>
-            </div>
-            <div id="order_value">
-                <label id="patient_instructions"></label>
-            </div>
+        <div id="pharmacistInstructions">
+            <div class="fields" id="view_order_detail">
+                <div id="order_label">
+                    <label><strong>Pharmacist</strong></label>
+                </div>
+                <div id="order_value">
+                    <label id="pharmacist_instructions"></label>
+                </div>
+            </div><br/>
         </div>
-
-        <br/><br/>
-
-        <div class="fields" id="view_order_detail">
-            <div id="order_label">
-                <label><strong>Pharmacist</strong></label>
-            </div>
-            <div id="order_value">
-                <label id="pharmacist_instructions"></label>
-            </div>
-        </div>
-        
-        <br/><br/>
         
         <div id="pharmacistCommentsView">
             <div class="fields" id="view_order_detail">
@@ -104,8 +98,7 @@
                 <div id="order_value">
                     <label id="pharma_comments"></label>
                 </div>
-            </div>
-            <br/><br/>
+            </div><br/><br/>
         </div>
 
         <div id="view_window_close_btn">
