@@ -192,18 +192,13 @@
         <div class="fields">
             <form method="post" name="groupForm">
                 <p>
-                    <strong>Check Orders To Be Grouped
+                    <strong>Review and Confirm
                         <span id="button" class="pull-right"><i class="icon-plus edit-action" title="${ ui.message("Add Another Order") }" onclick="showIndividualOrderDetailsWindow('CREATE DRUG ORDER')"></i></span>
                     </strong>
                 </p><br/>
                 
                 <% newDrugOrders.each { order -> %>
                     <div id="itemSpace" class="fields">
-                        <input type="checkbox" name="groupCheckBox" value="${order.key}" ng-model="groupCheckBox" />  
-                        <span class="viewDetails">
-                            <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                            <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                        </span>
                         <strong>${ order.value.drugname.getDisplayString() }</strong>
 
                         <span id="button" class="pull-right">
@@ -211,7 +206,7 @@
                             <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ order.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate.format('yyyy-MM-dd') }','${ order.value.drugname.getDisplayString() }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
                         </span><br/><br/>
 
-                        <div class="planItemDetails">
+                        <div>
                             <span id="order_label">Dose:</span>
                             <span id="order_value">${newOrderMainData.get(order.key).dose}</span>
                             <span id="order_label">Dose units:</span>
@@ -232,27 +227,9 @@
                     </div>
                 <% } %><br/><br/>
 
-                <button class="pull-left" type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group</button>
-                <button class="pull-right" type="cancel" id="confirmOrderSingle" name="action" value="SingleOrder">Close</button>
+                <button class="confirm right" type="submit" id="btn-place" name="action" value="SingleOrder">Confirm</button>
                 
             </form>
         </div>
     </div>
 <% } %>
-
-
-<script type="text/javascript">
-    jq(".icon-plus-sign").click(function(){
-        jq(this).parent().nextAll(".planItemDetails").first().show();
-        jq(this).hide();
-        jq(this).nextAll(".icon-minus-sign").show();
-    });
-</script>
-
-<script type="text/javascript">
-    jq(".icon-minus-sign").click(function(){
-        jq(this).parent().nextAll(".planItemDetails").first().hide();
-        jq(this).hide();
-        jq(this).prevAll(".icon-plus-sign").show();
-    });
-</script>
