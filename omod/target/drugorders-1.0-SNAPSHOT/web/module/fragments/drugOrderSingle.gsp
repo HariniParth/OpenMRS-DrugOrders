@@ -1,4 +1,4 @@
-<%
+    <%
     ui.includeCss("drugorders", "drugorders.css")
     ui.includeJavascript("drugorders", "dataTables.js")
 %>
@@ -77,8 +77,10 @@
             </tbody>
         </table><br/>
 
-        <div class="pull-right">Check Orders to be Grouped 
-        <button type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group</button></div>
+        <% if(existingDrugOrdersExtension.size() > 0) { %>
+            <div class="pull-right">Check Orders to be Grouped 
+            <button type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group</button></div>
+        <% } %>
     </form>
 </div>
 
