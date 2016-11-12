@@ -57,14 +57,17 @@
                                         <% medPlan.value.each { med -> %>
                                         
                                             <div class="detailsLink">
-                                                <span class="fields" id="order_value" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">
-                                                    ${med.drugid.getDisplayString()}
-                                                </span>
                                                 
-                                                <span id="button" class="pull-right">
+                                                <div class="fields" id="order_value" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">
+                                                    <div>${med.drugid.getDisplayString()}</div>
+                                                    <div><span class="itemSummary">${med.dose} ${med.doseunits.getDisplayString()}, ${med.duration} ${med.durationunits.getDisplayString()}</span></div>
+                                                </div>
+                                                
+                                                <div id="button" class="pull-right">
                                                     <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
                                                     <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
-                                                </span><br/>
+                                                </div><br/>
+                                                
                                             </div>
                                             
                                         <% } %> 
@@ -102,7 +105,7 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": true,
+        "bLengthChange": false,
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": false
@@ -128,6 +131,6 @@
 
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
-        jq(this).children('span').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+        jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
     });
 </script>
