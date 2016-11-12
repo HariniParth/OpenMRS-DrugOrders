@@ -121,6 +121,7 @@ public class DrugordersPageController {
                         }
                         
                         for(drugorders dorder : dorders){
+                            
                             dorder.setOrderstatus("Discontinued-Plan");
                             if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
                                 String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
@@ -155,6 +156,7 @@ public class DrugordersPageController {
                 
                 if ("SingleOrder".equals(action)) {
                     List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
+                    
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
                     }
@@ -164,6 +166,7 @@ public class DrugordersPageController {
                 if ("GroupOrder".equals(action)) {
                     if(groupCheckBox.length > 0){
                         int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
+                        
                         for(int i=0;i<groupCheckBox.length;i++){
                             int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
                             drugorders orderInGroup = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
@@ -182,7 +185,8 @@ public class DrugordersPageController {
                     
                     if(existingMedPlanOrders.isEmpty()){
                         List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
-                    
+                        int planID = Context.getService(drugordersdiseasesService.class).getLastPlanID() + 1;
+                        
                         for(medicationplans medplan : medplans){
                             
                             DrugOrder drugOrder = null;
@@ -209,7 +213,7 @@ public class DrugordersPageController {
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setStartdate(Calendar.getInstance().getTime());
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setPriority(Context.getConceptService().getConceptByName("High"));
-                                createDiseasePlan(order,patientID,diseaseForPlan);
+                                createDiseasePlan(order,planID,patientID,diseaseForPlan);
                             }
                         }
                     }
@@ -220,6 +224,7 @@ public class DrugordersPageController {
                 if ("renewMedPlan".equals(action)) {
                     
                     List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(planRenewed), patientID);
+                    int planID = Context.getService(drugordersdiseasesService.class).getLastPlanID() + 1;
                     
                     for(drugordersdiseases planOrder : planOrders){
                         DrugOrder orderMain = (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid());
@@ -229,7 +234,7 @@ public class DrugordersPageController {
                         drugorders drugorder = null;
                         int order = createNewDrugOrder(drugOrder, patient, orderExtn.getDrugname().getDisplayString(), orderMain.getRoute().getDisplayString(), orderMain.getDose().toString(), orderMain.getDoseUnits().getDisplayString(), orderMain.getQuantity().toString(), orderMain.getQuantityUnits().getDisplayString(), orderMain.getFrequency().getName(), orderMain.getDuration(), orderMain.getDurationUnits().getDisplayString());
                         createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugname().getDisplayString(), Calendar.getInstance().getTime(), "", planRenewed, orderExtn.getPriority().getDisplayString(), orderExtn.getRefill(), orderExtn.getRefillinterval(), "", "");
-                        createDiseasePlan(order,patientID,planRenewed);
+                        createDiseasePlan(order,planID,patientID,planRenewed);
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                     }
                     
@@ -238,6 +243,7 @@ public class DrugordersPageController {
                 
                 if ("DISCARD ORDER GROUP".equals(action)) {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
+                    
                     for(drugorders order : orders){
                         order.setOrderstatus("Discontinued-Group");
                         Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
@@ -249,6 +255,7 @@ public class DrugordersPageController {
                 if ("RENEW ORDER GROUP".equals(action)) {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
                     int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
+                    
                     for(drugorders order : orders){
                         DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
                         DrugOrder drugOrder = null;
@@ -382,10 +389,11 @@ public class DrugordersPageController {
         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
     }
     
-    private void createDiseasePlan(int drugOrderID, String patientID, String diseaseName){
+    private void createDiseasePlan(int drugOrderID, int planID, String patientID, String diseaseName){
         
         drugordersdiseases diseaseDrugOrder = new drugordersdiseases();
         diseaseDrugOrder.setUuid(UUID.randomUUID().toString());
+        diseaseDrugOrder.setPlanid(planID);
         diseaseDrugOrder.setOrderid(drugOrderID);
         diseaseDrugOrder.setPatientid(patientID);
         diseaseDrugOrder.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName));
