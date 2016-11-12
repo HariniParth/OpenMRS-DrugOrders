@@ -15,6 +15,7 @@ import org.openmrs.module.drugorders.drugordersdiseases;
  */
 public interface drugordersdiseasesDAO {
     
+    public int getLastPlanID();
     public void deleteDrugOrder(drugordersdiseases order);
     public drugordersdiseases getDrugOrderByOrderID(Integer id);
     public drugordersdiseases saveDrugOrder(drugordersdiseases order);

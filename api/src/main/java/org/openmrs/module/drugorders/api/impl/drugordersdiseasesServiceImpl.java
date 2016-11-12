@@ -36,6 +36,12 @@ public class drugordersdiseasesServiceImpl extends BaseOpenmrsService implements
 	    this.dao = dao;
     }
     
+    @Transactional(readOnly = true)
+    @Override
+    public int getLastPlanID(){
+        return dao.getLastPlanID();
+    }
+    
     @Override
     public void deleteDrugOrder(drugordersdiseases order){
         dao.deleteDrugOrder(order);

@@ -16,6 +16,8 @@ import org.openmrs.module.drugorders.drugordersdiseases;
  */
 public interface drugordersdiseasesService extends OpenmrsService{
     
+    public int getLastPlanID();
+    
     public void deleteDrugOrder(drugordersdiseases order);
     
     public drugordersdiseases getDrugOrderByOrderID(Integer id);

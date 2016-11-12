@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.drugorders.api.db.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 import org.openmrs.Concept;
 import org.hibernate.Criteria;
@@ -12,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.apache.commons.logging.Log;
 import org.hibernate.criterion.Restrictions;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.criterion.Projections;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.springframework.transaction.annotation.Transactional;
 import org.openmrs.module.drugorders.api.db.drugordersdiseasesDAO;
@@ -90,4 +92,22 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
         return crit.list();
     };
     
+    @Override
+    public int getLastPlanID(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugordersdiseases.class);
+        crit.setProjection(Projections.property("id"));
+        List l=crit.list();
+        Iterator it=l.iterator();
+        int planID = 0;
+        if(it.hasNext()){
+            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugordersdiseases.class).setProjection(Projections.max("planid"));
+            if(critMax.uniqueResult() == null)
+                planID = 0;
+            else
+                planID = (Integer)critMax.uniqueResult();
+        }
+            
+        return planID;
+    };
 }
