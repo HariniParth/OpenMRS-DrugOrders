@@ -20,8 +20,10 @@ public interface drugordersdiseasesService extends OpenmrsService{
     
     public drugordersdiseases getDrugOrderByOrderID(Integer id);
     
-    public drugordersdiseases saveDrugOrder(drugordersdiseases order);
+    public List<drugordersdiseases> getDrugOrdersByPlan(Integer plan);
     
+    public drugordersdiseases saveDrugOrder(drugordersdiseases order);
+        
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept);
     
     public List<drugordersdiseases> getDrugOrdersByPatient(String patientID);

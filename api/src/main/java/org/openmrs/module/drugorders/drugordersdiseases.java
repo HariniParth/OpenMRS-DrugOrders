@@ -17,6 +17,7 @@ public class drugordersdiseases extends BaseOpenmrsObject implements Serializabl
     
     private Integer id;
     private String Uuid;
+    private Integer planid;
     private Integer orderid;
     private Concept diseaseid;
     private String patientid;
@@ -43,6 +44,14 @@ public class drugordersdiseases extends BaseOpenmrsObject implements Serializabl
     @Override
     public void setUuid(String Uuid) {
             this.Uuid = Uuid;
+    }
+    
+    public Integer getPlanid() {
+        return planid;
+    }
+
+    public void setPlanid(Integer planid) {
+        this.planid = planid;
     }
     
     public Integer getOrderid() {

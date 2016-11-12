@@ -56,6 +56,15 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     
     @Transactional(readOnly = true)
     @Override
+    public List<drugordersdiseases> getDrugOrdersByPlan(Integer plan){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugordersdiseases.class);
+        crit.add(Restrictions.eq("planid", plan));
+        return crit.list();
+    };
+    
+    @Transactional(readOnly = true)
+    @Override
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
