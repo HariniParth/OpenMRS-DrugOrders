@@ -254,7 +254,8 @@ function discardMedPlanOrder(action,planName){
     jq("#showDrugOrderView").show();
 }
 
-function renewMedPlanWindow(planName){
+function renewMedPlanWindow(planID,planName){
+    $("#planRenewID").val(planID);
     $("#planRenewed").val(planName);
     jq("#showRenewOrderView").show();
     document.getElementById("showRenewOrderView").style.display = 'block';

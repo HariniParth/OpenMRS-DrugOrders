@@ -6,6 +6,7 @@
 package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.Order;
 import org.openmrs.Patient;
@@ -13,7 +14,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.page.controller.MedicationPlans;
+import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,29 +27,36 @@ public class MedicationPlansNonActiveFragmentController {
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
         
         //Data structure to store the 'Drug Order' object properties for all the non-active orders for the given disease
-        HashMap<Concept,HashMap<Integer,Order>> NonActivePlanMain = new HashMap <Concept,HashMap<Integer,Order>>();
+        HashMap<Integer, HashMap<Concept, HashMap<Integer, Order>>> NonActivePlanMain = new HashMap<Integer, HashMap<Concept, HashMap<Integer, Order>>>();
 
         //Data structure to store the 'drugorders' object properties for all the non-active orders for the given disease
-        HashMap <Concept,HashMap<Integer,drugorders>> NonActivePlanExtension = new HashMap <Concept,HashMap<Integer,drugorders>>();
+        HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>> NonActivePlanExtension = new HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>>();
         
-        for(Concept disease : MedicationPlans.getPlansOrderedForPatient(patient)){
+        List<drugordersdiseases> planByPatient = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(patient.getPatientId().toString());
+                
+        for(drugordersdiseases patientPlan : planByPatient){
             
-            HashMap<Integer,Order> drugOrderMain = new HashMap<Integer,Order>();
-            HashMap<Integer,drugorders> drugOrderExtension = new HashMap<Integer,drugorders>();
-            
-            for(Integer diseaseOrderID : MedicationPlans.getOrderIDFromPlanOrdersForPatient(patient)){
-                if((disease == Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(diseaseOrderID).getDiseaseid()) && (Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID).getOrderstatus()).equals("Discontinued-Plan")){
-                    drugOrderMain.put(diseaseOrderID,Context.getOrderService().getOrder(diseaseOrderID));
-                    drugOrderExtension.put(diseaseOrderID,Context.getService(drugordersService.class).getDrugOrderByOrderID(diseaseOrderID));
-                }
-            }
-            
-            if(drugOrderMain.size() > 0 && drugOrderExtension.size() > 0){
-                NonActivePlanMain.put(disease, drugOrderMain);
-                NonActivePlanExtension.put(disease, drugOrderExtension);
+            if(!NonActivePlanMain.containsKey(patientPlan.getPlanid())){
+                List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(patientPlan.getPlanid());
+                
+                HashMap<Concept, HashMap<Integer, Order>> planMain = new HashMap<Concept, HashMap<Integer, Order>>();
+                HashMap<Concept, HashMap<Integer, drugorders>> planExtn = new HashMap<Concept, HashMap<Integer, drugorders>>();
+                
+                HashMap<Integer,Order> orderMain = new HashMap<Integer,Order>();
+                HashMap<Integer,drugorders> orderExtn = new HashMap<Integer,drugorders>();
+                
+                for(drugordersdiseases plan : plans){ 
+                    orderMain.put(plan.getOrderid(), Context.getOrderService().getOrder(plan.getOrderid()));
+                    orderExtn.put(plan.getOrderid(), Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()));
+                }                
+                planMain.put(patientPlan.getDiseaseid(), orderMain);
+                planExtn.put(patientPlan.getDiseaseid(), orderExtn);
+                
+                NonActivePlanMain.put(patientPlan.getPlanid(), planMain);
+                NonActivePlanExtension.put(patientPlan.getPlanid(), planExtn);
             }
         }
-                
+        
         model.addAttribute("NonActivePlanMain", NonActivePlanMain);
         model.addAttribute("NonActivePlanExtension", NonActivePlanExtension);
         

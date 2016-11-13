@@ -153,6 +153,8 @@
             <h3 id="dialog-heading">${ ui.message("RENEW MED PLAN") }</h3>
         </div><br/><br/>
         
+        <input type="hidden" id="planRenewID" name="planRenewID" />
+        
         <div class="fields">
             <input type="text" id="planRenewed" name="planRenewed" />
         </div><br/>

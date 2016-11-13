@@ -16,40 +16,42 @@
                 <tr><td colspan="2" align="center">No Orders Found</td></tr>
             <% } %>
     
-            <% NonActivePlanMain.each { drugOrderMain -> %>
-                <tr>
-                    <td class="fields">
-                        <div>
-                            <span class="viewDetails">
-                                <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                            </span>
-                            ${ drugOrderMain.key.getDisplayString().toUpperCase() }
-                        </div><br/>
-
-                        <div class="orderDetails">
-                            <% drugOrderMain.value.each { drugOrderMn -> %>
-
-                                <% if(NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).priority != null) { %>
-                                    <% default_prio = NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).priority.getDisplayString(); %>
+            <% NonActivePlanMain.each { planOrderMain -> %>
+                <% planOrderMain.value.each { planMain -> %>
+                    <tr>
+                        <td class="fields">
+                            <div>
+                                <span class="viewDetails">
+                                    <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                                </span>
+                                ${ planMain.key.getDisplayString().toUpperCase() }
+                            </div><br/>
+                            
+                            <div class="orderDetails">
+                                <% planMain.value.each { orderMain -> %>
+                                
+                                    <% if(NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority != null) { %>
+                                        <% default_prio = NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority.getDisplayString(); %>
+                                    <% } %>
+                                    
+                                    <div class="detailsLink">
+                                        <div class="fields" id="view_order_detail" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startdate.format('yyyy-MM-dd') }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugname.getDisplayString() }','${ orderMain.value.dose }','${ orderMain.value.doseUnits.getDisplayString() }','${ orderMain.value.route.getDisplayString() }','${ orderMain.value.duration }','${ orderMain.value.durationUnits.getDisplayString() }','${ orderMain.value.quantity }','${ orderMain.value.quantityUnits.getDisplayString() }','${ orderMain.value.frequency }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).refill }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).isallergicorderreasons }','${ default_prio }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).patientinstructions }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).pharmacistinstructions }')">   
+                                            <div>${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugname.getDisplayString().toUpperCase() } <span class="itemSummary">Start Date: ${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startdate.format('yyyy-MM-dd') }</span></div>
+                                            <div><span class="itemSummary">${ orderMain.value.dose } ${ orderMain.value.doseUnits.getDisplayString() }, ${ orderMain.value.duration } ${ orderMain.value.durationUnits.getDisplayString() }</span></div>
+                                        </div><br/>
+                                    </div>
+                                    
                                 <% } %>
-
-                                <div class="detailsLink">
-                                    <div class="fields" id="view_order_detail" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startdate.format('yyyy-MM-dd') }','${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugname.getDisplayString() }','${ drugOrderMn.value.dose }','${ drugOrderMn.value.doseUnits.getDisplayString() }','${ drugOrderMn.value.route.getDisplayString() }','${ drugOrderMn.value.duration }','${ drugOrderMn.value.durationUnits.getDisplayString() }','${ drugOrderMn.value.quantity }','${ drugOrderMn.value.quantityUnits.getDisplayString() }','${ drugOrderMn.value.frequency }','${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).refill }','${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).isallergicorderreasons }','${ default_prio }','${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).patientinstructions }','${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).pharmacistinstructions }')">   
-                                        <div>${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugname.getDisplayString().toUpperCase() } <span class="itemSummary">Start Date: ${ NonActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startdate.format('yyyy-MM-dd') }</span></div>
-                                        <div><span class="itemSummary">${ drugOrderMn.value.dose } ${ drugOrderMn.value.doseUnits.getDisplayString() }, ${ drugOrderMn.value.duration } ${ drugOrderMn.value.durationUnits.getDisplayString() }</span></div>
-                                    </div><br/>
-                                </div>
-
-                            <% } %>
-                        </div>
-                    </td>
-                    <td>
-                        <span id="button" class="pull-right">
-                            <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${drugOrderMain.key.getDisplayString()}')"></i>
-                        </span>
-                    </td>
-                </tr>
+                            </div>
+                        </td>
+                        <td>
+                            <span id="button" class="pull-right">
+                                <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${ planOrderMain.key }','${ planMain.key.getDisplayString().toUpperCase() }')"></i>
+                            </span>
+                        </td>
+                    </tr>
+                <% } %>
             <% } %>
         </tbody>
     </table>
