@@ -151,12 +151,14 @@
     <form method="post">
         <div class="dialog-header">
             <h3 id="dialog-heading">${ ui.message("RENEW MED PLAN") }</h3>
-        </div><br/><br/>
+        </div><br/>
         
         <input type="hidden" id="planRenewID" name="planRenewID" />
         
-        <div class="fields">
-            <input type="text" id="planRenewed" name="planRenewed" />
+        <div class="fields" id="renewMedPlanList">
+            <label><strong>Renew the Following Medication Plan</strong></label>
+            <label>Individual Orders may be edited on click!</label><br/>
+            <strong><label id="planRenewed"></label></strong>
         </div><br/>
 
         <input type="hidden" name="action" value="renewMedPlan"/><br/>

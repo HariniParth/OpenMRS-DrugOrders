@@ -254,15 +254,26 @@ function discardMedPlanOrder(action,planName){
     jq("#showDrugOrderView").show();
 }
 
-function renewMedPlanWindow(planID,planName){
+function renewMedPlanWindow(planID,planName,medList){
     $("#planRenewID").val(planID);
-    $("#planRenewed").val(planName);
+    $("#planRenewed").text(planName);
+    var list = medList.replace('[','').replace(']','').split(',');
+    var element = document.getElementById("renewMedPlanList");
+    
+    list.forEach(function(entry){
+        var item = document.createElement("p");
+        var itemText = document.createTextNode(entry);
+        item.appendChild(itemText);
+        element.appendChild(item);
+    });
+    
     jq("#showRenewOrderView").show();
     document.getElementById("showRenewOrderView").style.display = 'block';
 }
 
 function hideRenewPlanOrderWindow(){
     jq("#showRenewOrderView").hide();
+    $('#renewMedPlanList > p').html("");
 }
 
 function autoCompleteDiagnosis(diagnosis){

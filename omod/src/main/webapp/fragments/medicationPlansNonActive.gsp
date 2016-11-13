@@ -47,7 +47,7 @@
                         </td>
                         <td>
                             <span id="button" class="pull-right">
-                                <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${ planOrderMain.key }','${ planMain.key.getDisplayString().toUpperCase() }')"></i>
+                                <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${ planOrderMain.key }','${ planMain.key.getDisplayString().toUpperCase() }','${ planDrugs.get(planOrderMain.key) }')"></i>
                             </span>
                         </td>
                     </tr>
