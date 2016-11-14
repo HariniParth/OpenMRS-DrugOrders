@@ -106,7 +106,7 @@ function hideIndividualOrderDetailsWindow(){
     $("#addOrderButton").prop("disabled", true);
     
     jq(".orderRow").each(function(){
-        jq(this).children('td').slice(0, 2).css({'background-color':'','color':''});
+        jq(this).children('td').slice(1, 3).css({'background-color':'','color':''});
     });
     jq(".oldOrderRow").each(function(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
@@ -156,7 +156,7 @@ function hideDrugOrderViewWindow(){
     $("#discontinueOrderReasonNonCoded").val("");
     
     jq(".orderRow").each(function(){
-        jq(this).children('td').slice(0, 2).css({'background-color':'','color':''});
+        jq(this).children('td').slice(1, 3).css({'background-color':'','color':''});
     });
     jq(".oldOrderRow").each(function(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
