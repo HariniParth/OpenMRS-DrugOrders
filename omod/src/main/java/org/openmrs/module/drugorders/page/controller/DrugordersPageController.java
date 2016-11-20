@@ -19,6 +19,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.CareSetting;
+import org.openmrs.Concept;
+import org.openmrs.Drug;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
 import org.openmrs.EncounterRole;
@@ -34,6 +36,7 @@ import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.drugordersActivator;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.module.drugorders.medicationplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
@@ -326,8 +329,25 @@ public class DrugordersPageController {
 
         int orderID = 0;
         order = new DrugOrder();
-        order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameConfirmed));
-        order.setConcept(Context.getConceptService().getConceptByName(drugNameConfirmed));
+        
+        if(Context.getConceptService().getConceptByName(drugNameConfirmed) == null){
+            
+            drugordersActivator activator = new drugordersActivator();
+            Concept drugConcept =  activator.saveConcept(drugNameConfirmed, Context.getConceptService().getConceptClassByName("Drug"));
+            order.setConcept(drugConcept);
+            
+            Drug drug = new Drug();
+            drug.setName(drugNameConfirmed);
+            drug.setConcept(drugConcept);
+            Context.getConceptService().saveDrug(drug);
+            order.setDrug(drug);
+            
+        } else {
+            order.setConcept(Context.getConceptService().getConceptByName(drugNameConfirmed));
+            
+            order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameConfirmed));
+        }
+                    
         CareSetting careSetting = Context.getOrderService().getCareSettingByName("Outpatient");
         order.setCareSetting(careSetting);
 
@@ -377,8 +397,16 @@ public class DrugordersPageController {
         drugorder.setPriority(Context.getConceptService().getConceptByName(orderPriority));
         drugorder.setUuid(UUID.randomUUID().toString());
         
-        if(!(diagnosis).equals(""))
+        if(Context.getConceptService().getConceptByName(diagnosis) == null){
+            
+            drugordersActivator activator = new drugordersActivator();
+            Concept diagnosisConcept =  activator.saveConcept(diagnosis, Context.getConceptService().getConceptClassByName("Diagnosis"));
+            drugorder.setAssociateddiagnosis(diagnosisConcept);
+            
+        } else {
             drugorder.setAssociateddiagnosis(Context.getConceptService().getConceptByName(diagnosis));
+        }
+            
         if(!(allergicOrderReason).equals(""))
             drugorder.setIsallergicorderreasons(allergicOrderReason);
         if(!(patientInstructions).equals(""))
