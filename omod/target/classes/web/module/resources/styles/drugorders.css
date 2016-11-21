@@ -230,3 +230,44 @@ and open the template in the editor.
 #singleOrderView div:first-child{
     overflow: hidden;
 }
+
+th{
+    text-align: center;
+}
+
+.groupSingles{
+    width: 100%;
+    overflow: hidden;
+}
+
+.groupSingles .groupDrugDetails{
+    width: 78%;
+    float: left;
+    overflow: auto;
+}
+
+.groupSingles .groupDrugDetails #groupDrugName{
+    width: 66%;
+    float: left;
+}
+
+.groupSingles .groupDrugDetails #groupDrugDate{
+    width: 34%;
+    margin-left: 66%;
+    vertical-align: top;
+}
+
+.groupSingles .groupDrugButton{
+    width: 22%;
+    float: right;
+}
+
+.groupDrugButton #button{
+    vertical-align: top;
+}
+
+.groupSingles:hover .groupDrugDetails{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
