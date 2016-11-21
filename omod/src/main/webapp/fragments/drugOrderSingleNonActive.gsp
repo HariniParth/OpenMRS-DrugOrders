@@ -52,28 +52,27 @@
     
             <% oldDrugOrderGroups.each { oldDrugOrder -> %>
                 <% def orderList = "" %>
-                <% oldDrugOrder.value.each { oldOrder -> %>
-                    <% if(!((oldOrder.orderstatus).equals("Active-Group"))) { %>
-
-                        <tr class="oldOrderRow">
-                            <td class="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldOrder.startdate.format('yyyy-MM-dd') }','${ oldOrder.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).dose }','${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).duration }','${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantity }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).frequency }','${ oldOrder.refill }','${ oldOrder.isallergicorderreasons }','${ oldOrder.priority.getDisplayString() }','${ oldOrder.patientinstructions }','${ oldOrder.pharmacistinstructions }','${ oldOrder.comments }')">
-                                <div>${ oldOrder.drugname.getDisplayString().toUpperCase() }</div>
-                                <div><span class="itemSummary">${ oldDrugOrdersMain.get(oldOrder.orderId).dose } ${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }, ${ oldDrugOrdersMain.get(oldOrder.orderId).duration } ${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }</span></div>
-                            </td>
-                            <% orderList = orderList + oldOrder.drugname.getDisplayString() + "," %>
-                            
-                            <td></td>
-                        </tr>
-                    <% } %>
-                <% } %>
-                <tr>
-                    <td></td>
+                
+                <tr class="oldGroupRow">
                     <td>
+                        <% oldDrugOrder.value.each { oldOrder -> %>
+                            <% if(!((oldOrder.orderstatus).equals("Active-Group"))) { %>
+
+                                <div class="oldDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ oldOrder.startdate.format('yyyy-MM-dd') }','${ oldOrder.drugname.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).dose }','${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).route.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).duration }','${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantity }','${ oldDrugOrdersMain.get(oldOrder.orderId).quantityUnits.getDisplayString() }','${ oldDrugOrdersMain.get(oldOrder.orderId).frequency }','${ oldOrder.refill }','${ oldOrder.isallergicorderreasons }','${ oldOrder.priority.getDisplayString() }','${ oldOrder.patientinstructions }','${ oldOrder.pharmacistinstructions }','${ oldOrder.comments }')">
+                                    <div>${ oldOrder.drugname.getDisplayString().toUpperCase() }</div>
+                                    <div><span class="itemSummary">${ oldDrugOrdersMain.get(oldOrder.orderId).dose } ${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }, ${ oldDrugOrdersMain.get(oldOrder.orderId).duration } ${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }</span></div>
+                                </div>
+                                <% orderList = orderList + oldOrder.drugname.getDisplayString() + "," %>
+                            <% } %>
+                        <% } %>
+                    </td>
+                    <td class="renewGroupButton">
                         <span id="button">
                             <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="showRenewGroupOrderWindow('RENEW ORDER GROUP','${oldDrugOrder.key}','${orderList}')"></i>
                         </span>
                     </td>
                 </tr>
+                
             <% } %>
         </tbody>
     </table>
@@ -110,5 +109,17 @@
 <script type="text/javascript">    
     jq(".oldOrderRow").click(function(){
         jq(this).children('td').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".renewGroupButton").click(function(){
+        jq(this).parent().children('td').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".oldDrugOrdersID").click(function(){
+        jq(this).css({"background": "#75b2f0","color": "white"});
     });
 </script>

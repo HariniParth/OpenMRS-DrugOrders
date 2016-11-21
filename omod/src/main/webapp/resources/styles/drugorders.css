@@ -271,3 +271,9 @@ th{
     color: white;
     cursor: pointer;
 }
+
+.oldDrugOrdersID:hover{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}

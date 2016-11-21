@@ -167,6 +167,9 @@ function hideDrugOrderViewWindow(){
     jq(".oldOrderRow").each(function(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
     });
+    jq(".oldDrugOrdersID").each(function(){
+        jq(this).css({'background-color':'','color':''});
+    });
     jq(".detailsLink").each(function(){
         jq(this).children('div > *').slice(0, 1).css({'background-color':'','color':''});
     });
@@ -531,6 +534,9 @@ function showDiscardGroupOrderWindow(groupAction,orderID,orderList){
 
 function hideGroupOrderWindow(){
     jq("#showGroupOrderWindow").hide();
+    jq(".oldGroupRow").each(function(){
+        jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
+    });
 }
 
 function showAddOrderToGroupWindow(orderType,groupID){
