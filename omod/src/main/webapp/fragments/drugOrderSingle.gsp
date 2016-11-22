@@ -53,7 +53,6 @@
                             <% existingDrugOrder.value.each { existingOrder -> %>
                                 <% if(existingOrder.orderstatus == "Active-Group") { %>
 
-
                                         <div class="groupSingles">
                                             <div class="groupDrugDetails" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingOrder.startdate.format('yyyy-MM-dd') }','${ existingOrder.drugname.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.isallergicorderreasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientinstructions }','${ existingOrder.pharmacistinstructions }','${ existingOrder.comments }')">
                                                 <div class="existingDrugOrdersID" id="groupDrugName">
@@ -76,7 +75,7 @@
                                 <% } %>
                             <% } %>
                         </td>
-                        <td>
+                        <td class="groupButton">
                             <span id="button">
                                 <i class="icon-plus edit-action" title="${ ui.message("ADD DRUG ORDER") }" onclick="showAddOrderToGroupWindow('CREATE DRUG ORDER','${existingDrugOrder.key}')"></i>
                                 <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('DISCARD ORDER GROUP','${existingDrugOrder.key}','${orderList}')"></i>
@@ -118,4 +117,15 @@
     jq(".groupSingles").click(function(){
         jq(this).children('.groupDrugDetails').css({"background": "#75b2f0","color": "white"});
     });
+</script>
+    
+<script type="text/javascript">    
+    jq(".groupButton").hover(function(event){
+        if(event.type == 'mouseenter'){
+            jq(this).parent().children('td').slice(0, 1).children().children('.groupDrugDetails').css({"background": "#75b2f0","color": "white"});
+        } else {
+            jq(this).parent().children('td').slice(0, 1).children().children('.groupDrugDetails').css({"background": "","color": ""});
+        }
+    });
+    
 </script>

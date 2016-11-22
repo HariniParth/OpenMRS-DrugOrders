@@ -123,3 +123,14 @@
         jq(this).css({"background": "#75b2f0","color": "white"});
     });
 </script>
+
+<script type="text/javascript">    
+    jq(".renewGroupButton").hover(function(event){
+        if(event.type == 'mouseenter'){
+            jq(this).parent().children('td').slice(0, 1).children('.oldDrugOrdersID').css({"background": "#75b2f0","color": "white"});
+        } else {
+            jq(this).parent().children('td').slice(0, 1).children('.oldDrugOrdersID').css({"background": "","color": ""});
+        }
+    });
+    
+</script>
