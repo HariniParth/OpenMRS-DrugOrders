@@ -54,7 +54,7 @@
                             <% } %>
                         </div>
                     </td>
-                    <td>
+                    <td class="planDiscardButton">
                         <span id="button">
                             <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="discardMedPlanOrder('DISCONTINUE PLAN','${drugOrderMain.key.getDisplayString()}')"></i>
                         </span>
@@ -99,5 +99,15 @@
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
         jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".planDiscardButton").click(function(){
+    
+        jq(this).parent().children('td').slice(0, 1).children('.orderDetails').show();
+        jq(this).parent().children('td').slice(0, 1).children().children().children('.icon-minus-sign').show();
+        jq(this).parent().children('td').slice(0, 1).children().children().children('.icon-plus-sign').hide();
+    
     });
 </script>

@@ -45,7 +45,7 @@
                                 <% } %>
                             </div>
                         </td>
-                        <td>
+                        <td class="planRenewButton">
                             <span id="button" class="pull-right">
                                 <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${ planOrderMain.key }','${ planMain.key.getDisplayString().toUpperCase() }','${ planDrugs.get(planOrderMain.key) }')"></i>
                             </span>
@@ -89,5 +89,15 @@
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
         jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".planRenewButton").click(function(){
+    
+        jq(this).parent().children('td').slice(0, 1).children('.orderDetails').show();
+        jq(this).parent().children('td').slice(0, 1).children().children().children('.icon-minus-sign').show();
+        jq(this).parent().children('td').slice(0, 1).children().children().children('.icon-plus-sign').hide();
+    
     });
 </script>
