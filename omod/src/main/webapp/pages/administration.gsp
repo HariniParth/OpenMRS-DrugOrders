@@ -44,8 +44,8 @@
                     <% allMedicationPlans.each { medPlan -> %>
                         <% if(medPlan.value.size() > 0) { %>
                             <tr>
-                                <td class="fields">
-                                    <div>
+                                <td class="planDetails">
+                                    <div class="fields">
                                         <span class="viewDetails">
                                             <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                                             <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
@@ -73,7 +73,7 @@
                                         <% } %> 
                                     </div>
                                 </td>
-                                <td>
+                                <td class="planButtons">
                                     <span id="button">
                                         <i class="icon-trash delete-action pull-right" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${medPlan.key.getDisplayString()}')"></i>
                                         <i class="icon-edit edit-action pull-right" title="${ ui.message("Change Plan Name") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
@@ -132,5 +132,15 @@
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
         jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".planButtons").click(function(){
+    
+        jq(this).parent().children().slice(0, 1).children(".existingMedPlansDetailsWindow").show();
+        jq(this).parent().children().children().children().children(".icon-plus-sign").hide();
+        jq(this).parent().children().children().children().children(".icon-minus-sign").show();
+        
     });
 </script>
