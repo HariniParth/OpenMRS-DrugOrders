@@ -7,6 +7,16 @@
 /* global diagnosis, jq */
 
 $(document).ready( function() {
+    
+    $(document).mouseup(function (e){
+        var objects = $('.dialog');
+        $(objects).each(function(){
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0){
+                $(this).hide();
+            }
+        });        
+    });
+
     jq(".planItemDetails").hide();
     jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
