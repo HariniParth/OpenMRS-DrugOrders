@@ -120,7 +120,7 @@
 
 <script type="text/javascript">    
     jq(".oldDrugOrdersID").click(function(){
-        jq(this).css({"background": "#75b2f0","color": "white"});
+        jq(this).children('*').css({"background": "#75b2f0","color": "white"});
     });
 </script>
 
