@@ -23,6 +23,6 @@ public interface drugordersdiseasesDAO {
     public List<drugordersdiseases> getDrugOrdersByPlan(Integer plan);
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept);
     public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient);
-    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID);
+    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient);
     
 }

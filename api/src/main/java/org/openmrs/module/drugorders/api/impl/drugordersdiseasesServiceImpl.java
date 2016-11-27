@@ -80,8 +80,8 @@ public class drugordersdiseasesServiceImpl extends BaseOpenmrsService implements
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID){
-        return dao.getDrugOrdersByDiseaseAndPatient(concept, patientID);
+    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient){
+        return dao.getDrugOrdersByDiseaseAndPatient(concept, patient);
     }
     
 }

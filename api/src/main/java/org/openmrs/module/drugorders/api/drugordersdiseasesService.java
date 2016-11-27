@@ -31,6 +31,6 @@ public interface drugordersdiseasesService extends OpenmrsService{
     
     public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient);
     
-    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID);
+    public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient);
         
 }
