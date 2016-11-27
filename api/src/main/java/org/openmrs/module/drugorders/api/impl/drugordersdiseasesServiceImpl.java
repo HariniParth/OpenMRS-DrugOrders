@@ -9,6 +9,7 @@ import java.util.List;
 import org.openmrs.Concept;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Patient;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,8 +74,8 @@ public class drugordersdiseasesServiceImpl extends BaseOpenmrsService implements
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByPatient(String patientID){
-        return dao.getDrugOrdersByPatient(patientID);
+    public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient){
+        return dao.getDrugOrdersByPatient(patient);
     }
     
     @Transactional(readOnly = true)

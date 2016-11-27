@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.hibernate.criterion.Restrictions;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.criterion.Projections;
+import org.openmrs.Patient;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.springframework.transaction.annotation.Transactional;
 import org.openmrs.module.drugorders.api.db.drugordersdiseasesDAO;
@@ -76,10 +77,10 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByPatient(String patientID){
+    public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
-        crit.add(Restrictions.eq("patientid", patientID));
+        crit.add(Restrictions.eq("patientid", Integer.toString(patient.getPatientId())));
         return crit.list();
     };
     

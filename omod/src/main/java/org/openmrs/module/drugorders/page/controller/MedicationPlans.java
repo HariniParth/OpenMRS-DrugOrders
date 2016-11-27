@@ -25,7 +25,7 @@ public class MedicationPlans {
     
     public static List<drugordersdiseases> getDrugOrdersByPlanByPatient(Patient p){
         
-        return Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(p.getPatientId().toString());  
+        return Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(p);  
     }
     
     public static List<Concept> getPlansOrderedForPatient(Patient p){

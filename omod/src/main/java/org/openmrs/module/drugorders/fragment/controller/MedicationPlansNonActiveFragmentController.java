@@ -36,7 +36,7 @@ public class MedicationPlansNonActiveFragmentController {
         
         HashMap<Integer, ArrayList<String>> planDrugs = new HashMap<Integer, ArrayList<String>>();
         
-        List<drugordersdiseases> planByPatient = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(patient.getPatientId().toString());
+        List<drugordersdiseases> planByPatient = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(patient);
                 
         for(drugordersdiseases patientPlan : planByPatient){
             

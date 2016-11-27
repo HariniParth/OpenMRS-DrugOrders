@@ -7,6 +7,7 @@ package org.openmrs.module.drugorders.api.db;
 
 import java.util.List;
 import org.openmrs.Concept;
+import org.openmrs.Patient;
 import org.openmrs.module.drugorders.drugordersdiseases;
 
 /**
@@ -21,7 +22,7 @@ public interface drugordersdiseasesDAO {
     public drugordersdiseases saveDrugOrder(drugordersdiseases order);
     public List<drugordersdiseases> getDrugOrdersByPlan(Integer plan);
     public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept);
-    public List<drugordersdiseases> getDrugOrdersByPatient(String patientID);
+    public List<drugordersdiseases> getDrugOrdersByPatient(Patient patient);
     public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,String patientID);
     
 }
