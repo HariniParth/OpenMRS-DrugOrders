@@ -33,9 +33,9 @@ public class DrugOrderSingleNonActiveFragmentController {
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
-            if(dorder.getOrderstatus().equals("Discontinued"))
+            if(dorder.getOrderstatus().equals("Non-Active"))
                 dorders.add(dorder);
-            else if(dorder.getOrderstatus().equals("Discontinued-Group")){
+            else if(dorder.getOrderstatus().equals("Non-Active-Group")){
                 if(groupDorders.get(dorder.getOrderId()) == null){
                     groupDorders.put(dorder.getGroupid(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupid()));
                 }

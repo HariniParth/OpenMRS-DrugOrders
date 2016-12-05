@@ -125,7 +125,7 @@ public class DrugordersPageController {
                         
                         for(drugorders dorder : dorders){
                             
-                            dorder.setOrderstatus("Discontinued-Plan");
+                            dorder.setOrderstatus("Non-Active-Plan");
                             if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
                                 String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
                                 dorder.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
@@ -140,7 +140,7 @@ public class DrugordersPageController {
                         
                     } else {
                         drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
-                        drugorderToDiscontinue.setOrderstatus("Discontinued");
+                        drugorderToDiscontinue.setOrderstatus("Non-Active");
 
                         if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
                             String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
@@ -248,7 +248,7 @@ public class DrugordersPageController {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
                     
                     for(drugorders order : orders){
-                        order.setOrderstatus("Discontinued-Group");
+                        order.setOrderstatus("Non-Active-Group");
                         Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
                     }
                     
@@ -285,16 +285,16 @@ public class DrugordersPageController {
                     createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                     
                     if(orderClass.equals("PLAN")){
-                        originalOrderExtension.setOrderstatus("Discontinued-Plan");
+                        originalOrderExtension.setOrderstatus("Non-Active-Plan");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
                         Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderid(order);
                     } 
                     else if(orderClass.equals("SINGLE")){
-                        originalOrderExtension.setOrderstatus("Discontinued");
+                        originalOrderExtension.setOrderstatus("Non-Active");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active");
                     }
                     else if(orderClass.equals("GROUP")){
-                        originalOrderExtension.setOrderstatus("Discontinued-Group");
+                        originalOrderExtension.setOrderstatus("Non-Active-Group");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Group");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(originalOrderExtension.getGroupid());
                         originalOrderExtension.setGroupid(null);

@@ -53,21 +53,25 @@ public class MedicationPlansNonActiveFragmentController {
                 
                 for(drugordersdiseases plan : plans){
                     
-                    DrugOrder Drugorder = (DrugOrder) Context.getOrderService().getOrder(plan.getOrderid());
-                    orderMain.put(plan.getOrderid(), Drugorder);
-                    
                     drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid());
-                    orderExtn.put(plan.getOrderid(), drugorder);
-                    
-                    drugNames.add(drugorder.getDrugname().getDisplayString().toUpperCase()+" - Dose: "+Drugorder.getDose()+" "+Drugorder.getDoseUnits().getDisplayString()+"; Quantity: "+Drugorder.getQuantity()+" "+Drugorder.getQuantityUnits().getDisplayString());
+                    if(drugorder.getOrderstatus().equals("Non-Active-Plan")){
+                        orderExtn.put(plan.getOrderid(), drugorder);
+                        
+                        DrugOrder Drugorder = (DrugOrder) Context.getOrderService().getOrder(plan.getOrderid());
+                        orderMain.put(plan.getOrderid(), Drugorder);
+                        
+                        drugNames.add(drugorder.getDrugname().getDisplayString().toUpperCase()+" - Dose: "+Drugorder.getDose()+" "+Drugorder.getDoseUnits().getDisplayString()+"; Quantity: "+Drugorder.getQuantity()+" "+Drugorder.getQuantityUnits().getDisplayString());
+                    } 
                 }
                 
-                planMain.put(patientPlan.getDiseaseid(), orderMain);
-                planExtn.put(patientPlan.getDiseaseid(), orderExtn);
-                
-                NonActivePlanMain.put(patientPlan.getPlanid(), planMain);
-                NonActivePlanExtension.put(patientPlan.getPlanid(), planExtn);
-                planDrugs.put(patientPlan.getPlanid(), drugNames);
+                if(orderExtn.size() > 0){
+                    planMain.put(patientPlan.getDiseaseid(), orderMain);
+                    planExtn.put(patientPlan.getDiseaseid(), orderExtn);
+
+                    NonActivePlanMain.put(patientPlan.getPlanid(), planMain);
+                    NonActivePlanExtension.put(patientPlan.getPlanid(), planExtn);
+                    planDrugs.put(patientPlan.getPlanid(), drugNames);
+                }
             }
         }
         
