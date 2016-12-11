@@ -17,11 +17,7 @@
             <div>
                 <% existingMedplans.each { existingMedplan -> %>
                     <div id="itemSpace" class="fields">
-
-                        <span class="viewDetails">
-                            <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                            <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                        </span>
+                        
                         <strong>${existingMedplan.drugid.getDisplayString()}</strong>
 
                         <span id="button">
@@ -60,19 +56,3 @@
     </div>
     
 </div>
-
-<script type="text/javascript">
-    jq(".icon-plus-sign").click(function(){
-        jq(this).parent().nextAll(".planItemDetails").first().show();
-        jq(this).hide();
-        jq(this).nextAll(".icon-minus-sign").show();
-    });
-</script>
-
-<script type="text/javascript">
-    jq(".icon-minus-sign").click(function(){
-        jq(this).parent().nextAll(".planItemDetails").first().hide();
-        jq(this).hide();
-        jq(this).prevAll(".icon-plus-sign").show();
-    });
-</script>

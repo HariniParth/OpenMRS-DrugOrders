@@ -18,7 +18,6 @@ $(document).ready( function() {
         });        
     });
 
-    jq(".planItemDetails").hide();
     jq("#existingPlansLinkHide").hide();
     jq("#showDiscontinueOrderView").hide();
     $("#adminSavePlan").prop("disabled", true);
