@@ -38,6 +38,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private Integer refill;
         private Integer refillinterval;
         private String orderstatus;
+        private Integer onHold;
         private Integer discontinued;
         private Concept discontinuereason;
         private String discontinuationreasons;
@@ -186,6 +187,14 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.orderstatus = orderstatus;
 	}
            
+        public Integer getOnHold() {
+            return onHold;
+        }
+
+        public void setOnHold(Integer onHold) {
+            this.onHold = onHold;
+        }
+        
         public Integer getDiscontinued() {
 		return discontinued;
 	}

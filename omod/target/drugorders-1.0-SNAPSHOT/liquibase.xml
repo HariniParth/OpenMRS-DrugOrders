@@ -42,6 +42,7 @@
             <column name="refill" type="int"></column>
             <column name="refillinterval" type="int"></column>
             <column name="orderstatus" type="varchar(50)"></column>
+            <column name="onHold" type="int"></column>
             <column name="discontinued" type="tinyint(1)"></column>
             <column name="discontinuereason" type="int"></column>
             <column name="discontinuationreasons" type="varchar(255)"></column>
