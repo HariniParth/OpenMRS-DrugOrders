@@ -20,13 +20,7 @@
                 <% planOrderMain.value.each { planMain -> %>
                     <tr>
                         <td class="fields">
-                            <div>
-                                <span class="viewDetails">
-                                    <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
-                                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                                </span>
-                                ${ planMain.key.getDisplayString().toUpperCase() }
-                            </div><br/>
+                            <div><strong>${ planMain.key.getDisplayString().toUpperCase() }</strong></div><br/>
                             
                             <div class="orderDetails">
                                 <% planMain.value.each { orderMain -> %>
@@ -45,6 +39,7 @@
                                 <% } %>
                             </div>
                         </td>
+                        
                         <td class="planRenewButton">
                             <span id="button" class="pull-right">
                                 <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${ planOrderMain.key }','${ planMain.key.getDisplayString().toUpperCase() }','${ planDrugs.get(planOrderMain.key) }')"></i>
@@ -70,34 +65,8 @@
     });
 </script>
 
-<script type="text/javascript">
-    jq(".icon-plus-sign").click(function(){
-        jq(this).parent().parent().nextAll(".orderDetails").first().show();
-        jq(this).hide();
-        jq(this).nextAll(".icon-minus-sign").show();
-    });
-</script>
-
-<script type="text/javascript">
-    jq(".icon-minus-sign").click(function(){
-        jq(this).parent().parent().nextAll(".orderDetails").first().hide();
-        jq(this).hide();
-        jq(this).prevAll(".icon-plus-sign").show();
-    });
-</script>
-
 <script type="text/javascript">    
     jq(".detailsLink").click(function(){
         jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
-    });
-</script>
-
-<script type="text/javascript">    
-    jq(".planRenewButton").click(function(){
-    
-        jq(this).parent().children('td').slice(0, 1).children('.orderDetails').show();
-        jq(this).parent().children('td').slice(0, 1).children().children().children('.icon-minus-sign').show();
-        jq(this).parent().children('td').slice(0, 1).children().children().children('.icon-plus-sign').hide();
-    
     });
 </script>
