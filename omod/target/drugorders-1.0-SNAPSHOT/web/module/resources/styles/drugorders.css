@@ -160,6 +160,26 @@ and open the template in the editor.
     font-size: 14px;
 }
 
+.holdComments{
+    font-size: 13px;
+    color: red;
+}
+
+.holdComments:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.activeNote{
+    font-size: 13px;
+    color: green;
+}
+
+.activeNote:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .detailsLink{
     width: 100%;
     border: 1px solid gainsboro;
