@@ -25,6 +25,8 @@ $(document).ready( function() {
                     hideMedPlanCreateWindow();
                 else if(ID === "singleOrderDetailsWindow")
                     hideIndividualOrderDetailsWindow();
+                else if(ID === "showGroupOrderWindow")
+                    hideGroupOrderWindow();
             }
         });        
     });
@@ -551,6 +553,7 @@ function hideGroupOrderWindow(){
     jq(".oldGroupRow").each(function(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
     });
+    $('#groupOrderBlock > p').html("");
 }
 
 function showAddOrderToGroupWindow(orderType,groupID){

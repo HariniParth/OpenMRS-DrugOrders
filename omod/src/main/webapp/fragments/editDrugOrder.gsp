@@ -180,8 +180,8 @@
         </div><br/>
                 
         <input type="hidden" id="groupAction" name="action" />
-        <input class="pull-right" type="submit" id="actionOrderGroup" value="Confirm" />
-        <input class="pull-left" type="submit" id="cancelGroupAction" value="Cancel" onclick="hideGroupOrderWindow()" />
+        <button class="confirm pull-right" type="submit" id="btn-place">Confirm</button>
+        <button class="cancel pull-left" type="button" id="btn-place" onclick="hideGroupOrderWindow()">Cancel</button>
                 
     </form>
 </div>

@@ -261,7 +261,7 @@ th{
 }
 
 .groupSingles .groupDrugDetails{
-    width: 78%;
+    width: 75%;
     float: left;
     overflow: auto;
 }
@@ -278,7 +278,7 @@ th{
 }
 
 .groupSingles .groupDrugButton{
-    width: 22%;
+    width: 25%;
     float: right;
 }
 
