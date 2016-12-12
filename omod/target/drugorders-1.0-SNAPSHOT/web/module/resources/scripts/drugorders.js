@@ -14,6 +14,17 @@ $(document).ready( function() {
             if (!$(this).is(e.target) && $(this).has(e.target).length === 0){
                 $(this).hide();
                 clearHighlights();
+                
+                var ID = $(this).attr("id");
+                
+                if(ID === "showDrugOrderView")
+                    hideDrugOrderViewWindow();
+                else if(ID === "editMedPlanWindow")
+                    hideMedPlanEditWindow();
+                else if(ID === "createNewPlanWindow")
+                    hideMedPlanCreateWindow();
+                else if(ID === "singleOrderDetailsWindow")
+                    hideIndividualOrderDetailsWindow();
             }
         });        
     });
