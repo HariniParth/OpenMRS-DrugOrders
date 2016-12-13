@@ -84,3 +84,13 @@
         jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
     });
 </script>
+
+<script type="text/javascript">    
+    jq(".planDiscardButton > span > i").hover(function(event){
+        if(event.type == 'mouseenter'){
+            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".detailsLink").css({"background": "#75b2f0","color": "white"});
+        } else {
+            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".detailsLink").css({"background": "","color": ""});
+        }
+    });
+</script>
