@@ -64,7 +64,7 @@
                                                 </div>
                                                 
                                                 <div id="button" class="pull-right">
-                                                    <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
+                                                    <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
                                                     <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
                                                 </div><br/>
                                                 
@@ -76,8 +76,8 @@
                                 <td class="planButtons">
                                     <span id="button">
                                         <i class="icon-trash delete-action pull-right" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${medPlan.key.getDisplayString()}')"></i>
-                                        <i class="icon-edit edit-action pull-right" title="${ ui.message("Change Plan Name") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
-                                        <i class="icon-plus edit-action pull-right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${medPlan.key.getDisplayString()}')"></i>
+                                        <i class="icon-edit edit-action pull-right" title="${ ui.message("Rename Plan Name") }" onclick="editPlanDetails('${medPlan.key.getDisplayString()}')"></i>
+                                        <i class="icon-plus edit-action pull-right" title="${ ui.message("Add Drug To Plan") }" onclick="addPlanItemWindow('${medPlan.key.getDisplayString()}')"></i>
                                     </span>
                                 </td>
                             </tr>
@@ -105,7 +105,7 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": false,
+        "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": false

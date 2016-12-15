@@ -4,7 +4,7 @@
 
 <div id="viewPlanWindow" class="dialog">
     <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("VIEW PLAN") }</h3>
+        <h3 id="dialog-heading">${ ui.message("PLAN DRUG") }</h3>
     </div><br/><br/>
     
     <div id="viewMedPlanWindow" class="fields">
@@ -218,7 +218,7 @@
 
 <div id="editMedPlanWindow" class="dialog">
     <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("CHANGE PLAN NAME") }</h3>
+        <h3 id="dialog-heading">${ ui.message("RENAME PLAN") }</h3>
     </div><br/>
     
     <div id="editMedicationPlanWindow">
@@ -261,7 +261,7 @@
 
 <div id="deleteMedPlanItemWindow" class="dialog">
     <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("DISCARD PLAN ITEM") }</h3>
+        <h3 id="dialog-heading">${ ui.message("DISCARD PLAN DRUG") }</h3>
     </div><br/>
     
     <div id="deleteMedicationPlanItemWindow">
