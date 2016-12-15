@@ -94,7 +94,7 @@ public class DrugordersPageController {
                     if (!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
                         
                         drugorders o = Context.getService(drugordersService.class).getDrugOrderByDrugAndPatient(Context.getConceptService().getConceptByName(drugNameEntered), patientID);
-                        if(o == null){
+                        if(o == null || !o.getOrderstatus().equals("Active")){
                             
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;
@@ -327,7 +327,6 @@ public class DrugordersPageController {
             String drugDose, String drugDoseUnits, String drugQuantity, String quantityUnits,
             String drugFrequency, Integer drugDuration, String durationUnits) {
 
-        int orderID = 0;
         order = new DrugOrder();
         
         if(Context.getConceptService().getConceptByName(drugNameConfirmed) == null){
@@ -381,7 +380,7 @@ public class DrugordersPageController {
         order.setFrequency(orderFrequency);
         order.setNumRefills(0);
         order = (DrugOrder) Context.getOrderService().saveOrder(order, null);
-        orderID = order.getOrderId();
+        int orderID = order.getOrderId();
         return orderID; 
     }
     
