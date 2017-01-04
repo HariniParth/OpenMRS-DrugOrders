@@ -261,7 +261,7 @@ th{
 }
 
 .groupSingles .groupDrugDetails{
-    width: 75%;
+    width: 70%;
     float: left;
     overflow: auto;
 }
@@ -278,7 +278,7 @@ th{
 }
 
 .groupSingles .groupDrugButton{
-    width: 25%;
+    width: 30%;
     float: right;
 }
 
@@ -296,4 +296,21 @@ th{
     background: #75b2f0;
     color: white;
     cursor: pointer;
+}
+
+.orderRow.discontinued > .existingDrugOrdersID, .groupSingles.discontinued > div:first-child > *{
+    text-decoration: line-through;
+}
+
+form select, .form select {
+    min-width: 10px !important;
+    min-height: 5px !important;
+    display: inline !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+}
+
+#currentDrugOrdersTableWrapper form label, #currentDrugOrdersTableWrapper .form label {
+    text-align: right !important;
+    margin-top: 0px !important;
 }

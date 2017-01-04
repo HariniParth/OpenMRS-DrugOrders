@@ -20,7 +20,7 @@
                 <% } %>
 
                 <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
-                    <tr class="orderRow">
+                    <tr class="orderRow <% if(existingDrugOrderExtension.discontinued == 1) { %> discontinued <% } %>">
 
                         <td>
                             <span>
@@ -40,6 +40,8 @@
 
                                 <% if(existingDrugOrderExtension.onHold == 1) { %>
                                     <span class="holdComments" title="${ ui.message(existingDrugOrderExtension.comments) }">Hold</span>
+                                <% } else if(existingDrugOrderExtension.discontinued == 1) { %>
+                                    <span class="holdComments" title="${ ui.message(existingDrugOrderExtension.comments) }">Discard</span>
                                 <% } else { %>
                                     <span class="activeNote">Active</span>
                                 <% } %>
@@ -61,7 +63,7 @@
                             <% existingDrugOrder.value.each { existingOrder -> %>
                                 <% if(existingOrder.orderstatus == "Active-Group") { %>
 
-                                    <div class="groupSingles">
+                                    <div class="groupSingles <% if(existingOrder.discontinued == 1) { %> discontinued <% } %>">
                                         
                                         <div class="groupDrugDetails" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingOrder.startdate.format('yyyy-MM-dd') }','${ existingOrder.drugname.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.isallergicorderreasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientinstructions }','${ existingOrder.pharmacistinstructions }','${ existingOrder.comments }')">
                                             
@@ -79,6 +81,8 @@
                                                 
                                                 <% if(existingOrder.onHold == 1) { %>
                                                     <span class="holdComments" title="${ ui.message(existingOrder.comments) }">Hold</span>
+                                                <% } else if(existingOrder.discontinued == 1) { %>
+                                                    <span class="holdComments" title="${ ui.message(existingOrder.comments) }">Discard</span>
                                                 <% } else { %>
                                                     <span class="activeNote">Active</span>
                                                 <% } %>
@@ -99,6 +103,8 @@
                                 </span>
                             </div>
                         </td>
+                        <td style="display: none;"></td>
+                        <td style="display: none;"></td>
                     </tr>
                 <% } %>
             </tbody>
@@ -117,10 +123,10 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": false,
+        "bLengthChange": true,
         "ordering": false,
         "bJQueryUI": true,
-        "bInfo": false,
+        "bInfo": true,
         "bFilter": false
 
     });
