@@ -30,5 +30,6 @@ public interface drugordersDAO {
     public List<drugorders> getDrugOrdersByStatus(String status);
     public List<drugorders> getDrugOrdersByPatient(Patient patient);
     public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID);
+    public List<drugorders> getDrugOrdersByPatientAndStatus(String patientID, String status);
     
 }

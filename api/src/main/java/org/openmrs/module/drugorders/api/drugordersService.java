@@ -49,4 +49,6 @@ public interface drugordersService extends OpenmrsService {
     
     public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID);
     
+    public List<drugorders> getDrugOrdersByPatientAndStatus(String patientID, String status);
+    
 }

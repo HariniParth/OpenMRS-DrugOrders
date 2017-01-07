@@ -104,4 +104,9 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
         return dao.getDrugOrderByDrugAndPatient(drugname, patientID);
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<drugorders> getDrugOrdersByPatientAndStatus(String patientID, String status){
+        return dao.getDrugOrdersByPatientAndStatus(patientID, status);
+    }
 }

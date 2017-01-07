@@ -32,7 +32,7 @@ public class MedicationPlansFragmentController {
         //Data structure to store the 'drugorders' object properties for all the active orders for the given disease
         HashMap <Concept,HashMap<Integer,drugorders>> ActivePlanExtension = new HashMap <Concept,HashMap<Integer,drugorders>>();
         
-        List<drugorders> activeMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
+        List<drugorders> activeMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient.getPatientId().toString(), "Active-Plan");
         
         for(drugorders activeMedOrder : activeMedOrders){
             drugordersdiseases activeMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(activeMedOrder.getOrderId());
@@ -45,12 +45,8 @@ public class MedicationPlansFragmentController {
                 
                 for(drugordersdiseases orderPlan : ordersForPlan){
                     int order = orderPlan.getOrderid();
-                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(order);
-                    
-                    if(drugorder.getOrderstatus().equals("Active-Plan")){
-                        drugOrderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
-                        drugOrderExtension.put(order,drugorder);
-                    }
+                    drugOrderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
+                    drugOrderExtension.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
                 }
                 
                 ActivePlanMain.put(activeMedPlan.getDiseaseid(), drugOrderMain);
