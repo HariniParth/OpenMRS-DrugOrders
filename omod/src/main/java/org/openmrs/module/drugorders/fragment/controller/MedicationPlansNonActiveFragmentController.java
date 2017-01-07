@@ -34,7 +34,7 @@ public class MedicationPlansNonActiveFragmentController {
         HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>> NonActivePlanExtension = new HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>>();
         HashMap<Integer, ArrayList<String>> planDrugs = new HashMap<Integer, ArrayList<String>>();
         
-        List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("Non-Active-Plan");
+        List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
         
         for(drugorders nonActiveMedOrder : nonActiveMedOrders){
             drugordersdiseases nonActiveMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(nonActiveMedOrder.getOrderId());
@@ -51,10 +51,13 @@ public class MedicationPlansNonActiveFragmentController {
                 
                 for(drugordersdiseases orderByPlan : ordersByPlan){
                     int order = orderByPlan.getOrderid();
-                    orderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
-                    orderExtn.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
+                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(order);
                     
-                    drugNames.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getDrugname().getDisplayString());
+                    if(drugorder.getOrderstatus().equals("Non-Active-Plan")){
+                        orderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
+                        orderExtn.put(order, drugorder);
+                        drugNames.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getDrugname().getDisplayString());
+                    }
                 }
                 
                 planMain.put(nonActiveMedPlan.getDiseaseid(), orderMain);
