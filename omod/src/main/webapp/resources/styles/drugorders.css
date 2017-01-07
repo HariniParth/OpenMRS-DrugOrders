@@ -160,26 +160,6 @@ and open the template in the editor.
     font-size: 14px;
 }
 
-.holdComments{
-    font-size: 13px;
-    color: red;
-}
-
-.holdComments:hover{
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.activeNote{
-    font-size: 13px;
-    color: green;
-}
-
-.activeNote:hover{
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .detailsLink{
     width: 100%;
     border: 1px solid gainsboro;
@@ -298,8 +278,12 @@ th{
     cursor: pointer;
 }
 
-.orderRow.discontinued > .existingDrugOrdersID, .groupSingles.discontinued > div:first-child > *{
+.orderRow.discontinued > .existingDrugOrdersID, .groupSingles.discontinued > div:first-child > *, .detailsLink.discontinued > div > div{
     text-decoration: line-through;
+}
+
+.orderRow.onhold > .existingDrugOrdersID, .groupSingles.onhold > div:first-child > *, .detailsLink.discontinued > div > div{
+    color: orangered;
 }
 
 form select, .form select {
