@@ -86,7 +86,7 @@ public class DrugordersPageController {
         String associatedDiagnosis = selectedDiagnosis.trim();
         
         Allergies allergies = patientService.getAllergies(patient);
-        model.addAttribute("allergies", patientService.getAllergies(patient));
+        model.addAttribute("allergies", allergies);
         
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -343,7 +343,6 @@ public class DrugordersPageController {
             
         } else {
             order.setConcept(Context.getConceptService().getConceptByName(drugNameConfirmed));
-            
             order.setDrug(Context.getConceptService().getDrugByNameOrId(drugNameConfirmed));
         }
                     
@@ -395,13 +394,13 @@ public class DrugordersPageController {
         drugorder.setOrderstatus("New");
         drugorder.setPriority(Context.getConceptService().getConceptByName(orderPriority));
         drugorder.setUuid(UUID.randomUUID().toString());
+        drugorder.setOnHold(0);
+        drugorder.setDiscontinued(0);
         
         if(Context.getConceptService().getConceptByName(diagnosis) == null){
-            
             drugordersActivator activator = new drugordersActivator();
             Concept diagnosisConcept =  activator.saveConcept(diagnosis, Context.getConceptService().getConceptClassByName("Diagnosis"));
             drugorder.setAssociateddiagnosis(diagnosisConcept);
-            
         } else {
             drugorder.setAssociateddiagnosis(Context.getConceptService().getConceptByName(diagnosis));
         }
