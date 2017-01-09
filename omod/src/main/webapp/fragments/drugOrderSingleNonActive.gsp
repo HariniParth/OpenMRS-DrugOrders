@@ -14,7 +14,10 @@
         </thead>
         <tbody>
             <% if(oldDrugOrdersExtension.size() == 0) { %>
-                <tr><td colspan="2" align="center">No Orders Found</td></tr>
+                <tr>
+                    <td colspan="2" align="center">No Orders Found</td>
+                    <td style="display: none;"></td>
+                </tr>
             <% } %>
 
             <% oldDrugOrdersExtension.each { oldDrugOrderExtension -> %>
@@ -32,8 +35,8 @@
                 </tr>
             <% } %>
         </tbody>
-    </table>
-    <br/><br/>
+    </table> <br/><br/>
+    
     
     <strong>Non-Active Group Orders</strong><br/><br/>
     <table id="oldGroupOrdersTable">
@@ -45,7 +48,10 @@
         </thead>
         <tbody>
             <% if(oldDrugOrderGroups.size() == 0) { %>
-                <tr><td colspan="2" align="center">No Orders Found</td></tr>
+                <tr>
+                    <td colspan="2" align="center">No Orders Found</td>
+                    <td style="display: none;"></td>
+                </tr>
             <% } %>
     
             <% oldDrugOrderGroups.each { oldDrugOrder -> %>
@@ -79,11 +85,11 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": false,
+        "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false,
-        "bFilter": false
+        "bInfo": true,
+        "bFilter": true
 
     });
 </script>
@@ -93,11 +99,11 @@
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,
-        "bLengthChange": false,
-        "ordering": false,
+        "bLengthChange": true,
+        "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false,
-        "bFilter": false
+        "bInfo": true,
+        "bFilter": true
 
     });
 </script>

@@ -13,7 +13,10 @@
         </thead>
         <tbody>
             <% if(NonActivePlanMain.size() == 0) { %>
-                <tr><td colspan="2" align="center">No Orders Found</td></tr>
+                <tr>
+                    <td colspan="2" align="center">No Orders Found</td>
+                    <td style="display: none;"></td>
+                </tr>
             <% } %>
     
             <% NonActivePlanMain.each { planOrderMain -> %>
@@ -60,7 +63,8 @@
         "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false
+        "bInfo": true,
+        "bFilter": true
 
     });
 </script>

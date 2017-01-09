@@ -16,7 +16,12 @@
             </thead>
             <tbody>
                 <% if(existingDrugOrdersExtension.size() == 0 && existingDrugOrderGroups.size() == 0) { %>
-                    <tr><td colspan="4" align="center">No Orders Found</td></tr>
+                    <tr>
+                        <td colspan="4" align="center">No Orders Found</td>
+                        <td style="display: none;"></td>
+                        <td style="display: none;"></td>
+                        <td style="display: none;"></td>
+                    </tr>
                 <% } %>
 
                 <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
@@ -102,10 +107,10 @@
         "bPaginate": true,
         "bAutoWidth": false,
         "bLengthChange": true,
-        "ordering": false,
+        "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": false
+        "bFilter": true
 
     });
 </script>

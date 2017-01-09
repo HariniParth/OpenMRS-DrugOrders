@@ -14,7 +14,10 @@
         </thead>
         <tbody>
             <% if(ActivePlanMain.size() == 0) { %>
-                <tr><td colspan="3" align="center">No Orders Found</td></tr>
+                <tr>
+                    <td colspan="2" align="center">No Orders Found</td>
+                    <td style="display: none;"></td>
+                </tr>
             <% } %>
 
             <% ActivePlanMain.each { drugOrderMain -> %>
@@ -66,8 +69,8 @@
         "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false,
-        "bFilter": false
+        "bInfo": true,
+        "bFilter": true
 
     });
 </script>

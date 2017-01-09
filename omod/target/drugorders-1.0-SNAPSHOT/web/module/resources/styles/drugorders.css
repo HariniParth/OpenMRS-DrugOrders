@@ -294,7 +294,12 @@ form select, .form select {
     padding: 0px !important;
 }
 
-#currentDrugOrdersTableWrapper form label, #currentDrugOrdersTableWrapper .form label {
+.dataTables_filter label:first-child{
+    text-align: left !important;
+    margin-top: 0px !important;
+}
+
+.dataTables_length label{
     text-align: right !important;
     margin-top: 0px !important;
 }
