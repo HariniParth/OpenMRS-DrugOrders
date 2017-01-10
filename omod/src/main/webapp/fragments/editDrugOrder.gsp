@@ -167,6 +167,7 @@
     </form>
 </div>
     
+
 <% if(groupMain.size() > 0) { %>
 
     <div id="showGroupOrderWindow" class="dialog">
@@ -228,13 +229,7 @@
                         <div id="view_order_detail">
                             <div id="order_label">Diagnosis</div>
                             <div id="order_value">${ groupExtn.get(order.key).associateddiagnosis.getDisplayString() }</div>
-                        </div>
-                        
-                        <div id="view_order_detail">
-                            <div id="order_label">Start Date</div>
-                            <div id="order_value">${ groupExtn.get(order.key).startdate.format('yyyy-MM-dd') }</div>
-                        </div>
-                        
+                        </div>                        
                     </div>
                 <% } %>
                 

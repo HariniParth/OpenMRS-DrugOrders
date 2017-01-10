@@ -29,6 +29,7 @@ public class EditDrugOrderFragmentController {
         
     public void controller(PageModel model,@RequestParam("patientId") Patient patient,
                             @RequestParam(value = "selectedActiveGroup", required = false) String selectedActiveGroup,
+                            @RequestParam(value = "selectedNonActiveGroup", required = false) String selectedNonActiveGroup,
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
 
@@ -69,6 +70,25 @@ public class EditDrugOrderFragmentController {
                 }
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCARD ORDER GROUP");
+                
+            } catch(NumberFormatException e){
+                System.out.println(e.toString());
+            } catch (APIException e) {
+                System.out.println(e.toString());
+            }
+        }
+        
+        
+        if(StringUtils.isNotBlank(selectedNonActiveGroup)){
+            try {
+                int group = Integer.parseInt(selectedNonActiveGroup);
+                List<drugorders> groupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(group);
+                for(drugorders groupOrder: groupOrders){
+                    groupMain.put(groupOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(groupOrder.getOrderId()));
+                    groupExtn.put(groupOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrder.getOrderId()));
+                }
+                model.addAttribute("group", group);
+                model.addAttribute("groupOrderAction", "RENEW ORDER GROUP");
                 
             } catch(NumberFormatException e){
                 System.out.println(e.toString());

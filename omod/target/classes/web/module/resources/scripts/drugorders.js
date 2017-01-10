@@ -514,21 +514,9 @@ function hideMedPlanWindow(){
     });
 }
 
-function showRenewGroupOrderWindow(groupAction,orderID,orderList){
-    $("#groupOrderAction").text(groupAction);
-    $("#groupAction").val(groupAction);
-    $("#groupOrderID").val(orderID);
-    jq("#showGroupOrderWindow").show();
-    document.getElementById("showGroupOrderWindow").style.display = 'block';
-    var list = orderList.split(',');
-    var element = document.getElementById("groupOrderBlock");
-    
-    list.forEach(function(entry){
-        var item = document.createElement("p");
-        var itemText = document.createTextNode(entry);
-        item.appendChild(itemText);
-        element.appendChild(item);
-    });
+function showRenewGroupOrderWindow(orderID){
+    $("#selectedNonActiveGroup").val(orderID);
+    $("#nonActiveGroupForm").submit();
 }
 
 function showDiscardGroupOrderWindow(orderID){
