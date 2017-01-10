@@ -4,7 +4,6 @@
 %>
 
 <div id="nonActiveOrdersWindow">
-    <strong>Non-Active Single Orders</strong><br/><br/>
     <table id="oldDrugOrdersTable">
         <thead>
             <tr>

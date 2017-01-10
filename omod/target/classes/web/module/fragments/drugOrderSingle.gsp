@@ -4,7 +4,9 @@
 %>
 
 <div id="currentDrugOrdersTableWrapper">
-    <form method="post" name="groupForm">
+    <form method="post" name="activeGroupForm" id="activeGroupForm">
+        <input type="hidden" id="selectedActiveGroup" name="selectedActiveGroup" />
+        
         <table id="currentDrugOrdersTable">
             <thead>
                 <tr>
@@ -82,7 +84,7 @@
                             <div class="groupButton">
                                 <span id="button">
                                     <i class="icon-plus edit-action" title="${ ui.message("ADD DRUG ORDER") }" onclick="showAddOrderToGroupWindow('CREATE DRUG ORDER','${existingDrugOrder.key}')"></i>
-                                    <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('DISCARD ORDER GROUP','${existingDrugOrder.key}','${orderList}')"></i>
+                                    <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}')"></i>
                                 </span>
                             </div>
                         </td>

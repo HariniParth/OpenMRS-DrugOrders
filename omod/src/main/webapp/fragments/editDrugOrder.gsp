@@ -167,24 +167,88 @@
     </form>
 </div>
     
+<% if(groupMain.size() > 0) { %>
 
-<div id="showGroupOrderWindow" class="dialog">
-    <form method="post">
-        <div class="dialog-header">
-            <span id="dialog-heading"><h3 id="groupOrderAction"></h3></span>
-        </div><br/>
-        
-        <div class="fields" id="groupOrderBlock">
-            <label><strong>Drugs Ordered In This Group</strong></label><br/><br/>
-            <input type="hidden" id="groupOrderID" name="groupOrderID" />
-        </div><br/>
+    <div id="showGroupOrderWindow" class="dialog">
+        <form method="post">
+            
+            <div class="dialog-header">
+                <span id="dialog-heading"><h3 id="groupOrderAction">${ groupOrderAction }</h3></span>
+            </div><br/>
+
+            <div class="fields" id="groupOrderBlock">
+                <label><strong>Drugs Ordered In This Group</strong></label><br/>
                 
-        <input type="hidden" id="groupAction" name="action" />
-        <button class="confirm pull-right" type="submit" id="btn-place">Confirm</button>
-        <button class="cancel pull-left" type="button" id="btn-place" onclick="hideGroupOrderWindow()">Cancel</button>
+                <% groupMain.each { order -> %>
+                    <div class="groupBlock">
+                        <div class="groupDrugName" id="view_order_detail">
+                            <strong>${ groupExtn.get(order.key).drugname.getDisplayString() }</strong>
+                        </div> <br/>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Dose</div>
+                            <div id="order_value">${ order.value.dose }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Dose units</div>
+                            <div id="order_value">${ order.value.doseUnits.getDisplayString() }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Route</div>
+                            <div id="order_value">${ order.value.route.getDisplayString() }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Quantity</div>
+                            <div id="order_value">${ order.value.quantity }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Qnty units</div>
+                            <div id="order_value">${ order.value.quantityUnits.getDisplayString() }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Duration</div>
+                            <div id="order_value">${ order.value.duration }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Durn units</div>
+                            <div id="order_value">${ order.value.durationUnits.getDisplayString() }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Frequency</div>
+                            <div id="order_value">${ order.value.frequency }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Diagnosis</div>
+                            <div id="order_value">${ groupExtn.get(order.key).associateddiagnosis.getDisplayString() }</div>
+                        </div>
+                        
+                        <div id="view_order_detail">
+                            <div id="order_label">Start Date</div>
+                            <div id="order_value">${ groupExtn.get(order.key).startdate.format('yyyy-MM-dd') }</div>
+                        </div>
+                        
+                    </div>
+                <% } %>
                 
-    </form>
-</div>
+                <input type="hidden" id="groupOrderID" name="groupOrderID" value="${ group }" />
+                <input type="hidden" id="groupAction" name="action" value="${ groupOrderAction }" />
+            </div><br/>
+            
+            <button class="confirm pull-right" type="submit" id="btn-place">Confirm</button>
+            <button class="cancel pull-left" type="button" id="btn-place" onclick="hideGroupOrderWindow()">Cancel</button>
+
+        </form>
+    </div>
+    
+<% } %>
 
 
 <% if(newDrugOrders.size() > 0) { %>

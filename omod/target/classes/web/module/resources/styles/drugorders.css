@@ -125,7 +125,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #showGroupOrderWindow, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonTextView{
+#medicationPlanWindow, #singleOrderDetailsWindow, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonTextView{
     display: none;
 }
 
@@ -235,6 +235,15 @@ th{
     text-align: center;
 }
 
+.groupDrugName{
+    overflow: hidden;
+}
+
+.groupBlock{
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
 .groupSingles{
     width: 100%;
     overflow: hidden;
@@ -286,7 +295,7 @@ th{
     color: orangered;
 }
 
-form select, .form select {
+.dataTables_length select {
     min-width: 10px !important;
     min-height: 5px !important;
     display: inline !important;

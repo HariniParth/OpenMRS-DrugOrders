@@ -17,6 +17,8 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
+import org.apache.commons.lang.StringUtils;
+import org.openmrs.api.APIException;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -26,9 +28,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EditDrugOrderFragmentController {
         
     public void controller(PageModel model,@RequestParam("patientId") Patient patient,
+                            @RequestParam(value = "selectedActiveGroup", required = false) String selectedActiveGroup,
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
 
+        HashMap<Integer,DrugOrder> groupMain = new HashMap<Integer,DrugOrder>();
+        HashMap<Integer,drugorders> groupExtn = new HashMap<Integer,drugorders>();
+        
         model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         
@@ -52,6 +58,27 @@ public class EditDrugOrderFragmentController {
         }
         model.addAttribute("newOrderMainData", newOrderMainData);
         
+        
+        if(StringUtils.isNotBlank(selectedActiveGroup)){
+            try {
+                int group = Integer.parseInt(selectedActiveGroup);
+                List<drugorders> groupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(group);
+                for(drugorders groupOrder: groupOrders){
+                    groupMain.put(groupOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(groupOrder.getOrderId()));
+                    groupExtn.put(groupOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrder.getOrderId()));
+                }
+                model.addAttribute("group", group);
+                model.addAttribute("groupOrderAction", "DISCARD ORDER GROUP");
+                
+            } catch(NumberFormatException e){
+                System.out.println(e.toString());
+            } catch (APIException e) {
+                System.out.println(e.toString());
+            }
+        }
+        
+        model.addAttribute("groupMain", groupMain);
+        model.addAttribute("groupExtn", groupExtn);
     }
     
     private List<DrugOrder> getDrugOrderMainDataByPatient(Patient p){
