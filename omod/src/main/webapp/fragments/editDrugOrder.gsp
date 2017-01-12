@@ -117,29 +117,11 @@
                 </div>
             </div><br/>
             
-            <div class="fields" id="view_order_detail">
-                <label><strong>Select the reason to discontinue</strong></label>
-                
-                <select id="discontinueOrderReasonCoded" name="discontinueOrderReasonCoded" class="select_field" onchange="enterNonCodedReason()">
-                    <option value="">Choose option</option>
-                    <% discontinueReasons.each { discontinueReason -> %>
-                        <option value="${ discontinueReason.getDisplayString() }">${ discontinueReason.getDisplayString() }</option>
-                    <% } %>
-                </select>
-            </div>
-
-            <div id="discontinueReasonTextView">
-                <div class="fields" id="view_order_detail">
-                    <label><strong>Enter the reason to discontinue</strong></label>
-                    <input class="fields" type="textarea" maxlength="30" id="discontinueOrderReasonNonCoded" name="discontinueOrderReasonNonCoded" disabled="true"/>
-                </div>
-            </div><br/>
-
             <input type="hidden" id="dis_order_id" name="dis_order_id"/>
             <input type="hidden" name="action" value="discontinueDrugOrder"/>
             
             <div class="fields" id="view_order_detail">
-                <button class="confirm right" id="discontinueOrder" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
+                <button class="confirm right" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
                 <button class="cancel" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
             </div><br/>
         </form>
@@ -161,7 +143,6 @@
             <strong><label id="planRenewed"></label></strong>
         </div><br/>
 
-        <input type="hidden" name="action" value="renewMedPlan"/><br/>
         <button class="confirm pull-right" id="btn-place" name="renewMedPlan" type="submit" onclick="showRenewPlanOrderWindow()">${ ui.message("Renew") }</button>
         <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewPlanOrderWindow()">${ ui.message("Cancel") }</button>
     </form>
@@ -184,7 +165,6 @@
                     <div class="groupBlock">
                         <div class="groupDrugName" id="view_order_detail">
                             <strong>${ groupExtn.get(order.key).drugname.getDisplayString() }</strong>
-                        </div> <br/>
                         
                         <div id="view_order_detail">
                             <div id="order_label">Dose</div>
@@ -230,15 +210,33 @@
                             <div id="order_label">Diagnosis</div>
                             <div id="order_value">${ groupExtn.get(order.key).associateddiagnosis.getDisplayString() }</div>
                         </div>                        
-                    </div>
+                    </div><br/>
                 <% } %>
                 
                 <input type="hidden" id="groupOrderID" name="groupOrderID" value="${ group }" />
                 <input type="hidden" id="groupAction" name="action" value="${ groupOrderAction }" />
-            </div><br/>
+            </div>
             
-            <button class="confirm pull-right" type="submit" id="btn-place">Confirm</button>
-            <button class="cancel pull-left" type="button" id="btn-place" onclick="hideGroupOrderWindow()">Cancel</button>
+            <div id="view_order_detail">
+                <div id="discontinueReasonSelect">
+                    <label><strong>Select the reason to discontinue</strong></label>
+                
+                    <select id="discontinueReasonCoded" name="discontinueReasonCoded" onchange="discontinueReason()">
+                        <option value="">Choose option</option>
+                        <% discontinueReasons.each { discontinueReason -> %>
+                            <option value="${ discontinueReason.getDisplayString() }">${ discontinueReason.getDisplayString() }</option>
+                        <% } %>
+                    </select>
+                </div>
+                
+                <div id="discontinueReasonText">
+                    <label><strong>Enter the reason to discontinue</strong></label>
+                    <input class="fields" type="textarea" maxlength="30" id="discontinueReasonNonCoded" name="discontinueReasonNonCoded" />
+                </div><br/>
+            </div>
+            
+            <span id="btn-place"><button class="confirm pull-right" type="submit" id="orderActionButton">Confirm</button></span>
+            <span id="btn-place"><button class="cancel pull-left" type="button" onclick="hideGroupOrderWindow()">Cancel</button></span>
 
         </form>
     </div>

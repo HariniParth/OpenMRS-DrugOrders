@@ -125,7 +125,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonTextView{
+#medicationPlanWindow, #singleOrderDetailsWindow, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #planOrderView, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #showRenewOrderView, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect{
     display: none;
 }
 
@@ -201,7 +201,7 @@ and open the template in the editor.
     overflow: hidden;
 }
 
-#addOrderButton, #discontinueOrder{
+#addOrderButton, #orderActionButton{
     margin-right: 20px;
 }
 

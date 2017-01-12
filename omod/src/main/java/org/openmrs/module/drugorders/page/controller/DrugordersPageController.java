@@ -65,8 +65,8 @@ public class DrugordersPageController {
             @RequestParam(value = "allergicOrderReason", required = false) String allergicOrderReason,
             @RequestParam(value = "patientInstructions", required = false) String patientInstructions, 
             @RequestParam(value = "pharmacistInstructions", required = false) String pharmacistInstructions,
-            @RequestParam(value = "discontinueOrderReasonCoded", required = false) String discontinueOrderReasonCoded,
-            @RequestParam(value = "discontinueOrderReasonNonCoded", required = false) String discontinueOrderReasonNonCoded,
+            @RequestParam(value = "discontinueReasonCoded", required = false) String discontinueReasonCoded,
+            @RequestParam(value = "discontinueReasonNonCoded", required = false) String discontinueReasonNonCoded,
             @SpringBean("allergyService") PatientService patientService, HttpSession session,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "order_id", required = false) Integer order_id,
@@ -126,13 +126,13 @@ public class DrugordersPageController {
                         for(drugorders dorder : dorders){
                             
                             dorder.setOrderstatus("Non-Active-Plan");
-                            if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
-                                String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
+                            if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
+                                String discontinueOrderCoded = discontinueReasonCoded.replace("", "");
                                 dorder.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
                             }
 
-                            if(!(discontinueOrderReasonNonCoded.equals(""))){
-                                dorder.setDiscontinuationreasons(discontinueOrderReasonCoded);
+                            if(!(discontinueReasonNonCoded.equals(""))){
+                                dorder.setDiscontinuationreasons(discontinueReasonNonCoded);
                             }
 
                             Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dorder.getOrderId()), "Discontinued");
@@ -142,13 +142,13 @@ public class DrugordersPageController {
                         drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
                         drugorderToDiscontinue.setOrderstatus("Non-Active");
 
-                        if(!(discontinueOrderReasonCoded.equalsIgnoreCase(""))){
-                            String discontinueOrderCoded = discontinueOrderReasonCoded.replace("", "");
+                        if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
+                            String discontinueOrderCoded = discontinueReasonCoded.replace("", "");
                             drugorderToDiscontinue.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
                         }
 
-                        if(!(discontinueOrderReasonNonCoded.equals(""))){
-                            drugorderToDiscontinue.setDiscontinuationreasons(discontinueOrderReasonCoded);
+                        if(!(discontinueReasonNonCoded.equals(""))){
+                            drugorderToDiscontinue.setDiscontinuationreasons(discontinueReasonNonCoded);
                         }
 
                         Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
@@ -249,6 +249,13 @@ public class DrugordersPageController {
                     
                     for(drugorders order : orders){
                         order.setOrderstatus("Non-Active-Group");
+                        if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
+                            String discontinueOrderCoded = discontinueReasonCoded.replace("", "");
+                            order.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueOrderCoded));
+                        }
+                        if(!(discontinueReasonNonCoded.equals(""))){
+                            order.setDiscontinuationreasons(discontinueReasonCoded);
+                        }
                         Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
                     }
                     

@@ -35,7 +35,6 @@ $(document).ready( function() {
     jq("#showDiscontinueOrderView").hide();
     $("#adminSavePlan").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
-    $("#discontinueOrder").prop("disabled", true);
     $("#adminEditPlanName").prop("disabled", true);
     
     $('#adminPlanName').autocomplete({
@@ -52,7 +51,13 @@ $(document).ready( function() {
         }
     });
     
-    $("#discontinueOrderReasonCoded, #discontinueOrderReasonNonCoded").change(function(){
+    if($('#groupAction').val() === "DISCARD ORDER GROUP"){
+        $("#orderActionButton").prop("disabled", true);
+        jq("#discontinueReasonSelect").show();
+        document.getElementById("discontinueReasonSelect").style.display = 'block';
+    }
+    
+    $("#discontinueReasonCoded, #discontinueReasonNonCoded").change(function(){
         enableOrderDiscard();
     });
     
@@ -96,12 +101,6 @@ function validate(){
 function adminRecord(){
     if($("#adminPlanName").val() !== "" && $("#adminDrugName").val() !== "" && $("#adminRoute").val() !== "" && $("#adminDose").val() !== "" && $("#adminDoseUnits").val() !== "" && $("#adminQuantity").val() !== "" && $("#adminQuantityUnits").val() !== "" && $("#adminDuration").val() !== "" && $("#adminDurationUnits").val() !== "" && $("#adminFrequency").val() !== ""){
         $("#adminSavePlan").prop("disabled", false);
-    }
-}
-
-function enableOrderDiscard(){
-    if($("#discontinueOrderReasonCoded").val() !== "" || $("#discontinueOrderReasonNonCoded").val() !== ""){
-        $("#discontinueOrder").prop("disabled", false);
     }
 }
 
@@ -541,10 +540,16 @@ function showAddOrderToGroupWindow(orderType,groupID){
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
-function enterNonCodedReason(){
-    if(document.getElementById("discontinueOrderReasonCoded").value === "Other"){
-        jq("#discontinueReasonTextView").show();
-        document.getElementById("discontinueReasonTextView").style.display = 'block';
-        jq("#discontinueOrderReasonNonCoded").removeAttr("disabled");
+function discontinueReason(){
+    if(document.getElementById("discontinueReasonCoded").value === "Other"){
+        jq("#discontinueReasonText").show();
+        document.getElementById("discontinueReasonText").style.display = 'block';
+    } else {
+        jq("#discontinueReasonText").hide();
+    }
+    if(document.getElementById("discontinueReasonCoded").value === ""){
+        $("#orderActionButton").prop("disabled", true);
+    } else {
+        $("#orderActionButton").prop("disabled", false);
     }
 }
