@@ -39,34 +39,34 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
-    @Override
-    public drugorders getDrugOrderByOrderID(Integer id){
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
-                drugorders.class);
-        crit.add(Restrictions.eq("orderId", id));
-        return (drugorders) crit.uniqueResult();
-    };
-
+   
     @Override
     public drugorders saveDrugOrder(drugorders drugOrder) {
         sessionFactory.getCurrentSession().saveOrUpdate(drugOrder);
         return drugOrder;
     };
+    
+    @Override
+    public drugorders getDrugOrderByOrderID(Integer orderID){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("orderId", orderID));
+        return (drugorders) crit.uniqueResult();
+    };
 
+    @Override
+    public List<drugorders> getDrugOrdersByGroupID(Integer groupID){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("groupid", groupID));
+        return crit.list();
+    };
+    
     @Override
     public List<drugorders> getDrugOrdersByPatient(Patient patient) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
         crit.add(Restrictions.eq("patientid", Integer.toString(patient.getPatientId())));
-        return crit.list();
-    };
-    
-    @Override
-    public List<drugorders> getDrugOrdersByGroupID(Integer id){
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
-                drugorders.class);
-        crit.add(Restrictions.eq("groupid", id));
         return crit.list();
     };
     
@@ -90,10 +90,10 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     };
     
     @Override
-    public drugorders getDrugOrderByDrugAndPatient(Concept drugname, Patient patient){
+    public drugorders getDrugOrderByDrugAndPatient(Concept drug, Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("drugname", drugname)).add(Restrictions.eq("patientid", patient.getPatientId().toString()));
+        crit.add(Restrictions.eq("drugname", drug)).add(Restrictions.eq("patientid", patient.getPatientId().toString()));
         return (drugorders) crit.uniqueResult();
     };
     
