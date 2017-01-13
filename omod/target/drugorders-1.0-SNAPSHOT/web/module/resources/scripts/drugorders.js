@@ -32,7 +32,6 @@ $(document).ready( function() {
     });
 
     jq("#existingPlansLinkHide").hide();
-    jq("#showDiscontinueOrderView").hide();
     $("#adminSavePlan").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
     $("#adminEditPlanName").prop("disabled", true);
@@ -51,7 +50,7 @@ $(document).ready( function() {
         }
     });
     
-    if($('#groupAction').val() === "DISCARD ORDER GROUP"){
+    if($('#groupAction').val() === "DISCARD ORDER GROUP" || $('#groupAction').val() === "DISCARD MED PLAN"){
         $("#orderActionButton").prop("disabled", true);
         jq("#discontinueReasonSelect").show();
         document.getElementById("discontinueReasonSelect").style.display = 'block';
@@ -149,7 +148,6 @@ function hideIndividualOrderDetailsWindow(){
 }
 
 function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){
-    jq("#showDiscontinueOrderView").hide();
     jq("#view_window_close_btn").show();
     $("#activeOrderAction").text(action);
     $("#patient_name").text(givenName+" "+lastName);
@@ -252,7 +250,6 @@ function hideRenewOrderWindow(){
 
 function showDiscontinueIndividualDrugOrderWindow(action,orderid,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,priority,patientinstructions,pharmacistinstructions){
     jq("#view_window_close_btn").hide();
-    jq("#planOrderView").hide();
     $("#activeOrderAction").text(action);
     $("#dis_order_id").val(orderid);
     $("#patient_name").text(givenName+" "+lastName);
@@ -263,19 +260,12 @@ function showDiscontinueIndividualDrugOrderWindow(action,orderid,givenName,lastN
     $("#pharmacist_instructions").text(pharmacistinstructions);
     jq("#singleOrderView").show();
     document.getElementById("singleOrderView").style.display = 'block';
-    jq("#showDiscontinueOrderView").show();
     jq("#showDrugOrderView").show();
 }
 
-function discardMedPlanOrder(action,planName){
-    jq("#singleOrderView").hide();
-    jq("#view_window_close_btn").hide();
-    document.getElementById("planOrderView").style.display = 'block';
-    $("#activeOrderAction").text(action);
-    $("#planDiscontinued").val(planName);
-    jq("#planOrderView").show();
-    jq("#showDiscontinueOrderView").show();
-    jq("#showDrugOrderView").show();
+function discardMedPlanOrder(plan){
+    $("#selectedActivePlan").val(plan);
+    $("#activePlanForm").submit();
 }
 
 function renewMedPlanWindow(planID,planName,medList){

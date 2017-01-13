@@ -106,26 +106,6 @@
         </div>
         
     </div>
-    
-        
-    <div id="showDiscontinueOrderView">
-        <form method="post">
-            
-            <div id="planOrderView">
-                <div class="fields">
-                    <input type="text" id="planDiscontinued" name="planDiscontinued" />
-                </div>
-            </div><br/>
-            
-            <input type="hidden" id="dis_order_id" name="dis_order_id"/>
-            <input type="hidden" name="action" value="discontinueDrugOrder"/>
-            
-            <div class="fields" id="view_order_detail">
-                <button class="confirm right" type="submit" onclick="discontinueOrderWindow()">${ ui.message("Discontinue") }</button>
-                <button class="cancel" type="button" onclick="hideDrugOrderViewWindow()">${ ui.message("Cancel") }</button>
-            </div><br/>
-        </form>
-    </div>
 </div>
 
 
@@ -159,7 +139,7 @@
             </div><br/>
 
             <div class="fields" id="groupOrderBlock">
-                <label><strong>Drugs Ordered In This Group</strong></label><br/>
+                <label><strong>Drugs Ordered In This Set</strong></label><br/>
                 
                 <% groupMain.each { order -> %>
                     <div class="groupBlock">

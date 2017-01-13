@@ -19,6 +19,8 @@ import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.api.APIException;
+import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.drugordersdiseases;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EditDrugOrderFragmentController {
         
     public void controller(PageModel model,@RequestParam("patientId") Patient patient,
+                            @RequestParam(value = "selectedActivePlan", required = false) String selectedActivePlan,
                             @RequestParam(value = "selectedActiveGroup", required = false) String selectedActiveGroup,
                             @RequestParam(value = "selectedNonActiveGroup", required = false) String selectedNonActiveGroup,
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
@@ -89,6 +92,30 @@ public class EditDrugOrderFragmentController {
                 }
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "RENEW ORDER GROUP");
+                
+            } catch(NumberFormatException e){
+                System.out.println(e.toString());
+            } catch (APIException e) {
+                System.out.println(e.toString());
+            }
+        }
+        
+                
+        if(StringUtils.isNotBlank(selectedActivePlan)){
+            try {
+                int group = 0;
+                Concept planConcept = Context.getConceptService().getConceptByName(selectedActivePlan);
+                List<drugorders> planOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
+                for(drugorders planOrder: planOrders){
+                    if(planOrder.getAssociateddiagnosis() == planConcept){
+                        groupMain.put(planOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
+                        groupExtn.put(planOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()));
+                        if(group == 0)
+                            group = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(planOrder.getOrderId()).getPlanid();
+                    }
+                }
+                model.addAttribute("group", group);
+                model.addAttribute("groupOrderAction", "DISCARD MED PLAN");
                 
             } catch(NumberFormatException e){
                 System.out.println(e.toString());
