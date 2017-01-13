@@ -31,6 +31,7 @@ public class EditDrugOrderFragmentController {
         
     public void controller(PageModel model,@RequestParam("patientId") Patient patient,
                             @RequestParam(value = "selectedActivePlan", required = false) String selectedActivePlan,
+                            @RequestParam(value = "selectedNonActivePlan", required = false) String selectedNonActivePlan,
                             @RequestParam(value = "selectedActiveGroup", required = false) String selectedActiveGroup,
                             @RequestParam(value = "selectedNonActiveGroup", required = false) String selectedNonActiveGroup,
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
@@ -116,6 +117,25 @@ public class EditDrugOrderFragmentController {
                 }
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCARD MED PLAN");
+                
+            } catch(NumberFormatException e){
+                System.out.println(e.toString());
+            } catch (APIException e) {
+                System.out.println(e.toString());
+            }
+        }
+        
+                
+        if(StringUtils.isNotBlank(selectedNonActivePlan)){
+            try {
+                int group = Integer.parseInt(selectedNonActivePlan);
+                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(group);
+                for(drugordersdiseases planOrder : planOrders){
+                    groupMain.put(planOrder.getOrderid(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid()));
+                    groupExtn.put(planOrder.getOrderid(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid()));
+                }
+                model.addAttribute("group", group);
+                model.addAttribute("groupOrderAction", "RENEW MED PLAN");
                 
             } catch(NumberFormatException e){
                 System.out.println(e.toString());

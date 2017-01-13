@@ -107,26 +107,6 @@
         
     </div>
 </div>
-
-
-<div id="showRenewOrderView" class="dialog">
-    <form method="post">
-        <div class="dialog-header">
-            <h3 id="dialog-heading">${ ui.message("RENEW MED PLAN") }</h3>
-        </div><br/>
-        
-        <input type="hidden" id="planRenewID" name="planRenewID" />
-        
-        <div class="fields" id="renewMedPlanList">
-            <label><strong>Renew the Following Medication Plan</strong></label>
-            <label>Individual Orders may be edited on click!</label><br/>
-            <strong><label id="planRenewed"></label></strong>
-        </div><br/>
-
-        <button class="confirm pull-right" id="btn-place" name="renewMedPlan" type="submit" onclick="showRenewPlanOrderWindow()">${ ui.message("Renew") }</button>
-        <button class="cancel pull-left" id="btn-place" type="button" onclick="hideRenewPlanOrderWindow()">${ ui.message("Cancel") }</button>
-    </form>
-</div>
     
 
 <% if(groupMain.size() > 0) { %>
