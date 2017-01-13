@@ -36,13 +36,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     public void setSessionFactory(SessionFactory sessionFactory) {
 	    this.sessionFactory = sessionFactory;
     }
-    
-    @Transactional
-    @Override
-    public void deleteDrugOrder(drugordersdiseases order){
-        sessionFactory.getCurrentSession().delete(order);
-    };
-    
+        
     @Override
     public drugordersdiseases saveDrugOrder(drugordersdiseases order){
         sessionFactory.getCurrentSession().saveOrUpdate(order);
@@ -57,21 +51,17 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
         return (drugordersdiseases) crit.uniqueResult();
     };
     
+    /**
+     *
+     * @param plan
+     * @return
+     */
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByPlan(Integer plan){
+    public List<drugordersdiseases> getDrugOrdersByPlanID(Integer plan){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
         crit.add(Restrictions.eq("planid", plan));
-        return crit.list();
-    };
-    
-    @Transactional(readOnly = true)
-    @Override
-    public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept){
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
-                drugordersdiseases.class);
-        crit.add(Restrictions.eq("diseaseid", concept));
         return crit.list();
     };
     

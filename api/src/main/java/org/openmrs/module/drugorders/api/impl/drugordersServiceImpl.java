@@ -50,28 +50,10 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
         return dao.getLastGroupID();
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public List<drugorders> getAllDrugOrders() {
-        return dao.getAllDrugOrders();
-    }
-    
-    @Transactional(readOnly = true)
-    @Override
-    public drugorders getDrugOrderByID(Integer id) {
-        return dao.getDrugOrderByID(id);
-    }
-
     @Transactional
     @Override
     public drugorders saveDrugOrder(drugorders drugOrder) {
         return dao.saveDrugOrder(drugOrder);
-    }
-    
-    @Transactional
-    @Override
-    public void deleteDrugOrder(drugorders drugOrder) {
-        dao.deleteDrugOrder(drugOrder);
     }
     
     @Transactional(readOnly = true)
@@ -88,25 +70,19 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugorders> getDrugOrdersByStatus(String status){
-        return dao.getDrugOrdersByStatus(status);
-    }
-    
-    @Transactional(readOnly = true)
-    @Override
     public List<drugorders> getDrugOrdersByPatient(Patient patient) {
         return dao.getDrugOrdersByPatient(patient);
     }
     
     @Transactional(readOnly = true)
     @Override
-    public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID){
-        return dao.getDrugOrderByDrugAndPatient(drugname, patientID);
+    public drugorders getDrugOrderByDrugAndPatient(Concept drugname, Patient patient){
+        return dao.getDrugOrderByDrugAndPatient(drugname, patient);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<drugorders> getDrugOrdersByPatientAndStatus(String patientID, String status){
-        return dao.getDrugOrdersByPatientAndStatus(patientID, status);
+    public List<drugorders> getDrugOrdersByPatientAndStatus(Patient patient, String status){
+        return dao.getDrugOrdersByPatientAndStatus(patient, status);
     }
 }

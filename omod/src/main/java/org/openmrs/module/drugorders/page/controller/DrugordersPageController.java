@@ -69,12 +69,12 @@ public class DrugordersPageController {
             @RequestParam(value = "discontinueReasonNonCoded", required = false) String discontinueReasonNonCoded,
             @SpringBean("allergyService") PatientService patientService, HttpSession session,
             @RequestParam(value = "action", required = false) String action,
-            @RequestParam(value = "order_id", required = false) Integer order_id,
+            @RequestParam(value = "order_id", required = false) Integer orderId,
             @RequestParam(value = "orderClass", required = false) String orderClass,
             @RequestParam(value = "groupOrderID", required = false) Integer groupOrderID,
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "omitPlanItemCheckBox", required=false) String[] omitPlanItemCheckBox,
-            @RequestParam(value = "dis_order_id", required = false) Integer dis_order_id,
+            @RequestParam(value = "dis_order_id", required = false) Integer dis_orderId,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "planRenewID", required = false) Integer planRenewID,
             @RequestParam(value = "planDiscontinued", required = false) String planDiscontinued,
@@ -93,7 +93,7 @@ public class DrugordersPageController {
                 if ("CREATE DRUG ORDER".equals(action)) {
                     if (!(drugNameEntered.equals("")) && !(drugRoute.equals("")) && !(drugDose.equals("")) && !(drugDoseUnits.equals("")) && !(drugQuantity.equals("")) && !(quantityUnits.equals("")) && !(drugFrequency.equals("")) && (drugDuration != null) && !(durationUnits.equals(""))) {
                         
-                        drugorders o = Context.getService(drugordersService.class).getDrugOrderByDrugAndPatient(Context.getConceptService().getConceptByName(drugNameEntered), patientID);
+                        drugorders o = Context.getService(drugordersService.class).getDrugOrderByDrugAndPatient(Context.getConceptService().getConceptByName(drugNameEntered), patient);
                         if(o == null || !o.getOrderstatus().equals("Active")){
                             
                             DrugOrder drugOrder = null;
@@ -101,8 +101,8 @@ public class DrugordersPageController {
                             int order = createNewDrugOrder(drugOrder, patient, drugNameEntered, drugRoute, drugDose, drugDoseUnits, drugQuantity, quantityUnits, drugFrequency, drugDuration, durationUnits);
                             createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                             
-                            if(order_id != null){
-                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(order_id);
+                            if(orderId != null){
+                                Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupid(orderId);
                                 Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Group");
                             }
                             InfoErrorMessageUtil.flashInfoMessage(session, "Order Created!");
@@ -116,7 +116,7 @@ public class DrugordersPageController {
                 if ("discontinueDrugOrder".equals(action)) {
                     
                     if(!(planDiscontinued.equals(""))){
-                        List<drugordersdiseases> drugorders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDisease(Context.getConceptService().getConceptByName(planDiscontinued));
+                        List<drugordersdiseases> drugorders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(planDiscontinued), patient);
                         ArrayList<drugorders> dorders = new ArrayList<drugorders>();
                         
                         for(drugordersdiseases drugorder : drugorders){
@@ -139,7 +139,7 @@ public class DrugordersPageController {
                         }
                         
                     } else {
-                        drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByID(dis_order_id);
+                        drugorders drugorderToDiscontinue = Context.getService(drugordersService.class).getDrugOrderByOrderID(dis_orderId);
                         drugorderToDiscontinue.setOrderstatus("Non-Active");
 
                         if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
@@ -151,14 +151,14 @@ public class DrugordersPageController {
                             drugorderToDiscontinue.setDiscontinuationreasons(discontinueReasonNonCoded);
                         }
 
-                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_order_id), "Discontinued");
+                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(dis_orderId), "Discontinued");
                     }
                     
                     InfoErrorMessageUtil.flashInfoMessage(session, "Order Discontinued!");
                 }
                 
                 if ("SingleOrder".equals(action)) {
-                    List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
+                    List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "New");
                     
                     for(drugorders order : newDrugOrders){
                         order.setOrderstatus("Active");
@@ -226,7 +226,7 @@ public class DrugordersPageController {
                 
                 if ("renewMedPlan".equals(action)) {
                     
-                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(planRenewID);
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planRenewID);
                     int planID = Context.getService(drugordersdiseasesService.class).getLastPlanID() + 1;
                     
                     for(drugordersdiseases planOrder : planOrders){
@@ -281,9 +281,9 @@ public class DrugordersPageController {
                 
                 if ("EDIT DRUG ORDER".equals(action)) {
                     
-                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
+                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderId);
                     
-                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order_id), "Discontinued");
+                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(orderId), "Discontinued");
 
                     DrugOrder drugOrder = null;
                     drugorders drugorder = null;
@@ -312,7 +312,7 @@ public class DrugordersPageController {
 
                 if ("RENEW DRUG ORDER".equals(action)) {
                     
-                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByID(order_id);
+                    drugorders originalOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderId);
                     String drugName = originalOrderExtension.getDrugname().getDisplayString();
 
                     DrugOrder drugOrder = null;

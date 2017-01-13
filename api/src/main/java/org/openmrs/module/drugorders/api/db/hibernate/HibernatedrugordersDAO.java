@@ -39,17 +39,6 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
-    @Override
-    public void deleteDrugOrder(drugorders drugOrder) {
-        sessionFactory.getCurrentSession().delete(drugOrder);
-    };
-    
-    @Override
-    public List<drugorders> getAllDrugOrders(){
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(drugorders.class);
-        return crit.list();
-    };
     
     @Override
     public drugorders getDrugOrderByOrderID(Integer id){
@@ -70,14 +59,6 @@ public class HibernatedrugordersDAO implements drugordersDAO {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
         crit.add(Restrictions.eq("patientid", Integer.toString(patient.getPatientId())));
-        return crit.list();
-    };
-    
-    @Override
-    public List<drugorders> getDrugOrdersByStatus(String status){
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
-                drugorders.class);
-        crit.add(Restrictions.eq("orderstatus", status));
         return crit.list();
     };
     
@@ -109,23 +90,18 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     };
     
     @Override
-    public drugorders getDrugOrderByDrugAndPatient(Concept drugname,String patientID){
+    public drugorders getDrugOrderByDrugAndPatient(Concept drugname, Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("drugname", drugname)).add(Restrictions.eq("patientid", patientID));
+        crit.add(Restrictions.eq("drugname", drugname)).add(Restrictions.eq("patientid", patient.getPatientId().toString()));
         return (drugorders) crit.uniqueResult();
     };
     
     @Override
-    public drugorders getDrugOrderByID(Integer id) {
-        return (drugorders) sessionFactory.getCurrentSession().get(drugorders.class, id);
-    };
-    
-    @Override
-    public List<drugorders> getDrugOrdersByPatientAndStatus(String patientID, String status){
+    public List<drugorders> getDrugOrdersByPatientAndStatus(Patient patient, String status){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("orderstatus", status)).add(Restrictions.eq("patientid", patientID));
+        crit.add(Restrictions.eq("orderstatus", status)).add(Restrictions.eq("patientid", patient.getPatientId().toString()));
         return crit.list();
     };
     

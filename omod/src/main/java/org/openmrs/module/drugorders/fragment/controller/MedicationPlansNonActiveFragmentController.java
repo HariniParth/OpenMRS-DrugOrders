@@ -34,13 +34,13 @@ public class MedicationPlansNonActiveFragmentController {
         HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>> NonActivePlanExtension = new HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>>();
         HashMap<Integer, ArrayList<String>> planDrugs = new HashMap<Integer, ArrayList<String>>();
         
-        List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient.getPatientId().toString(), "Non-Active-Plan");
+        List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Non-Active-Plan");
         
         for(drugorders nonActiveMedOrder : nonActiveMedOrders){
             drugordersdiseases nonActiveMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(nonActiveMedOrder.getOrderId());
             
             if(!NonActivePlanMain.containsKey(nonActiveMedPlan.getPlanid())){
-                List<drugordersdiseases> ordersByPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(nonActiveMedPlan.getPlanid());
+                List<drugordersdiseases> ordersByPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(nonActiveMedPlan.getPlanid());
                 
                 HashMap<Concept, HashMap<Integer, DrugOrder>> planMain = new HashMap<Concept, HashMap<Integer, DrugOrder>>();
                 HashMap<Concept, HashMap<Integer, drugorders>> planExtn = new HashMap<Concept, HashMap<Integer, drugorders>>();

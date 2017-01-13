@@ -15,9 +15,7 @@ import org.openmrs.module.drugorders.medicationplans;
  * @author harini-geek
  */
 public interface medicationplansService extends OpenmrsService{
-    
-    public List<medicationplans> getAllMedicationPlans();
-    
+        
     public void deleteMedicationPlan(medicationplans plan);
     
     public medicationplans getMedicationPlan(Integer planID);

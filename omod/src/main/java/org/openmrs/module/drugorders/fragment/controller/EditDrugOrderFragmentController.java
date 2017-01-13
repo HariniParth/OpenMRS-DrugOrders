@@ -44,7 +44,7 @@ public class EditDrugOrderFragmentController {
         model.addAttribute("discontinueReasons", discontinueReasons);
         
         
-        List<drugorders> drugOrders = Context.getService(drugordersService.class).getDrugOrdersByStatus("New");
+        List<drugorders> drugOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "New");
         HashMap<Integer,drugorders> newDrugOrders = new HashMap<Integer,drugorders>();
         for(drugorders order : drugOrders){
             newDrugOrders.put(order.getOrderId(), order);

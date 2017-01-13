@@ -43,11 +43,6 @@ public class drugordersdiseasesServiceImpl extends BaseOpenmrsService implements
         return dao.getLastPlanID();
     }
     
-    @Override
-    public void deleteDrugOrder(drugordersdiseases order){
-        dao.deleteDrugOrder(order);
-    }
-    
     @Transactional(readOnly = true)
     @Override
     public drugordersdiseases getDrugOrderByOrderID(Integer id){
@@ -56,20 +51,14 @@ public class drugordersdiseasesServiceImpl extends BaseOpenmrsService implements
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByPlan(Integer plan){
-        return dao.getDrugOrdersByPlan(plan);
+    public List<drugordersdiseases> getDrugOrdersByPlanID(Integer plan){
+        return dao.getDrugOrdersByPlanID(plan);
     }
     
     @Transactional
     @Override
     public drugordersdiseases saveDrugOrder(drugordersdiseases order){
         return dao.saveDrugOrder(order);
-    }
-    
-    @Transactional(readOnly = true)
-    @Override
-    public List<drugordersdiseases> getDrugOrdersByDisease(Concept concept){
-        return dao.getDrugOrdersByDisease(concept);
     }
     
     @Transactional(readOnly = true)
