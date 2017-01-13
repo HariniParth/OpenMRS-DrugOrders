@@ -45,8 +45,10 @@ public class MedicationPlansFragmentController {
                 
                 for(drugordersdiseases orderPlan : ordersForPlan){
                     int order = orderPlan.getOrderid();
-                    drugOrderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
-                    drugOrderExtension.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
+                    if(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getOrderstatus().equals("Active-Plan")){
+                        drugOrderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
+                        drugOrderExtension.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
+                    }
                 }
                 
                 ActivePlanMain.put(activeMedPlan.getDiseaseid(), drugOrderMain);
