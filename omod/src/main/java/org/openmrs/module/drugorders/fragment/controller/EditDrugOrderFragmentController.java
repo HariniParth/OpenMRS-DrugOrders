@@ -34,6 +34,8 @@ public class EditDrugOrderFragmentController {
                             @RequestParam(value = "selectedNonActivePlan", required = false) String selectedNonActivePlan,
                             @RequestParam(value = "selectedActiveGroup", required = false) String selectedActiveGroup,
                             @RequestParam(value = "selectedNonActiveGroup", required = false) String selectedNonActiveGroup,
+                            @RequestParam(value = "selectedActiveItem", required = false) String selectedActiveItem,
+                            @RequestParam(value = "selectedActiveOrder", required = false) String selectedActiveOrder,
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
 
@@ -144,9 +146,32 @@ public class EditDrugOrderFragmentController {
             }
         }
         
+        
+        if(StringUtils.isNotBlank(selectedActiveOrder) || StringUtils.isNotBlank(selectedActiveItem)){
+            try {
+                int group = 0;
+                if(StringUtils.isNotBlank(selectedActiveOrder))
+                    group = Integer.parseInt(selectedActiveOrder);
+                else if(StringUtils.isNotBlank(selectedActiveItem))
+                    group = Integer.parseInt(selectedActiveItem);
+                
+                groupMain.put(group, (DrugOrder) Context.getOrderService().getOrder(group));
+                groupExtn.put(group, Context.getService(drugordersService.class).getDrugOrderByOrderID(group));
+                
+                model.addAttribute("group", group);
+                model.addAttribute("groupOrderAction", "DISCONTINUE ORDER");
+                
+            } catch(NumberFormatException e){
+                System.out.println(e.toString());
+            } catch (APIException e) {
+                System.out.println(e.toString());
+            }
+        }
+        
         model.addAttribute("groupMain", groupMain);
         model.addAttribute("groupExtn", groupExtn);
     }
+    
     
     private List<DrugOrder> getDrugOrderMainDataByPatient(Patient p){
         ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();

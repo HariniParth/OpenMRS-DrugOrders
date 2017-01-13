@@ -176,6 +176,20 @@ public class DrugordersPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
                 }
                 
+                if ("DISCONTINUE ORDER".equals(action)){
+                    drugorders order = Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrderID);
+                    order.setOrderstatus("Non-Active");
+                    if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
+                        order.setDiscontinuereason(Context.getConceptService().getConceptByName(discontinueReasonCoded.trim()));
+                    }
+                    if(!(discontinueReasonNonCoded.equals(""))){
+                        order.setDiscontinuationreasons(discontinueReasonNonCoded);
+                    }
+                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(groupOrderID), "Discontinued");
+                    
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Discontinued!");
+                }
+                
                 if ("DISCARD ORDER GROUP".equals(action)) {
                     List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
                     
