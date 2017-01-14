@@ -119,7 +119,14 @@
             </div><br/>
 
             <div class="fields" id="groupOrderBlock">
-                <label><strong>Drugs Ordered In This Set</strong></label><br/>
+                <% if(groupOrderAction == "DISCARD MED PLAN" || groupOrderAction == "RENEW MED PLAN") { %>
+                    <label><strong>${ plan }</strong></label><br/>
+                    <label><strong>Drugs Ordered In This Plan</strong></label><br/>
+                <% } %>
+                
+                <% if(groupOrderAction == "DISCARD ORDER GROUP" || groupOrderAction == "RENEW ORDER GROUP") { %>
+                    <label><strong>Drugs Ordered In This Group</strong></label><br/>
+                <% } %>
                 
                 <% groupMain.each { order -> %>
                     <div class="groupBlock">

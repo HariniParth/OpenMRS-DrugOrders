@@ -117,6 +117,7 @@ public class EditDrugOrderFragmentController {
                             group = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(planOrder.getOrderId()).getPlanid();
                     }
                 }
+                model.addAttribute("plan", planConcept.getDisplayString().toUpperCase());
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCARD MED PLAN");
                 
@@ -132,10 +133,12 @@ public class EditDrugOrderFragmentController {
             try {
                 int group = Integer.parseInt(selectedNonActivePlan);
                 List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(group);
+                Concept planConcept = planOrders.get(0).getDiseaseid();
                 for(drugordersdiseases planOrder : planOrders){
                     groupMain.put(planOrder.getOrderid(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid()));
                     groupExtn.put(planOrder.getOrderid(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid()));
                 }
+                model.addAttribute("plan", planConcept.getDisplayString().toUpperCase());
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "RENEW MED PLAN");
                 
