@@ -68,7 +68,7 @@ $(document).ready( function() {
         select: function (event, ui) { validate(); }
     });
     
-    $("#drugRoute, #drugDose, #drugDoseUnits, #drugQuantity, #quantityUnits, #drugDuration, #durationUnits, #drugFrequency").change(function(){
+    $("#drugNameEntered, #drugRoute, #drugDose, #drugDoseUnits, #drugQuantity, #quantityUnits, #drugDuration, #durationUnits, #drugFrequency, #associatedDiagnosis").change(function(){
         validate();
     });
 });
@@ -94,12 +94,16 @@ function clearHighlights(){
 function validate(){
     if($("#drugNameEntered").val() !== "" && $("#drugRoute").val() !== "" && $("#drugDose").val() !== "" && $("#drugDoseUnits").val() !== "" && $("#drugQuantity").val() !== "" && $("#quantityUnits").val() !== "" && $("#drugDuration").val() !== "" && $("#durationUnits").val() !== "" && $("#drugFrequency").val() !== "" && $("#associatedDiagnosis").val() !== ""){
         $("#addOrderButton").prop("disabled", false);
+    } else {
+        $("#addOrderButton").prop("disabled", true);
     }
 }
 
 function adminRecord(){
     if($("#adminPlanName").val() !== "" && $("#adminDrugName").val() !== "" && $("#adminRoute").val() !== "" && $("#adminDose").val() !== "" && $("#adminDoseUnits").val() !== "" && $("#adminQuantity").val() !== "" && $("#adminQuantityUnits").val() !== "" && $("#adminDuration").val() !== "" && $("#adminDurationUnits").val() !== "" && $("#adminFrequency").val() !== ""){
         $("#adminSavePlan").prop("disabled", false);
+    } else {
+        $("#adminSavePlan").prop("disabled", true);
     }
 }
 
@@ -213,11 +217,12 @@ function showEditSingleOrderWindow(orderType,orderClass,orderId,drugName,startDa
     }
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
+    $("#addOrderButton").prop("disabled", false);
     jq("#singleOrderDetailsWindow").show();
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
 
-function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,refillInterval,associateddiagnosis,priority,patientinstructions,pharmacistinstructions){
+function showRenewOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,refillInterval,associateddiagnosis,priority,patientinstructions,pharmacistinstructions){
     $("#orderType").text(orderType);
     $("#orderAction").val(orderType);
     $("#order_id").val(orderId);
@@ -236,6 +241,7 @@ function showRenewIndividualDrugOrderWindow(orderType,orderId,drugName,dose,dose
     $("#associatedDiagnosis").val(associateddiagnosis);
     $("#patientInstructions").val(patientinstructions);
     $("#pharmacistInstructions").val(pharmacistinstructions);
+    $("#addOrderButton").prop("disabled", false);
     jq("#singleOrderDetailsWindow").show();
     document.getElementById("singleOrderDetailsWindow").style.display = 'block';
 }
