@@ -41,6 +41,22 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     }
    
     @Override
+    public List<drugorders> getOrdersOnHold(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("onHold", 1));
+        return crit.list();
+    };
+    
+    @Override
+    public List<drugorders> getOrdersForDiscard(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                drugorders.class);
+        crit.add(Restrictions.eq("forDiscard", 1));
+        return crit.list();
+    };
+    
+    @Override
     public drugorders saveDrugOrder(drugorders drugOrder) {
         sessionFactory.getCurrentSession().saveOrUpdate(drugOrder);
         return drugOrder;

@@ -19,8 +19,8 @@
         <property name="isallergic" column="isallergic" ></property>
         <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
         <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>
-        <property name="onHold" column="onHold" not-null="false"></property>
-        <property name="discontinued" column="discontinued" ></property>
+        <property name="onHold" column="onHold" not-null="false" ></property>
+        <property name="forDiscard" column="forDiscard" not-null="false" ></property>
         <property name="refill" column="refill" ></property>
         <property name="refillinterval" column="refillinterval" ></property>
         <many-to-one name="priority" class="org.openmrs.Concept" column="priority" />

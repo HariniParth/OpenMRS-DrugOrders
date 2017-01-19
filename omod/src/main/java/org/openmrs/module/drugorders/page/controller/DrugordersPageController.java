@@ -383,7 +383,7 @@ public class DrugordersPageController {
         drugorder.setPriority(Context.getConceptService().getConceptByName(orderPriority));
         drugorder.setUuid(UUID.randomUUID().toString());
         drugorder.setOnHold(0);
-        drugorder.setDiscontinued(0);
+        drugorder.setForDiscard(0);
         
         if(Context.getConceptService().getConceptByName(diagnosis) == null){
             drugordersActivator activator = new drugordersActivator();

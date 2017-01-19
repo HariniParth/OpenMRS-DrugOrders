@@ -31,10 +31,14 @@ public interface drugordersService extends OpenmrsService {
 
     public int getLastGroupID();
     
+    public List<drugorders> getOrdersOnHold();
+    
+    public List<drugorders> getOrdersForDiscard();
+    
     public drugorders saveDrugOrder(drugorders drugOrder);
     
     public drugorders getDrugOrderByOrderID(Integer orderID);
-        
+     
     public List<drugorders> getDrugOrdersByGroupID(Integer groupID);
     
     public List<drugorders> getDrugOrdersByPatient(Patient patient);

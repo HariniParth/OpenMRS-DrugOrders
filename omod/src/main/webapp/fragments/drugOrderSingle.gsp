@@ -28,7 +28,7 @@
                 <% } %>
 
                 <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
-                    <tr class="orderRow <% if(existingDrugOrderExtension.discontinued == 1) { %> discontinued <% } %> <% if(existingDrugOrderExtension.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingDrugOrderExtension.comments) }">
+                    <tr class="orderRow <% if(existingDrugOrderExtension.forDiscard == 1) { %> discontinued <% } %> <% if(existingDrugOrderExtension.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingDrugOrderExtension.comments) }">
 
                         <td><span><input type="checkbox" name="groupCheckBox" value="${ existingDrugOrderExtension.orderId }" ng-model="groupCheckBox" /></span></td>
 
@@ -58,7 +58,7 @@
                             <% existingDrugOrder.value.each { existingOrder -> %>
                                 <% if(existingOrder.orderstatus == "Active-Group") { %>
 
-                                    <div class="groupSingles <% if(existingOrder.discontinued == 1) { %> discontinued <% } %> <% if(existingOrder.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingOrder.comments) }">
+                                    <div class="groupSingles <% if(existingOrder.forDiscard == 1) { %> discontinued <% } %> <% if(existingOrder.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingOrder.comments) }">
                                         
                                         <div class="groupDrugDetails" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingOrder.startdate.format('yyyy-MM-dd') }','${ existingOrder.drugname.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.isallergicorderreasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientinstructions }','${ existingOrder.pharmacistinstructions }','${ existingOrder.comments }')">
                                             
