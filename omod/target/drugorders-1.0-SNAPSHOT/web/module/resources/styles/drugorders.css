@@ -125,6 +125,22 @@ and open the template in the editor.
    min-height: 152px;
 }
 
+#currentDrugOrdersTable td:first-child{
+    width: 10%;
+}
+
+#currentDrugOrdersTable td:nth-child(2){
+    width: 55%;
+}
+
+#currentDrugOrdersTable td:nth-child(3){
+    width: 20%;
+}
+
+#currentDrugOrdersTable td:nth-child(4){
+    width: 15%;
+}
+
 #medicationPlanWindow, #singleOrderDetailsWindow, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect{
     display: none;
 }
@@ -250,24 +266,23 @@ th{
 }
 
 .groupSingles .groupDrugDetails{
-    width: 70%;
+    width: 85%;
     float: left;
     overflow: auto;
 }
 
 .groupSingles .groupDrugDetails #groupDrugName{
-    width: 66%;
+    width: 75%;
     float: left;
 }
 
 .groupSingles .groupDrugDetails #groupDrugDate{
-    width: 34%;
-    margin-left: 66%;
-    vertical-align: top;
+    width: 25%;
+    margin-left: 75%;
 }
 
 .groupSingles .groupDrugButton{
-    width: 30%;
+    width: 15%;
     float: right;
 }
 
