@@ -42,11 +42,11 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private Integer forDiscard;
         private Concept discontinuereason;
         private String discontinuationreasons;
-        private Integer approvalrequired;
         
         private String comments;
+        private Date drugexpirydate;
         private Date lastdispatchdate;
-
+        
 	
         public drugorders(){
             
@@ -215,21 +215,21 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	public void setDiscontinuationreasons(String discontinuationreasons) {
 		this.discontinuationreasons = discontinuationreasons;
 	}
-        
-        public Integer getApprovalrequired() {
-		return approvalrequired;
-	}
-	
-	public void setApprovalrequired(Integer approvalrequired) {
-		this.approvalrequired = approvalrequired;
-	}
-        
+                
         public Date getLastdispatchdate() {
             return lastdispatchdate;
         }
 
         public void setLastdispatchdate(Date lastdispatchdate) {
             this.lastdispatchdate = lastdispatchdate;
+        }
+        
+        public Date getDrugexpirydate() {
+            return drugexpirydate;
+        }
+
+        public void setDrugexpirydate(Date drugexpirydate) {
+            this.drugexpirydate = drugexpirydate;
         }
         
         public String getComments() {

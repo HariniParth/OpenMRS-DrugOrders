@@ -29,8 +29,8 @@
         <many-to-one name="associateddiagnosis" class="org.openmrs.Concept" column="associateddiagnosis" />
         <property name="patientinstructions" type="java.lang.String" column="patientinstructions" length="255" ></property> 
         <property name="pharmacistinstructions" type="java.lang.String" column="pharmacistinstructions" length="255" ></property>
-        <property name="approvalrequired" column="approvalrequired" ></property>
-        <property name="lastdispatchdate" type="java.util.Date" column="lastdispatchdate" ></property> 
+        <property name="lastdispatchdate" type="java.util.Date" column="lastdispatchdate" ></property>
+        <property name="drugexpirydate" type="java.util.Date" column="drugexpirydate" ></property> 
         <property name="comments" type="java.lang.String" column="comments" length="255"></property> 
 
     </class>
