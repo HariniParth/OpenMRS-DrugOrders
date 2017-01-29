@@ -43,9 +43,10 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private Concept discontinuereason;
         private String discontinuationreasons;
         
-        private String comments;
-        private Date drugexpirydate;
+        private String commentfororderer;
+        private String commentforpatient;
         private Date lastdispatchdate;
+        private Date drugexpirydate;
         
 	
         public drugorders(){
@@ -232,11 +233,19 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
             this.drugexpirydate = drugexpirydate;
         }
         
-        public String getComments() {
-		return comments;
+        public String getCommentfororderer() {
+		return commentfororderer;
 	}
 
-	public void setComments(String comments) {
-		this.comments = comments;
+	public void setCommentfororderer(String commentfororderer) {
+		this.commentfororderer = commentfororderer;
+	}
+        
+        public String getCommentforpatient() {
+		return commentforpatient;
+	}
+
+	public void setCommentforpatient(String commentforpatient) {
+		this.commentforpatient = commentforpatient;
 	}
 }

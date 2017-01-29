@@ -31,7 +31,8 @@
         <property name="pharmacistinstructions" type="java.lang.String" column="pharmacistinstructions" length="255" ></property>
         <property name="lastdispatchdate" type="java.util.Date" column="lastdispatchdate" ></property>
         <property name="drugexpirydate" type="java.util.Date" column="drugexpirydate" ></property> 
-        <property name="comments" type="java.lang.String" column="comments" length="255"></property> 
+        <property name="commentfororderer" type="java.lang.String" column="commentfororderer" length="255"></property> 
+        <property name="commentforpatient" type="java.lang.String" column="commentforpatient" length="255"></property> 
 
     </class>
 

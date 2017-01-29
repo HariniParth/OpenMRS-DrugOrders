@@ -48,7 +48,8 @@
             <column name="discontinuationreasons" type="varchar(255)"></column>
             <column name="lastdispatchdate" type="datetime"></column>
             <column name="drugexpirydate" type="datetime"></column>
-            <column name="comments" type="varchar(255)"></column>
+            <column name="commentfororderer" type="varchar(255)"></column>
+            <column name="commentforpatient" type="varchar(255)"></column>
             
         </createTable>
     </changeSet>
