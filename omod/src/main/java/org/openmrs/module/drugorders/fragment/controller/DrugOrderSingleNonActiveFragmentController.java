@@ -36,7 +36,7 @@ public class DrugOrderSingleNonActiveFragmentController {
             if(dorder.getOrderstatus().equals("Non-Active"))
                 dorders.add(dorder);
             else if(dorder.getOrderstatus().equals("Non-Active-Group")){
-                if(groupDorders.get(dorder.getOrderId()) == null){
+                if(groupDorders.get(dorder.getOrderid()) == null){
                     groupDorders.put(dorder.getGroupid(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupid()));
                 }
             }

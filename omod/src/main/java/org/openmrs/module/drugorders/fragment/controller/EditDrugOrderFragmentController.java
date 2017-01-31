@@ -53,7 +53,7 @@ public class EditDrugOrderFragmentController {
         List<drugorders> drugOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "New");
         HashMap<Integer,drugorders> newDrugOrders = new HashMap<Integer,drugorders>();
         for(drugorders order : drugOrders){
-            newDrugOrders.put(order.getOrderId(), order);
+            newDrugOrders.put(order.getOrderid(), order);
         }
         model.addAttribute("newDrugOrders", newDrugOrders);
         
@@ -71,8 +71,8 @@ public class EditDrugOrderFragmentController {
                 int group = Integer.parseInt(selectedActiveGroup);
                 List<drugorders> groupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(group);
                 for(drugorders groupOrder: groupOrders){
-                    groupMain.put(groupOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(groupOrder.getOrderId()));
-                    groupExtn.put(groupOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrder.getOrderId()));
+                    groupMain.put(groupOrder.getOrderid(), (DrugOrder) Context.getOrderService().getOrder(groupOrder.getOrderid()));
+                    groupExtn.put(groupOrder.getOrderid(), Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrder.getOrderid()));
                 }
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCARD ORDER GROUP");
@@ -90,8 +90,8 @@ public class EditDrugOrderFragmentController {
                 int group = Integer.parseInt(selectedNonActiveGroup);
                 List<drugorders> groupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(group);
                 for(drugorders groupOrder: groupOrders){
-                    groupMain.put(groupOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(groupOrder.getOrderId()));
-                    groupExtn.put(groupOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrder.getOrderId()));
+                    groupMain.put(groupOrder.getOrderid(), (DrugOrder) Context.getOrderService().getOrder(groupOrder.getOrderid()));
+                    groupExtn.put(groupOrder.getOrderid(), Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrder.getOrderid()));
                 }
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "RENEW ORDER GROUP");
@@ -111,10 +111,10 @@ public class EditDrugOrderFragmentController {
                 List<drugorders> planOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
                 for(drugorders planOrder: planOrders){
                     if(planOrder.getAssociateddiagnosis() == planConcept){
-                        groupMain.put(planOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
-                        groupExtn.put(planOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()));
+                        groupMain.put(planOrder.getOrderid(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid()));
+                        groupExtn.put(planOrder.getOrderid(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid()));
                         if(group == 0)
-                            group = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(planOrder.getOrderId()).getPlanid();
+                            group = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(planOrder.getOrderid()).getPlanid();
                     }
                 }
                 model.addAttribute("plan", planConcept.getDisplayString().toUpperCase());

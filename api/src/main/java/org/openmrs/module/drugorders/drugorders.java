@@ -23,9 +23,8 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-        private String Uuid;
         private Date startdate;
-        private Integer orderId;
+        private Integer orderid;
         private Integer groupid;
         private Concept drugname;
         private String patientid;
@@ -38,8 +37,8 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         private Integer refill;
         private Integer refillinterval;
         private String orderstatus;
-        private Integer onHold;
-        private Integer forDiscard;
+        private Integer onhold;
+        private Integer fordiscard;
         private Concept discontinuereason;
         private String discontinuationreasons;
         
@@ -63,12 +62,12 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.id = id;
 	}
         
-        public Integer getOrderId() {
-            return orderId;
+        public Integer getOrderid() {
+            return orderid;
         }
 
-        public void setOrderId(Integer orderId) {
-            this.orderId = orderId;
+        public void setOrderId(Integer orderid) {
+            this.orderid = orderid;
         }
     
         public Integer getGroupid() {
@@ -78,16 +77,6 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
         public void setGroupid(Integer groupid) {
             this.groupid = groupid;
         }
-    
-        @Override
-	public String getUuid() {
-		return Uuid;
-	}
-        
-        @Override
-	public void setUuid(String Uuid) {
-		this.Uuid = Uuid;
-	}
         
         public String getPatientid() {
 		return patientid;
@@ -185,20 +174,20 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.orderstatus = orderstatus;
 	}
            
-        public Integer getOnHold() {
-            return onHold;
+        public Integer getOnhold() {
+            return onhold;
         }
 
-        public void setOnHold(Integer onHold) {
-            this.onHold = onHold;
+        public void setOnhold(Integer onhold) {
+            this.onhold = onhold;
         }
         
-        public Integer getForDiscard() {
-		return forDiscard;
+        public Integer getFordiscard() {
+		return fordiscard;
 	}
 	
-	public void setForDiscard(Integer forDiscard) {
-		this.forDiscard = forDiscard;
+	public void setFordiscard(Integer fordiscard) {
+		this.fordiscard = fordiscard;
 	}
         
         public Concept getDiscontinuereason() {

@@ -35,7 +35,7 @@ public class MedicationPlansFragmentController {
         List<drugorders> activeMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
         
         for(drugorders activeMedOrder : activeMedOrders){
-            drugordersdiseases activeMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(activeMedOrder.getOrderId());
+            drugordersdiseases activeMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(activeMedOrder.getOrderid());
             
             if(!ActivePlanMain.containsKey(activeMedPlan.getDiseaseid())){
                 

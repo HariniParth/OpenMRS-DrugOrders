@@ -10,17 +10,16 @@
             <generator class="native" />
         </id>
         <discriminator column="id" insert="false" />
-        <property name="orderId" column="order_id" not-null="false" ></property>
+        <property name="orderid" column="orderid" not-null="false" ></property>
         <property name="groupid" column="groupid" not-null="false" ></property>
-        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
         <property name="patientid" type="java.lang.String" column="patientid" ></property>
         <many-to-one name="drugname" class="org.openmrs.Concept" column="drugname" />
         <property name="startdate" type="java.util.Date" column="startdate" ></property> 
         <property name="isallergic" column="isallergic" ></property>
         <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
         <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>
-        <property name="onHold" column="onHold" not-null="false" ></property>
-        <property name="forDiscard" column="forDiscard" not-null="false" ></property>
+        <property name="onhold" column="onhold" not-null="false" ></property>
+        <property name="fordiscard" column="fordiscard" not-null="false" ></property>
         <property name="refill" column="refill" ></property>
         <property name="refillinterval" column="refillinterval" ></property>
         <many-to-one name="priority" class="org.openmrs.Concept" column="priority" />
@@ -42,7 +41,6 @@
             <generator class="native" />
         </id>
         <discriminator column="id" insert="false" />
-        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
         <many-to-one name="diseaseid" class="org.openmrs.Concept" column="diseaseid" />
         <many-to-one name="drugid" class="org.openmrs.Concept" column="drugid" />
         <property name="dose" type="java.lang.Double" length="10" column="dose" ></property>
@@ -65,7 +63,6 @@
         <property name="planid" column="planid" not-null="false" ></property>
         <property name="orderid" column="orderid" not-null="false" ></property>
         <property name="patientid" type="java.lang.String" column="patientid" ></property>
-        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" ></property>
         <many-to-one name="diseaseid" class="org.openmrs.Concept" column="diseaseid" />
     </class>
     

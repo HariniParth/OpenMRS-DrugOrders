@@ -201,7 +201,7 @@ public class DrugordersPageController {
                         if(!(discontinueReasonNonCoded.equals(""))){
                             order.setDiscontinuationreasons(discontinueReasonNonCoded);
                         }
-                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
+                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderid()), "Discontinued-Group");
                     }
                     
                     InfoErrorMessageUtil.flashInfoMessage(session, "Orders Discontinued!");
@@ -212,7 +212,7 @@ public class DrugordersPageController {
                     int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
                     
                     for(drugorders order : orders){
-                        DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
+                        DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderid());
                         DrugOrder drugOrder = null;
                         drugorders drugorder = null;
                         int orderID = createNewDrugOrder(drugOrder, patient, order.getDrugname().getDisplayString(), drugOrderMain.getRoute().getDisplayString(), drugOrderMain.getDose().toString(), drugOrderMain.getDoseUnits().getDisplayString(), drugOrderMain.getQuantity().toString(), drugOrderMain.getQuantityUnits().getDisplayString(), drugOrderMain.getFrequency().getName(), drugOrderMain.getDuration(), drugOrderMain.getDurationUnits().getDisplayString());
@@ -275,7 +275,7 @@ public class DrugordersPageController {
                     if(orderClass.equals("PLAN")){
                         originalOrderExtension.setOrderstatus("Non-Active-Plan");
                         Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderstatus("Active-Plan");
-                        Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderid(order);
+                        Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderid()).setOrderid(order);
                     } 
                     else if(orderClass.equals("SINGLE")){
                         originalOrderExtension.setOrderstatus("Non-Active");
@@ -382,8 +382,8 @@ public class DrugordersPageController {
         drugorder.setOrderstatus("New");
         drugorder.setPriority(Context.getConceptService().getConceptByName(orderPriority));
         drugorder.setUuid(UUID.randomUUID().toString());
-        drugorder.setOnHold(0);
-        drugorder.setForDiscard(0);
+        drugorder.setOnhold(0);
+        drugorder.setFordiscard(0);
         
         if(Context.getConceptService().getConceptByName(diagnosis) == null){
             drugordersActivator activator = new drugordersActivator();

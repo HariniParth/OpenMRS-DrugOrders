@@ -29,7 +29,6 @@
                 <constraints nullable="true" foreignKeyName="order_id" references="orders(order_id)" />
             </column>
             <column name="groupid" type="int"></column>
-            <column name="uuid" type="varchar(255)"></column>
             <column name="patientid" type="varchar(50)"></column>
             <column name="drugname" type="int"></column>
             <column name="startdate" type="datetime"></column>
@@ -70,7 +69,6 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column> 
-            <column name="uuid" type="varchar(255)"></column>
             <column name="diseaseid" type="int"></column>
             <column name="drugid" type="int"></column>
             <column name="dose" type="double precision"></column>
@@ -103,9 +101,8 @@
             </column>
             <column name="planid" type="int"></column>
             <column name="orderid" type="int">
-                <constraints nullable="true" foreignKeyName="disease_order_id" references="orders(order_id)" />
+                <constraints nullable="true" foreignKeyName="plan_order_id" references="orders(order_id)" />
             </column>
-            <column name="uuid" type="varchar(255)"></column>
             <column name="diseaseid" type="int"></column>
             <column name="patientid" type="varchar(50)"></column>
             
