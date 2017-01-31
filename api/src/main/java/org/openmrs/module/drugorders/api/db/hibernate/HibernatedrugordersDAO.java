@@ -66,7 +66,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public drugorders getDrugOrderByOrderID(Integer orderID){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("orderId", orderID));
+        crit.add(Restrictions.eq("orderid", orderID));
         return (drugorders) crit.uniqueResult();
     };
 

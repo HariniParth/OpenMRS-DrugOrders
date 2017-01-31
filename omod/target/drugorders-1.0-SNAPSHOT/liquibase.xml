@@ -25,7 +25,7 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="order_id" type="int">
+            <column name="orderid" type="int">
                 <constraints nullable="true" foreignKeyName="order_id" references="orders(order_id)" />
             </column>
             <column name="groupid" type="int"></column>

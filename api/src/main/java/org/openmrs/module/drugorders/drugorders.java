@@ -66,7 +66,7 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
             return orderid;
         }
 
-        public void setOrderId(Integer orderid) {
+        public void setOrderid(Integer orderid) {
             this.orderid = orderid;
         }
     

@@ -373,7 +373,7 @@ public class DrugordersPageController {
     
     private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, String patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String orderPriority, int refill, int refillInterval, String patientInstructions, String pharmacistInstructions){
         drugorder = new drugorders();
-        drugorder.setOrderId(drugOrderID);
+        drugorder.setOrderid(drugOrderID);
         drugorder.setDrugname(Context.getConceptService().getConceptByName(drugName));
         drugorder.setStartdate(startDate);
         drugorder.setPatientid(patientID);
