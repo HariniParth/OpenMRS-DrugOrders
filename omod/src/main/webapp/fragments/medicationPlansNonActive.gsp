@@ -3,11 +3,11 @@
     def default_prio = "";
 %>
 
-<div id="drugOrderPlanDiscontinued">
+<div id="nonActivePlansTableWrapper">
     <form method="post" name="nonActivePlanForm" id="nonActivePlanForm">
         <input type="hidden" id="selectedNonActivePlan" name="selectedNonActivePlan" />
         
-        <table id="oldMedPlansTable">
+        <table id="nonActivePlansTable">
             <thead>
                 <tr>
                     <th>Plan Name</th>
@@ -60,7 +60,7 @@
 </div>
 
 <script>
-    jq('#oldMedPlansTable').dataTable({
+    jq('#nonActivePlansTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,

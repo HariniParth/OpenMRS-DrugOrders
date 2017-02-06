@@ -2,13 +2,13 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
-<div id="confirmNewPlanWindow" class="dialog">
+<div id="confirmPlanWindow" class="dialog">
     
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("MEDICATION PLAN") }</h3>
     </div><br/>
     
-    <div class="confirmMedicationPlanWindow">
+    <div>
         <form method="post">
             <h5 class="fields"><strong>${diseaseName}</strong>
                 <span class="fields" id="button"><i class="icon-plus edit-action right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${diseaseName}')"></i></span>

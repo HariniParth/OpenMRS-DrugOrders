@@ -3,7 +3,7 @@
     def allergicDrugList = "";
 %>
 
-<div id="medicationPlanWindow" class="dialog">
+<div id="medPlanWindow" class="dialog">
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("SELECT MEDICATION PLAN") }</h3>
     </div><br/>

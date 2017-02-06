@@ -3,7 +3,7 @@
     def selectedDisease = "";
 %>
 
-<div id="showDrugOrderView" class="dialog">
+<div id="showOrderWindow" class="dialog">
 
     <div class="dialog-header">
         <h3 id="dialog-heading"><label id="activeOrderAction"></label></h3>
@@ -101,7 +101,7 @@
             </div><br/><br/>
         </div>
 
-        <div id="view_window_close_btn">
+        <div id="btn-place">
             <button class="cancel right" onclick="hideDrugOrderViewWindow()">${ ui.message("Close") }</button>
         </div>
         
@@ -212,7 +212,7 @@
 
 
 <% if(newDrugOrders.size() > 0) { %>
-    <div id="confirmOrderView" class="dialog">
+    <div id="confirmOrderWindow" class="dialog">
         <div class="dialog-header">
             <h3 id="dialog-heading">${ ui.message("NEW INDIVIDUAL ORDERS") }</h3>
         </div>

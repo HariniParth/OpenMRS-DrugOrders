@@ -10,59 +10,31 @@ and open the template in the editor.
 
 .info-body{
     width: 100%;
-    height: 1000px;
+    overflow: hidden;
     background-color: white;
 }
 
-.info-body #orderSummaryBody{
+.info-body #orderList{
     width: 60%;
     float: left;
 }
 
-.info-body #orderSummaryBody #allergyList{
-    width: 100%;
+.info-body #orderExecute{
+    width: 38%;
+    float: right;
+}
+
+.info-body #planList{
+    width: 60%;
     float: left;
 }
 
-.info-body #orderSummaryBody #individualOrderWindow{
-    width: 100%;
-}
-
-.info-body #orderSummaryBody #currentDrugOrdersWindow{
-    width: 100%;
-}
-
-.info-body #orderSummaryBody .oldDrugOrdersWindow{
-    width: 100%;
-}
-
-.info-body #orderSummaryBody #medicationPlanOrderWindow{
-    width: 100%;
-}
-
-.info-body #orderSummaryBody #currentMedPlansWindow{
-    width: 100%;
-}
-
-.info-body #orderWindowsBody{
+.info-body #planExecute{
     width: 38%;
     float: right;
-    margin-right: 2px;
 }
 
-.info-body #orderWindowsBody #addMedicationPlanWindow{
-    width: 100%;
-}
-
-.info-body #orderWindowsBody #addSingleOrderDetailsWindow{
-    width: 100%;
-}
-
-.info-body #orderWindowsBody #drugOrderView{
-    width: 100%;
-}
-
-.info-body #orderWindowsBody #showEditOrderView{
+.info-body #allergyList, .info-body #orderList #pageLabel, .info-body #orderList #activeOrderWindow, .info-body #orderList .nonActiveOrderWindow, .info-body #orderExecute #medPlan, .info-body #orderExecute #createOrder, .info-body #orderExecute #editOrder{
     width: 100%;
 }
 
@@ -120,45 +92,29 @@ and open the template in the editor.
     border: 2px solid #00463f;
 }
 
-#currentDrugOrdersTableWrapper .dataTables_wrapper, #nonActiveOrdersWindow .dataTables_wrapper, #currentMedPlansTableWrapper .dataTables_wrapper, #drugOrderPlanDiscontinued .dataTables_wrapper{
+#activeOrdersTableWrapper .dataTables_wrapper, #nonActiveOrdersTableWrapper .dataTables_wrapper, #activePlansTableWrapper .dataTables_wrapper, #nonActivePlansTableWrapper .dataTables_wrapper{
    _height: 152px;
    min-height: 152px;
 }
 
-#currentDrugOrdersTable td:first-child{
+#activeOrdersTable td:first-child{
     width: 10%;
 }
 
-#currentDrugOrdersTable td:nth-child(2){
+#activeOrdersTable td:nth-child(2){
     width: 55%;
 }
 
-#currentDrugOrdersTable td:nth-child(3){
+#activeOrdersTable td:nth-child(3){
     width: 20%;
 }
 
-#currentDrugOrdersTable td:nth-child(4){
+#activeOrdersTable td:nth-child(4){
     width: 15%;
 }
 
-#medicationPlanWindow, #singleOrderDetailsWindow, .oldDrugOrdersWindow, #singleOrderView, #showDrugOrderView, #editOrderWindow, #renewOrderWindow, #createNewPlanWindow, #viewPlanWindow, #editMedPlanWindow, #deleteMedPlanWindow, #deleteMedPlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect{
+.nonActiveOrderWindow, #medPlanWindow, #plansDetailsView, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #createPlanWindow, #viewPlanWindow, #editPlanWindow, #deletePlanWindow, #deletePlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect{
     display: none;
-}
-
-.info-body #selectionWindow{
-    width: 60%;
-    float: left;
-}
-
-.info-body #creationWindow{
-    width: 38%;
-    float: right;
-    margin-right: 2px;
-}
-
-.existingMedPlansDetailsWindow{
-    display: none;
-    padding-bottom: 10px;
 }
 
 #adminLink{
@@ -193,7 +149,7 @@ and open the template in the editor.
     width: 98%;
 }
 
-#createNewPlanWindow, #deleteMedPlanItemWindow, #viewPlanWindow, #confirmNewPlanWindow, #deleteMedPlanWindow, #showRenewOrderView, #editMedPlanWindow, #singleOrderDetailsWindow, #medicationPlanWindow, #medPlanDetailsWindow, #showDrugOrderView, #confirmOrderView, #groupOrderList, #showGroupOrderWindow{
+#createPlanWindow, #showOrderWindow, #confirmOrderWindow, #deletePlanItemWindow, #viewPlanWindow, #confirmPlanWindow, #deletePlanWindow, #showRenewOrderView, #editPlanWindow, #createOrderWindow, #medPlanWindow, #medPlanDetailsWindow, #drugOrderView, #groupOrderList, #showGroupOrderWindow{
     background: #f3f3f3;
     border: 1px solid #eee;
     padding: 5px;

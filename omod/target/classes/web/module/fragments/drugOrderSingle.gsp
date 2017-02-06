@@ -3,12 +3,12 @@
     ui.includeJavascript("drugorders", "dataTables.js")
 %>
 
-<div id="currentDrugOrdersTableWrapper">
+<div id="activeOrdersTableWrapper">
     <form method="post" name="activeGroupForm" id="activeGroupForm">
         <input type="hidden" id="selectedActiveGroup" name="selectedActiveGroup" />
         <input type="hidden" id="selectedActiveOrder" name="selectedActiveOrder" />
         
-        <table id="currentDrugOrdersTable">
+        <table id="activeOrdersTable">
             <thead>
                 <tr>
                     <th>Group</th>
@@ -105,7 +105,7 @@
 </div>
 
 <script>
-    jq('#currentDrugOrdersTable').dataTable({
+    jq('#activeOrdersTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,

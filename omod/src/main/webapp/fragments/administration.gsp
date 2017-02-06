@@ -7,7 +7,7 @@
         <h3 id="dialog-heading">${ ui.message("PLAN DRUG") }</h3>
     </div><br/><br/>
     
-    <div id="viewMedPlanWindow" class="fields">
+    <div class="fields">
         <span id="order_label"><strong>Plan Name</strong></span>
         <span id="order_label">
             <label id="plan_disease"></label>
@@ -67,12 +67,12 @@
 </div>
   
 
-<div id="createNewPlanWindow" class="dialog">
+<div id="createPlanWindow" class="dialog">
     <div class="dialog-header">
         <span id="dialog-heading"><h3 id="adminActionType"></h3></span>
     </div><br/>
     
-    <div class="createMedicationPlanWindow">
+    <div>
         <form method="post">
             <input type="hidden" id="planId" name="planId" />
             
@@ -216,12 +216,12 @@
 </div>
 
 
-<div id="editMedPlanWindow" class="dialog">
+<div id="editPlanWindow" class="dialog">
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("RENAME PLAN") }</h3>
     </div><br/>
     
-    <div id="editMedicationPlanWindow">
+    <div>
         <form method="post">
             
             <label class="fields"><strong>Given Plan Name</strong>
@@ -240,12 +240,12 @@
     </div>
 </div>
 
-<div id="deleteMedPlanWindow" class="dialog">
+<div id="deletePlanWindow" class="dialog">
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("DISCARD PLAN") }</h3>
     </div><br/>
     
-    <div id="deleteMedicationPlanWindow">
+    <div>
         <form method="post">
             
             <label class="fields"><strong>Discard Medication Plan</strong> 
@@ -259,12 +259,12 @@
     </div>
 </div>
 
-<div id="deleteMedPlanItemWindow" class="dialog">
+<div id="deletePlanItemWindow" class="dialog">
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("DISCARD PLAN DRUG") }</h3>
     </div><br/>
     
-    <div id="deleteMedicationPlanItemWindow">
+    <div>
         <form method="post">
             <input type="hidden" id="medPlan_id" name="medPlan_id" />
             <label class="fields" id="order_label"><strong>Plan Name</strong></label>

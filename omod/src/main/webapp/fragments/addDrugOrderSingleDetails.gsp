@@ -2,7 +2,7 @@
     ui.includeCss("drugorders", "drugorders.css")
 %>
 
-<div id="singleOrderDetailsWindow" class="dialog">
+<div id="createOrderWindow" class="dialog">
     
     <form method="post">
 
