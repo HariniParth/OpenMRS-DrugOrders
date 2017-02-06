@@ -50,12 +50,12 @@ public class AdministrationActionFragmentController {
         medPlans.setUuid(UUID.randomUUID().toString());
         medPlans.setDose(Double.valueOf(drugDose));
         medPlans.setQuantity(Double.valueOf(drugQuantity));
-        medPlans.setDiseaseid(Context.getConceptService().getConceptByName(diseaseName));
-        medPlans.setDrugid(Context.getConceptService().getConceptByName(drugName));
-        medPlans.setDoseunits(Context.getConceptService().getConceptByName(drugDoseUnits));
+        medPlans.setDiseaseId(Context.getConceptService().getConceptByName(diseaseName));
+        medPlans.setDrugId(Context.getConceptService().getConceptByName(drugName));
+        medPlans.setDoseUnits(Context.getConceptService().getConceptByName(drugDoseUnits));
         medPlans.setDuration(drugDuration);
-        medPlans.setDurationunits(Context.getConceptService().getConceptByName(durationUnits));
-        medPlans.setQuantityunits(Context.getConceptService().getConceptByName(quantityUnits));
+        medPlans.setDurationUnits(Context.getConceptService().getConceptByName(durationUnits));
+        medPlans.setQuantityUnits(Context.getConceptService().getConceptByName(quantityUnits));
         medPlans.setRoute(Context.getConceptService().getConceptByName(drugRoute));
         
         OrderFrequency orderFrequency = Context.getOrderService().getOrderFrequencyByConcept(Context.getConceptService().getConceptByName(drugFrequency));

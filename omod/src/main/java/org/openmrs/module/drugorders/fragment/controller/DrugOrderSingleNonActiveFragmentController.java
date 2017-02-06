@@ -33,11 +33,11 @@ public class DrugOrderSingleNonActiveFragmentController {
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
-            if(dorder.getOrderstatus().equals("Non-Active"))
+            if(dorder.getOrderStatus().equals("Non-Active"))
                 dorders.add(dorder);
-            else if(dorder.getOrderstatus().equals("Non-Active-Group")){
-                if(groupDorders.get(dorder.getOrderid()) == null){
-                    groupDorders.put(dorder.getGroupid(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupid()));
+            else if(dorder.getOrderStatus().equals("Non-Active-Group")){
+                if(groupDorders.get(dorder.getOrderId()) == null){
+                    groupDorders.put(dorder.getGroupId(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupId()));
                 }
             }
         }

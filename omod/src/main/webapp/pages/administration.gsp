@@ -58,14 +58,14 @@
                                         
                                             <div class="detailsLink">
                                                 
-                                                <div class="fields" id="order_value" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')">
-                                                    <div>${med.drugid.getDisplayString()}</div>
-                                                    <div><span class="itemSummary">${med.dose} ${med.doseunits.getDisplayString()}, ${med.duration} ${med.durationunits.getDisplayString()}</span></div>
+                                                <div class="fields" id="order_value" onclick="viewMedPlanWindow('${medPlan.key.getDisplayString().toUpperCase()}','${med.drugId.getDisplayString()}','${med.dose}','${med.doseUnits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityUnits.getDisplayString()}','${med.duration}','${med.durationUnits.getDisplayString()}','${med.frequency}')">
+                                                    <div>${med.drugId.getDisplayString()}</div>
+                                                    <div><span class="itemSummary">${med.dose} ${med.doseUnits.getDisplayString()}, ${med.duration} ${med.durationUnits.getDisplayString()}</span></div>
                                                 </div>
                                                 
                                                 <div id="button" class="pull-right">
-                                                    <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
-                                                    <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseid.getDisplayString()}','${med.drugid.getDisplayString()}','${med.dose}','${med.doseunits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityunits.getDisplayString()}','${med.duration}','${med.durationunits.getDisplayString()}','${med.frequency}')"></i>
+                                                    <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${med.id}','${med.diseaseId.getDisplayString()}','${med.drugId.getDisplayString()}','${med.dose}','${med.doseUnits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityUnits.getDisplayString()}','${med.duration}','${med.durationUnits.getDisplayString()}','${med.frequency}')"></i>
+                                                    <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${med.id}','${med.diseaseId.getDisplayString()}','${med.drugId.getDisplayString()}','${med.dose}','${med.doseUnits.getDisplayString()}','${med.route.getDisplayString()}','${med.quantity}','${med.quantityUnits.getDisplayString()}','${med.duration}','${med.durationUnits.getDisplayString()}','${med.frequency}')"></i>
                                                 </div><br/>
                                                 
                                             </div>

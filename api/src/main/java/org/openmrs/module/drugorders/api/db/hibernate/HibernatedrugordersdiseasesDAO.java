@@ -44,10 +44,10 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     };
     
     @Override
-    public drugordersdiseases getDrugOrderByOrderID(Integer id){
+    public drugordersdiseases getDrugOrderByOrderID(Integer orderId){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
-        crit.add(Restrictions.eq("orderid", id));
+        crit.add(Restrictions.eq("orderId", orderId));
         return (drugordersdiseases) crit.uniqueResult();
     };
     
@@ -58,10 +58,10 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
      */
     @Transactional(readOnly = true)
     @Override
-    public List<drugordersdiseases> getDrugOrdersByPlanID(Integer plan){
+    public List<drugordersdiseases> getDrugOrdersByPlanID(Integer planId){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
-        crit.add(Restrictions.eq("planid", plan));
+        crit.add(Restrictions.eq("planId", planId));
         return crit.list();
     };
     
@@ -70,7 +70,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
-        crit.add(Restrictions.eq("diseaseid", concept)).add(Restrictions.eq("patientid", Integer.toString(patient.getPatientId())));
+        crit.add(Restrictions.eq("diseaseId", concept)).add(Restrictions.eq("patientId", Integer.toString(patient.getPatientId())));
         return crit.list();
     };
     
@@ -81,15 +81,15 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
         crit.setProjection(Projections.property("id"));
         List l=crit.list();
         Iterator it=l.iterator();
-        int planID = 0;
+        int planId = 0;
         if(it.hasNext()){
-            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugordersdiseases.class).setProjection(Projections.max("planid"));
+            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugordersdiseases.class).setProjection(Projections.max("planId"));
             if(critMax.uniqueResult() == null)
-                planID = 0;
+                planId = 0;
             else
-                planID = (Integer)critMax.uniqueResult();
+                planId = (Integer)critMax.uniqueResult();
         }
             
-        return planID;
+        return planId;
     };
 }

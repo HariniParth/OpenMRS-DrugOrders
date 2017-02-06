@@ -63,18 +63,18 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     };
     
     @Override
-    public drugorders getDrugOrderByOrderID(Integer orderID){
+    public drugorders getDrugOrderByOrderID(Integer orderId){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("orderid", orderID));
+        crit.add(Restrictions.eq("orderId", orderId));
         return (drugorders) crit.uniqueResult();
     };
 
     @Override
-    public List<drugorders> getDrugOrdersByGroupID(Integer groupID){
+    public List<drugorders> getDrugOrdersByGroupID(Integer groupId){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("groupid", groupID));
+        crit.add(Restrictions.eq("groupId", groupId));
         return crit.list();
     };
     
@@ -82,7 +82,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public List<drugorders> getDrugOrdersByPatient(Patient patient) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("patientid", Integer.toString(patient.getPatientId())));
+        crit.add(Restrictions.eq("patientId", Integer.toString(patient.getPatientId())));
         return crit.list();
     };
     
@@ -93,23 +93,23 @@ public class HibernatedrugordersDAO implements drugordersDAO {
         crit.setProjection(Projections.property("id"));
         List l=crit.list();
         Iterator it=l.iterator();
-        int groupID = 0;
+        int groupId = 0;
         if(it.hasNext()){
-            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugorders.class).setProjection(Projections.max("groupid"));
+            Criteria critMax = sessionFactory.getCurrentSession().createCriteria(drugorders.class).setProjection(Projections.max("groupId"));
             if(critMax.uniqueResult() == null)
-                groupID = 0;
+                groupId = 0;
             else
-                groupID = (Integer)critMax.uniqueResult();
+                groupId = (Integer)critMax.uniqueResult();
         }
             
-        return groupID;
+        return groupId;
     };
     
     @Override
     public drugorders getDrugOrderByDrugAndPatient(Concept drug, Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("drugname", drug)).add(Restrictions.eq("patientid", patient.getPatientId().toString()));
+        crit.add(Restrictions.eq("drugName", drug)).add(Restrictions.eq("patientId", patient.getPatientId().toString()));
         return (drugorders) crit.uniqueResult();
     };
     
@@ -117,7 +117,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public List<drugorders> getDrugOrdersByPatientAndStatus(Patient patient, String status){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("orderstatus", status)).add(Restrictions.eq("patientid", patient.getPatientId().toString()));
+        crit.add(Restrictions.eq("orderStatus", status)).add(Restrictions.eq("patientId", patient.getPatientId().toString()));
         return crit.list();
     };
     

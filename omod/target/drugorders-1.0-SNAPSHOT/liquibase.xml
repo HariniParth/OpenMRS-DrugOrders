@@ -25,30 +25,30 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="orderid" type="int">
+            <column name="order_id" type="int">
                 <constraints nullable="true" foreignKeyName="order_id" references="orders(order_id)" />
             </column>
-            <column name="groupid" type="int"></column>
-            <column name="patientid" type="varchar(50)"></column>
-            <column name="drugname" type="int"></column>
-            <column name="startdate" type="datetime"></column>
-            <column name="isallergic" type="tinyint(1)"></column>
-            <column name="isallergicorderreasons" type="varchar(255)"></column>          
-            <column name="associateddiagnosis" type="int"></column>
-            <column name="patientinstructions" type="varchar(255)"></column>
-            <column name="pharmacistinstructions" type="varchar(255)"></column> 
+            <column name="group_id" type="int"></column>
+            <column name="patient_id" type="varchar(50)"></column>
+            <column name="drug_name" type="int"></column>
+            <column name="start_date" type="datetime"></column>
+            <column name="is_allergic" type="tinyint(1)"></column>
+            <column name="is_allergic_order_reasons" type="varchar(255)"></column>          
+            <column name="associated_diagnosis" type="int"></column>
+            <column name="patient_instructions" type="varchar(255)"></column>
+            <column name="pharmacist_instructions" type="varchar(255)"></column> 
             <column name="priority" type="int"></column>
             <column name="refill" type="int"></column>
-            <column name="refillinterval" type="int"></column>
-            <column name="orderstatus" type="varchar(50)"></column>
-            <column name="onHold" type="tinyint(1)"></column>
-            <column name="forDiscard" type="tinyint(1)"></column>
-            <column name="discontinuereason" type="int"></column>
-            <column name="discontinuationreasons" type="varchar(255)"></column>
-            <column name="lastdispatchdate" type="datetime"></column>
-            <column name="drugexpirydate" type="datetime"></column>
-            <column name="commentfororderer" type="varchar(255)"></column>
-            <column name="commentforpatient" type="varchar(255)"></column>
+            <column name="refill_interval" type="int"></column>
+            <column name="order_status" type="varchar(50)"></column>
+            <column name="on_hold" type="tinyint(1)"></column>
+            <column name="for_discard" type="tinyint(1)"></column>
+            <column name="discontinue_reason" type="int"></column>
+            <column name="discontinuation_reasons" type="varchar(255)"></column>
+            <column name="last_dispatch_date" type="datetime"></column>
+            <column name="drug_expiry_date" type="datetime"></column>
+            <column name="comment_for_orderer" type="varchar(255)"></column>
+            <column name="comment_for_patient" type="varchar(255)"></column>
             
         </createTable>
     </changeSet>
@@ -69,14 +69,14 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column> 
-            <column name="diseaseid" type="int"></column>
-            <column name="drugid" type="int"></column>
+            <column name="disease_id" type="int"></column>
+            <column name="drug_id" type="int"></column>
             <column name="dose" type="double precision"></column>
-            <column name="doseunits" type="int"></column>
+            <column name="dose_units" type="int"></column>
             <column name="quantity" type="double precision"></column>
-            <column name="quantityunits" type="int"></column>
+            <column name="quantity_units" type="int"></column>
             <column name="duration" type="int"></column>
-            <column name="durationunits" type="int"></column>
+            <column name="duration_units" type="int"></column>
             <column name="route" type="int"></column>
             <column name="frequency" type="int"></column>
             
@@ -99,12 +99,12 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="planid" type="int"></column>
-            <column name="orderid" type="int">
+            <column name="plan_id" type="int"></column>
+            <column name="order_id" type="int">
                 <constraints nullable="true" foreignKeyName="plan_order_id" references="orders(order_id)" />
             </column>
-            <column name="diseaseid" type="int"></column>
-            <column name="patientid" type="varchar(50)"></column>
+            <column name="disease_id" type="int"></column>
+            <column name="patient_id" type="varchar(50)"></column>
             
         </createTable>
     </changeSet>

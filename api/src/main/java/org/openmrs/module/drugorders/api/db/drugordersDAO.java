@@ -24,8 +24,8 @@ public interface drugordersDAO {
     public List<drugorders> getOrdersOnHold();
     public List<drugorders> getOrdersForDiscard();
     public drugorders saveDrugOrder(drugorders drugOrder);
-    public drugorders getDrugOrderByOrderID(Integer orderID);    
-    public List<drugorders> getDrugOrdersByGroupID(Integer groupID);
+    public drugorders getDrugOrderByOrderID(Integer orderId);    
+    public List<drugorders> getDrugOrdersByGroupID(Integer groupId);
     public List<drugorders> getDrugOrdersByPatient(Patient patient);
     public drugorders getDrugOrderByDrugAndPatient(Concept drug, Patient patient);
     public List<drugorders> getDrugOrdersByPatientAndStatus(Patient patient, String status);

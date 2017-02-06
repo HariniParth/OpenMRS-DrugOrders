@@ -37,9 +37,9 @@ public interface drugordersService extends OpenmrsService {
     
     public drugorders saveDrugOrder(drugorders drugOrder);
     
-    public drugorders getDrugOrderByOrderID(Integer orderID);
+    public drugorders getDrugOrderByOrderID(Integer orderId);
      
-    public List<drugorders> getDrugOrdersByGroupID(Integer groupID);
+    public List<drugorders> getDrugOrdersByGroupID(Integer groupId);
     
     public List<drugorders> getDrugOrdersByPatient(Patient patient);
     

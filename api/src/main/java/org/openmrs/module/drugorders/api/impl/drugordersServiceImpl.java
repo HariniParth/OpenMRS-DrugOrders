@@ -70,14 +70,14 @@ public class drugordersServiceImpl extends BaseOpenmrsService implements drugord
     
     @Transactional(readOnly = true)
     @Override
-    public drugorders getDrugOrderByOrderID(Integer orderID){
-        return dao.getDrugOrderByOrderID(orderID);
+    public drugorders getDrugOrderByOrderID(Integer orderId){
+        return dao.getDrugOrderByOrderID(orderId);
     }
     
     @Transactional(readOnly = true)
     @Override
-    public List<drugorders> getDrugOrdersByGroupID(Integer groupID){
-        return dao.getDrugOrdersByGroupID(groupID);
+    public List<drugorders> getDrugOrdersByGroupID(Integer groupId){
+        return dao.getDrugOrdersByGroupID(groupId);
     }
     
     @Transactional(readOnly = true)

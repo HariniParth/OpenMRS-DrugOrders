@@ -18,16 +18,16 @@ import org.openmrs.BaseOpenmrsObject;
 public class medicationplans extends BaseOpenmrsObject implements Serializable{
     
     private Integer id;
-    private Concept diseaseid;
-    private Concept drugid;
-    private Concept route;
-    private OrderFrequency frequency;
     private Double dose;
-    private Concept doseunits;
-    private Integer duration;
-    private Concept durationunits;
+    private Concept route;
+    private Concept drugId;
     private Double quantity;
-    private Concept quantityunits;
+    private Integer duration;
+    private Concept diseaseId;
+    private Concept doseUnits;
+    private Concept durationUnits;
+    private Concept quantityUnits;
+    private OrderFrequency frequency;
     
     public medicationplans(){
         
@@ -43,20 +43,20 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
             this.id = id;
     }
     
-    public Concept getDiseaseid() {
-            return diseaseid;
+    public Concept getDiseaseId() {
+            return diseaseId;
     }
 
-    public void setDiseaseid(Concept diseaseid) {
-            this.diseaseid = diseaseid;
+    public void setDiseaseId(Concept diseaseId) {
+            this.diseaseId = diseaseId;
     }
 
-    public Concept getDrugid() {
-            return drugid;
+    public Concept getDrugId() {
+            return drugId;
     }
 
-    public void setDrugid(Concept drugid) {
-            this.drugid = drugid;
+    public void setDrugId(Concept drugId) {
+            this.drugId = drugId;
     }
 
     public Concept getRoute() {
@@ -83,12 +83,12 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
             this.dose = dose;
     }
 
-    public Concept getDoseunits() {
-            return doseunits;
+    public Concept getDoseUnits() {
+            return doseUnits;
     }
 
-    public void setDoseunits(Concept doseunits) {
-            this.doseunits = doseunits;
+    public void setDoseUnits(Concept doseUnits) {
+            this.doseUnits = doseUnits;
     }
 
     public Double getQuantity() {
@@ -99,12 +99,12 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
             this.quantity = quantity;
     }
 
-    public Concept getQuantityunits() {
-            return quantityunits;
+    public Concept getQuantityUnits() {
+            return quantityUnits;
     }
 
-    public void setQuantityunits(Concept quantityunits) {
-            this.quantityunits = quantityunits;
+    public void setQuantityUnits(Concept quantityUnits) {
+            this.quantityUnits = quantityUnits;
     }
 
     public Integer getDuration() {
@@ -115,12 +115,12 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
             this.duration = duration;
     }
 
-    public Concept getDurationunits() {
-            return durationunits;
+    public Concept getDurationUnits() {
+            return durationUnits;
     }
 
-    public void setDurationunits(Concept durationunits) {
-            this.durationunits = durationunits;
+    public void setDurationUnits(Concept durationUnits) {
+            this.durationUnits = durationUnits;
     }
         
 }

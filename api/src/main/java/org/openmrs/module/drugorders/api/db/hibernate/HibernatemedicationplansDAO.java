@@ -51,7 +51,7 @@ public class HibernatemedicationplansDAO implements medicationplansDAO {
         
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 medicationplans.class);
-        crit.add(Restrictions.eq("diseaseid", concept));
+        crit.add(Restrictions.eq("diseaseId", concept));
         return crit.list();
     };
     

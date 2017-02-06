@@ -50,7 +50,7 @@ public class AddNewOrderFragmentController {
         
         List<String> drugsNames = new ArrayList<String>();
         for(medicationplans medplan : medplans){
-            drugsNames.add(medplan.getDrugid().getDisplayString().trim());
+            drugsNames.add(medplan.getDrugId().getDisplayString().trim());
         }
         model.addAttribute("drugsNames", drugsNames);
         

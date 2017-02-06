@@ -52,7 +52,7 @@ public class AdministrationPageController {
                 if ("editPlan".equals(action)) {
                     List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(oldPlanName));
                     for(medicationplans medPlan : medPlans){
-                        medPlan.setDiseaseid(Context.getConceptService().getConceptByName(newPlanName));
+                        medPlan.setDiseaseId(Context.getConceptService().getConceptByName(newPlanName));
                         Context.getService(medicationplansService.class).saveMedicationPlan(medPlan);
                     }
                     
@@ -93,7 +93,7 @@ public class AdministrationPageController {
 
                 @Override
                 public int compare(medicationplans p1, medicationplans p2) {
-                    return p1.getDiseaseid().getDisplayString().compareTo(p2.getDiseaseid().getDisplayString());
+                    return p1.getDiseaseId().getDisplayString().compareTo(p2.getDiseaseId().getDisplayString());
                 }
 
             });

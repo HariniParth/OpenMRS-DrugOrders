@@ -23,30 +23,32 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-        private Date startdate;
-        private Integer orderid;
-        private Integer groupid;
-        private Concept drugname;
-        private String patientid;
-        private Integer isallergic;
-        private String isallergicorderreasons;
-        private Concept associateddiagnosis;
-        private String patientinstructions;
-        private String pharmacistinstructions;
-        private Concept priority;
+        private Date startDate;
+        private Integer orderId;
+        private Integer groupId;
+        private Concept drugName;
+        private String patientId;
+        
+        private Integer isAllergic;
+        private Concept associatedDiagnosis;
+        private String isAllergicOrderReasons;
+        private String patientInstructions;
+        private String pharmacistInstructions;
+                
+        private Integer onHold;
         private Integer refill;
-        private Integer refillinterval;
-        private String orderstatus;
-        private Integer onhold;
-        private Integer fordiscard;
-        private Concept discontinuereason;
-        private String discontinuationreasons;
+        private Concept priority;
+        private Integer forDiscard;
+        private String orderStatus;
+        private Integer refillInterval;
+        private Concept discontinueReason;
+        private String discontinuationReasons;
         
-        private String commentfororderer;
-        private String commentforpatient;
-        private Date lastdispatchdate;
-        private Date drugexpirydate;
-        
+        private Date drugExpiryDate;
+        private Date lastDispatchDate;
+        private String commentForOrderer;
+        private String commentForPatient;
+             
 	
         public drugorders(){
             
@@ -62,84 +64,84 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.id = id;
 	}
         
-        public Integer getOrderid() {
-            return orderid;
+        public Integer getOrderId() {
+            return orderId;
         }
 
-        public void setOrderid(Integer orderid) {
-            this.orderid = orderid;
+        public void setOrderId(Integer orderId) {
+            this.orderId = orderId;
         }
     
-        public Integer getGroupid() {
-            return groupid;
+        public Integer getGroupId() {
+            return groupId;
         }
 
-        public void setGroupid(Integer groupid) {
-            this.groupid = groupid;
+        public void setGroupId(Integer groupId) {
+            this.groupId = groupId;
         }
         
-        public String getPatientid() {
-		return patientid;
+        public String getPatientId() {
+		return patientId;
 	}
 
-	public void setPatientid(String patientid) {
-		this.patientid = patientid;
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
 	}
         
-        public Concept getDrugname() {
-		return drugname;
+        public Concept getDrugName() {
+		return drugName;
 	}
 
-	public void setDrugname(Concept drugname) {
-		this.drugname = drugname;
+	public void setDrugName(Concept drugName) {
+		this.drugName = drugName;
 	}
         
-        public Date getStartdate() {
-            return startdate;
+        public Date getStartDate() {
+            return startDate;
         }
 
-        public void setStartdate(Date startdate) {
-            this.startdate = startdate;
+        public void setStartDate(Date startDate) {
+            this.startDate = startDate;
         }
         
-        public Integer getIsallergic() {
-		return isallergic;
+        public Integer getIsAllergic() {
+		return isAllergic;
 	}
 	
-	public void setIsallergic(Integer isallergic) {
-		this.isallergic = isallergic;
+	public void setIsAllergic(Integer isAllergic) {
+		this.isAllergic = isAllergic;
 	}
         
-        public String getIsallergicorderreasons() {
-		return isallergicorderreasons;
+        public String getIsAllergicOrderReasons() {
+		return isAllergicOrderReasons;
 	}
 
-	public void setIsallergicorderreasons(String isallergicorderreasons) {
-		this.isallergicorderreasons = isallergicorderreasons;
+	public void setIsAllergicOrderReasons(String isAllergicOrderReasons) {
+		this.isAllergicOrderReasons = isAllergicOrderReasons;
 	}
         
-        public Concept getAssociateddiagnosis() {
-		return associateddiagnosis;
+        public Concept getAssociatedDiagnosis() {
+		return associatedDiagnosis;
 	}
 
-	public void setAssociateddiagnosis(Concept associateddiagnosis) {
-		this.associateddiagnosis = associateddiagnosis;
+	public void setAssociatedDiagnosis(Concept associatedDiagnosis) {
+		this.associatedDiagnosis = associatedDiagnosis;
 	}
         
-        public String getPatientinstructions() {
-		return patientinstructions;
+        public String getPatientInstructions() {
+		return patientInstructions;
 	}
 
-	public void setPatientinstructions(String patientinstructions) {
-		this.patientinstructions = patientinstructions;
+	public void setPatientInstructions(String patientInstructions) {
+		this.patientInstructions = patientInstructions;
 	}
         
-        public String getPharmacistinstructions() {
-		return pharmacistinstructions;
+        public String getPharmacistInstructions() {
+		return pharmacistInstructions;
 	}
 
-	public void setPharmacistinstructions(String pharmacistinstructions) {
-		this.pharmacistinstructions = pharmacistinstructions;
+	public void setPharmacistInstructions(String pharmacistInstructions) {
+		this.pharmacistInstructions = pharmacistInstructions;
 	} 
         
         public Concept getPriority() {
@@ -150,12 +152,12 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.priority = priority;
 	}
         
-        public Integer getRefillinterval() {
-		return refillinterval;
+        public Integer getRefillInterval() {
+		return refillInterval;
 	}
 
-	public void setRefillinterval(Integer refillinterval) {
-		this.refillinterval = refillinterval;
+	public void setRefillInterval(Integer refillInterval) {
+		this.refillInterval = refillInterval;
 	}
         
         public Integer getRefill() {
@@ -166,75 +168,75 @@ public class drugorders extends BaseOpenmrsObject implements Serializable {
 		this.refill = refill;
 	}
         
-        public String getOrderstatus() {
-		return orderstatus;
+        public String getOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setOrderstatus(String orderstatus) {
-		this.orderstatus = orderstatus;
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
            
-        public Integer getOnhold() {
-            return onhold;
+        public Integer getOnHold() {
+            return onHold;
         }
 
-        public void setOnhold(Integer onhold) {
-            this.onhold = onhold;
+        public void setOnHold(Integer onHold) {
+            this.onHold = onHold;
         }
         
-        public Integer getFordiscard() {
-		return fordiscard;
+        public Integer getForDiscard() {
+		return forDiscard;
 	}
 	
-	public void setFordiscard(Integer fordiscard) {
-		this.fordiscard = fordiscard;
+	public void setForDiscard(Integer forDiscard) {
+		this.forDiscard = forDiscard;
 	}
         
-        public Concept getDiscontinuereason() {
-		return discontinuereason;
+        public Concept getDiscontinueReason() {
+		return discontinueReason;
 	}
 
-	public void setDiscontinuereason(Concept discontinuereason) {
-		this.discontinuereason = discontinuereason;
+	public void setDiscontinueReason(Concept discontinueReason) {
+		this.discontinueReason = discontinueReason;
 	}
         
-        public String getDiscontinuationreasons() {
-		return discontinuationreasons;
+        public String getDiscontinuationReasons() {
+		return discontinuationReasons;
 	}
 
-	public void setDiscontinuationreasons(String discontinuationreasons) {
-		this.discontinuationreasons = discontinuationreasons;
+	public void setDiscontinuationReasons(String discontinuationReasons) {
+		this.discontinuationReasons = discontinuationReasons;
 	}
                 
-        public Date getLastdispatchdate() {
-            return lastdispatchdate;
+        public Date getLastDispatchDate() {
+            return lastDispatchDate;
         }
 
-        public void setLastdispatchdate(Date lastdispatchdate) {
-            this.lastdispatchdate = lastdispatchdate;
-        }
-        
-        public Date getDrugexpirydate() {
-            return drugexpirydate;
-        }
-
-        public void setDrugexpirydate(Date drugexpirydate) {
-            this.drugexpirydate = drugexpirydate;
+        public void setLastDispatchDate(Date lastDispatchDate) {
+            this.lastDispatchDate = lastDispatchDate;
         }
         
-        public String getCommentfororderer() {
-		return commentfororderer;
+        public Date getDrugExpiryDate() {
+            return drugExpiryDate;
+        }
+
+        public void setDrugExpiryDate(Date drugExpiryDate) {
+            this.drugExpiryDate = drugExpiryDate;
+        }
+        
+        public String getCommentForOrderer() {
+		return commentForOrderer;
 	}
 
-	public void setCommentfororderer(String commentfororderer) {
-		this.commentfororderer = commentfororderer;
+	public void setCommentForOrderer(String commentForOrderer) {
+		this.commentForOrderer = commentForOrderer;
 	}
         
-        public String getCommentforpatient() {
-		return commentforpatient;
+        public String getCommentForPatient() {
+		return commentForPatient;
 	}
 
-	public void setCommentforpatient(String commentforpatient) {
-		this.commentforpatient = commentforpatient;
+	public void setCommentForPatient(String commentForPatient) {
+		this.commentForPatient = commentForPatient;
 	}
 }

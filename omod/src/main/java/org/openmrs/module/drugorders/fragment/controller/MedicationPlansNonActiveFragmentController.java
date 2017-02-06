@@ -37,10 +37,10 @@ public class MedicationPlansNonActiveFragmentController {
         List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Non-Active-Plan");
         
         for(drugorders nonActiveMedOrder : nonActiveMedOrders){
-            drugordersdiseases nonActiveMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(nonActiveMedOrder.getOrderid());
+            drugordersdiseases nonActiveMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(nonActiveMedOrder.getOrderId());
             
-            if(!NonActivePlanMain.containsKey(nonActiveMedPlan.getPlanid())){
-                List<drugordersdiseases> ordersByPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(nonActiveMedPlan.getPlanid());
+            if(!NonActivePlanMain.containsKey(nonActiveMedPlan.getPlanId())){
+                List<drugordersdiseases> ordersByPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(nonActiveMedPlan.getPlanId());
                 
                 HashMap<Concept, HashMap<Integer, DrugOrder>> planMain = new HashMap<Concept, HashMap<Integer, DrugOrder>>();
                 HashMap<Concept, HashMap<Integer, drugorders>> planExtn = new HashMap<Concept, HashMap<Integer, drugorders>>();
@@ -50,19 +50,19 @@ public class MedicationPlansNonActiveFragmentController {
                 ArrayList<String> drugNames = new ArrayList<String>();
                 
                 for(drugordersdiseases orderByPlan : ordersByPlan){
-                    int order = orderByPlan.getOrderid();
+                    int order = orderByPlan.getOrderId();
                     orderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
                     orderExtn.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
-                    drugNames.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getDrugname().getDisplayString());
+                    drugNames.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getDrugName().getDisplayString());
                 }
                 
-                planMain.put(nonActiveMedPlan.getDiseaseid(), orderMain);
-                planExtn.put(nonActiveMedPlan.getDiseaseid(), orderExtn);
+                planMain.put(nonActiveMedPlan.getDiseaseId(), orderMain);
+                planExtn.put(nonActiveMedPlan.getDiseaseId(), orderExtn);
                 
-                NonActivePlanMain.put(nonActiveMedPlan.getPlanid(), planMain);
-                NonActivePlanExtension.put(nonActiveMedPlan.getPlanid(), planExtn);
+                NonActivePlanMain.put(nonActiveMedPlan.getPlanId(), planMain);
+                NonActivePlanExtension.put(nonActiveMedPlan.getPlanId(), planExtn);
                 
-                planDrugs.put(nonActiveMedPlan.getPlanid(), drugNames);
+                planDrugs.put(nonActiveMedPlan.getPlanId(), drugNames);
             }
         }
         

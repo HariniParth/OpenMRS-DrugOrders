@@ -18,7 +18,7 @@ public interface medicationplansService extends OpenmrsService{
         
     public void deleteMedicationPlan(medicationplans plan);
     
-    public medicationplans getMedicationPlan(Integer planID);
+    public medicationplans getMedicationPlan(Integer planId);
     
     public medicationplans saveMedicationPlan(medicationplans plan);
     

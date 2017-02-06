@@ -35,24 +35,24 @@ public class MedicationPlansFragmentController {
         List<drugorders> activeMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
         
         for(drugorders activeMedOrder : activeMedOrders){
-            drugordersdiseases activeMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(activeMedOrder.getOrderid());
+            drugordersdiseases activeMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(activeMedOrder.getOrderId());
             
-            if(!ActivePlanMain.containsKey(activeMedPlan.getDiseaseid())){
+            if(!ActivePlanMain.containsKey(activeMedPlan.getDiseaseId())){
                 
                 HashMap<Integer,DrugOrder> drugOrderMain = new HashMap<Integer,DrugOrder>();
                 HashMap<Integer,drugorders> drugOrderExtension = new HashMap<Integer,drugorders>();
-                List<drugordersdiseases> ordersForPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(activeMedPlan.getPlanid());
+                List<drugordersdiseases> ordersForPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(activeMedPlan.getPlanId());
                 
                 for(drugordersdiseases orderPlan : ordersForPlan){
-                    int order = orderPlan.getOrderid();
-                    if(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getOrderstatus().equals("Active-Plan")){
+                    int order = orderPlan.getOrderId();
+                    if(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getOrderStatus().equals("Active-Plan")){
                         drugOrderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
                         drugOrderExtension.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
                     }
                 }
                 
-                ActivePlanMain.put(activeMedPlan.getDiseaseid(), drugOrderMain);
-                ActivePlanExtension.put(activeMedPlan.getDiseaseid(), drugOrderExtension);
+                ActivePlanMain.put(activeMedPlan.getDiseaseId(), drugOrderMain);
+                ActivePlanExtension.put(activeMedPlan.getDiseaseId(), drugOrderExtension);
             }
         }
             

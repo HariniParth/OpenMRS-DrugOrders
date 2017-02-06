@@ -10,28 +10,28 @@
             <generator class="native" />
         </id>
         <discriminator column="id" insert="false" />
-        <property name="orderid" column="orderid" not-null="false" ></property>
-        <property name="groupid" column="groupid" not-null="false" ></property>
-        <property name="patientid" type="java.lang.String" column="patientid" ></property>
-        <many-to-one name="drugname" class="org.openmrs.Concept" column="drugname" />
-        <property name="startdate" type="java.util.Date" column="startdate" ></property> 
-        <property name="isallergic" column="isallergic" ></property>
-        <property name="isallergicorderreasons" type="java.lang.String" column="isallergicorderreasons" ></property>
-        <property name="orderstatus" type="java.lang.String" column="orderstatus" ></property>
-        <property name="onhold" column="onhold" not-null="false" ></property>
-        <property name="fordiscard" column="fordiscard" not-null="false" ></property>
+        <property name="orderId" column="order_id" not-null="false" ></property>
+        <property name="groupId" column="group_id" not-null="false" ></property>
+        <property name="patientId" column="patient_id" type="java.lang.String" ></property>
+        <many-to-one name="drugName" column="drug_name" class="org.openmrs.Concept" />
+        <property name="startDate" column="start_date" type="java.util.Date" ></property> 
+        <property name="isAllergic" column="is_allergic" not-null="false" ></property>
+        <property name="isAllergicOrderReasons" column="is_allergic_order_reasons" type="java.lang.String" ></property>
+        <property name="orderStatus" column="order_status" type="java.lang.String" ></property>
+        <property name="onHold" column="on_hold" not-null="false" ></property>
+        <property name="forDiscard" column="for_discard" not-null="false" ></property>
         <property name="refill" column="refill" ></property>
-        <property name="refillinterval" column="refillinterval" ></property>
-        <many-to-one name="priority" class="org.openmrs.Concept" column="priority" />
-        <many-to-one name="discontinuereason" class="org.openmrs.Concept" column="discontinuereason" />
-        <property name="discontinuationreasons" type="java.lang.String" column="discontinuationreasons" ></property>
-        <many-to-one name="associateddiagnosis" class="org.openmrs.Concept" column="associateddiagnosis" />
-        <property name="patientinstructions" type="java.lang.String" column="patientinstructions" length="255" ></property> 
-        <property name="pharmacistinstructions" type="java.lang.String" column="pharmacistinstructions" length="255" ></property>
-        <property name="lastdispatchdate" type="java.util.Date" column="lastdispatchdate" ></property>
-        <property name="drugexpirydate" type="java.util.Date" column="drugexpirydate" ></property> 
-        <property name="commentfororderer" type="java.lang.String" column="commentfororderer" length="255"></property> 
-        <property name="commentforpatient" type="java.lang.String" column="commentforpatient" length="255"></property> 
+        <property name="refillInterval" column="refill_interval" ></property>
+        <many-to-one name="priority" column="priority" class="org.openmrs.Concept" />
+        <many-to-one name="discontinueReason" column="discontinue_reason" class="org.openmrs.Concept" />
+        <property name="discontinuationReasons" column="discontinuation_reasons" type="java.lang.String" ></property>
+        <many-to-one name="associatedDiagnosis" column="associated_diagnosis" class="org.openmrs.Concept" />
+        <property name="patientInstructions" column="patient_instructions" type="java.lang.String" length="255" ></property> 
+        <property name="pharmacistInstructions" column="pharmacist_instructions" type="java.lang.String" length="255" ></property>
+        <property name="lastDispatchDate" column="last_dispatch_date" type="java.util.Date" ></property>
+        <property name="drugExpiryDate" column="drug_expiry_date" type="java.util.Date" ></property> 
+        <property name="commentForOrderer" column="comment_for_orderer" type="java.lang.String" length="255"></property> 
+        <property name="commentForPatient" column="comment_for_patient" type="java.lang.String" length="255"></property> 
 
     </class>
 
@@ -41,16 +41,16 @@
             <generator class="native" />
         </id>
         <discriminator column="id" insert="false" />
-        <many-to-one name="diseaseid" class="org.openmrs.Concept" column="diseaseid" />
-        <many-to-one name="drugid" class="org.openmrs.Concept" column="drugid" />
-        <property name="dose" type="java.lang.Double" length="10" column="dose" ></property>
-        <many-to-one name="doseunits" class="org.openmrs.Concept" column="doseunits" />
-        <property name="quantity" type="java.lang.Double" length="10" column="quantity" ></property>
-        <many-to-one name="quantityunits" class="org.openmrs.Concept" column="quantityunits" />
+        <many-to-one name="diseaseId" column="disease_id" class="org.openmrs.Concept" />
+        <many-to-one name="drugId" column="drug_id" class="org.openmrs.Concept" />
+        <property name="dose" column="dose" type="java.lang.Double" length="10" ></property>
+        <many-to-one name="doseUnits" column="dose_units" class="org.openmrs.Concept" />
+        <property name="quantity" column="quantity" type="java.lang.Double" length="10" ></property>
+        <many-to-one name="quantityUnits" column="quantity_units" class="org.openmrs.Concept" />
         <property name="duration" column="duration" ></property>
-        <many-to-one name="durationunits" class="org.openmrs.Concept" column="durationunits" />
-        <many-to-one name="route" class="org.openmrs.Concept" column="route" />
-        <many-to-one name="frequency" class="org.openmrs.OrderFrequency" column="frequency" />
+        <many-to-one name="durationUnits" column="duration_units" class="org.openmrs.Concept" />
+        <many-to-one name="route" column="route" class="org.openmrs.Concept" />
+        <many-to-one name="frequency" column="frequency" class="org.openmrs.OrderFrequency" />
 
     </class>
     
@@ -60,10 +60,10 @@
             <generator class="native" />
         </id>
         <discriminator column="id" insert="false" />
-        <property name="planid" column="planid" not-null="false" ></property>
-        <property name="orderid" column="orderid" not-null="false" ></property>
-        <property name="patientid" type="java.lang.String" column="patientid" ></property>
-        <many-to-one name="diseaseid" class="org.openmrs.Concept" column="diseaseid" />
+        <property name="planId" column="plan_id" not-null="false" ></property>
+        <property name="orderId" column="order_id" not-null="false" ></property>
+        <property name="patientId" column="patient_id" type="java.lang.String" ></property>
+        <many-to-one name="diseaseId" column="disease_id" class="org.openmrs.Concept" />
     </class>
     
 </hibernate-mapping>

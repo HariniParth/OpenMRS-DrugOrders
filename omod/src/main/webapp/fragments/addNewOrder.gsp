@@ -43,10 +43,10 @@
                 
                 <% medplans.each { medplan -> %>
                     <div id="itemSpace">
-                        <input type="checkbox" name="omitPlanItemCheckBox" value="${medplan.drugid.getDisplayString()}" /> 
-                        <strong>${medplan.drugid.getDisplayString()}</strong><br/>
+                        <input type="checkbox" name="omitPlanItemCheckBox" value="${medplan.drugId.getDisplayString()}" /> 
+                        <strong>${medplan.drugId.getDisplayString()}</strong><br/>
                         <div class="itemSummary">
-                            ${medplan.dose} ${medplan.doseunits.getDisplayString()}, ${medplan.route.getDisplayString()}, ${medplan.quantity} ${medplan.quantityunits.getDisplayString()}, ${medplan.duration} ${medplan.durationunits.getDisplayString()}, ${medplan.frequency}
+                            ${medplan.dose} ${medplan.doseUnits.getDisplayString()}, ${medplan.route.getDisplayString()}, ${medplan.quantity} ${medplan.quantityUnits.getDisplayString()}, ${medplan.duration} ${medplan.durationUnits.getDisplayString()}, ${medplan.frequency}
                         </div>
                     </div>
                     

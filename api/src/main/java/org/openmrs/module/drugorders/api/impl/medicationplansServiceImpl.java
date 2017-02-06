@@ -48,8 +48,8 @@ public class medicationplansServiceImpl extends BaseOpenmrsService implements me
     
     @Transactional(readOnly = true)
     @Override
-    public medicationplans getMedicationPlan(Integer planID){
-        return dao.getMedicationPlan(planID);
+    public medicationplans getMedicationPlan(Integer planId){
+        return dao.getMedicationPlan(planId);
     }
     
     @Transactional

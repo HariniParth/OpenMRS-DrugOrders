@@ -16,10 +16,10 @@ import org.openmrs.BaseOpenmrsObject;
 public class drugordersdiseases extends BaseOpenmrsObject implements Serializable{
     
     private Integer id;
-    private Integer planid;
-    private Integer orderid;
-    private Concept diseaseid;
-    private String patientid;
+    private Integer planId;
+    private Integer orderId;
+    private String patientId;
+    private Concept diseaseId;    
     
     public drugordersdiseases(){
         
@@ -35,35 +35,35 @@ public class drugordersdiseases extends BaseOpenmrsObject implements Serializabl
             this.id = id;
     }
     
-    public Integer getPlanid() {
-        return planid;
+    public Integer getPlanId() {
+        return planId;
     }
 
-    public void setPlanid(Integer planid) {
-        this.planid = planid;
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
     }
     
-    public Integer getOrderid() {
-        return orderid;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
     
-    public Concept getDiseaseid() {
-            return diseaseid;
+    public Concept getDiseaseId() {
+            return diseaseId;
     }
 
-    public void setDiseaseid(Concept diseaseid) {
-            this.diseaseid = diseaseid;
+    public void setDiseaseId(Concept diseaseId) {
+            this.diseaseId = diseaseId;
     }
     
-    public String getPatientid() {
-            return patientid;
+    public String getPatientId() {
+            return patientId;
     }
 
-    public void setPatientid(String patientid) {
-            this.patientid = patientid;
+    public void setPatientId(String patientId) {
+            this.patientId = patientId;
     }
 }

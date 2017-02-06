@@ -16,7 +16,7 @@ import org.openmrs.module.drugorders.medicationplans;
 public interface medicationplansDAO {
     
     public void deleteMedicationPlan(medicationplans plan);
-    public medicationplans getMedicationPlan(Integer planID);
+    public medicationplans getMedicationPlan(Integer planId);
     public medicationplans saveMedicationPlan(medicationplans plan);
     public List<medicationplans> getMedicationPlansByDisease(Concept concept);
         

@@ -131,7 +131,7 @@
                 <% groupMain.each { order -> %>
                     <div class="groupBlock">
                         <div class="groupDrugName" id="view_order_detail">
-                            <strong>${ groupExtn.get(order.key).drugname.getDisplayString() }</strong>
+                            <strong>${ groupExtn.get(order.key).drugName.getDisplayString() }</strong>
                         
                         <div id="view_order_detail">
                             <div id="order_label">Dose</div>
@@ -175,7 +175,7 @@
                         
                         <div id="view_order_detail">
                             <div id="order_label">Diagnosis</div>
-                            <div id="order_value">${ groupExtn.get(order.key).associateddiagnosis.getDisplayString() }</div>
+                            <div id="order_value">${ groupExtn.get(order.key).associatedDiagnosis.getDisplayString() }</div>
                         </div>                        
                     </div><br/>
                 <% } %>
@@ -227,11 +227,11 @@
                 
                 <% newDrugOrders.each { order -> %>
                     <div id="itemSpace" class="fields">
-                        <strong>${ order.value.drugname.getDisplayString() }</strong>
+                        <strong>${ order.value.drugName.getDisplayString() }</strong>
 
                         <span id="button" class="pull-right">
-                            <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','SINGLE','${ order.key }','${ order.value.drugname.getDisplayString() }','${ order.value.startdate }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.refill }','${ order.value.refillinterval }','${ order.value.associateddiagnosis.getDisplayString() }','${ order.value.isallergicorderreasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
-                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ order.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startdate.format('yyyy-MM-dd') }','${ order.value.drugname.getDisplayString() }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientinstructions }','${ order.value.pharmacistinstructions }')"></i>
+                            <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','SINGLE','${ order.key }','${ order.value.drugName.getDisplayString() }','${ order.value.startDate }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.refill }','${ order.value.refillInterval }','${ order.value.associatedDiagnosis.getDisplayString() }','${ order.value.isAllergicOrderReasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientInstructions }','${ order.value.pharmacistInstructions }')"></i>
+                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ order.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startDate.format('yyyy-MM-dd') }','${ order.value.drugName.getDisplayString() }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientInstructions }','${ order.value.pharmacistInstructions }')"></i>
                         </span><br/><br/>
 
                         <div>

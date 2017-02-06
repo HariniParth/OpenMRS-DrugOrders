@@ -18,28 +18,28 @@
                 <% existingMedplans.each { existingMedplan -> %>
                     <div id="itemSpace" class="fields">
                         
-                        <strong>${existingMedplan.drugid.getDisplayString()}</strong>
+                        <strong>${existingMedplan.drugId.getDisplayString()}</strong>
 
                         <span id="button">
-                            <i class="icon-trash delete-action right" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${existingMedplan.id}','${existingMedplan.diseaseid.getDisplayString()}','${existingMedplan.drugid.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseunits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityunits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationunits.getDisplayString()}','${existingMedplan.frequency}')"></i>
-                            <i class="icon-edit edit-action right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${existingMedplan.id}','${diseaseName}','${existingMedplan.drugid.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseunits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityunits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationunits.getDisplayString()}','${existingMedplan.frequency}')"></i>
+                            <i class="icon-trash delete-action right" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${existingMedplan.id}','${existingMedplan.diseaseId.getDisplayString()}','${existingMedplan.drugId.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseUnits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityUnits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationUnits.getDisplayString()}','${existingMedplan.frequency}')"></i>
+                            <i class="icon-edit edit-action right" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${existingMedplan.id}','${diseaseName}','${existingMedplan.drugId.getDisplayString()}','${existingMedplan.dose}','${existingMedplan.doseUnits.getDisplayString()}','${existingMedplan.route.getDisplayString()}','${existingMedplan.quantity}','${existingMedplan.quantityUnits.getDisplayString()}','${existingMedplan.duration}','${existingMedplan.durationUnits.getDisplayString()}','${existingMedplan.frequency}')"></i>
                         </span><br/><br/>
 
                         <span class="planItemDetails">
                             <span id="order_label">Dose:</span>
                             <span id="order_value">${existingMedplan.dose}</span>
                             <span id="order_label">Dose units:</span>
-                            <span id="order_value">${existingMedplan.doseunits.getDisplayString()}</span>
+                            <span id="order_value">${existingMedplan.doseUnits.getDisplayString()}</span>
                             <span id="order_label">Route:</span>
                             <span id="order_value">${existingMedplan.route.getDisplayString()}</span>
                             <span id="order_label">Quantity:</span>
                             <span id="order_value">${existingMedplan.quantity}</span>
                             <span id="order_label">Qnty units:</span>
-                            <span id="order_value">${existingMedplan.quantityunits.getDisplayString()}</span>
+                            <span id="order_value">${existingMedplan.quantityUnits.getDisplayString()}</span>
                             <span id="order_label">Duration:</span>
                             <span id="order_value">${existingMedplan.duration}</span>
                             <span id="order_label">Durn units:</span>
-                            <span id="order_value">${existingMedplan.durationunits.getDisplayString()}</span>
+                            <span id="order_value">${existingMedplan.durationUnits.getDisplayString()}</span>
                             <span id="order_label">Frequency:</span>
                             <span id="order_value">${existingMedplan.frequency}</span>
                             <span id="view_order_detail"></span>
