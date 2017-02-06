@@ -141,7 +141,7 @@ and open the template in the editor.
 .detailsLink #order_value{
     border-right: 1px solid gainsboro;
     float: left;
-    width: 70%;
+    width: 80%;
 }
 
 .detailsLink #view_order_detail{

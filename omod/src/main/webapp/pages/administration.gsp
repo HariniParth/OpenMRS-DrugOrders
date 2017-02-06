@@ -32,7 +32,7 @@
             <thead>
                 <tr>
                     <th>Plan Name</th>
-                    <th style="text-align: right">Action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                                             <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                                             <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
                                         </span>
-                                        ${ medPlan.key.getDisplayString().toUpperCase() }
+                                        <strong>${ medPlan.key.getDisplayString().toUpperCase() }</strong>
                                     </div><br/>
                                     
                                     <div class="plansDetailsView">
@@ -70,14 +70,14 @@
                                                 
                                             </div>
                                             
-                                        <% } %> 
+                                        <% } %><br/>
                                     </div>
                                 </td>
                                 <td class="planButtons">
-                                    <span id="button">
-                                        <i class="icon-trash delete-action pull-right" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${ medPlan.key.getDisplayString() }')"></i>
-                                        <i class="icon-edit edit-action pull-right" title="${ ui.message("Rename Plan Name") }" onclick="editPlanDetails('${ medPlan.key.getDisplayString() }')"></i>
-                                        <i class="icon-plus edit-action pull-right" title="${ ui.message("Add Drug To Plan") }" onclick="addPlanItemWindow('${ medPlan.key.getDisplayString() }')"></i>
+                                    <span>
+                                        <i class="icon-trash delete-action" title="${ ui.message("Discard Med Plan") }" onclick="deleteMedPlan('${ medPlan.key.getDisplayString() }')"></i>
+                                        <i class="icon-edit edit-action" title="${ ui.message("Rename Plan Name") }" onclick="editPlanDetails('${ medPlan.key.getDisplayString() }')"></i>
+                                        <i class="icon-plus edit-action" title="${ ui.message("Add Drug To Plan") }" onclick="addPlanItemWindow('${ medPlan.key.getDisplayString() }')"></i>
                                     </span>
                                 </td>
                             </tr>
@@ -106,7 +106,12 @@
         "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false
+        "bInfo": true,
+        "columns": [
+            { "width": "82%" },
+            { "width": "18%" }
+        ],
+        fixedColumns: true
 
     });
 </script>
