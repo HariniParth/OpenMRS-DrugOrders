@@ -27,25 +27,27 @@
                         <tr>
                             <td class="fields">
                                 <div><strong>${ planMain.key.getDisplayString().toUpperCase() }</strong></div><br/>
-
-                                <div class="orderDetails">
-                                    <% planMain.value.each { orderMain -> %>
-
+                                
+                                <% planMain.value.each { orderMain -> %>
+                                    <div class="planDrug">
                                         <% if(NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority != null) { %>
                                             <% default_prio = NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority.getDisplayString(); %>
                                         <% } %>
 
-                                        <div class="detailsLink">
-                                            <div class="fields" id="view_order_detail" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startDate.format('yyyy-MM-dd') }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString() }','${ orderMain.value.dose }','${ orderMain.value.doseUnits.getDisplayString() }','${ orderMain.value.route.getDisplayString() }','${ orderMain.value.duration }','${ orderMain.value.durationUnits.getDisplayString() }','${ orderMain.value.quantity }','${ orderMain.value.quantityUnits.getDisplayString() }','${ orderMain.value.frequency }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).refill }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).isAllergicOrderReasons }','${ default_prio }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).patientInstructions }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).pharmacistInstructions }')">   
-                                                <div>${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString().toUpperCase() } <span class="itemSummary">Start Date: ${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startDate.format('yyyy-MM-dd') }</span></div>
-                                                <div><span class="itemSummary">${ orderMain.value.dose } ${ orderMain.value.doseUnits.getDisplayString() }, ${ orderMain.value.duration } ${ orderMain.value.durationUnits.getDisplayString() }</span></div>
+                                        <div class="planDetails">
+                                            <div id="planDrugId">
+                                                ${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).orderId }
+                                            </div>
+                                            <div id="planDrugName" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startDate.format('yyyy-MM-dd') }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString() }','${ orderMain.value.dose }','${ orderMain.value.doseUnits.getDisplayString() }','${ orderMain.value.route.getDisplayString() }','${ orderMain.value.duration }','${ orderMain.value.durationUnits.getDisplayString() }','${ orderMain.value.quantity }','${ orderMain.value.quantityUnits.getDisplayString() }','${ orderMain.value.frequency }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).refill }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).isAllergicOrderReasons }','${ default_prio }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).patientInstructions }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).pharmacistInstructions }')">   
+                                                <div>${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString().toUpperCase() }</div>
+                                                <span class="itemSummary">
+                                                    <div>${ orderMain.value.dose } ${ orderMain.value.doseUnits.getDisplayString() }, ${ orderMain.value.duration } ${ orderMain.value.durationUnits.getDisplayString() }</div>
+                                                </span>
                                             </div><br/>
                                         </div>
-
-                                    <% } %>
-                                </div>
+                                    </div>
+                                <% } %>                               
                             </td>
-
                             <td class="planRenewButton">
                                 <span id="button" class="pull-right">
                                     <i class="icon-edit edit-action" title="${ ui.message("Renew") }" onclick="renewMedPlanWindow('${ planOrderMain.key }')"></i>
@@ -68,23 +70,28 @@
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": true
+        "bFilter": true,
+        "columns": [
+            { "width": "85%" },
+            { "width": "15%" }
+        ],
+        fixedColumns: true
 
     });
 </script>
 
 <script type="text/javascript">    
-    jq(".detailsLink").click(function(){
-        jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    jq(".planDetails").click(function(){
+        jq(this).css({"background": "#75b2f0","color": "white"});
     });
 </script>
 
 <script type="text/javascript">    
     jq(".planRenewButton > span > i").hover(function(event){
         if(event.type == 'mouseenter'){
-            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".detailsLink").css({"background": "#75b2f0","color": "white"});
+            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".planDrug").children(".planDetails").css({"background": "#75b2f0","color": "white"});
         } else {
-            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".detailsLink").css({"background": "","color": ""});
+            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".planDrug").children(".planDetails").css({"background": "","color": ""});
         }
     });
 </script>

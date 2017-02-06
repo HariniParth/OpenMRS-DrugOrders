@@ -97,22 +97,6 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-#activeOrdersTable td:first-child{
-    width: 10%;
-}
-
-#activeOrdersTable td:nth-child(2){
-    width: 55%;
-}
-
-#activeOrdersTable td:nth-child(3){
-    width: 20%;
-}
-
-#activeOrdersTable td:nth-child(4){
-    width: 15%;
-}
-
 .nonActiveOrderWindow, #medPlanWindow, #plansDetailsView, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #createPlanWindow, #viewPlanWindow, #editPlanWindow, #deletePlanWindow, #deletePlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect{
     display: none;
 }
@@ -132,6 +116,26 @@ and open the template in the editor.
     font-size: 14px;
 }
 
+.oldGroupDetails{
+    width: 100%;
+    border: 1px solid gainsboro;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    overflow: hidden;
+}
+
+.planDrug{
+    width: 100%;
+    border: 1px solid gainsboro;
+    padding-bottom: 5px;
+    overflow: hidden;
+}
+
+.planDrug .planDrugDetails{
+    float: left;
+    width: 80%;
+}
+
 .detailsLink{
     width: 100%;
     border: 1px solid gainsboro;
@@ -142,11 +146,6 @@ and open the template in the editor.
     border-right: 1px solid gainsboro;
     float: left;
     width: 80%;
-}
-
-.detailsLink #view_order_detail{
-    float: left;
-    width: 98%;
 }
 
 #createPlanWindow, #showOrderWindow, #confirmOrderWindow, #deletePlanItemWindow, #viewPlanWindow, #confirmPlanWindow, #deletePlanWindow, #showRenewOrderView, #editPlanWindow, #createOrderWindow, #medPlanWindow, #medPlanDetailsWindow, #drugOrderView, #groupOrderList, #showGroupOrderWindow{
@@ -160,7 +159,7 @@ and open the template in the editor.
     outline: none;
 }
 
-#singleOrderView, #viewPlanWindow, #itemSpace{
+#singleOrderView, #viewPlanWindow, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails{
     overflow: hidden;
 }
 
@@ -181,13 +180,25 @@ and open the template in the editor.
     padding-left: 52px;
 }
 
-.orderRow:hover .existingDrugOrdersID{
+.orderRow:hover .orderInfo{
     background: #75b2f0;
     color: white;
     cursor: pointer;
 }
 
-.oldOrderRow:hover .oldDrugOrdersID{
+.oldOrderRow:hover .oldOrderDetails{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
+.planDrug:hover .planDrugDetails{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
+.planDrug:hover .planDetails{
     background: #75b2f0;
     color: white;
     cursor: pointer;
@@ -216,29 +227,45 @@ th{
     overflow: hidden;
 }
 
-.groupSingles{
+.groupDrug{
     width: 100%;
     overflow: hidden;
 }
 
-.groupSingles .groupDrugDetails{
+.groupDrug .groupDrugDetails{
     width: 85%;
     float: left;
     overflow: auto;
 }
 
-.groupSingles .groupDrugDetails #groupDrugName{
-    width: 75%;
+.groupDrug .groupDrugDetails #groupDrugID{
+    width: 10%;
     float: left;
 }
 
-.groupSingles .groupDrugDetails #groupDrugDate{
-    width: 25%;
-    margin-left: 75%;
+.groupDrug .groupDrugDetails #groupDrugName{
+    width: 65%;
+    float: left;
+    overflow: hidden;
 }
 
-.groupSingles .groupDrugButton{
+.groupDrug .groupDrugDetails #groupDrugDate{
+    width: 25%;
+    float: right;
+}
+
+.groupDrug .groupDrugButton{
     width: 15%;
+    float: right;
+}
+
+.oldGroupRow .oldGroupDetails #oldOrderId, .oldOrderRow .oldOrderDetails #oldOrderId, .planDrug .planDrugDetails #planDrugId, .planDrug .planDetails #planDrugId{
+    width: 10%;
+    float: left;
+}
+
+.oldGroupRow .oldGroupDetails #oldOrderName, .oldOrderRow .oldOrderDetails #oldOrderName, .planDrug .planDrugDetails #planDrugName, .planDrug .planDetails #planDrugName{
+    width: 90%;
     float: right;
 }
 
@@ -246,23 +273,23 @@ th{
     vertical-align: top;
 }
 
-.groupSingles:hover .groupDrugDetails{
+.groupDrug:hover .groupDrugDetails{
     background: #75b2f0;
     color: white;
     cursor: pointer;
 }
 
-.oldDrugOrdersID:hover{
+.oldOrderDetails:hover, .oldGroupDetails:hover{
     background: #75b2f0;
     color: white;
     cursor: pointer;
 }
 
-.orderRow.discontinued > .existingDrugOrdersID, .groupSingles.discontinued > div:first-child > *, .detailsLink.discontinued > div > div{
+.orderRow.discontinued > .orderInfo, .groupDrug.discontinued > div:first-child > *, .detailsLink.discontinued > div > div{
     text-decoration: line-through;
 }
 
-.orderRow.onhold > .existingDrugOrdersID, .groupSingles.onhold > div:first-child > *, .detailsLink.discontinued > div > div{
+.orderRow.onhold > .orderInfo, .groupDrug.onhold > div:first-child > *, .detailsLink.discontinued > div > div{
     color: orangered;
 }
 

@@ -83,11 +83,11 @@ function clearHighlights(){
     jq(".oldOrderRow").each(function(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
     });
-    jq(".oldDrugOrdersID").each(function(){
-        jq(this).children('*').css({'background-color':'','color':''});
+    jq(".oldGroupDetails").each(function(){
+        jq(this).css({'background-color':'','color':''});
     });
-    jq(".detailsLink").each(function(){
-        jq(this).children('div > *').slice(0, 1).css({'background-color':'','color':''});
+    jq(".planDrug").each(function(){
+        jq(this).children('div').slice(0, 1).css({'background-color':'','color':''});
     });
 }
 

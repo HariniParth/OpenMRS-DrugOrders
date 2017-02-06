@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th>Group</th>
+                    <th>ID</th>
                     <th>Drug Name</th>
                     <th>Start Date</th>
                     <th>Action</th>
@@ -20,7 +21,8 @@
             <tbody>
                 <% if(existingDrugOrdersExtension.size() == 0 && existingDrugOrderGroups.size() == 0) { %>
                     <tr>
-                        <td colspan="4" align="center">No Orders Found</td>
+                        <td colspan="5" align="center">No Orders Found</td>
+                        <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
@@ -32,12 +34,14 @@
 
                         <td><span><input type="checkbox" name="groupCheckBox" value="${ existingDrugOrderExtension.orderId }" ng-model="groupCheckBox" /></span></td>
 
-                        <td class="existingDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }','${ existingDrugOrderExtension.commentForOrderer }')">
+                        <td class="orderInfo" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }','${ existingDrugOrderExtension.commentForOrderer }')">${ existingDrugOrderExtension.orderId }</td>
+                        
+                        <td class="orderInfo" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }','${ existingDrugOrderExtension.commentForOrderer }')">
                             <div>${ existingDrugOrderExtension.drugName.getDisplayString().toUpperCase() }</div>
                             <div><span class="itemSummary">${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose } ${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }, ${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration } ${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }</span></div>
                         </td>
 
-                        <td class="existingDrugOrdersID" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }','${ existingDrugOrderExtension.commentForOrderer }')">${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }</td>
+                        <td class="orderInfo" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }','${ existingDrugOrderExtension.commentForOrderer }')">${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }</td>
 
                         <td>
                             <span id="button">
@@ -54,21 +58,25 @@
                     <tr class="groupRow">
     
                         <td></td>
-                        <td colspan="3" class="groupDetails">
+                        <td colspan="4" class="groupDetails">
                             <% existingDrugOrder.value.each { existingOrder -> %>
                                 <% if(existingOrder.orderStatus == "Active-Group") { %>
 
-                                    <div class="groupSingles <% if(existingOrder.forDiscard == 1) { %> discontinued <% } %> <% if(existingOrder.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingOrder.commentForOrderer) }">
+                                    <div class="groupDrug <% if(existingOrder.forDiscard == 1) { %> discontinued <% } %> <% if(existingOrder.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingOrder.commentForOrderer) }">
                                         
                                         <div class="groupDrugDetails" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingOrder.startDate.format('yyyy-MM-dd') }','${ existingOrder.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.isAllergicOrderReasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientInstructions }','${ existingOrder.pharmacistInstructions }','${ existingOrder.commentForOrderer }')">
                                             
-                                            <div class="existingDrugOrdersID" id="groupDrugName">
+                                            <div class="orderInfo" id="groupDrugID">
+                                                ${ existingOrder.orderId }
+                                            </div>
+                                            
+                                            <div class="orderInfo" id="groupDrugName">
                                                 <div>${ existingOrder.drugName.getDisplayString().toUpperCase() }</div>
                                                 <div><span class="itemSummary">${ existingDrugOrdersMain.get(existingOrder.orderId).dose } ${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }, ${ existingDrugOrdersMain.get(existingOrder.orderId).duration } ${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }</span></div>
                                             </div>
                                             <% orderList = orderList + existingOrder.drugName.getDisplayString() + "," %>
 
-                                            <div class="existingDrugOrdersID" id="groupDrugDate">${ existingOrder.startDate.format('yyyy-MM-dd') }</div>
+                                            <div class="orderInfo" id="groupDrugDate">${ existingOrder.startDate.format('yyyy-MM-dd') }</div>
                                         </div>
 
                                         <div class="groupDrugButton">
@@ -89,6 +97,7 @@
                                 </span>
                             </div>
                         </td>
+                        <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
                     </tr>
@@ -113,14 +122,22 @@
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": true
+        "bFilter": true,
+        "columns": [
+            { "width": "10%" },
+            { "width": "5%"  },
+            { "width": "50%" },
+            { "width": "20%" },
+            { "width": "15%" }
+        ],
+        fixedColumns: true
 
     });
 </script>
 
 <script type="text/javascript">    
     jq(".orderRow td:not(:first-child)").click(function(){
-        jq(this).parent().children('td').slice(1, 3).css({"background": "#75b2f0","color": "white"});
+        jq(this).parent().children('td').slice(1, 4).css({"background": "#75b2f0","color": "white"});
     });
 </script>
     
@@ -139,9 +156,9 @@
 <script type="text/javascript">    
     jq(".groupButton").hover(function(event){
         if(event.type == 'mouseenter'){
-            jq(this).parent().children('.groupSingles').children('.groupDrugDetails').css({"background": "#75b2f0","color": "white"});
+            jq(this).parent().children('.groupDrug').children('.groupDrugDetails').css({"background": "#75b2f0","color": "white"});
         } else {
-            jq(this).parent().children('.groupSingles').children('.groupDrugDetails').css({"background": "","color": ""});
+            jq(this).parent().children('.groupDrug').children('.groupDrugDetails').css({"background": "","color": ""});
         }
     });
     

@@ -36,11 +36,19 @@
                                         <% default_prio = ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).priority.getDisplayString(); %>
                                     <% } %>
 
-                                    <div class="detailsLink <% if(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).forDiscard == 1) { %> discontinued <% } %> <% if(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).onHold == 1) { %> onhold <% } %>" title="${ ui.message(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).commentForOrderer) }">
+                                    <div class="planDrug <% if(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).forDiscard == 1) { %> discontinued <% } %> <% if(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).onHold == 1) { %> onhold <% } %>" title="${ ui.message(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).commentForOrderer) }">
 
-                                        <div class="fields" id="order_value" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startDate.format('yyyy-MM-dd') }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString() }','${ drugOrderMn.value.dose }','${ drugOrderMn.value.doseUnits.getDisplayString() }','${ drugOrderMn.value.route.getDisplayString() }','${ drugOrderMn.value.duration }','${ drugOrderMn.value.durationUnits.getDisplayString() }','${ drugOrderMn.value.quantity }','${ drugOrderMn.value.quantityUnits.getDisplayString() }','${ drugOrderMn.value.frequency }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).refill }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).isAllergicOrderReasons }','${ default_prio }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).patientInstructions }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).pharmacistInstructions }')">   
-                                            <div>${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString().toUpperCase() } <span class="itemSummary">Start Date: ${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startDate.format('yyyy-MM-dd') }</span></div>
-                                            <div><span class="itemSummary">${ drugOrderMn.value.dose } ${ drugOrderMn.value.doseUnits.getDisplayString() }, ${ drugOrderMn.value.duration } ${ drugOrderMn.value.durationUnits.getDisplayString() }</span></div>
+                                        <div class="planDrugDetails" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startDate.format('yyyy-MM-dd') }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString() }','${ drugOrderMn.value.dose }','${ drugOrderMn.value.doseUnits.getDisplayString() }','${ drugOrderMn.value.route.getDisplayString() }','${ drugOrderMn.value.duration }','${ drugOrderMn.value.durationUnits.getDisplayString() }','${ drugOrderMn.value.quantity }','${ drugOrderMn.value.quantityUnits.getDisplayString() }','${ drugOrderMn.value.frequency }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).refill }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).isAllergicOrderReasons }','${ default_prio }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).patientInstructions }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).pharmacistInstructions }')">   
+                                            <div id="planDrugId">
+                                                ${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).orderId }
+                                            </div>
+                                            <div id="planDrugName">
+                                                <div>${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString().toUpperCase() }</div>
+                                                <span class="itemSummary">
+                                                    <div>Start Date: ${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startDate.format('yyyy-MM-dd') }</div>
+                                                    <div>${ drugOrderMn.value.dose } ${ drugOrderMn.value.doseUnits.getDisplayString() }, ${ drugOrderMn.value.duration } ${ drugOrderMn.value.durationUnits.getDisplayString() }</div>
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <div id="button" class="pull-right">
@@ -51,7 +59,7 @@
 
                                 <% } %>
                             </div>
-                        </td>
+                        </td>   
 
                         <td class="planDiscardButton">
                             <span id="button">
@@ -75,23 +83,28 @@
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": true
+        "bFilter": true,
+        "columns": [
+            { "width": "85%" },
+            { "width": "15%" }
+        ],
+        fixedColumns: true
 
     });
 </script>
 
 <script type="text/javascript">    
-    jq(".detailsLink").click(function(){
-        jq(this).children('div > *').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    jq(".planDrug").click(function(){
+        jq(this).children('div').slice(0, 1).css({"background": "#75b2f0","color": "white"});
     });
 </script>
 
 <script type="text/javascript">    
     jq(".planDiscardButton > span > i").hover(function(event){
         if(event.type == 'mouseenter'){
-            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".detailsLink").css({"background": "#75b2f0","color": "white"});
+            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".planDrug").css({"background": "#75b2f0","color": "white"});
         } else {
-            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".detailsLink").css({"background": "","color": ""});
+            jq(this).parent().parent().parent().children('td').slice(0, 1).children(".orderDetails").children(".planDrug").css({"background": "","color": ""});
         }
     });
 </script>
