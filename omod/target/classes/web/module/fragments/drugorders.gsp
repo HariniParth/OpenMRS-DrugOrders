@@ -6,10 +6,7 @@
     </div>
     <div class="info-body">
         <% drugorders.each { order -> %>
-            <% if(order.orderStatus == "Active" || order.orderStatus == "Active-Group" || order.orderStatus == "Active-Plan") { %>
-                ${ order.drugName.getDisplayString().toUpperCase() }
-                <br/>
-            <% } %>
+            ${ order.drugName.getDisplayString().toUpperCase() }<br/>
         <% } %>
     </div>
 </div>

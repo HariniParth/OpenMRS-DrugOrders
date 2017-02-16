@@ -7,12 +7,10 @@ package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openmrs.Order;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.page.controller.OrderAndDrugOrder;
 import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
@@ -24,25 +22,24 @@ public class DrugordersFragmentController {
     
     public void controller(FragmentModel model, @FragmentParam("patientId") Patient patient){
         
-        ArrayList<OrderAndDrugOrder> drugOrders = new ArrayList<OrderAndDrugOrder>();
-        List<drugorders> dorders = new ArrayList<drugorders>();
+        List<drugorders> drugOrders = new ArrayList<drugorders>();
+        List<drugorders> orders;
         
-        List<Order> orders = Context.getOrderService().getAllOrdersByPatient(patient);
-        int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
-        drugorders drugOrder;
-        
-        for (Order order : orders) {
-            if (order.getOrderType().getOrderTypeId() == drugOrderTypeId) {
-                drugOrder = Context.getService(drugordersService.class).getDrugOrderByOrderID(order.getOrderId());
-                drugOrders.add(new OrderAndDrugOrder(order, drugOrder));
-            }
+        orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active");
+        for(drugorders order : orders) {
+            drugOrders.add(order);
         }
         
-        for(OrderAndDrugOrder order : drugOrders){
-            drugorders dorder = order.getdrugorders();
-            dorders.add(dorder);
+        orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Group");
+        for(drugorders order : orders) {
+            drugOrders.add(order);
         }
         
-        model.addAttribute("drugorders", dorders);
+        orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
+        for(drugorders order : orders) {
+            drugOrders.add(order);
+        }
+        
+        model.addAttribute("drugorders", drugOrders);
     }
 }
