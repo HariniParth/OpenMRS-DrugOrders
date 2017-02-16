@@ -11,12 +11,7 @@
     <div class="addMedicationPlanWindow">
         <form method="post" id="diseaseForm">
             <div class="fields"><label>Plan Name </label>
-                <select id="diseaseName" name="diseaseName" class="select_field" onchange="selectDisease('${drugsNames}','${allergicDrugs}')">
-                    <option value="">Choose option</option>
-                    <% diseaseNames.each { diseaseName -> %>
-                        <option value="${ diseaseName }">${ diseaseName }</option>
-                    <% } %>
-                </select>
+                <input type="text" id="diseaseName" name="diseaseName"/>
             </div>
             
             <br/><br/>
@@ -25,6 +20,34 @@
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+    jq( function() {
+        jq( "#diseaseName" ).autocomplete({
+            source: function( request, response ) {
+                var results = [];
+                jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',
+                    {
+                      'query': request.term, 
+                    })
+                .success(function(data) {
+                    for (index in data) {
+                        var item = data[index];
+                        results.push(item.name);
+                        }
+                    response( results );
+                })
+                .error(function(xhr, status, err) {
+                    alert('AJAX error ' + err);
+                });
+            },
+            select: function(){
+                jq("#diseaseForm").submit();
+            }
+        } )
+    });
+</script>
+        
 
 <form method="post">
     <% if(medplans.size() > 0) { %>

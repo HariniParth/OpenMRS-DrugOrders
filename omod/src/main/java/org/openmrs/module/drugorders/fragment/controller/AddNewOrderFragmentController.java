@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
+import org.openmrs.ConceptSearchResult;
 import org.openmrs.Patient;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.medicationplansService;
 import org.openmrs.module.drugorders.medicationplans;
+import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,17 +69,26 @@ public class AddNewOrderFragmentController {
             model.addAttribute("allergicDrugs", "null");
         } 
         
+    }
+    
+    public List<SimpleObject> getPlanNameSuggestions(
+            @RequestParam(value = "query", required = false) String query,
+               @SpringBean("conceptService") ConceptService service,
+            UiUtils ui) {
         
-        ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
-        List<Concept> diagnosis = Context.getConceptService().getConceptsByClass(diseaseConcept);
-        model.addAttribute("diagnosis", diagnosis);
+        ConceptClass planConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
+        List<ConceptClass> requireClasses = new ArrayList<ConceptClass>();
+        requireClasses.add(planConcept);
         
-        List<String> diseaseNames = new ArrayList<String>();
-        for(Concept diagnosisName : diagnosis){
-            if(Context.getService(medicationplansService.class).getMedicationPlansByDisease(diagnosisName).size() > 0){
-                diseaseNames.add(diagnosisName.getDisplayString());
-            }
+        List<ConceptSearchResult> results = Context.getConceptService().getConcepts(query, null, false, requireClasses, null, null, null, null, 0, 100);
+        
+        List<Concept> names = new ArrayList<Concept>();
+        for (ConceptSearchResult con : results) {
+            if(Context.getService(medicationplansService.class).getMedicationPlansByDisease(con.getConcept()).size() > 0)
+                names.add(con.getConcept()); //con.getConcept().getName().getName()
+            System.out.println("Concept: " + con.getConceptName());
         }
-        model.addAttribute("diseaseNames", diseaseNames);
+        String[] properties = new String[] { "name"};
+        return SimpleObject.fromCollection(names, ui, properties);
     }
 }
