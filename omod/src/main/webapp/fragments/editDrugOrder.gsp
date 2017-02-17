@@ -230,27 +230,27 @@
                         <strong>${ order.value.drugName.getDisplayString() }</strong>
 
                         <span id="button" class="pull-right">
-                            <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditIndividualDrugOrderWindow('EDIT DRUG ORDER','SINGLE','${ order.key }','${ order.value.drugName.getDisplayString() }','${ order.value.startDate }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.refill }','${ order.value.refillInterval }','${ order.value.associatedDiagnosis.getDisplayString() }','${ order.value.isAllergicOrderReasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientInstructions }','${ order.value.pharmacistInstructions }')"></i>
-                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="showDiscontinueIndividualDrugOrderWindow('DISCONTINUE ORDER','${ order.key }','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ order.value.startDate.format('yyyy-MM-dd') }','${ order.value.drugName.getDisplayString() }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.priority.getDisplayString() }','${ order.value.patientInstructions }','${ order.value.pharmacistInstructions }')"></i>
+                            <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditSingleOrderWindow('EDIT DRUG ORDER','SINGLE','${ order.key }','${ order.value.drugName.getDisplayString() }','${ order.value.startDate }','${ newOrderMainData.get(order.key).dose }','${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }','${ newOrderMainData.get(order.key).route.getDisplayString() }','${ newOrderMainData.get(order.key).duration }','${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }','${ newOrderMainData.get(order.key).quantity }','${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }','${ newOrderMainData.get(order.key).frequency }','${ order.value.refill }','${ order.value.refillInterval }','${ order.value.associatedDiagnosis.getDisplayString() }','${ order.value.isAllergicOrderReasons }','${ order.value.priority.getDisplayString() }','${ order.value.patientInstructions }','${ order.value.pharmacistInstructions }')"></i>
+                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="discardSingleOrder('${ order.value.orderId }'"></i>
                         </span><br/><br/>
 
                         <div>
                             <span id="order_label">Dose:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).dose}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).dose }</span>
                             <span id="order_label">Dose units:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).doseUnits.getDisplayString()}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).doseUnits.getDisplayString() }</span>
                             <span id="order_label">Route:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).route.getDisplayString()}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).route.getDisplayString() }</span>
                             <span id="order_label">Quantity:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).quantity}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).quantity }</span>
                             <span id="order_label">Qnty units:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).quantityUnits.getDisplayString()}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).quantityUnits.getDisplayString() }</span>
                             <span id="order_label">Duration:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).duration}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).duration }</span>
                             <span id="order_label">Durn units:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).durationUnits.getDisplayString()}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).durationUnits.getDisplayString() }</span>
                             <span id="order_label">Frequency:</span>
-                            <span id="order_value">${newOrderMainData.get(order.key).frequency}</span>
+                            <span id="order_value">${ newOrderMainData.get(order.key).frequency }</span>
                         </div>
                     </div>
                 <% } %><br/><br/>

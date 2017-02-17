@@ -49,9 +49,9 @@
 </script>
         
 
-<form method="post">
-    <% if(medplans.size() > 0) { %>
-        <div id="medPlanDetailsWindow" class="dialog">
+<% if(medplans.size() > 0) { %>
+    <div id="medPlanDetailsWindow" class="dialog">
+        <form method="post">    
             
             <div class="dialog-header">
                 <h3 id="dialog-heading">${ ui.message("STANDARD MEDICATION PLAN") }</h3>
@@ -62,48 +62,40 @@
             <div id="medPlansForDisease" class="fields">
 
                 <h5><strong>${diseaseName}</strong></h5><br/>
-                <p>Check box to omit drug order</p>
                 
                 <% medplans.each { medplan -> %>
                     <div id="itemSpace">
-                        <input type="checkbox" name="omitPlanItemCheckBox" value="${medplan.drugId.getDisplayString()}" /> 
-                        <strong>${medplan.drugId.getDisplayString()}</strong><br/>
+                        <strong>
+                            ${ medplan.drugId.getDisplayString() }
+                            
+                            <span id="button" class="pull-right">
+                                <i class="icon-edit edit-action" title="${ ui.message("Edit") }"></i>
+                                <i class="icon-trash delete-action" title="${ ui.message("Delete") }"></i>
+                            </span><br/>
+                        </strong>
+                        
                         <div class="itemSummary">
-                            ${medplan.dose} ${medplan.doseUnits.getDisplayString()}, ${medplan.route.getDisplayString()}, ${medplan.quantity} ${medplan.quantityUnits.getDisplayString()}, ${medplan.duration} ${medplan.durationUnits.getDisplayString()}, ${medplan.frequency}
+                            <% if(allergicDrugs.contains(medplan.drugId.getDisplayString())) { %>
+                                NOTE: Patient is allergic to this drug <br/><br/>
+                                <% allergicDrugList = allergicDrugList + medplan.drugId.getDisplayString() + " " %>
+                            <% } %>
+                            
+                            ${ medplan.dose } ${ medplan.doseUnits.getDisplayString() }, ${ medplan.route.getDisplayString() }, ${ medplan.quantity } ${ medplan.quantityUnits.getDisplayString() }, ${ medplan.duration } ${ medplan.durationUnits.getDisplayString() }, ${ medplan.frequency }
                         </div>
                     </div>
-                    
                 <% } %>
             </div>
-                
-            <% drugsNames.each { drugName -> %>
-                <% allergicDrugs.each { allergicDrug -> %>
-                    <% if(drugName == allergicDrug) { %>
-                        <% allergicDrugList = allergicDrugList + drugName + " " %>
-                    <% } %>
-                <% } %>
-            <% } %>
             
             <% if(allergicDrugList != "") { %>
-                <div id="planItemAllergicReasonField">
-                    <div class="fields" id="view_order_detail">
-                        NOTE: The patient is allergic to ${allergicDrugList}<br/><br/>
-                        
-                        <input type="radio" name="allergicDrugAction" value="continue" checked>
-                        Continue with this Plan<br/>
-                        Enter the Reasons to Order<br/>
-                        <input type="textarea" id="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" class="select_field" /> <br/>
-                    
-                        <input type="radio" name="allergicDrugAction" value="discard">
-                        Discard order of ${allergicDrugList}<br/>
-                        
-                    </div><br/><br/>
+                <div class="fields" id="planItemAllergicReasonField">
+                    Enter the Reasons to Order<br/>
+                    <input type="textarea" id="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" class="select_field" /> <br/>
                 </div>
             <% } %>
 
             <input type="hidden" id="selectMedPlan" name="action" value="selectMedPlan" />
             <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
             <button class="cancel" id="btn-place" type="button" onclick="hideMedicationPlansWindow()">${ ui.message("Cancel") }</button>
-        </div>
-    <% } %>
-</form>
+        </form>
+    </div>
+<% } %>
