@@ -107,16 +107,7 @@ public class DrugordersPageController {
                         }
                     }
                 }
-                
-                if ("SingleOrder".equals(action)) {
-                    List<drugorders> newDrugOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "New");
-                    
-                    for(drugorders order : newDrugOrders){
-                        order.setOrderStatus("Active");
-                    }
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Saved!");
-                }
-                
+                                
                 if ("GroupOrder".equals(action)) {
                     if(groupCheckBox.length > 0){
                         int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
@@ -384,7 +375,7 @@ public class DrugordersPageController {
         drugorder.setPatientId(patientID);
         drugorder.setRefill(refill);
         drugorder.setRefillInterval(refillInterval);
-        drugorder.setOrderStatus("New");
+        drugorder.setOrderStatus("Active");
         drugorder.setPriority(Context.getConceptService().getConceptByName(orderPriority));
         drugorder.setOnHold(0);
         drugorder.setForDiscard(0);

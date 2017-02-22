@@ -48,24 +48,14 @@ public class EditDrugOrderFragmentController {
         ConceptClass reasonConcept = Context.getConceptService().getConceptClassByName("Discontinue Order Reasons");
         List<Concept> discontinueReasons = Context.getConceptService().getConceptsByClass(reasonConcept);
         model.addAttribute("discontinueReasons", discontinueReasons);
-        
-        
-        List<drugorders> drugOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "New");
-        HashMap<Integer,drugorders> newDrugOrders = new HashMap<Integer,drugorders>();
-        for(drugorders order : drugOrders){
-            newDrugOrders.put(order.getOrderId(), order);
-        }
-        model.addAttribute("newDrugOrders", newDrugOrders);
-        
-        
+               
         List<DrugOrder> orderMainData = getDrugOrderMainDataByPatient(patient);
         HashMap<Integer,DrugOrder> newOrderMainData = new HashMap<Integer,DrugOrder>();
         for(DrugOrder order : orderMainData){
             newOrderMainData.put(order.getOrderId(), order);
         }
         model.addAttribute("newOrderMainData", newOrderMainData);
-        
-        
+               
         if(StringUtils.isNotBlank(selectedActiveGroup)){
             try {
                 int group = Integer.parseInt(selectedActiveGroup);
@@ -84,7 +74,6 @@ public class EditDrugOrderFragmentController {
             }
         }
         
-        
         if(StringUtils.isNotBlank(selectedNonActiveGroup)){
             try {
                 int group = Integer.parseInt(selectedNonActiveGroup);
@@ -102,8 +91,7 @@ public class EditDrugOrderFragmentController {
                 System.out.println(e.toString());
             }
         }
-        
-                
+                        
         if(StringUtils.isNotBlank(selectedActivePlan)){
             try {
                 int group = 0;
@@ -128,8 +116,7 @@ public class EditDrugOrderFragmentController {
                 System.out.println(e.toString());
             }
         }
-        
-                
+                        
         if(StringUtils.isNotBlank(selectedNonActivePlan)){
             try {
                 int group = Integer.parseInt(selectedNonActivePlan);
@@ -150,8 +137,7 @@ public class EditDrugOrderFragmentController {
                 System.out.println(e.toString());
             }
         }
-        
-        
+                
         if(StringUtils.isNotBlank(selectedActiveOrder) || StringUtils.isNotBlank(selectedActiveItem)){
             try {
                 int group = 0;
@@ -176,8 +162,7 @@ public class EditDrugOrderFragmentController {
         model.addAttribute("groupMain", groupMain);
         model.addAttribute("groupExtn", groupExtn);
     }
-    
-    
+        
     private List<DrugOrder> getDrugOrderMainDataByPatient(Patient p){
         ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
         List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
