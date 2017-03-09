@@ -39,8 +39,8 @@ public class EditDrugOrderFragmentController {
                             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
 
-        HashMap<Integer,DrugOrder> groupMain = new HashMap<Integer,DrugOrder>();
-        HashMap<Integer,drugorders> groupExtn = new HashMap<Integer,drugorders>();
+        HashMap<Integer,DrugOrder> groupMain = new HashMap<>();
+        HashMap<Integer,drugorders> groupExtn = new HashMap<>();
         
         model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
@@ -50,7 +50,7 @@ public class EditDrugOrderFragmentController {
         model.addAttribute("discontinueReasons", discontinueReasons);
                
         List<DrugOrder> orderMainData = getDrugOrderMainDataByPatient(patient);
-        HashMap<Integer,DrugOrder> newOrderMainData = new HashMap<Integer,DrugOrder>();
+        HashMap<Integer,DrugOrder> newOrderMainData = new HashMap<>();
         for(DrugOrder order : orderMainData){
             newOrderMainData.put(order.getOrderId(), order);
         }
@@ -67,9 +67,7 @@ public class EditDrugOrderFragmentController {
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCARD ORDER GROUP");
                 
-            } catch(NumberFormatException e){
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch(NumberFormatException | APIException e){
                 System.out.println(e.toString());
             }
         }
@@ -85,9 +83,7 @@ public class EditDrugOrderFragmentController {
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "RENEW ORDER GROUP");
                 
-            } catch(NumberFormatException e){
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch(NumberFormatException | APIException e){
                 System.out.println(e.toString());
             }
         }
@@ -110,9 +106,7 @@ public class EditDrugOrderFragmentController {
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCARD MED PLAN");
                 
-            } catch(NumberFormatException e){
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch(NumberFormatException | APIException e){
                 System.out.println(e.toString());
             }
         }
@@ -131,9 +125,7 @@ public class EditDrugOrderFragmentController {
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "RENEW MED PLAN");
                 
-            } catch(NumberFormatException e){
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch(NumberFormatException | APIException e){
                 System.out.println(e.toString());
             }
         }
@@ -152,9 +144,7 @@ public class EditDrugOrderFragmentController {
                 model.addAttribute("group", group);
                 model.addAttribute("groupOrderAction", "DISCONTINUE ORDER");
                 
-            } catch(NumberFormatException e){
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch(NumberFormatException | APIException e){
                 System.out.println(e.toString());
             }
         }

@@ -28,11 +28,11 @@ public class MedicationPlansNonActiveFragmentController {
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
 
         //Data structure to store the 'Drug Order' object properties for all the non-active orders for the given disease
-        HashMap<Integer, HashMap<Concept, HashMap<Integer, DrugOrder>>> NonActivePlanMain = new HashMap<Integer, HashMap<Concept, HashMap<Integer, DrugOrder>>>();
+        HashMap<Integer, HashMap<Concept, HashMap<Integer, DrugOrder>>> NonActivePlanMain = new HashMap<>();
 
         //Data structure to store the 'drugorders' object properties for all the non-active orders for the given disease
-        HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>> NonActivePlanExtension = new HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>>();
-        HashMap<Integer, ArrayList<String>> planDrugs = new HashMap<Integer, ArrayList<String>>();
+        HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>> NonActivePlanExtension = new HashMap<>();
+        HashMap<Integer, ArrayList<String>> planDrugs = new HashMap<>();
         
         List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Non-Active-Plan");
         
@@ -42,12 +42,12 @@ public class MedicationPlansNonActiveFragmentController {
             if(!NonActivePlanMain.containsKey(nonActiveMedPlan.getPlanId())){
                 List<drugordersdiseases> ordersByPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(nonActiveMedPlan.getPlanId());
                 
-                HashMap<Concept, HashMap<Integer, DrugOrder>> planMain = new HashMap<Concept, HashMap<Integer, DrugOrder>>();
-                HashMap<Concept, HashMap<Integer, drugorders>> planExtn = new HashMap<Concept, HashMap<Integer, drugorders>>();
+                HashMap<Concept, HashMap<Integer, DrugOrder>> planMain = new HashMap<>();
+                HashMap<Concept, HashMap<Integer, drugorders>> planExtn = new HashMap<>();
                 
-                HashMap<Integer,DrugOrder> orderMain = new HashMap<Integer,DrugOrder>();
-                HashMap<Integer,drugorders> orderExtn = new HashMap<Integer,drugorders>();
-                ArrayList<String> drugNames = new ArrayList<String>();
+                HashMap<Integer,DrugOrder> orderMain = new HashMap<>();
+                HashMap<Integer,drugorders> orderExtn = new HashMap<>();
+                ArrayList<String> drugNames = new ArrayList<>();
                 
                 for(drugordersdiseases orderByPlan : ordersByPlan){
                     int order = orderByPlan.getOrderId();

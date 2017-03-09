@@ -52,7 +52,7 @@ public class AddNewOrderFragmentController {
         List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseNameEntered));
         model.addAttribute("medplans", medplans);
         
-        List<String> drugsNames = new ArrayList<String>();
+        List<String> drugsNames = new ArrayList<>();
         for(medicationplans medplan : medplans){
             drugsNames.add(medplan.getDrugId().getDisplayString().trim());
         }
@@ -60,7 +60,7 @@ public class AddNewOrderFragmentController {
         
         int number_of_allergic_drugs = patientService.getAllergies(patient).size();
         if(number_of_allergic_drugs >=1){
-            ArrayList<String> allergen = new ArrayList<String>();
+            ArrayList<String> allergen = new ArrayList<>();
             for(int i=0;i<number_of_allergic_drugs;i++){
                 allergen.add(patientService.getAllergies(patient).get(i).getAllergen().toString().trim());
             }
@@ -77,12 +77,12 @@ public class AddNewOrderFragmentController {
             UiUtils ui) {
         
         ConceptClass planConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
-        List<ConceptClass> requireClasses = new ArrayList<ConceptClass>();
+        List<ConceptClass> requireClasses = new ArrayList<>();
         requireClasses.add(planConcept);
         
         List<ConceptSearchResult> results = Context.getConceptService().getConcepts(query, null, false, requireClasses, null, null, null, null, 0, 100);
         
-        List<Concept> names = new ArrayList<Concept>();
+        List<Concept> names = new ArrayList<>();
         for (ConceptSearchResult con : results) {
             if(Context.getService(medicationplansService.class).getMedicationPlansByDisease(con.getConcept()).size() > 0)
                 names.add(con.getConcept()); //con.getConcept().getName().getName()

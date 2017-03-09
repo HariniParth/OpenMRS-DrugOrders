@@ -22,7 +22,7 @@ public class DrugordersFragmentController {
     
     public void controller(FragmentModel model, @FragmentParam("patientId") Patient patient){
         
-        List<drugorders> drugOrders = new ArrayList<drugorders>();
+        List<drugorders> drugOrders = new ArrayList<>();
         List<drugorders> orders;
         
         orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active");

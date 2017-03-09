@@ -26,7 +26,7 @@ public class DrugOrderList {
     }
     
     public static List<OrderAndDrugOrder> getDrugOrdersByPatient(Patient p) {
-        ArrayList<OrderAndDrugOrder> drugOrders = new ArrayList<OrderAndDrugOrder>();
+        ArrayList<OrderAndDrugOrder> drugOrders = new ArrayList<>();
         List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
         int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
         drugorders drugOrder;
@@ -41,7 +41,7 @@ public class DrugOrderList {
     }
     
     public static HashMap<Integer,DrugOrder> getDrugOrderMainDataByPatient(Patient p){
-        HashMap<Integer,DrugOrder> drugOrdersMain = new HashMap<Integer,DrugOrder>();
+        HashMap<Integer,DrugOrder> drugOrdersMain = new HashMap<>();
         List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
         int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
         org.openmrs.DrugOrder drugOrderMain;

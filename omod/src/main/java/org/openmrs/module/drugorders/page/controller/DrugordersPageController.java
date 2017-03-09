@@ -299,9 +299,7 @@ public class DrugordersPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Order Renewed!");
                 }
                 
-            } catch (APIException e) {
-                System.out.println(e.toString());
-            } catch (NumberFormatException e) {
+            } catch (APIException | NumberFormatException e) {
                 System.out.println(e.toString());
             }
         }

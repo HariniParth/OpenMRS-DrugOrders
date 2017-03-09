@@ -27,10 +27,10 @@ public class MedicationPlansFragmentController {
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
         
         //Data structure to store the 'Drug Order' object properties for all the active orders for the given disease
-        HashMap<Concept,HashMap<Integer,DrugOrder>> ActivePlanMain = new HashMap <Concept,HashMap<Integer,DrugOrder>>();
+        HashMap<Concept,HashMap<Integer,DrugOrder>> ActivePlanMain = new HashMap <>();
         
         //Data structure to store the 'drugorders' object properties for all the active orders for the given disease
-        HashMap <Concept,HashMap<Integer,drugorders>> ActivePlanExtension = new HashMap <Concept,HashMap<Integer,drugorders>>();
+        HashMap <Concept,HashMap<Integer,drugorders>> ActivePlanExtension = new HashMap <>();
         
         List<drugorders> activeMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
         
@@ -39,8 +39,8 @@ public class MedicationPlansFragmentController {
             
             if(!ActivePlanMain.containsKey(activeMedPlan.getDiseaseId())){
                 
-                HashMap<Integer,DrugOrder> drugOrderMain = new HashMap<Integer,DrugOrder>();
-                HashMap<Integer,drugorders> drugOrderExtension = new HashMap<Integer,drugorders>();
+                HashMap<Integer,DrugOrder> drugOrderMain = new HashMap<>();
+                HashMap<Integer,drugorders> drugOrderExtension = new HashMap<>();
                 List<drugordersdiseases> ordersForPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(activeMedPlan.getPlanId());
                 
                 for(drugordersdiseases orderPlan : ordersForPlan){

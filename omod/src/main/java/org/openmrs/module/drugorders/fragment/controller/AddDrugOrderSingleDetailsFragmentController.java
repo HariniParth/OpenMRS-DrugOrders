@@ -44,7 +44,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         
         int number_of_allergic_drugs = patientService.getAllergies(patient).size();
         if(number_of_allergic_drugs >=1){
-            ArrayList<String> allergen = new ArrayList<String>();
+            ArrayList<String> allergen = new ArrayList<>();
             for(int i=0;i<number_of_allergic_drugs;i++){
                 allergen.add(patientService.getAllergies(patient).get(i).getAllergen().toString());
                 model.addAttribute("allergicDrugs", allergen);
@@ -57,7 +57,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         List<Concept> drugs = Context.getConceptService().getConceptsByClass(drugConcept);
         model.addAttribute("drugs", drugs);
         
-        List<String> drugsNames = new ArrayList<String>();
+        List<String> drugsNames = new ArrayList<>();
         for(Concept drug : drugs){
             drugsNames.add(drug.getDisplayString());
         }
@@ -78,7 +78,7 @@ public class AddDrugOrderSingleDetailsFragmentController {
         List<Concept> diagnosis = Context.getConceptService().getConceptsByClass(diseaseConcept);
         model.addAttribute("diagnosis", diagnosis);
         
-        List<String> diagnosisNames = new ArrayList<String>();
+        List<String> diagnosisNames = new ArrayList<>();
         for(Concept diag : diagnosis){
             diagnosisNames.add(diag.getDisplayString());
         }
@@ -112,12 +112,12 @@ public class AddDrugOrderSingleDetailsFragmentController {
             UiUtils ui) {
         
         ConceptClass drugConcept = Context.getConceptService().getConceptClassByName("Drug");
-        List<ConceptClass> requireClasses = new ArrayList<ConceptClass>();
+        List<ConceptClass> requireClasses = new ArrayList<>();
         requireClasses.add(drugConcept);
         
         List<ConceptSearchResult> results = Context.getConceptService().getConcepts(query, null, false, requireClasses, null, null, null, null, 0, 100);
         
-        List<Concept> names = new ArrayList<Concept>();
+        List<Concept> names = new ArrayList<>();
         for (ConceptSearchResult con : results) {
             names.add(con.getConcept()); //con.getConcept().getName().getName()
             System.out.println("Concept: " + con.getConceptName());
@@ -133,12 +133,12 @@ public class AddDrugOrderSingleDetailsFragmentController {
             UiUtils ui) {
         
         ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
-        List<ConceptClass> requireClasses = new ArrayList<ConceptClass>();
+        List<ConceptClass> requireClasses = new ArrayList<>();
         requireClasses.add(diseaseConcept);
         
         List<ConceptSearchResult> results = Context.getConceptService().getConcepts(query, null, false, requireClasses, null, null, null, null, 0, 100);
         
-        List<Concept> names = new ArrayList<Concept>();
+        List<Concept> names = new ArrayList<>();
         for (ConceptSearchResult con : results) {
             names.add(con.getConcept()); //con.getConcept().getName().getName()
             System.out.println("Concept: " + con.getConceptName());

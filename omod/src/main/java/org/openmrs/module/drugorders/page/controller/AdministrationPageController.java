@@ -74,14 +74,12 @@ public class AdministrationPageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Item Discarded!");
                 }
                 
-            } catch(APIException e){
-                System.out.println("Error message "+e.getMessage());
-            } catch (NumberFormatException e) {
+            } catch(APIException | NumberFormatException e){
                 System.out.println("Error message "+e.getMessage());
             }
         }
         
-        HashMap<Concept,List<medicationplans>> allMedicationPlans = new HashMap<Concept,List<medicationplans>>();
+        HashMap<Concept,List<medicationplans>> allMedicationPlans = new HashMap<>();
         
         ConceptClass diseaseConcept = Context.getConceptService().getConceptClassByName("Diagnosis");
         List<Concept> diseases = Context.getConceptService().getConceptsByClass(diseaseConcept);

@@ -26,8 +26,8 @@ public class DrugOrderSingleNonActiveFragmentController {
     
     public void controller(PageModel model, @RequestParam("patientId") Patient patient){
         
-        List<drugorders> dorders = new ArrayList<drugorders>();
-        HashMap<Integer,List<drugorders>> groupDorders = new HashMap<Integer,List<drugorders>>();
+        List<drugorders> dorders = new ArrayList<>();
+        HashMap<Integer,List<drugorders>> groupDorders = new HashMap<>();
         
         List<OrderAndDrugOrder> drugOrders = DrugOrderList.getDrugOrdersByPatient(patient);
                 
