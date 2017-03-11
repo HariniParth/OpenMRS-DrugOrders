@@ -117,22 +117,23 @@
             <div class="dialog-header">
                 <span id="dialog-heading"><h3 id="groupOrderAction">${ groupOrderAction }</h3></span>
             </div><br/>
+            
+            <% if(groupOrderAction == "DISCARD MED PLAN" || groupOrderAction == "RENEW MED PLAN") { %>
+                <label class="fields"><strong>${ plan }</strong></label><br/>
+                <label class="fields">DRUGS ORDERED IN THIS PLAN</label><br/>
+            <% } %>
+
+            <% if(groupOrderAction == "DISCARD ORDER GROUP" || groupOrderAction == "RENEW ORDER GROUP") { %>
+                <label class="fields">DRUGS ORDERED IN THIS GROUP</label><br/>
+            <% } %>
 
             <div class="fields" id="groupOrderBlock">
-                <% if(groupOrderAction == "DISCARD MED PLAN" || groupOrderAction == "RENEW MED PLAN") { %>
-                    <label><strong>${ plan }</strong></label><br/>
-                    <label><strong>Drugs Ordered In This Plan</strong></label><br/>
-                <% } %>
-                
-                <% if(groupOrderAction == "DISCARD ORDER GROUP" || groupOrderAction == "RENEW ORDER GROUP") { %>
-                    <label><strong>Drugs Ordered In This Group</strong></label><br/>
-                <% } %>
-                
                 <% groupMain.each { order -> %>
+                    <div class="groupDrugName" id="view_order_detail">
+                        <strong>${ groupExtn.get(order.key).drugName.getDisplayString() }</strong>
+                    </div><br/>
+                    
                     <div class="groupBlock">
-                        <div class="groupDrugName" id="view_order_detail">
-                            <strong>${ groupExtn.get(order.key).drugName.getDisplayString() }</strong>
-                        
                         <div id="view_order_detail">
                             <div id="order_label">Dose</div>
                             <div id="order_value">${ order.value.dose }</div>
@@ -176,15 +177,15 @@
                         <div id="view_order_detail">
                             <div id="order_label">Diagnosis</div>
                             <div id="order_value">${ groupExtn.get(order.key).associatedDiagnosis.getDisplayString() }</div>
-                        </div>                        
-                    </div><br/>
-                <% } %>
-                
-                <input type="hidden" id="groupOrderID" name="groupOrderID" value="${ group }" />
-                <input type="hidden" id="groupAction" name="action" value="${ groupOrderAction }" />
+                        </div>
+                    </div>
+                <% } %>            
             </div>
             
-            <div id="view_order_detail">
+            <input type="hidden" id="groupOrderID" name="groupOrderID" value="${ group }" />
+            <input type="hidden" id="groupAction" name="action" value="${ groupOrderAction }" />
+            
+            <div id="view_order_detail" class="fields">
                 <div id="discontinueReasonSelect">
                     <label><strong>Select the reason to discontinue</strong></label>
                 
@@ -198,14 +199,14 @@
                 
                 <div id="discontinueReasonText">
                     <label><strong>Enter the reason to discontinue</strong></label>
-                    <input class="fields" type="textarea" maxlength="30" id="discontinueReasonNonCoded" name="discontinueReasonNonCoded" />
+                    <input type="textarea" maxlength="30" id="discontinueReasonNonCoded" name="discontinueReasonNonCoded" />
                 </div><br/>
             </div>
             
-            <span id="btn-place"><button class="confirm pull-right" type="submit" id="orderActionButton">Confirm</button></span>
-            <span id="btn-place"><button class="cancel pull-left" type="button" onclick="hideGroupOrderWindow()">Cancel</button></span>
-
+            <div id="btn-place">
+                <button class="confirm pull-right" type="submit" id="orderActionButton">Confirm</button>
+                <button class="cancel pull-left" type="button" onclick="hideGroupOrderWindow()">Cancel</button>
+            </div><br/>
         </form>
-    </div>
-    
+    </div>    
 <% } %>

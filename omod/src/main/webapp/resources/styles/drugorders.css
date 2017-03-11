@@ -112,7 +112,7 @@ and open the template in the editor.
     vertical-align: top;
 }
 
-.itemSummary{
+.itemSummary, .groupBlock{
     font-size: 14px;
 }
 
@@ -124,7 +124,7 @@ and open the template in the editor.
     overflow: hidden;
 }
 
-#medPlansForDisease{
+#medPlansForDisease, #groupOrderBlock{
     min-height: 400px;
     max-height: 400px;
     overflow-y: scroll;
