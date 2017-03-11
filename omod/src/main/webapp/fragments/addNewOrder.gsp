@@ -1,6 +1,5 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
-    def allergicDrugList = "";
 %>
 
 <div id="medPlanWindow" class="dialog">
@@ -58,11 +57,9 @@
             </div><br/>
             
             <input type="hidden" id="diseaseForPlan" name="diseaseForPlan" value="${diseaseName}" />
+            <h5 class="fields"><strong>${diseaseName}</strong></h5><br/>
             
             <div id="medPlansForDisease" class="fields">
-
-                <h5><strong>${diseaseName}</strong></h5><br/>
-                
                 <% medplans.each { medplan -> %>
                     <div id="itemSpace">
                         <strong>${ medplan.drugId.getDisplayString() }
@@ -74,8 +71,9 @@
                         
                         <div class="itemSummary">
                             <% if(allergicDrugs.contains(medplan.drugId.getDisplayString())) { %>
-                                NOTE: Patient is allergic to this drug <br/><br/>
-                                <% allergicDrugList = allergicDrugList + medplan.drugId.getDisplayString() + " " %>
+                                NOTE: Patient is allergic to this drug <br/>
+                                Enter the Reasons to Order <br/>
+                                <input type="textarea" class="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" /> <br/>
                             <% } %>
                             
                             <div id="view_order_detail">
@@ -121,13 +119,6 @@
                     </div>
                 <% } %>
             </div>
-            
-            <% if(allergicDrugList != "") { %>
-                <div class="fields" id="planItemAllergicReasonField">
-                    Enter the Reasons to Order<br/>
-                    <input type="textarea" id="allergicPlanItemOrderReason" name="allergicPlanItemOrderReason" class="select_field" /> <br/>
-                </div>
-            <% } %>
 
             <input type="hidden" id="selectMedPlan" name="action" value="selectMedPlan" />
             <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
