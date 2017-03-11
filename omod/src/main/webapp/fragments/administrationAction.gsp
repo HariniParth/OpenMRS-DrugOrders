@@ -14,7 +14,7 @@
                 <span class="fields" id="button"><i class="icon-plus edit-action right" title="${ ui.message("Add Another Drug") }" onclick="addPlanItemWindow('${diseaseName}')"></i></span>
             </h5><br/><br/>
             
-            <div>
+            <div id="medPlansForDisease">
                 <% existingMedplans.each { existingMedplan -> %>
                     <div id="itemSpace" class="fields">
                         
