@@ -10,7 +10,7 @@
     
     <div class="addMedicationPlanWindow">
         <form method="post" id="diseaseForm">
-            <div class="fields"><label>Plan Name </label>
+            <div class="fields"><label><strong>Enter Plan Name </strong></label><br/>
                 <input type="text" id="diseaseName" name="diseaseName"/>
             </div>
             
@@ -65,13 +65,11 @@
                 
                 <% medplans.each { medplan -> %>
                     <div id="itemSpace">
-                        <strong>
-                            ${ medplan.drugId.getDisplayString() }
-                            
+                        <strong>${ medplan.drugId.getDisplayString() }
                             <span id="button" class="pull-right">
                                 <i class="icon-edit edit-action" title="${ ui.message("Edit") }"></i>
                                 <i class="icon-trash delete-action" title="${ ui.message("Delete") }"></i>
-                            </span><br/>
+                            </span><br/><br/>
                         </strong>
                         
                         <div class="itemSummary">
@@ -80,7 +78,45 @@
                                 <% allergicDrugList = allergicDrugList + medplan.drugId.getDisplayString() + " " %>
                             <% } %>
                             
-                            ${ medplan.dose } ${ medplan.doseUnits.getDisplayString() }, ${ medplan.route.getDisplayString() }, ${ medplan.quantity } ${ medplan.quantityUnits.getDisplayString() }, ${ medplan.duration } ${ medplan.durationUnits.getDisplayString() }, ${ medplan.frequency }
+                            <div id="view_order_detail">
+                                <div id="order_label">Dose</div>
+                                <div id="order_value">${ medplan.dose }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Dose units</div>
+                                <div id="order_value">${ medplan.doseUnits.getDisplayString() }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Route</div>
+                                <div id="order_value">${ medplan.route.getDisplayString() }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Quantity</div>
+                                <div id="order_value">${ medplan.quantityUnits.getDisplayString() }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Qnty units</div>
+                                <div id="order_value">${ medplan.quantityUnits.getDisplayString() }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Duration</div>
+                                <div id="order_value">${ medplan.duration }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Durn units</div>
+                                <div id="order_value">${ medplan.durationUnits.getDisplayString() }</div>
+                            </div>
+
+                            <div id="view_order_detail">
+                                <div id="order_label">Frequency</div>
+                                <div id="order_value">${ medplan.frequency }</div>
+                            </div>
                         </div>
                     </div>
                 <% } %>
