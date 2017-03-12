@@ -34,6 +34,7 @@ $(document).ready( function() {
     jq("#existingPlansLinkHide").hide();
     $("#adminSavePlan").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
+    $("#selectPlanButton").prop("disabled", true);
     $("#adminEditPlanName").prop("disabled", true);
     
     $('#adminPlanName').autocomplete({
@@ -70,6 +71,20 @@ $(document).ready( function() {
     
     $("#drugNameEntered, #drugRoute, #drugDose, #drugDoseUnits, #drugQuantity, #quantityUnits, #drugDuration, #durationUnits, #drugFrequency, #associatedDiagnosis").change(function(){
         validate();
+    });
+    
+    $('.allergicPlanItemOrderReason').keyup(function() {
+        var reason = true;
+        $('.allergicPlanItemOrderReason').each(function() {
+            if($(this).val() === '') {
+                reason = false;
+            }
+        });
+        if (reason) {
+            $('#selectPlanButton').removeAttr('disabled'); 
+        } else {
+            $('#selectPlanButton').attr('disabled', 'disabled'); 
+        }
     });
 });
 

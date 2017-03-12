@@ -11,10 +11,7 @@
         <form method="post" id="diseaseForm">
             <div class="fields"><label><strong>Enter Plan Name </strong></label><br/>
                 <input type="text" id="diseaseName" name="diseaseName"/>
-            </div>
-            
-            <br/><br/>
-            
+            </div><br/><br/>            
             <button class="cancel pull-right" id="btn-place" type="button" onclick="hideMedicationPlanOrderWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
@@ -121,8 +118,8 @@
             </div>
 
             <input type="hidden" id="selectMedPlan" name="action" value="selectMedPlan" />
-            <button class="confirm pull-right" id="btn-place" type="submit" onclick="submitMedicationPlansWindow()">${ ui.message("Select") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedicationPlansWindow()">${ ui.message("Cancel") }</button>
+            <div id="btn-place"><button class="confirm pull-right" id="selectPlanButton" type="submit">${ ui.message("Select") }</button>
+            <button class="cancel" type="button" onclick="hideMedicationPlansWindow()">${ ui.message("Cancel") }</button></div>
         </form>
     </div>
 <% } %>
