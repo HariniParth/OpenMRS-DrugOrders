@@ -7,6 +7,7 @@ package org.openmrs.module.drugorders.fragment.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
 import org.openmrs.ConceptSearchResult;
@@ -27,7 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AdministrationFragmentController {
     
-    public void controller(PageModel model, @RequestParam(value = "disease_name", required = false) String disease_name,
+    public void controller(PageModel model, @RequestParam(value = "selectedMedPlan", required = false) String selectedMedPlan,
+                            @RequestParam(value = "disease_name", required = false) String disease_name,
                             @RequestParam(value = "drug_name", required = false) String drug_name,
                             @RequestParam(value = "drugRoute", required = false) String drugRoute,
                             @RequestParam(value = "drugDose", required = false) String drugDose,
@@ -38,6 +40,13 @@ public class AdministrationFragmentController {
                             @RequestParam(value = "durationUnits", required = false) String durationUnits,
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency){
 
+        HashMap<String, List<medicationplans>> selectedPlan = new HashMap<>();
+        if(!selectedMedPlan.equals("")){
+            List<medicationplans> plans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(selectedMedPlan));
+            selectedPlan.put(selectedMedPlan, plans);
+        }
+        model.addAttribute("selectedPlan", selectedPlan);
+        
         model.addAttribute("disease_name", disease_name);
         List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(disease_name));
         model.addAttribute("medPlans", medPlans);

@@ -416,10 +416,10 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
     $("#adminFrequency").val(frequency);
 }
 
-function deleteMedPlan(diseaseName){
-    jq("#deletePlanWindow").show();
-    document.getElementById("deletePlanWindow").style.display = 'block';
-    $("#plan_name").val(diseaseName);
+function deleteMedPlan(planName){
+    $("#selectedMedPlan").val(planName);
+    $("#discard_plan_name").val(planName);
+    $("#adminPageForm").submit();    
 }
 
 function editPlanDetails(diseaseName){

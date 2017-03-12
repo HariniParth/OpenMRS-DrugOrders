@@ -240,24 +240,80 @@
     </div>
 </div>
 
-<div id="deletePlanWindow" class="dialog">
-    <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("DISCARD PLAN") }</h3>
-    </div><br/>
-    
-    <div>
-        <form method="post">
-            
-            <label class="fields"><strong>Discard Medication Plan</strong> 
-                <input id="plan_name" name="plan_name" readonly="true"/>
-            </label><br/><br/>
-            
-            <input type="hidden" name="action" value="deletePlan" />
-            <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
-        </form>
+
+<% if(selectedPlan.size() > 0) { %>
+    <div id="deletePlanWindow" class="dialog">
+        <div class="dialog-header">
+            <h3 id="dialog-heading">${ ui.message("DISCARD PLAN") }</h3>
+        </div><br/>
+
+        <div>
+            <form method="post">
+                
+                <% selectedPlan.each { discardPlans -> %>
+                    <% discardPlans.each { discardPlan -> %>
+                        <div class="fields" id="view_order_detail">
+                            <strong>${ discardPlan.key }</strong>
+                        </div><br/>
+
+                        <div class="fields" id="discardPlanBlock">
+                            <% discardPlan.value.each { plan -> %>
+                                <strong>${ plan.drugId.getDisplayString() }</strong><br/><br/>
+
+                                <div class="groupBlock">                
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Dose</div>
+                                        <div id="order_value">${ plan.dose }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Dose units</div>
+                                        <div id="order_value">${ plan.doseUnits.getDisplayString() }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Route</div>
+                                        <div id="order_value">${ plan.route.getDisplayString() }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Quantity</div>
+                                        <div id="order_value">${ plan.quantity }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Qnty units</div>
+                                        <div id="order_value">${ plan.quantityUnits.getDisplayString() }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Duration</div>
+                                        <div id="order_value">${ plan.duration }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Durn units</div>
+                                        <div id="order_value">${ plan.durationUnits.getDisplayString() }</div>
+                                    </div>
+
+                                    <div id="view_order_detail">
+                                        <div id="order_label">Frequency</div>
+                                        <div id="order_value">${ plan.frequency }</div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                        <input id="discard_plan_name" name="discard_plan_name" value="${ discardPlan.key }" type="hidden" />
+                    <% } %>                    
+                <% } %>
+                
+                <input name="action" value="deletePlan" type="hidden" />                
+                <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
+                <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
+            </form>
+        </div>
     </div>
-</div>
+<% } %>
 
 <div id="deletePlanItemWindow" class="dialog">
     <div class="dialog-header">

@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AdministrationPageController {
     
-    private final HashMap<String,String> diseasePlanName = new HashMap<String,String>();
+    private final HashMap<String,String> medPlanName = new HashMap<>();
     
-    public void controller(PageModel model, HttpSession session, @RequestParam(value = "plan_name", required = false) String plan_name,
+    public void controller(PageModel model, HttpSession session, @RequestParam(value = "discard_plan_name", required = false) String discard_plan_name,
                             @RequestParam(value = "disease_name", required = false) String disease_name,
                             @RequestParam(value = "new_disease_name", required = false) String new_disease_name,
                             @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
@@ -43,8 +43,8 @@ public class AdministrationPageController {
         String newPlanName = new_disease_name.trim();
         
         if(!diseaseName.isEmpty() && !drugName.isEmpty())
-            diseasePlanName.put(diseaseName, drugName);
-        model.addAttribute("diseasePlanName", diseasePlanName);
+            medPlanName.put(diseaseName, drugName);
+        model.addAttribute("medPlanName", medPlanName);
         
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -60,7 +60,7 @@ public class AdministrationPageController {
                 }
                 
                 if ("deletePlan".equals(action)) {
-                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(plan_name));
+                    List<medicationplans> medPlans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(discard_plan_name));
                     for(medicationplans medPlan : medPlans){
                         Context.getService(medicationplansService.class).deleteMedicationPlan(medPlan);
                     }
