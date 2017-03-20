@@ -46,7 +46,7 @@
                         <td>
                             <span id="button">
                                 <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditSingleOrderWindow('EDIT DRUG ORDER','SINGLE','${ existingDrugOrderExtension.orderId }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrderExtension.startDate }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.refillInterval }','${ existingDrugOrderExtension.associatedDiagnosis.getDisplayString() }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }')"></i>
-                                <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="discardSingleOrder('${ existingDrugOrderExtension.orderId }')"></i>
+                                <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="discardSingleOrder('${ existingDrugOrderExtension.orderId }')"></i>
                             </span>
                         </td>
 
@@ -82,7 +82,7 @@
                                         <div class="groupDrugButton">
                                             <span id="button">
                                                 <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditSingleOrderWindow('EDIT DRUG ORDER','GROUP','${ existingOrder.orderId }','${ existingOrder.drugName.getDisplayString() }','${ existingOrder.startDate }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.refillInterval }','${ existingOrder.associatedDiagnosis.getDisplayString() }','${ existingOrder.isAllergicOrderReasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientInstructions }','${ existingOrder.pharmacistInstructions }')"></i>
-                                                <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="discardSingleOrder('${ existingOrder.orderId }')"></i>
+                                                <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="discardSingleOrder('${ existingOrder.orderId }')"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                             <div class="groupButton">
                                 <span id="button">
                                     <i class="icon-plus edit-action" title="${ ui.message("ADD DRUG ORDER") }" onclick="showAddOrderToGroupWindow('CREATE DRUG ORDER','${existingDrugOrder.key}')"></i>
-                                    <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}')"></i>
+                                    <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="showDiscardGroupOrderWindow('${existingDrugOrder.key}')"></i>
                                 </span>
                             </div>
                         </td>

@@ -53,7 +53,7 @@
 
                                         <div id="button" class="pull-right">
                                             <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditSingleOrderWindow('EDIT DRUG ORDER','PLAN','${ drugOrderMn.value.orderId }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString() }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startDate }','${ drugOrderMn.value.dose }','${ drugOrderMn.value.doseUnits.getDisplayString() }','${ drugOrderMn.value.route.getDisplayString() }','${ drugOrderMn.value.duration }','${ drugOrderMn.value.durationUnits.getDisplayString() }','${ drugOrderMn.value.quantity }','${ drugOrderMn.value.quantityUnits.getDisplayString() }','${ drugOrderMn.value.frequency }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).refill }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).refillInterval }','${drugOrderMain.key.getDisplayString()}','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).isAllergicOrderReasons }','${ default_prio }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).patientInstructions }','${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).pharmacistInstructions }')"></i>
-                                            <i class="icon-trash delete-action" title="${ ui.message("Delete") }" onclick="discardSingleItem('${ drugOrderMn.value.orderId }')"></i>
+                                            <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="discardSingleItem('${ drugOrderMn.value.orderId }')"></i>
                                         </div><br/>
                                     </div>
 
@@ -63,7 +63,7 @@
 
                         <td class="planDiscardButton">
                             <span id="button">
-                                <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="discardMedPlanOrder('${drugOrderMain.key.getDisplayString()}')"></i>
+                                <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="discardMedPlanOrder('${drugOrderMain.key.getDisplayString()}')"></i>
                             </span>
                         </td>
                     </tr>

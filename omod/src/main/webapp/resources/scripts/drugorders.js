@@ -90,7 +90,7 @@ $(document).ready( function() {
 
 function clearHighlights(){
     jq(".orderRow").each(function(){
-        jq(this).children('td').slice(1, 3).css({'background-color':'','color':''});
+        jq(this).children('td').slice(1, 4).css({'background-color':'','color':''});
     });
     jq(".groupDrugDetails").each(function(){
         jq(this).css({'background-color':'','color':''});

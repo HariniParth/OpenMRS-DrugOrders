@@ -345,7 +345,7 @@
             <label class="fields" id="frequency_value"></label><br/>
 
             <input type="hidden" name="action" value="deletePlanItem" />
-            <button class="confirm right" id="btn-place" name="deletePlanItem" type="submit" onclick="">${ ui.message("Discard") }</button>
+            <button class="confirm right" id="btn-place" name="deletePlanItem" type="submit" onclick="">${ ui.message("Discontinue") }</button>
             <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanItemDeleteWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>

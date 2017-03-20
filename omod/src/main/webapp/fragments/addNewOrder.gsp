@@ -62,7 +62,7 @@
                         <strong>${ medplan.drugId.getDisplayString() }
                             <span id="button" class="pull-right">
                                 <i class="icon-edit edit-action" title="${ ui.message("Edit") }"></i>
-                                <i class="icon-trash delete-action" title="${ ui.message("Delete") }"></i>
+                                <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }"></i>
                             </span><br/><br/>
                         </strong>
                         
