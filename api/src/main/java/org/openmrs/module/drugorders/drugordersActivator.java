@@ -105,7 +105,7 @@ public class drugordersActivator implements ModuleActivator {
             ConceptClass conceptClass = saveConceptClass("Units of Duration");
             Concept setConcept = saveConcept("Units of Duration", cs.getConceptClassByName("Units of Measure"));
 
-            List<Concept> durations = new ArrayList<Concept>();
+            List<Concept> durations = new ArrayList<>();
             Concept durationConcept = cs.getConceptByName("Duration units");
 
             for (ConceptSet durationConcepts : durationConcept.getConceptSets()) {
@@ -125,7 +125,7 @@ public class drugordersActivator implements ModuleActivator {
             ConceptClass conceptClass = saveConceptClass("Routes of drug administration");
             Concept setConcept = saveConcept("Routes of drug administration", cs.getConceptClassByName("Procedure"));
 
-            List<Concept> routes = new ArrayList<Concept>();
+            List<Concept> routes = new ArrayList<>();
             Concept routeConcept = cs.getConceptByName("Routes of administration");
 
             for (ConceptSet routeConcepts : routeConcept.getConceptSets()) {
@@ -146,7 +146,7 @@ public class drugordersActivator implements ModuleActivator {
             Concept setConcept = saveConcept("Units of Dose", cs.getConceptClassByName("Units of Measure"));
             String doseUnits[] = {"Fluid ounce", "Gram", "Liter", "Milliliter", "Milligram", "Microgram"};
 
-            List<Concept> doses = new ArrayList<Concept>();
+            List<Concept> doses = new ArrayList<>();
             for (String doseUnit : doseUnits) {
                 doses.add(cs.getConceptByName(doseUnit));
             }
@@ -164,7 +164,7 @@ public class drugordersActivator implements ModuleActivator {
             Concept setConcept = saveConcept("Units of Quantity", cs.getConceptClassByName("Units of Measure"));
             String quantityUnits[] = {"Capsule", "Drop", "Syringe", "Tablet", "Tablespoon", "Teaspoon", "Tube", "Vial"};
 
-            List<Concept> quantities = new ArrayList<Concept>();
+            List<Concept> quantities = new ArrayList<>();
             for (String quantityUnit : quantityUnits) {
                 quantities.add(cs.getConceptByName(quantityUnit));
             }

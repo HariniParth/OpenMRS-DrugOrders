@@ -53,7 +53,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     
     /**
      *
-     * @param plan
+     * @param planId
      * @return
      */
     @Transactional(readOnly = true)
