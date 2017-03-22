@@ -38,15 +38,15 @@ $(document).ready( function() {
     $("#adminEditPlanName").prop("disabled", true);
     
     $('#adminPlanName').autocomplete({
-        select: function (event, ui) { adminRecord(); }
+        select: function () { adminRecord(); }
     });
     
     $('#adminDrugName').autocomplete({
-        select: function (event, ui) { adminRecord(); }
+        select: function () { adminRecord(); }
     });
     
     $('#new_disease_name').autocomplete({
-        select: function (event, ui) { 
+        select: function () { 
             $("#adminEditPlanName").prop("disabled", false); 
         }
     });
@@ -66,11 +66,14 @@ $(document).ready( function() {
     });
     
     $('#associatedDiagnosis').autocomplete({
-        select: function (event, ui) { validate(); }
+        select: function() { validate(); }
     });
     
     $("#drugNameEntered, #drugRoute, #drugDose, #drugDoseUnits, #drugQuantity, #quantityUnits, #drugDuration, #durationUnits, #drugFrequency, #associatedDiagnosis").change(function(){
         validate();
+        if($("#drugNameEntered").val() !== ""){
+            checkFormFields();
+        }
     });
     
     $('.allergicPlanItemOrderReason').keyup(function() {
@@ -146,6 +149,8 @@ function showIndividualOrderDetailsWindow(orderType){
 function hideIndividualOrderDetailsWindow(){
     jq("#createOrderWindow").hide();
     jq("#allergicDrugOrderReasonField").hide();
+    $("#orderType").text("");
+    $("#orderAction").val("");
     $("#drugNameEntered").val("");
     $("#allergicOrderReason").val("");
     $("#drugRoute").val("");
@@ -163,7 +168,59 @@ function hideIndividualOrderDetailsWindow(){
     $("#pharmacistInstructions").val("");
     $("#addOrderButton").prop("disabled", true);
     
+    $('#createOrderForm input, #createOrderForm select').each(function(){
+        this.style.borderColor = "";
+    });
+
     clearHighlights();
+}
+
+function checkFormFields(){
+    if($("#drugRoute").val() === "")
+        document.getElementById("drugRoute").style.borderColor = "orangered";
+    else
+        document.getElementById("drugRoute").style.borderColor = "";
+    
+    if($("#drugDose").val() === "")
+        document.getElementById("drugDose").style.borderColor = "orangered";
+    else
+        document.getElementById("drugDose").style.borderColor = "";
+    
+    if($("#drugDoseUnits").val() === "")
+        document.getElementById("drugDoseUnits").style.borderColor = "orangered";
+    else
+        document.getElementById("drugDoseUnits").style.borderColor = "";
+    
+    if($("#drugQuantity").val() === "")
+        document.getElementById("drugQuantity").style.borderColor = "orangered";
+    else
+        document.getElementById("drugQuantity").style.borderColor = "";
+    
+    if($("#quantityUnits").val() === "")
+        document.getElementById("quantityUnits").style.borderColor = "orangered";
+    else
+        document.getElementById("quantityUnits").style.borderColor = "";
+    
+    if($("#drugDuration").val() === "")
+        document.getElementById("drugDuration").style.borderColor = "orangered";
+    else
+        document.getElementById("drugDuration").style.borderColor = "";
+    
+    if($("#durationUnits").val() === "")
+        document.getElementById("durationUnits").style.borderColor = "orangered";
+    else
+        document.getElementById("durationUnits").style.borderColor = "";
+    
+    if($("#drugFrequency").val() === "")
+        document.getElementById("drugFrequency").style.borderColor = "orangered";
+    else
+        document.getElementById("drugFrequency").style.borderColor = "";
+    
+    if($("#associatedDiagnosis").val() === "")
+        document.getElementById("associatedDiagnosis").style.borderColor = "orangered";
+    else
+        document.getElementById("associatedDiagnosis").style.borderColor = "";
+    
 }
 
 function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){

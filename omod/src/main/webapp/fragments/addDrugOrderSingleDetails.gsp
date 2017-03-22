@@ -4,14 +4,11 @@
 
 <div id="createOrderWindow" class="dialog">
     
-    <form method="post">
+    <form id="createOrderForm" method="post">
 
         <div class="dialog-header">
             <span id="dialog-heading"><h3 name="action" id="orderType"></h3></span>
-        </div>
-              
-        <br/>
-        <span id="asterisk">Fields marked with asterisk (*) are required</span><br/>
+        </div><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
@@ -40,8 +37,7 @@
                 <label>Note: The patient is allergic to this drug</label>
                 <label>Enter the reasons for ordering this drug</label>
                 <input type="textarea" maxlength="100" id="allergicOrderReason" name="allergicOrderReason"/>
-            </div>
-            <br/><br/>
+            </div><br/>
         </div>
 
         <div class="fields" id="view_order_detail">
@@ -119,7 +115,7 @@
                 <label>Duration <span id="asterisk">*</span></label>
             </div>
             <div id="order_value">
-                <input type="number" id="drugDuration" name="drugDuration"/>
+                <input type="number" id="drugDuration" name="drugDuration" min="0"/>
             </div>
         </div>
 
@@ -188,7 +184,7 @@
                 <label>Refills </label>
             </div>
             <div id="order_value">
-                <input type="number" id="refill" name="refill" value="0">
+                <input type="number" id="refill" name="refill" value="0" min="0">
             </div>
         </div>
 
@@ -199,7 +195,7 @@
                 <label>Interval (days)</label>
             </div>
             <div id="order_value">
-                <input type="number" id="refillInterval" name="refillInterval" value="0">
+                <input type="number" id="refillInterval" name="refillInterval" value="0" min="0">
             </div>
         </div>
         
@@ -236,7 +232,7 @@
         <input type="hidden" id="order_id" name="order_id" />
         
         <div class="fields" id="view_order_detail">
-            <button class="confirm right" id="addOrderButton" type="submit" onclick="showConfirmOrderWindow()">${ ui.message("Save") }</button>
+            <div id="addOrderButtonWrapper"><div id="overlay" onclick="checkFormFields()"></div><button class="confirm right" id="addOrderButton" type="submit">${ ui.message("Save") }</button></div>
             <button class="cancel" type="button" onclick="hideIndividualOrderDetailsWindow()">${ ui.message("Cancel") }</button>
         </div><br/>
         
