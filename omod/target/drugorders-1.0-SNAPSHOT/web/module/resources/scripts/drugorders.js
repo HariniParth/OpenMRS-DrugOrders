@@ -33,7 +33,6 @@ $(document).ready( function() {
         }  
     });
 
-    jq("#existingPlansLinkHide").hide();
     $("#adminSavePlan").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
     $("#selectPlanButton").prop("disabled", true);
@@ -178,6 +177,11 @@ function hideIndividualOrderDetailsWindow(){
 }
 
 function checkFormFields(){
+    if($("#allergicOrderReason").val() === "")
+        document.getElementById("allergicOrderReason").style.borderColor = "orangered";
+    else
+        document.getElementById("allergicOrderReason").style.borderColor = "";
+    
     if($("#drugRoute").val() === "")
         document.getElementById("drugRoute").style.borderColor = "orangered";
     else
@@ -254,13 +258,7 @@ function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,do
 }
 
 function hideDrugOrderViewWindow(){
-    jq("#showOrderWindow").hide();
-    jq("#discontinueReasonTextView").hide();
-    $("#discontinueOrder").prop("disabled", true);
-    $("#discontinueOrderReasonNonCoded").prop("disabled", true);
-    $("#discontinueOrderReasonCoded").val("Choose option");
-    $("#discontinueOrderReasonNonCoded").val("");
-    
+    jq("#showOrderWindow").hide();    
     clearHighlights();
 }
 
@@ -318,14 +316,6 @@ function showRenewOrderWindow(orderType,orderId,drugName,dose,doseUnits,route,du
     document.getElementById("createOrderWindow").style.display = 'block';
 }
 
-function hideEditOrderWindow(){
-    jq("#editOrder").hide();
-}
-
-function hideRenewOrderWindow(){
-    jq("#renewOrderWindow").hide();
-}
-
 function discardSingleOrder(order){
     $("#selectedActiveOrder").val(order);
     $("#activeGroupForm").submit();
@@ -344,14 +334,6 @@ function discardMedPlanOrder(plan){
 function renewMedPlanWindow(plan){
     $("#selectedNonActivePlan").val(plan);
     $("#nonActivePlanForm").submit();
-}
-
-function autoCompleteDiagnosis(diagnosis){
-    var list = diagnosis.replace("[","").replace("]","").split(',');
-    console.log(list);
-    $("#associatedDiagnosis").autocomplete({
-       source : list
-    });
 }
 
 function autoCompleteDrug(drug, allergies){
@@ -377,68 +359,7 @@ function autoCompleteDrug(drug, allergies){
     });
 }
 
-function autoCompleteDisease(disease){
-    var list = disease.replace("[","").replace("]","").split(',');
-    console.log(list);
-    $("#diseaseName").autocomplete({
-       source : list,
-       select : function( event , ui ) {
-           $("#diseaseName").val(ui.item.label);
-           $("#diseaseForm").submit();
-           validate();
-       }
-    });
-    
-    $("#new_disease_name").autocomplete({
-       source : list,
-       select : function( event , ui ) {
-           $("#diseaseName").val(ui.item.label);
-           $("#diseaseForm").submit();
-       }
-    });
-}
-
-function selectDisease(drug, allergies){
-    $("#diseaseForm").submit();
-}
-
-function autoCompletePlanItem(drugs){
-    var list = drugs.replace("[","").replace("]","").split(',');
-    console.log(list);
-    $("#drug_name").autocomplete({
-        select: function( event , ui ) {
-            validate();
-        } 
-    });
-}
-
-function editDraftOrder(editDraftOrderID,drugname,startdate,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,diagnosis,patientinstructions,pharmacistinstructions){
-    jq("#confirmOrderWindow").hide();
-    $("#orderID").val(editDraftOrderID);
-    $("#drugNameEntered").val(drugname);
-    $("#allergicOrderReason").val("");
-    $("#drugRoute").val(route);
-    $("#drugDose").val(dose);
-    $("#drugDoseUnits").val(doseUnits);
-    $("#drugQuantity").val(quantity);
-    $("#quantityUnits").val(quantityUnits);
-    $("#drugDuration").val(duration);
-    $("#durationUnits").val(durationUnits);
-    $("#drugFrequency").val(frequency);
-    $("#refill").val(numRefills);
-    $("#associatedDiagnosis").val(diagnosis);
-    $("#patientInstructions").val(patientinstructions);
-    $("#pharmacistInstructions").val(pharmacistinstructions);
-    jq("#createOrderWindow").show();
-    document.getElementById("createOrderWindow").style.display = 'block';
-}
-
-function deleteDraftOrder(deleteDraftOrderID){
-    alert(deleteDraftOrderID);
-}
-
 function displayPlanCreationWindow(){
-    jq("#confirmPlanWindow").hide();
     jq("#createPlanWindow").show();
     document.getElementById("createPlanWindow").style.display = 'block';
     $("#adminActionType").text("CREATE NEW PLAN");
@@ -491,7 +412,6 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
 }
 
 function deleteMedPlan(planName){
-    $("#selectedMedPlan").val(planName);
     $("#discard_plan_name").val(planName);
     $("#adminPageForm").submit();    
 }
@@ -574,7 +494,6 @@ function hideGroupOrderWindow(){
     jq(".oldGroupRow").each(function(){
         jq(this).children('td').slice(0, 1).css({'background-color':'','color':''});
     });
-    $('#groupOrderBlock > p').html("");
 }
 
 function showAddOrderToGroupWindow(orderType,groupID){
