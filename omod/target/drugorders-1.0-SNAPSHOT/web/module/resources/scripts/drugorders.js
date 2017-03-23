@@ -10,25 +10,27 @@ $(document).ready( function() {
     
     $(document).mouseup(function (e){
         var objects = $('.dialog');
-        $(objects).each(function(){
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0){
-                $(this).hide();
-                clearHighlights();
-                
-                var ID = $(this).attr("id");
-                
-                if(ID === "showOrderWindow")
-                    hideDrugOrderViewWindow();
-                else if(ID === "editPlanWindow")
-                    hideMedPlanEditWindow();
-                else if(ID === "createPlanWindow")
-                    hideMedPlanCreateWindow();
-                else if(ID === "createOrderWindow")
-                    hideIndividualOrderDetailsWindow();
-                else if(ID === "showGroupOrderWindow")
-                    hideGroupOrderWindow();
-            }
-        });        
+        if(e.target.nodeName !== "A" && e.target.nodeName !== "TD"){
+            $(objects).each(function(){
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0){
+                    $(this).hide();
+                    clearHighlights();
+
+                    var ID = $(this).attr("id");
+
+                    if(ID === "showOrderWindow")
+                        hideDrugOrderViewWindow();
+                    else if(ID === "editPlanWindow")
+                        hideMedPlanEditWindow();
+                    else if(ID === "createPlanWindow")
+                        hideMedPlanCreateWindow();
+                    else if(ID === "createOrderWindow")
+                        hideIndividualOrderDetailsWindow();
+                    else if(ID === "showGroupOrderWindow")
+                        hideGroupOrderWindow();
+                }
+            }); 
+        }  
     });
 
     jq("#existingPlansLinkHide").hide();
