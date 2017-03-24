@@ -8,61 +8,27 @@
     </div><br/><br/>
     
     <div class="fields">
-        <span id="order_label"><strong>Plan Name</strong></span>
-        <span id="order_label">
-            <label id="plan_disease"></label>
-        </span><br/>
-        
         <span id="order_label"><strong>Drug Name</strong></span>
-        <span id="order_label">
-            <label id="plan_drug"></label>
-        </span><br/><br/>
-
+        <span id="order_value"><label id="plan_drug"></label></span><br/>
+        <span id="order_label"><strong>Plan Name</strong></span>
+        <span id="order_value"><label id="plan_disease"></label></span><br/><br/>
         <span id="order_label"><strong>Dose</strong></span>
-        <span id="order_value">
-            <label id="plan_dose"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_dose"></label></span>
         <span id="order_label"><strong>Dose units</strong></span>
-        <span id="order_value">
-            <label id="plan_dose_units"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_dose_units"></label></span>
         <span id="order_label"><strong>Route</strong></span>
-        <span id="order_value">
-            <label id="plan_route"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_route"></label></span>
         <span id="order_label"><strong>Quantity</strong></span>
-        <span id="order_value">
-            <label id="plan_quantity"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_quantity"></label></span>
         <span id="order_label"><strong>Qnty units</strong></span>
-        <span id="order_value">
-            <label id="plan_quantity_units"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_quantity_units"></label></span>
         <span id="order_label"><strong>Duration</strong></span>
-        <span id="order_value">
-            <label id="plan_duration"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_duration"></label></span>
         <span id="order_label"><strong>Durn units</strong></span>
-        <span id="order_value">
-            <label id="plan_duration_units"></label>
-        </span>
-
+        <span id="order_value"><label id="plan_duration_units"></label></span>
         <span id="order_label"><strong>Frequency</strong></span>
-        <span id="order_value">
-            <label id="plan_frequency"></label>
-        </span><br/><br/>
-        
-        
-        <div id="view_window_close_btn">
-            <button class="cancel right" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button>
-        </div>
-        
+        <span id="order_value"><label id="plan_frequency"></label></span><br/>        
+        <div><button class="cancel right" id="btn-place" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button></div>
     </div>
 </div>
   
@@ -73,16 +39,15 @@
     </div><br/>
     
     <div>
-        <form method="post">
+        <form id="createPlanForm" method="post">
             <input type="hidden" id="planId" name="planId" />
             
             <div class="fields" id="disease_field">
                 <label><strong>Enter Plan Name</strong></label>
-                <input id="adminPlanName" name="diseaseName"/>
+                <input id="adminPlanName" name="planName"/>
             </div><br/>
             
             <p class="fields"><strong>Specify Standard Formulation</strong></p>
-            <span class="fields" id="asterisk">Note: All Fields are required to be filled/updated</span><br/>
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label">
@@ -208,8 +173,8 @@
 
             <br/><br/><br/>
 
-            <input type="hidden" name="action" value="addPlanItem" />
-            <button class="confirm right" id="adminSavePlan" type="submit" onclick="showMedPlanConfirmWindow()">${ ui.message("Save") }</button>
+            <input type="hidden" name="action" value="addPlan" />
+            <button class="confirm right" id="planSaveButton" type="submit">${ ui.message("Confirm") }</button>
             <button class="cancel left" type="button" onclick="hideMedPlanCreateWindow()">${ ui.message("Cancel") }</button><br/><br/>
         </form>
     </div>
@@ -225,11 +190,11 @@
         <form method="post">
             
             <label class="fields"><strong>Given Plan Name</strong>
-                <input id="disease_name" name="disease_name" readonly="true"/>
+                <input id="oldPlanName" name="oldPlanName" readonly="true"/>
             </label><br/>
             
             <label class="fields"><strong>Enter Plan Name</strong>
-                <input id="new_disease_name" name="new_disease_name" />
+                <input id="newPlanName" name="newPlanName" />
             </label>
             <br/><br/>
             
@@ -252,9 +217,7 @@
                 
                 <% selectedPlan.each { discardPlans -> %>
                     <% discardPlans.each { discardPlan -> %>
-                        <div class="fields" id="view_order_detail">
-                            <strong>${ discardPlan.key }</strong>
-                        </div><br/>
+                        <div class="fields"><strong>${ discardPlan.key }</strong></div><br/>
 
                         <div class="fields" id="discardPlanBlock">
                             <% discardPlan.value.each { plan -> %>
@@ -303,7 +266,7 @@
                                 </div>
                             <% } %>
                         </div>
-                        <input id="discard_plan_name" name="discard_plan_name" value="${ discardPlan.key }" type="hidden" />
+                        <input id="planToDiscard" name="planToDiscard" value="${ discardPlan.key }" type="hidden" />
                     <% } %>                    
                 <% } %>
                 
@@ -322,11 +285,11 @@
     
     <div>
         <form method="post">
-            <input type="hidden" id="medPlan_id" name="medPlan_id" />
-            <label class="fields" id="order_label"><strong>Plan Name</strong></label>
-            <label class="fields" id="disease_value"></label>
+            <input type="hidden" id="drugId" name="drugId" />
             <label class="fields" id="order_label"><strong>Drug Name</strong></label>
             <label class="fields" id="drug_value"></label>
+            <label class="fields" id="order_label"><strong>Plan Name</strong></label>
+            <label class="fields" id="disease_value"></label>
             <label class="fields" id="order_label"><strong>Dose</strong></label>
             <label class="fields" id="dose_value"></label>
             <label class="fields" id="order_label"><strong>Dose Units</strong></label>
@@ -345,7 +308,7 @@
             <label class="fields" id="frequency_value"></label><br/>
 
             <input type="hidden" name="action" value="deletePlanItem" />
-            <button class="confirm right" id="btn-place" name="deletePlanItem" type="submit" onclick="">${ ui.message("Discontinue") }</button>
+            <button class="confirm right" id="btn-place" name="deletePlanItem" type="submit" onclick="">${ ui.message("Confirm") }</button>
             <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanItemDeleteWindow()">${ ui.message("Cancel") }</button>
         </form>
     </div>
@@ -394,7 +357,7 @@
             }
         } ),
         
-        jq( "#new_disease_name" ).autocomplete({
+        jq( "#newPlanName" ).autocomplete({
             source: function( request, response ) {
                 var results = [];
                 jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',

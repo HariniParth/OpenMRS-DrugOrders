@@ -27,7 +27,7 @@
         </h3>
         <div id="line-break"></div><br/><br/>
         
-        <form method="post" name="adminPageForm" id="adminPageForm">
+        <form method="post" id="adminPageForm">
             <input type="hidden" id="selectedMedPlan" name="selectedMedPlan" />
             
             <table id="medPlansTable">
@@ -59,13 +59,13 @@
                                             <% medPlan.value.each { med -> %>
 
                                                 <div class="detailsLink">
-                                                    <div class="fields" id="order_value" onclick="viewMedPlanWindow('${ medPlan.key.getDisplayString().toUpperCase() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')">
+                                                    <div class="fields" id="order_value" onclick="viewMedPlanWindow('${ medPlan.key.getDisplayString().toUpperCase() }','${ med.drugId.getDisplayString().toUpperCase() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')">
                                                         <div>${ med.drugId.getDisplayString().toUpperCase() }</div>
                                                         <div><span class="itemSummary">${ med.dose  } ${ med.doseUnits.getDisplayString() }, ${ med.duration } ${ med.durationUnits.getDisplayString() }</span></div>
                                                     </div>
 
                                                     <div id="button" class="pull-right">
-                                                        <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="deleteMedPlanItem('${ med.id }','${ med.diseaseId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
+                                                        <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${ med.id }','${ med.diseaseId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
                                                         <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${ med.id }','${ med.diseaseId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
                                                     </div><br/>
                                                 </div>
@@ -75,8 +75,8 @@
                                     </td>
                                     <td class="planButtons">
                                         <span>
-                                            <i class="icon-trash delete-action" title="${ ui.message("Discontinue Med Plan") }" onclick="deleteMedPlan('${ medPlan.key.getDisplayString() }')"></i>
-                                            <i class="icon-edit edit-action" title="${ ui.message("Rename Plan Name") }" onclick="editPlanDetails('${ medPlan.key.getDisplayString() }')"></i>
+                                            <i class="icon-trash delete-action" title="${ ui.message("Discard Plan") }" onclick="deleteMedPlan('${ medPlan.key.getDisplayString() }')"></i>
+                                            <i class="icon-edit edit-action" title="${ ui.message("Rename Plan") }" onclick="editPlanDetails('${ medPlan.key.getDisplayString() }')"></i>
                                             <i class="icon-plus edit-action" title="${ ui.message("Add Drug To Plan") }" onclick="addPlanItemWindow('${ medPlan.key.getDisplayString() }')"></i>
                                         </span>
                                     </td>
@@ -91,10 +91,6 @@
 
     <div id="planExecute"> 
         ${ ui.includeFragment("drugorders", "administration") }
-            
-        <% if(medPlanName.size() > 0) { %>
-            ${ ui.includeFragment("drugorders", "administrationAction") }
-        <% } %>
     </div>
     
 </div>

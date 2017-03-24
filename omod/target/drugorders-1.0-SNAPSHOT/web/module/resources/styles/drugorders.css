@@ -106,7 +106,7 @@ and open the template in the editor.
     overflow: hidden;
 }
 
-#medPlansForDisease, #groupOrderBlock, #discardPlanBlock{
+#groupOrderBlock, #discardPlanBlock{
     min-height: 400px;
     max-height: 400px;
     overflow-y: scroll;
@@ -138,7 +138,7 @@ and open the template in the editor.
     width: 80%;
 }
 
-#createPlanWindow, #showOrderWindow, #confirmOrderWindow, #deletePlanItemWindow, #viewPlanWindow, #confirmPlanWindow, #deletePlanWindow, #showRenewOrderView, #editPlanWindow, #createOrderWindow, #medPlanWindow, #medPlanDetailsWindow, #drugOrderView, #groupOrderList, #showGroupOrderWindow{
+#createPlanWindow, #showOrderWindow, #confirmOrderWindow, #deletePlanItemWindow, #viewPlanWindow, #deletePlanWindow, #showRenewOrderView, #editPlanWindow, #createOrderWindow, #medPlanWindow, #medPlanDetailsWindow, #drugOrderView, #groupOrderList, #showGroupOrderWindow{
     background: #f3f3f3;
     border: 1px solid #eee;
     padding: 5px;
@@ -155,10 +155,6 @@ and open the template in the editor.
 
 #addOrderButton, #orderActionButton{
     margin-right: 20px;
-}
-
-#confirmOrderView .planItemDetails{
-    padding-left: 52px;
 }
 
 .detailsLink:hover div:first-child > *, .orderRow:hover .orderInfo, .oldOrderRow:hover .oldOrderDetails, .planDrug:hover .planDrugDetails, .planDrug:hover .planDetails, .groupDrug:hover .groupDrugDetails, .oldOrderDetails:hover, .oldGroupDetails:hover{

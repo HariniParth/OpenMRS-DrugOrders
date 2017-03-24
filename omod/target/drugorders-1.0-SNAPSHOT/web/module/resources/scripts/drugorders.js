@@ -33,22 +33,22 @@ $(document).ready( function() {
         }  
     });
 
-    $("#adminSavePlan").prop("disabled", true);
+    $("#planSaveButton").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
     $("#selectPlanButton").prop("disabled", true);
     $("#adminEditPlanName").prop("disabled", true);
-    
-    $('#adminPlanName').autocomplete({
-        select: function () { adminRecord(); }
-    });
-    
-    $('#adminDrugName').autocomplete({
-        select: function () { adminRecord(); }
-    });
-    
-    $('#new_disease_name').autocomplete({
+        
+    $('#newPlanName').autocomplete({
         select: function () { 
             $("#adminEditPlanName").prop("disabled", false); 
+        }
+    });
+    
+    $('#newPlanName').change(function (){ 
+        if($('#newPlanName').val() !== ""){
+            $("#adminEditPlanName").prop("disabled", false); 
+        } else {
+            $("#adminEditPlanName").prop("disabled", true); 
         }
     });
     
@@ -64,10 +64,9 @@ $(document).ready( function() {
     
     $("#adminPlanName, #adminDrugName, #adminRoute, #adminDose, #adminDoseUnits, #adminQuantity, #adminQuantityUnits, #adminDuration, #adminDurationUnits, #adminFrequency").change(function(){
         adminRecord();
-    });
-    
-    $('#associatedDiagnosis').autocomplete({
-        select: function() { validate(); }
+        if($("#adminPlanName").val() !== "" || $("#adminDrugName").val() !== ""){
+            checkAdminFields();
+        }
     });
     
     $("#drugNameEntered, #drugRoute, #drugDose, #drugDoseUnits, #drugQuantity, #quantityUnits, #drugDuration, #durationUnits, #drugFrequency, #associatedDiagnosis").change(function(){
@@ -120,9 +119,9 @@ function validate(){
 
 function adminRecord(){
     if($("#adminPlanName").val() !== "" && $("#adminDrugName").val() !== "" && $("#adminRoute").val() !== "" && $("#adminDose").val() !== "" && $("#adminDoseUnits").val() !== "" && $("#adminQuantity").val() !== "" && $("#adminQuantityUnits").val() !== "" && $("#adminDuration").val() !== "" && $("#adminDurationUnits").val() !== "" && $("#adminFrequency").val() !== ""){
-        $("#adminSavePlan").prop("disabled", false);
+        $("#planSaveButton").prop("disabled", false);
     } else {
-        $("#adminSavePlan").prop("disabled", true);
+        $("#planSaveButton").prop("disabled", true);
     }
 }
 
@@ -227,6 +226,58 @@ function checkFormFields(){
     else
         document.getElementById("associatedDiagnosis").style.borderColor = "";
     
+}
+
+function checkAdminFields(){
+    if($("#adminDrugName").val() === "")
+        document.getElementById("adminDrugName").style.borderColor = "orangered";
+    else
+        document.getElementById("adminDrugName").style.borderColor = "";
+    
+    if($("#adminPlanName").val() === "")
+        document.getElementById("adminPlanName").style.borderColor = "orangered";
+    else
+        document.getElementById("adminPlanName").style.borderColor = "";
+    
+    if($("#adminRoute").val() === "")
+        document.getElementById("adminRoute").style.borderColor = "orangered";
+    else
+        document.getElementById("adminRoute").style.borderColor = "";
+    
+    if($("#adminDose").val() === "")
+        document.getElementById("adminDose").style.borderColor = "orangered";
+    else
+        document.getElementById("adminDose").style.borderColor = "";
+    
+    if($("#adminDoseUnits").val() === "")
+        document.getElementById("adminDoseUnits").style.borderColor = "orangered";
+    else
+        document.getElementById("adminDoseUnits").style.borderColor = "";
+    
+    if($("#adminQuantity").val() === "")
+        document.getElementById("adminQuantity").style.borderColor = "orangered";
+    else
+        document.getElementById("adminQuantity").style.borderColor = "";
+    
+    if($("#adminQuantityUnits").val() === "")
+        document.getElementById("adminQuantityUnits").style.borderColor = "orangered";
+    else
+        document.getElementById("adminQuantityUnits").style.borderColor = "";
+    
+    if($("#adminDuration").val() === "")
+        document.getElementById("adminDuration").style.borderColor = "orangered";
+    else
+        document.getElementById("adminDuration").style.borderColor = "";
+    
+    if($("#adminDurationUnits").val() === "")
+        document.getElementById("adminDurationUnits").style.borderColor = "orangered";
+    else
+        document.getElementById("adminDurationUnits").style.borderColor = "";
+    
+    if($("#adminFrequency").val() === "")
+        document.getElementById("adminFrequency").style.borderColor = "orangered";
+    else
+        document.getElementById("adminFrequency").style.borderColor = "";
 }
 
 function showDrugOrderViewWindow(action,givenName,lastName,startdate,drugname,dose,doseUnits,route,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,allergicOrderReason,priority,patientinstructions,pharmacistinstructions,pharmacomments){
@@ -366,11 +417,11 @@ function displayPlanCreationWindow(){
 }
 
 function addPlanItemWindow(diseaseName){
-    jq("#confirmPlanWindow").hide();
     jq("#createPlanWindow").show();
     document.getElementById("createPlanWindow").style.display = 'block';
     $("#adminActionType").text("ADD DRUG TO PLAN");
     $("#adminPlanName").val(diseaseName);
+    checkAdminFields();
 }
 
 function hideMedPlanCreateWindow(){
@@ -386,15 +437,18 @@ function hideMedPlanCreateWindow(){
     $("#adminDuration").val("");
     $("#adminDurationUnits").val("");
     $("#adminFrequency").val("");
-    $("#adminSavePlan").prop("disabled", true);
+    $("#planSaveButton").prop("disabled", true);
     
     jq(".detailsLink").each(function(){
         jq(this).children('div > *').slice(0, 1).css({'background-color':'','color':''});
     }); 
+    
+    $('#createPlanForm input, #createPlanForm select').each(function(){
+        this.style.borderColor = "";
+    });
 }
 
 function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
-    jq("#confirmPlanWindow").hide();
     jq("#createPlanWindow").show();
     document.getElementById("createPlanWindow").style.display = 'block';
     $("#adminActionType").text("EDIT PLAN");
@@ -409,30 +463,30 @@ function editPlanItemDetails(planid,diseaseName,drugName,dose,doseunits,route,qu
     $("#adminDuration").val(duration);
     $("#adminDurationUnits").val(durationunits);
     $("#adminFrequency").val(frequency);
+    $("#planSaveButton").prop("disabled", false);
 }
 
 function deleteMedPlan(planName){
-    $("#discard_plan_name").val(planName);
+    $("#selectedMedPlan").val(planName);
     $("#adminPageForm").submit();    
 }
 
-function editPlanDetails(diseaseName){
+function editPlanDetails(planName){
     jq("#editPlanWindow").show();
     document.getElementById("editPlanWindow").style.display = 'block';
-    $("#disease_name").val(diseaseName);
+    $("#oldPlanName").val(planName);
 }
 
 function hideMedPlanEditWindow(){
     jq("#editPlanWindow").hide();
-    $("#new_disease_name").val("");
+    $("#newPlanName").val("");
     $("#adminEditPlanName").prop("disabled", true); 
 }
 
-function deleteMedPlanItem(planid,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
-    jq("#confirmPlanWindow").hide();
+function deleteMedPlanItem(drugId,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
     jq("#deletePlanItemWindow").show();
     document.getElementById("deletePlanItemWindow").style.display = 'block';
-    $("#medPlan_id").val(planid);
+    $("#drugId").val(drugId);
     $("#disease_value").text(diseaseName);
     $("#drug_value").text(drugName);
     $("#dose_value").text(dose);
@@ -457,18 +511,18 @@ function hideMedPlanItemDeleteWindow(){
     }); 
 }
 
-function viewMedPlanWindow(diseasename,drugname,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
+function viewMedPlanWindow(planName,drugName,dose,doseUnits,route,quantity,quantityUnits,duration,durationUnits,frequency){
     jq("#viewPlanWindow").show();
     document.getElementById("viewPlanWindow").style.display = 'block';
-    $("#plan_disease").text(diseasename);
-    $("#plan_drug").text(drugname);
+    $("#plan_disease").text(planName);
+    $("#plan_drug").text(drugName);
     $("#plan_dose").text(dose);
-    $("#plan_dose_units").text(doseunits);
+    $("#plan_dose_units").text(doseUnits);
     $("#plan_route").text(route);
     $("#plan_quantity").text(quantity);
-    $("#plan_quantity_units").text(quantityunits);
+    $("#plan_quantity_units").text(quantityUnits);
     $("#plan_duration").text(duration);
-    $("#plan_duration_units").text(durationunits);
+    $("#plan_duration_units").text(durationUnits);
     $("#plan_frequency").text(frequency);
 }
 
