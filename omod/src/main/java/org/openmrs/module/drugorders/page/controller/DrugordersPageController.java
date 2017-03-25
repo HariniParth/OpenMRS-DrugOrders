@@ -279,17 +279,19 @@ public class DrugordersPageController {
                     createDrugOrderExtension(drugorder, order, patientID, drugNameEntered, startDateEntered, allergicOrderReason, associatedDiagnosis, orderPriority, refill, refillInterval, patientInstructions, pharmacistInstructions);
                     originalOrderExtension.setOrderStatus("Non-Active");
                     
-                    if(orderClass.equals("PLAN")){
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active-Plan");
-                        Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderId(order);
-                    } 
-                    else if(orderClass.equals("SINGLE")){
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active");
-                    }
-                    else if(orderClass.equals("GROUP")){
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active-Group");
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupId(originalOrderExtension.getGroupId());
-                        originalOrderExtension.setGroupId(null);
+                    switch (orderClass) {
+                        case "PLAN":
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active-Plan");
+                            Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(originalOrderExtension.getOrderId()).setOrderId(order);
+                            break;
+                        case "SINGLE":
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active");
+                            break;
+                        case "GROUP":
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active-Group");
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setGroupId(originalOrderExtension.getGroupId());
+                            originalOrderExtension.setGroupId(null);
+                            break;
                     }
                     
                     InfoErrorMessageUtil.flashInfoMessage(session, "Order Changes Saved!");

@@ -33,12 +33,14 @@ public class DrugOrderSingleFragmentController {
                 
         for(OrderAndDrugOrder drugOrder : drugOrders){
             drugorders dorder = drugOrder.getdrugorders();
-            if(dorder.getOrderStatus().equals("Active"))
-                dorders.add(dorder);
-            else if(dorder.getOrderStatus().equals("Active-Group")){
-                if(groupDorders.get(dorder.getOrderId()) == null){
-                    groupDorders.put(dorder.getGroupId(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupId()));
-                }
+            switch (dorder.getOrderStatus()) {
+                case "Active":
+                    dorders.add(dorder);
+                    break;
+                case "Active-Group":
+                    if(groupDorders.get(dorder.getOrderId()) == null){
+                        groupDorders.put(dorder.getGroupId(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorder.getGroupId()));
+                    }   break;
             }
         }
                 

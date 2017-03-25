@@ -154,7 +154,7 @@ public class EditDrugOrderFragmentController {
     }
         
     private List<DrugOrder> getDrugOrderMainDataByPatient(Patient p){
-        ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
+        ArrayList<DrugOrder> drugOrdersMain = new ArrayList<>();
         List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
         int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
         DrugOrder drugOrderMain;
