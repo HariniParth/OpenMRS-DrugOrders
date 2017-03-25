@@ -51,7 +51,7 @@ and open the template in the editor.
 
 #button{
     float: right;
-    margin-right: 20px;
+    margin-right: 6px;
 }
 
 #order_label{
@@ -79,7 +79,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.nonActiveOrderWindow, #medPlanWindow, .plansDetailsView, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #createPlanWindow, #viewPlanWindow, #editPlanWindow, #deletePlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect{
+.nonActiveOrderWindow, #medPlanWindow, .plansDetailsView, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #createPlanWindow, #viewPlanWindow, #editPlanWindow, #deletePlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect, #removeFromGroupWindow{
     display: none;
 }
 
@@ -145,7 +145,7 @@ and open the template in the editor.
     color: #363463;
 }
 
-.groupDrugName, #singleOrderView div:first-child, #itemSpace .itemSummary, #singleOrderView, #viewPlanWindow, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails, .groupDrug{
+.groupDrugName, #singleOrderView div:first-child, #itemSpace .itemSummary, #singleOrderView, #viewPlanWindow, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails, .groupDrug, #removeFromGroupWindow{
     overflow: hidden;
 }
 

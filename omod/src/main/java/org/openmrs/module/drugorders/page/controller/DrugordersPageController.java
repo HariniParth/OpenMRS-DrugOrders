@@ -71,7 +71,6 @@ public class DrugordersPageController {
             @RequestParam(value = "order_id", required = false) Integer orderId,
             @RequestParam(value = "orderClass", required = false) String orderClass,
             @RequestParam(value = "groupOrderID", required = false) Integer groupOrderID,
-            @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "omitPlanItemCheckBox", required=false) String[] omitPlanItemCheckBox,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "allergicDrugAction", required = false) String allergicDrugAction,
@@ -112,22 +111,6 @@ public class DrugordersPageController {
                             InfoErrorMessageUtil.flashInfoMessage(session, "Order Exists!");
                         }
                     }
-                }
-                                
-                if ("GroupOrder".equals(action)) {
-                    if(groupCheckBox.length > 0){
-                        int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
-                        
-                        for(int i=0;i<groupCheckBox.length;i++){
-                            int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
-                            drugorders orderInGroup = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
-                            orderInGroup.setGroupId(groupID);
-                            orderInGroup.setOrderStatus("Active-Group");
-                        }
-                        InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
-                    }
-                    else
-                        InfoErrorMessageUtil.flashErrorMessage(session, "Check Orders To Be Grouped!");
                 }
                 
                 if ("selectMedPlan".equals(action)) {

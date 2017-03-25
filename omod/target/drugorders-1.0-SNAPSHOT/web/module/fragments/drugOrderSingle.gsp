@@ -32,7 +32,7 @@
                 <% existingDrugOrdersExtension.each { existingDrugOrderExtension -> %>
                     <tr class="orderRow <% if(existingDrugOrderExtension.forDiscard == 1) { %> discontinued <% } %> <% if(existingDrugOrderExtension.onHold == 1) { %> onhold <% } %>" title="${ ui.message(existingDrugOrderExtension.commentForOrderer) }">
 
-                        <td><span><input type="checkbox" name="groupCheckBox" value="${ existingDrugOrderExtension.orderId }" ng-model="groupCheckBox" /></span></td>
+                        <td><input type="checkbox" name="singleCheckBox" value="${ existingDrugOrderExtension.orderId }" ng-model="groupCheckBox" /></td>
 
                         <td class="orderInfo" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ existingDrugOrderExtension.startDate.format('yyyy-MM-dd') }','${ existingDrugOrderExtension.drugName.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).dose }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).duration }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantity }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingDrugOrderExtension.orderId).frequency }','${ existingDrugOrderExtension.refill }','${ existingDrugOrderExtension.isAllergicOrderReasons }','${ existingDrugOrderExtension.priority.getDisplayString() }','${ existingDrugOrderExtension.patientInstructions }','${ existingDrugOrderExtension.pharmacistInstructions }','${ existingDrugOrderExtension.commentForOrderer }')">${ existingDrugOrderExtension.orderId }</td>
                         
@@ -57,7 +57,7 @@
                     <% def orderList = "" %>
                     <tr class="groupRow">
     
-                        <td></td>
+                        <td><input type="checkbox" name="groupCheckBox" value="${ existingDrugOrder.key }" ng-model="groupCheckBox" /></td>
                         <td colspan="4" class="groupDetails">
                             <% existingDrugOrder.value.each { existingOrder -> %>
                                 <% if(existingOrder.orderStatus == "Active-Group") { %>
@@ -80,10 +80,9 @@
                                         </div>
 
                                         <div class="groupDrugButton">
-                                            <span id="button">
-                                                <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditSingleOrderWindow('EDIT DRUG ORDER','GROUP','${ existingOrder.orderId }','${ existingOrder.drugName.getDisplayString() }','${ existingOrder.startDate }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.refillInterval }','${ existingOrder.associatedDiagnosis.getDisplayString() }','${ existingOrder.isAllergicOrderReasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientInstructions }','${ existingOrder.pharmacistInstructions }')"></i>
-                                                <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="discardSingleOrder('${ existingOrder.orderId }')"></i>
-                                            </span>
+                                            <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="showEditSingleOrderWindow('EDIT DRUG ORDER','GROUP','${ existingOrder.orderId }','${ existingOrder.drugName.getDisplayString() }','${ existingOrder.startDate }','${ existingDrugOrdersMain.get(existingOrder.orderId).dose }','${ existingDrugOrdersMain.get(existingOrder.orderId).doseUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).route.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).duration }','${ existingDrugOrdersMain.get(existingOrder.orderId).durationUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantity }','${ existingDrugOrdersMain.get(existingOrder.orderId).quantityUnits.getDisplayString() }','${ existingDrugOrdersMain.get(existingOrder.orderId).frequency }','${ existingOrder.refill }','${ existingOrder.refillInterval }','${ existingOrder.associatedDiagnosis.getDisplayString() }','${ existingOrder.isAllergicOrderReasons }','${ existingOrder.priority.getDisplayString() }','${ existingOrder.patientInstructions }','${ existingOrder.pharmacistInstructions }')"></i>
+                                            <i class="icon-remove edit-action" title="${ ui.message("Ungroup") }" onclick="removeFromGroup('${ existingOrder.orderId }')"></i>
+                                            <i class="icon-trash delete-action" title="${ ui.message("Discontinue") }" onclick="discardSingleOrder('${ existingOrder.orderId }')"></i>
                                         </div>
                                     </div>
 
@@ -104,12 +103,23 @@
                 <% } %>
             </tbody>
         </table><br/>
+        
+        <div class="pull-left">
+            <button type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group Selected</button>
+        </div>
+    </form>
+</div>
 
-        <% if(existingDrugOrdersExtension.size() > 0) { %>
-            <div class="pull-left">
-                <button type="submit" id="confirmOrderGroup" name="action" value="GroupOrder" ng-disabled="!groupCheckBox">Group Selected</button>
-            </div>
-        <% } %>
+<div id="removeFromGroupWindow" class="dialog">
+    <form id="removeFromGroupForm" method="post">
+        <div class="dialog-header">
+            <h3 id="dialog-heading">${ ui.message("Remove From Group") }</h3>
+        </div>
+        <h4 class="align-center"><strong>Remove Order From Group?</strong></h4><br/>
+        <input type="hidden" id="removeFromGroup" name="removeFromGroup" />
+        
+        <button class="confirm right" id="btn-place" type="button">Confirm</button>
+        <button class="cancel left" id="btn-place" type="button">Cancel</button>
     </form>
 </div>
 

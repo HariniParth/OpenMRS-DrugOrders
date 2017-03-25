@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-/* global diagnosis, jq */
+/* global diagnosis, jq, emr */
+
+var removeFromGroupDialog = null;
 
 $(document).ready( function() {
     
@@ -87,6 +89,18 @@ $(document).ready( function() {
             $('#selectPlanButton').removeAttr('disabled'); 
         } else {
             $('#selectPlanButton').attr('disabled', 'disabled'); 
+        }
+    });
+    
+    removeFromGroupDialog = emr.setupConfirmationDialog({
+        selector: '#removeFromGroupWindow',
+        actions: {
+            cancel: function() {
+            	removeFromGroupDialog.close();
+            },
+            confirm: function() {
+            	$("#removeFromGroupForm").submit();
+            }
         }
     });
 });
@@ -571,4 +585,9 @@ function discontinueReason(){
     } else {
         $("#orderActionButton").prop("disabled", false);
     }
+}
+
+function removeFromGroup(OrderId){
+    $("#removeFromGroup").val(OrderId);
+    removeFromGroupDialog.show();
 }
