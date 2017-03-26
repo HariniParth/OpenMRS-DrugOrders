@@ -71,6 +71,7 @@ public class DrugordersPageController {
             @RequestParam(value = "order_id", required = false) Integer orderId,
             @RequestParam(value = "orderClass", required = false) String orderClass,
             @RequestParam(value = "groupOrderID", required = false) Integer groupOrderID,
+            @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "omitPlanItemCheckBox", required=false) String[] omitPlanItemCheckBox,
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
             @RequestParam(value = "allergicDrugAction", required = false) String allergicDrugAction,
@@ -157,96 +158,123 @@ public class DrugordersPageController {
                             }
                         }
                     }
-                    
                     InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
                 }
                 
                 if ("DISCONTINUE ORDER".equals(action)){
-                    drugorders order = Context.getService(drugordersService.class).getDrugOrderByOrderID(groupOrderID);
-                    order.setOrderStatus("Non-Active");
-                    if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
-                        order.setDiscontinueReason(Context.getConceptService().getConceptByName(discontinueReasonCoded.trim()));
-                    }
-                    if(!(discontinueReasonNonCoded.equals(""))){
-                        order.setDiscontinuationReasons(discontinueReasonNonCoded);
-                    }
-                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(groupOrderID), "Discontinued");
-                    
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Discontinued!");
-                }
-                
-                if ("DISCARD ORDER GROUP".equals(action)) {
-                    List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
-                    
-                    for(drugorders order : orders){
-                        order.setOrderStatus("Non-Active-Group");
+                    if(groupCheckBox.length > 0){
+                        int id = Integer.parseInt(Long.toString(groupCheckBox[0]));
+                        drugorders order = Context.getService(drugordersService.class).getDrugOrderByOrderID(id);
+                        
+                        order.setOrderStatus("Non-Active");
                         if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
                             order.setDiscontinueReason(Context.getConceptService().getConceptByName(discontinueReasonCoded.trim()));
                         }
                         if(!(discontinueReasonNonCoded.equals(""))){
                             order.setDiscontinuationReasons(discontinueReasonNonCoded);
                         }
-                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Group");
+                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(id), "Discontinued");
+
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Order Discontinued!");
                     }
+                }
+                
+                if ("DISCARD ORDER GROUP".equals(action)) {
+                    int ordersInGrp = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID).size();
                     
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Orders Discontinued!");
+                    if(groupCheckBox.length > 0){
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int id = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            drugorders order = Context.getService(drugordersService.class).getDrugOrderByOrderID(id);
+                            
+                            if(ordersInGrp == groupCheckBox.length)
+                                order.setOrderStatus("Non-Active-Group");
+                            else {
+                                order.setOrderStatus("Non-Active");
+                                order.setGroupId(null);
+                            }                                
+                            
+                            if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
+                            order.setDiscontinueReason(Context.getConceptService().getConceptByName(discontinueReasonCoded.trim()));
+                            }
+                            if(!(discontinueReasonNonCoded.equals(""))){
+                                order.setDiscontinuationReasons(discontinueReasonNonCoded);
+                            }
+                            Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued");
+                        }
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Orders Discontinued!");
+                    }
                 }
                 
                 if ("RENEW ORDER GROUP".equals(action)) {
-                    List<drugorders> orders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(groupOrderID);
-                    int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
-                    
-                    for(drugorders order : orders){
-                        DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                        DrugOrder drugOrder = null;
-                        drugorders drugorder = null;
+                    if(groupCheckBox.length > 0){
+                        int groupID = Context.getService(drugordersService.class).getLastGroupID() + 1;
                         
-                        int orderID = createNewDrugOrder(drugOrder, patient, order.getDrugName().getDisplayString(), drugOrderMain.getRoute().getDisplayString(), drugOrderMain.getDose().toString(), drugOrderMain.getDoseUnits().getDisplayString(), drugOrderMain.getQuantity().toString(), drugOrderMain.getQuantityUnits().getDisplayString(), drugOrderMain.getFrequency().getName(), drugOrderMain.getDuration(), drugOrderMain.getDurationUnits().getDisplayString());
-                        createDrugOrderExtension(drugorder, orderID, patientID, order.getDrugName().getDisplayString(), Calendar.getInstance().getTime(), "", order.getAssociatedDiagnosis().getDisplayString(), order.getPriority().getDisplayString(), order.getRefill(), order.getRefillInterval(), "", "");
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int id = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            drugorders order = Context.getService(drugordersService.class).getDrugOrderByOrderID(id);
                         
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setGroupId(groupID);
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setOrderStatus("Active-Group");
+                            DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
+                            DrugOrder drugOrder = null;
+                            drugorders drugorder = null;
+
+                            int orderID = createNewDrugOrder(drugOrder, patient, order.getDrugName().getDisplayString(), drugOrderMain.getRoute().getDisplayString(), drugOrderMain.getDose().toString(), drugOrderMain.getDoseUnits().getDisplayString(), drugOrderMain.getQuantity().toString(), drugOrderMain.getQuantityUnits().getDisplayString(), drugOrderMain.getFrequency().getName(), drugOrderMain.getDuration(), drugOrderMain.getDurationUnits().getDisplayString());
+                            createDrugOrderExtension(drugorder, orderID, patientID, order.getDrugName().getDisplayString(), Calendar.getInstance().getTime(), "", order.getAssociatedDiagnosis().getDisplayString(), order.getPriority().getDisplayString(), order.getRefill(), order.getRefillInterval(), "", "");
+
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setGroupId(groupID);
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID).setOrderStatus("Active-Group");
+                        }
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
                     }
-                    
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Orders Saved!");
                 }
                 
                 if ("DISCARD MED PLAN".equals(action)){
-                    List<drugordersdiseases> orders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(groupOrderID);
+                    int ordersInPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(groupOrderID).size();
                     
-                    for(drugordersdiseases order : orders){
+                    if(groupCheckBox.length > 0){
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int id = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            drugorders order = Context.getService(drugordersService.class).getDrugOrderByOrderID(id);
                         
-                        drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(order.getOrderId());
-                        drugorder.setOrderStatus("Non-Active-Plan");
-                        if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
-                            drugorder.setDiscontinueReason(Context.getConceptService().getConceptByName(discontinueReasonCoded.trim()));
+                            if(ordersInPlan == groupCheckBox.length)
+                                order.setOrderStatus("Non-Active-Plan");
+                            else {
+                                order.setOrderStatus("Non-Active");
+                                Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(id).setPlanId(null);
+                            }                                
+                            
+                            if(!(discontinueReasonCoded.equalsIgnoreCase(""))){
+                                order.setDiscontinueReason(Context.getConceptService().getConceptByName(discontinueReasonCoded.trim()));
+                            }
+                            if(!(discontinueReasonNonCoded.equals(""))){
+                                order.setDiscontinuationReasons(discontinueReasonNonCoded);
+                            }
+                            Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued");
                         }
-                        if(!(discontinueReasonNonCoded.equals(""))){
-                            drugorder.setDiscontinuationReasons(discontinueReasonNonCoded);
-                        }
-                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(order.getOrderId()), "Discontinued-Plan");
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Orders Discontinued!");
                     }
                 }
                 
                 if ("RENEW MED PLAN".equals(action)){
-                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(groupOrderID);
-                    int planID = Context.getService(drugordersdiseasesService.class).getLastPlanID() + 1;
-                    
-                    for(drugordersdiseases planOrder : planOrders){
-                        DrugOrder orderMain = (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId());
-                        drugorders orderExtn = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId());
+                    if(groupCheckBox.length > 0){
+                        int planID = Context.getService(drugordersdiseasesService.class).getLastPlanID() + 1;
                         
-                        DrugOrder drugOrder = null;
-                        drugorders drugorder = null;
-                        
-                        int order = createNewDrugOrder(drugOrder, patient, orderExtn.getDrugName().getDisplayString(), orderMain.getRoute().getDisplayString(), orderMain.getDose().toString(), orderMain.getDoseUnits().getDisplayString(), orderMain.getQuantity().toString(), orderMain.getQuantityUnits().getDisplayString(), orderMain.getFrequency().getName(), orderMain.getDuration(), orderMain.getDurationUnits().getDisplayString());
-                        createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugName().getDisplayString(), Calendar.getInstance().getTime(), "", planOrder.getDiseaseId().getDisplayString(), orderExtn.getPriority().getDisplayString(), orderExtn.getRefill(), orderExtn.getRefillInterval(), "", "");
-                        createDiseasePlan(order, planID, patientID, planOrder.getDiseaseId().getDisplayString());
-                        
-                        Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active-Plan");
-                    }
-                    
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Renewed!");
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int id = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            DrugOrder orderMain = (DrugOrder) Context.getOrderService().getOrder(id);
+                            drugorders orderExtn = Context.getService(drugordersService.class).getDrugOrderByOrderID(id);
+
+                            DrugOrder drugOrder = null;
+                            drugorders drugorder = null;
+
+                            int order = createNewDrugOrder(drugOrder, patient, orderExtn.getDrugName().getDisplayString(), orderMain.getRoute().getDisplayString(), orderMain.getDose().toString(), orderMain.getDoseUnits().getDisplayString(), orderMain.getQuantity().toString(), orderMain.getQuantityUnits().getDisplayString(), orderMain.getFrequency().getName(), orderMain.getDuration(), orderMain.getDurationUnits().getDisplayString());
+                            createDrugOrderExtension(drugorder, order, patientID, orderExtn.getDrugName().getDisplayString(), Calendar.getInstance().getTime(), "", orderExtn.getAssociatedDiagnosis().getDisplayString(), orderExtn.getPriority().getDisplayString(), orderExtn.getRefill(), orderExtn.getRefillInterval(), "", "");
+                            createDiseasePlan(order, planID, patientID, orderExtn.getAssociatedDiagnosis().getDisplayString());
+
+                            Context.getService(drugordersService.class).getDrugOrderByOrderID(order).setOrderStatus("Active-Plan");
+                        }
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Plan Renewed!");
+                    }                        
                 }
                 
                 if ("EDIT DRUG ORDER".equals(action)) {

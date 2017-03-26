@@ -79,7 +79,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.nonActiveOrderWindow, #medPlanWindow, .plansDetailsView, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #createPlanWindow, #viewPlanWindow, #editPlanWindow, #deletePlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect, #removeFromGroupWindow{
+.nonActiveOrderWindow, #medPlanWindow, .plansDetailsView, .groupBlock, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #createPlanWindow, #viewPlanWindow, #editPlanWindow, #deletePlanItemWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect, #removeFromGroupWindow{
     display: none;
 }
 
@@ -94,8 +94,13 @@ and open the template in the editor.
     vertical-align: top;
 }
 
-.itemSummary, .groupBlock{
+.itemSummary{
     font-size: 14px;
+}
+
+.groupBlock, .drugDetails{
+    font-size: 14px;
+    margin-left: 50px;
 }
 
 .oldGroupDetails{
@@ -107,8 +112,8 @@ and open the template in the editor.
 }
 
 #groupOrderBlock, #discardPlanBlock{
-    min-height: 400px;
-    max-height: 400px;
+    min-height: 350px;
+    max-height: 350px;
     overflow-y: scroll;
     overflow-x: scroll;
     white-space: nowrap;

@@ -1,6 +1,7 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
     def selectedDisease = "";
+    def allergic_order = "";
 %>
 
 <div id="showOrderWindow" class="dialog">
@@ -116,23 +117,20 @@
             
             <div class="dialog-header">
                 <span id="dialog-heading"><h3 id="groupOrderAction">${ groupOrderAction }</h3></span>
-            </div><br/>
-            
-            <% if(groupOrderAction == "DISCARD MED PLAN" || groupOrderAction == "RENEW MED PLAN") { %>
-                <label class="fields"><strong>${ plan }</strong></label><br/>
-                <label class="fields">DRUGS ORDERED IN THIS PLAN</label><br/>
-            <% } %>
-
-            <% if(groupOrderAction == "DISCARD ORDER GROUP" || groupOrderAction == "RENEW ORDER GROUP") { %>
-                <label class="fields">DRUGS ORDERED IN THIS GROUP</label><br/>
-            <% } %>
+            </div>
+            <h4 class="align-center"><strong>Selected Order(s)</strong></h4><br/>
 
             <div class="fields" id="groupOrderBlock">
                 <% groupMain.each { order -> %>
                     <div class="groupDrugName" id="view_order_detail">
+                        <input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ order.key }" checked="true" />
+                        <i class="icon-plus-sign  edit-action" title="${ ui.message("Show") }"></i>
+                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                         <strong>${ groupExtn.get(order.key).drugName.getDisplayString() }</strong>
-                    </div><br/>
+                    </div>
                     
+                    <div class="drugDetails">${ order.value.dose } ${ order.value.doseUnits.getDisplayString() }, ${ order.value.quantity } ${ order.value.quantityUnits.getDisplayString() }</div><br/>
+                        
                     <div class="groupBlock">
                         <div id="view_order_detail">
                             <div id="order_label">Dose</div>
@@ -178,6 +176,17 @@
                             <div id="order_label">Diagnosis</div>
                             <div id="order_value">${ groupExtn.get(order.key).associatedDiagnosis.getDisplayString() }</div>
                         </div>
+                        
+                        <% if(groupExtn.get(order.key).isAllergicOrderReasons != null) { %>
+                            <% allergic_order = groupExtn.get(order.key).isAllergicOrderReasons; %>
+                        <% } else { %>
+                            <% allergic_order = "NA"; %>
+                        <% } %>
+                            
+                        <div id="view_order_detail">
+                            <div id="order_label">Allergy</div>
+                            <div id="order_value">${ allergic_order }</div>
+                        </div>
                     </div>
                 <% } %>            
             </div>
@@ -210,3 +219,19 @@
         </form>
     </div>    
 <% } %>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().nextAll(".groupBlock").first().show();
+        jq(this).hide();
+        jq(this).nextAll(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().nextAll(".groupBlock").first().hide();
+        jq(this).hide();
+        jq(this).prevAll(".icon-plus-sign").show();
+    });
+</script>

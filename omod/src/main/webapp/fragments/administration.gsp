@@ -221,6 +221,9 @@
 
                         <div class="fields" id="discardPlanBlock">
                             <% discardPlan.value.each { plan -> %>
+                                <input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ plan.id }" checked="true" />
+                                <i class="icon-plus-sign  edit-action" title="${ ui.message("Show") }"></i>
+                                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                                 <strong>${ plan.drugId.getDisplayString() }</strong><br/><br/>
 
                                 <div class="groupBlock">                
@@ -378,4 +381,20 @@
         } )
     });
     
+</script>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).nextAll(".groupBlock").first().show();
+        jq(this).hide();
+        jq(this).nextAll(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).nextAll(".groupBlock").first().hide();
+        jq(this).hide();
+        jq(this).prevAll(".icon-plus-sign").show();
+    });
 </script>
