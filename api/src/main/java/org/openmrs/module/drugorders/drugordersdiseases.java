@@ -18,7 +18,7 @@ public class drugordersdiseases extends BaseOpenmrsObject implements Serializabl
     private Integer id;
     private Integer planId;
     private Integer orderId;
-    private String patientId;
+    private Integer patientId;
     private Concept diseaseId;    
     
     public drugordersdiseases(){
@@ -27,12 +27,12 @@ public class drugordersdiseases extends BaseOpenmrsObject implements Serializabl
     
     @Override
     public Integer getId() {
-            return id;
+        return id;
     }
 
     @Override
     public void setId(Integer id) {
-            this.id = id;
+        this.id = id;
     }
     
     public Integer getPlanId() {
@@ -52,18 +52,18 @@ public class drugordersdiseases extends BaseOpenmrsObject implements Serializabl
     }
     
     public Concept getDiseaseId() {
-            return diseaseId;
+        return diseaseId;
     }
 
     public void setDiseaseId(Concept diseaseId) {
-            this.diseaseId = diseaseId;
+        this.diseaseId = diseaseId;
     }
     
-    public String getPatientId() {
-            return patientId;
+    public Integer getPatientId() {
+        return patientId;
     }
 
-    public void setPatientId(String patientId) {
-            this.patientId = patientId;
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 }

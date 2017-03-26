@@ -70,7 +70,7 @@ public class HibernatedrugordersdiseasesDAO implements drugordersdiseasesDAO {
     public List<drugordersdiseases> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugordersdiseases.class);
-        crit.add(Restrictions.eq("diseaseId", concept)).add(Restrictions.eq("patientId", Integer.toString(patient.getPatientId())));
+        crit.add(Restrictions.eq("diseaseId", concept)).add(Restrictions.eq("patientId", patient.getPatientId()));
         return crit.list();
     };
     

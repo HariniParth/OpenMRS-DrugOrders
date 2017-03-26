@@ -82,7 +82,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public List<drugorders> getDrugOrdersByPatient(Patient patient) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("patientId", Integer.toString(patient.getPatientId())));
+        crit.add(Restrictions.eq("patientId", patient.getPatientId()));
         return crit.list();
     };
     
@@ -109,7 +109,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public drugorders getDrugOrderByDrugAndPatient(Concept drug, Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("drugName", drug)).add(Restrictions.eq("patientId", patient.getPatientId().toString()));
+        crit.add(Restrictions.eq("drugName", drug)).add(Restrictions.eq("patientId", patient.getPatientId()));
         return (drugorders) crit.uniqueResult();
     };
     
@@ -117,7 +117,7 @@ public class HibernatedrugordersDAO implements drugordersDAO {
     public List<drugorders> getDrugOrdersByPatientAndStatus(Patient patient, String status){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 drugorders.class);
-        crit.add(Restrictions.eq("orderStatus", status)).add(Restrictions.eq("patientId", patient.getPatientId().toString()));
+        crit.add(Restrictions.eq("orderStatus", status)).add(Restrictions.eq("patientId", patient.getPatientId()));
         return crit.list();
     };
     

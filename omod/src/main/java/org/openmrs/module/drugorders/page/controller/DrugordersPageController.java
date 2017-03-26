@@ -77,7 +77,7 @@ public class DrugordersPageController {
             @RequestParam(value = "allergicDrugAction", required = false) String allergicDrugAction,
             @RequestParam(value = "allergicPlanItemOrderReason", required = false) String[] allergicPlanItemOrderReason) {
 
-        String patientID = Integer.toString(patient.getPatientId());
+        int patientID = patient.getPatientId();
         String drugNameEntered = drugNameSelected.trim();
         String associatedDiagnosis = selectedDiagnosis.trim();
         
@@ -386,7 +386,7 @@ public class DrugordersPageController {
         return orderID; 
     }
     
-    private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, String patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String orderPriority, int refill, int refillInterval, String patientInstructions, String pharmacistInstructions){
+    private void createDrugOrderExtension(drugorders drugorder, int drugOrderID, int patientID, String drugName, Date startDate, String allergicOrderReason, String diagnosis, String orderPriority, int refill, int refillInterval, String patientInstructions, String pharmacistInstructions){
         drugorder = new drugorders();
         drugorder.setOrderId(drugOrderID);
         drugorder.setDrugName(Context.getConceptService().getConceptByName(drugName));
@@ -417,7 +417,7 @@ public class DrugordersPageController {
         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
     }
     
-    private void createDiseasePlan(int drugOrderID, int planID, String patientID, String diseaseName){
+    private void createDiseasePlan(int drugOrderID, int planID, int patientID, String diseaseName){
         
         drugordersdiseases diseaseDrugOrder = new drugordersdiseases();
         

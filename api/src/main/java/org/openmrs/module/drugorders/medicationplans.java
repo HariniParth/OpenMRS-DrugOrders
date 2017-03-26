@@ -35,92 +35,92 @@ public class medicationplans extends BaseOpenmrsObject implements Serializable{
     
     @Override
     public Integer getId() {
-            return id;
+        return id;
     }
 
     @Override
     public void setId(Integer id) {
-            this.id = id;
+        this.id = id;
     }
     
     public Concept getDiseaseId() {
-            return diseaseId;
+        return diseaseId;
     }
 
     public void setDiseaseId(Concept diseaseId) {
-            this.diseaseId = diseaseId;
+        this.diseaseId = diseaseId;
     }
 
     public Concept getDrugId() {
-            return drugId;
+        return drugId;
     }
 
     public void setDrugId(Concept drugId) {
-            this.drugId = drugId;
+        this.drugId = drugId;
     }
 
     public Concept getRoute() {
-            return route;
+        return route;
     }
 
     public void setRoute(Concept route) {
-            this.route = route;
+        this.route = route;
     }
 
     public OrderFrequency getFrequency() {
-            return frequency;
+        return frequency;
     }
 
     public void setFrequency(OrderFrequency frequency) {
-            this.frequency = frequency;
+        this.frequency = frequency;
     }
 
     public Double getDose() {
-            return dose;
+        return dose;
     }
 
     public void setDose(Double dose) {
-            this.dose = dose;
+        this.dose = dose;
     }
 
     public Concept getDoseUnits() {
-            return doseUnits;
+        return doseUnits;
     }
 
     public void setDoseUnits(Concept doseUnits) {
-            this.doseUnits = doseUnits;
+        this.doseUnits = doseUnits;
     }
 
     public Double getQuantity() {
-            return quantity;
+        return quantity;
     }
 
     public void setQuantity(Double quantity) {
-            this.quantity = quantity;
+        this.quantity = quantity;
     }
 
     public Concept getQuantityUnits() {
-            return quantityUnits;
+        return quantityUnits;
     }
 
     public void setQuantityUnits(Concept quantityUnits) {
-            this.quantityUnits = quantityUnits;
+        this.quantityUnits = quantityUnits;
     }
 
     public Integer getDuration() {
-            return duration;
+        return duration;
     }
 
     public void setDuration(Integer duration) {
-            this.duration = duration;
+        this.duration = duration;
     }
 
     public Concept getDurationUnits() {
-            return durationUnits;
+        return durationUnits;
     }
 
     public void setDurationUnits(Concept durationUnits) {
-            this.durationUnits = durationUnits;
+        this.durationUnits = durationUnits;
     }
         
 }
