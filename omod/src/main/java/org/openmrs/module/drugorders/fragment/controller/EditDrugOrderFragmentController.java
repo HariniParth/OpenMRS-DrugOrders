@@ -19,8 +19,8 @@ import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.api.APIException;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.api.planordersService;
+import org.openmrs.module.drugorders.planorders;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -99,7 +99,7 @@ public class EditDrugOrderFragmentController {
                         groupMain.put(planOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
                         groupExtn.put(planOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()));
                         if(group == 0)
-                            group = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(planOrder.getOrderId()).getPlanId();
+                            group = Context.getService(planordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()).getPlanId();
                     }
                 }
                 model.addAttribute("plan", planConcept.getDisplayString().toUpperCase());
@@ -114,10 +114,10 @@ public class EditDrugOrderFragmentController {
         if(StringUtils.isNotBlank(selectedNonActivePlan)){
             try {
                 int group = Integer.parseInt(selectedNonActivePlan);
-                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(group);
+                List<planorders> planOrders = Context.getService(planordersService.class).getDrugOrdersByPlanID(group);
                 Concept planConcept = planOrders.get(0).getDiseaseId();
                 
-                for(drugordersdiseases planOrder : planOrders){
+                for(planorders planOrder : planOrders){
                     groupMain.put(planOrder.getOrderId(), (DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
                     groupExtn.put(planOrder.getOrderId(), Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()));
                 }

@@ -54,7 +54,7 @@
 
     </class>
     
-    <class name="drugordersdiseases" table="drug_order_diseases">
+    <class name="planorders" table="drug_order_diseases">
 
         <id name="id" type="int" column="id" unsaved-value="0">
             <generator class="native" />

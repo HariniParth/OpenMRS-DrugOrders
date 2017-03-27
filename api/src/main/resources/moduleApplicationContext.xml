@@ -86,16 +86,16 @@
         <bean parent="serviceContext">
 		<property name="moduleService">
 			<list>
-				<value>${project.parent.groupId}.${project.parent.artifactId}.api.drugordersdiseasesService</value>
+				<value>${project.parent.groupId}.${project.parent.artifactId}.api.planordersService</value>
 				<bean
 					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 					<property name="transactionManager">
 						<ref bean="transactionManager" />
 					</property>
 					<property name="target">
-						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.drugordersdiseasesServiceImpl">
+						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.planordersServiceImpl">
 							<property name="dao">
-								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernatedrugordersdiseasesDAO">
+								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateplanordersDAO">
 									<property name="sessionFactory">
 										<ref bean="sessionFactory" />
 									</property>

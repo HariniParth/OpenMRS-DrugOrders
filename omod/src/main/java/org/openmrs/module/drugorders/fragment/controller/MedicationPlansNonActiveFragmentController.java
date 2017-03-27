@@ -13,9 +13,9 @@ import org.openmrs.DrugOrder;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.planorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,10 +37,10 @@ public class MedicationPlansNonActiveFragmentController {
         List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Non-Active-Plan");
         
         for(drugorders nonActiveMedOrder : nonActiveMedOrders){
-            drugordersdiseases nonActiveMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(nonActiveMedOrder.getOrderId());
+            planorders nonActiveMedPlan = Context.getService(planordersService.class).getDrugOrderByOrderID(nonActiveMedOrder.getOrderId());
             
             if(!NonActivePlanMain.containsKey(nonActiveMedPlan.getPlanId())){
-                List<drugordersdiseases> ordersByPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(nonActiveMedPlan.getPlanId());
+                List<planorders> ordersByPlan = Context.getService(planordersService.class).getDrugOrdersByPlanID(nonActiveMedPlan.getPlanId());
                 
                 HashMap<Concept, HashMap<Integer, DrugOrder>> planMain = new HashMap<>();
                 HashMap<Concept, HashMap<Integer, drugorders>> planExtn = new HashMap<>();
@@ -49,7 +49,7 @@ public class MedicationPlansNonActiveFragmentController {
                 HashMap<Integer,drugorders> orderExtn = new HashMap<>();
                 ArrayList<String> drugNames = new ArrayList<>();
                 
-                for(drugordersdiseases orderByPlan : ordersByPlan){
+                for(planorders orderByPlan : ordersByPlan){
                     int order = orderByPlan.getOrderId();
                     orderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
                     orderExtn.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));

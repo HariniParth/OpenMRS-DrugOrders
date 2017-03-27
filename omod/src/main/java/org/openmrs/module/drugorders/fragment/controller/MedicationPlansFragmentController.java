@@ -12,9 +12,9 @@ import org.openmrs.DrugOrder;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.planorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,15 +35,15 @@ public class MedicationPlansFragmentController {
         List<drugorders> activeMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
         
         for(drugorders activeMedOrder : activeMedOrders){
-            drugordersdiseases activeMedPlan = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(activeMedOrder.getOrderId());
+            planorders activeMedPlan = Context.getService(planordersService.class).getDrugOrderByOrderID(activeMedOrder.getOrderId());
             
             if(!ActivePlanMain.containsKey(activeMedPlan.getDiseaseId())){
                 
                 HashMap<Integer,DrugOrder> drugOrderMain = new HashMap<>();
                 HashMap<Integer,drugorders> drugOrderExtension = new HashMap<>();
-                List<drugordersdiseases> ordersForPlan = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(activeMedPlan.getPlanId());
+                List<planorders> ordersForPlan = Context.getService(planordersService.class).getDrugOrdersByPlanID(activeMedPlan.getPlanId());
                 
-                for(drugordersdiseases orderPlan : ordersForPlan){
+                for(planorders orderPlan : ordersForPlan){
                     int order = orderPlan.getOrderId();
                     if(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getOrderStatus().equals("Active-Plan")){
                         drugOrderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
