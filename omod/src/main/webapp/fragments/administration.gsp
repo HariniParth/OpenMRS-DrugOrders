@@ -213,11 +213,10 @@
                 
                 <% selectedPlan.each { discardPlans -> %>
                     <% discardPlans.each { discardPlan -> %>
-                        <div class="fields"><strong>${ discardPlan.key }</strong></div><br/>
+                        <h5 class="align-center"><strong>${ discardPlan.key }</strong></h5><br/>
 
                         <div class="fields" id="discardPlanBlock">
                             <% discardPlan.value.each { plan -> %>
-                                <input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ plan.id }" checked="true" />
                                 <i class="icon-plus-sign  edit-action" title="${ ui.message("Show") }"></i>
                                 <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                                 <strong>${ plan.drugId.getDisplayString() }</strong><br/><br/>
