@@ -28,7 +28,7 @@ and open the template in the editor.
     width: 100%;
 }
 
-#btn-place, #adminEditPlanName{
+#btn-place, #adminEditPlanName, #selectPlanButton{
     margin: 10px;
 }
 
@@ -111,7 +111,7 @@ and open the template in the editor.
     overflow: hidden;
 }
 
-#groupOrderBlock, #discardPlanBlock{
+#groupOrderBlock, #discardPlanBlock, #medPlansBlock{
     min-height: 350px;
     max-height: 350px;
     overflow-y: scroll;
@@ -150,7 +150,7 @@ and open the template in the editor.
     color: #363463;
 }
 
-.groupDrugName, #singleOrderView div:first-child, #itemSpace .itemSummary, #singleOrderView, #viewPlanWindow, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails, .groupDrug, #removeFromGroupWindow{
+.groupDrugName, #singleOrderView div:first-child, #planDrugName, #itemSpace .itemSummary, #singleOrderView, #viewPlanWindow, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails, .groupDrug, #removeFromGroupWindow{
     overflow: hidden;
 }
 

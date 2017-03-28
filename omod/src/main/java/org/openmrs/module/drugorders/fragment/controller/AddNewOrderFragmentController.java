@@ -33,22 +33,20 @@ public class AddNewOrderFragmentController {
      *
      * @param model
      * @param diseaseForPlan
-     * @param diseaseNameSelected
+     * @param diseaseName
      * @param patient
      * @param patientService
      */
     
     public void controller(PageModel model, 
             @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
-            @RequestParam(value = "diseaseName", required = false) String diseaseNameSelected,
+            @RequestParam(value = "diseaseName", required = false) String diseaseName,
             @RequestParam("patientId") Patient patient, @SpringBean("allergyService") PatientService patientService){
 
         model.addAttribute("diseaseForPlan", diseaseForPlan);
-                
-        String diseaseNameEntered = diseaseNameSelected.trim();
-        model.addAttribute("diseaseName", diseaseNameEntered);
+        model.addAttribute("diseaseName", diseaseName.trim());
         
-        List<standardplans> medplans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseNameEntered));
+        List<standardplans> medplans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseName.trim()));
         model.addAttribute("medplans", medplans);
                 
         int number_of_allergic_drugs = patientService.getAllergies(patient).size();

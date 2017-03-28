@@ -39,9 +39,8 @@ $(document).ready( function() {
 
     $("#planSaveButton").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
-    $("#selectPlanButton").prop("disabled", true);
     $("#adminEditPlanName").prop("disabled", true);
-        
+    
     $('#newPlanName').autocomplete({
         select: function () { 
             $("#adminEditPlanName").prop("disabled", false); 
@@ -80,18 +79,31 @@ $(document).ready( function() {
         }
     });
     
-    $('.allergicPlanItemOrderReason').keyup(function() {
-        var reason = true;
-        $('.allergicPlanItemOrderReason').each(function() {
-            if($(this).val() === '') {
-                reason = false;
+    $('.planDrugName .groupCheckBox').on('change', function() {
+        var selected = false;
+        $('.planDrugName .groupCheckBox').each(function() {
+            if(this.checked) {
+                selected = true;               
             }
         });
-        if (reason) {
-            $('#selectPlanButton').removeAttr('disabled'); 
+        if(selected){
+            $('#selectPlanButton').removeAttr('disabled');
         } else {
-            $('#selectPlanButton').attr('disabled', 'disabled'); 
-        }
+            $("#selectPlanButton").prop("disabled", true);
+        }        
+    });
+    
+    $('.allergicPlanItemOrderReason').each(function(){
+        this.style.borderColor = "orangered";
+    });
+    
+    $('.allergicPlanItemOrderReason').each(function(){
+        $(this).on('change', function(){
+            if($(this).val() === "")
+                this.style.borderColor = "orangered";
+            else
+                this.style.borderColor = "";
+        });
     });
     
     removeFromGroupDialog = emr.setupConfirmationDialog({
@@ -403,14 +415,23 @@ function renewMedPlanWindow(plan){
     $("#nonActivePlanForm").submit();
 }
 
+function autoCompletePlan(){
+    $("#diseaseName").autocomplete({
+        select : function(event, ui){
+            $("#diseaseName").val((ui.item.label).trim());
+            $("#diseaseForm").submit();
+        }
+    });
+}
+
 function autoCompleteDrug(drug, allergies){
     $("#drugNameEntered").autocomplete({
        select : function( event , ui ) {
             var allergyList = allergies.split(",");
             var isAllergic = false;
             $.each(allergyList,function(index,value){
-                var drugname = value.replace("[","").replace("]","").replace(" ","");
-                var selectedDrug = (ui.item.label).replace(" ","");
+                var drugname = value.replace("[","").replace("]","").trim();
+                var selectedDrug = (ui.item.label).trim();
                 if(selectedDrug === drugname){
                     isAllergic = true;
                 } 
