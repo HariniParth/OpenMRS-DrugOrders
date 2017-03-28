@@ -55,16 +55,16 @@
         <bean parent="serviceContext">
 		<property name="moduleService">
 			<list>
-				<value>org.openmrs.module.drugorders.api.medicationplansService</value>
+				<value>org.openmrs.module.drugorders.api.standardplansService</value>
 				<bean
 					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 					<property name="transactionManager">
 						<ref bean="transactionManager" />
 					</property>
 					<property name="target">
-						<bean class="org.openmrs.module.drugorders.api.impl.medicationplansServiceImpl">
+						<bean class="org.openmrs.module.drugorders.api.impl.standardplansServiceImpl">
 							<property name="dao">
-								<bean class="org.openmrs.module.drugorders.api.db.hibernate.HibernatemedicationplansDAO">
+								<bean class="org.openmrs.module.drugorders.api.db.hibernate.HibernatestandardplansDAO">
 									<property name="sessionFactory">
 										<ref bean="sessionFactory" />
 									</property>

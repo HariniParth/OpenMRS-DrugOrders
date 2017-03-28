@@ -33,11 +33,11 @@ import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.planordersService;
-import org.openmrs.module.drugorders.api.medicationplansService;
+import org.openmrs.module.drugorders.api.standardplansService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.drugorders.drugordersActivator;
 import org.openmrs.module.drugorders.planorders;
-import org.openmrs.module.drugorders.medicationplans;
+import org.openmrs.module.drugorders.standardplans;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
@@ -124,10 +124,10 @@ public class DrugordersPageController {
                     }
                     
                     if(existingMedPlanOrders.isEmpty()){
-                        List<medicationplans> medplans = Context.getService(medicationplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
+                        List<standardplans> medplans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseForPlan));
                         int planID = Context.getService(planordersService.class).getLastPlanID() + 1;
                         
-                        for(medicationplans medplan : medplans){
+                        for(standardplans medplan : medplans){
                             
                             DrugOrder drugOrder = null;
                             drugorders drugorder = null;

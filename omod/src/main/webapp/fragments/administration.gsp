@@ -181,28 +181,24 @@
 </div>
 
 
-<div id="editPlanWindow" class="dialog">
+<div id="renamePlanWindow" class="dialog">
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("RENAME PLAN") }</h3>
     </div><br/>
     
-    <div>
-        <form method="post">
-            
-            <label class="fields"><strong>Given Plan Name</strong>
-                <input id="oldPlanName" name="oldPlanName" readonly="true"/>
-            </label><br/>
-            
-            <label class="fields"><strong>Enter Plan Name</strong>
-                <input id="newPlanName" name="newPlanName" />
-            </label>
-            <br/><br/>
-            
-            <input type="hidden" name="action" value="editPlan" />
-            <button class="confirm right" id="adminEditPlanName" name="editPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
-            <button class="cancel left" type="button" onclick="hideMedPlanEditWindow()">${ ui.message("Cancel") }</button><br/><br/>
-        </form>
-    </div>
+    <form method="post">
+        <label class="fields"><strong>Given Plan Name</strong>
+            <input id="oldPlanName" name="oldPlanName" readonly="true"/>
+        </label><br/>
+
+        <label class="fields"><strong>Enter Plan Name</strong>
+            <input id="newPlanName" name="newPlanName" />
+        </label><br/><br/>
+
+        <input type="hidden" name="action" value="renamePlan" />
+        <button class="confirm right" id="adminEditPlanName" type="submit" onclick="">${ ui.message("Confirm") }</button>
+        <button class="cancel left" id="btn-place" type="button" onclick="hideMedPlanEditWindow()">${ ui.message("Cancel") }</button><br/><br/>
+    </form>
 </div>
 
 
@@ -387,7 +383,7 @@
     jq(".icon-plus-sign").click(function(){
         jq(this).nextAll(".groupBlock").first().show();
         jq(this).hide();
-        jq(this).nextAll(".icon-minus-sign").show();
+        jq(this).next(".icon-minus-sign").show();
     });
 </script>
 
@@ -395,6 +391,6 @@
     jq(".icon-minus-sign").click(function(){
         jq(this).nextAll(".groupBlock").first().hide();
         jq(this).hide();
-        jq(this).prevAll(".icon-plus-sign").show();
+        jq(this).prev(".icon-plus-sign").show();
     });
 </script>

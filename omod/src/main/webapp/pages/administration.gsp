@@ -65,8 +65,8 @@
                                                     </div>
 
                                                     <div id="button" class="pull-right">
-                                                        <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${ med.id }','${ med.diseaseId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
-                                                        <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${ med.id }','${ med.diseaseId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
+                                                        <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${ med.id }','${ med.planId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
+                                                        <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${ med.id }','${ med.planId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
                                                     </div><br/>
                                                 </div>
 
@@ -117,7 +117,7 @@
     jq(".icon-plus-sign").click(function(){
         jq(this).parent().parent().nextAll(".plansDetailsView").first().show();
         jq(this).hide();
-        jq(this).nextAll(".icon-minus-sign").show();
+        jq(this).next(".icon-minus-sign").show();
     });
 </script>
 
@@ -125,7 +125,7 @@
     jq(".icon-minus-sign").click(function(){
         jq(this).parent().parent().nextAll(".plansDetailsView").first().hide();
         jq(this).hide();
-        jq(this).prevAll(".icon-plus-sign").show();
+        jq(this).prev(".icon-plus-sign").show();
     });
 </script>
 

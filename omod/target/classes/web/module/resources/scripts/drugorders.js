@@ -486,13 +486,13 @@ function deleteMedPlan(planName){
 }
 
 function editPlanDetails(planName){
-    jq("#editPlanWindow").show();
-    document.getElementById("editPlanWindow").style.display = 'block';
+    jq("#renamePlanWindow").show();
+    document.getElementById("renamePlanWindow").style.display = 'block';
     $("#oldPlanName").val(planName);
 }
 
 function hideMedPlanEditWindow(){
-    jq("#editPlanWindow").hide();
+    jq("#renamePlanWindow").hide();
     $("#newPlanName").val("");
     $("#adminEditPlanName").prop("disabled", true); 
 }
