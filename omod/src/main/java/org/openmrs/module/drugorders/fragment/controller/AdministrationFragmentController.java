@@ -28,13 +28,22 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AdministrationFragmentController {
     
-    public void controller(PageModel model, @RequestParam(value = "selectedMedPlan", required = false) String selectedMedPlan){
+    public void controller(PageModel model, @RequestParam(value = "selectedMedPlan", required = false) String selectedMedPlan,
+                                            @RequestParam(value = "selectedPlanItem", required = false) Integer selectedPlanItem){
 
         HashMap<String, List<standardplans>> selectedPlan = new HashMap<>();
+        List<standardplans> plans = new ArrayList<>();
+        
         if(!selectedMedPlan.equals("")){
-            List<standardplans> plans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(selectedMedPlan));
+            plans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(selectedMedPlan));
             selectedPlan.put(selectedMedPlan, plans);
         }
+        else if(selectedPlanItem != null){
+            standardplans plan = Context.getService(standardplansService.class).getMedicationPlan(selectedPlanItem);
+            plans.add(plan);
+            selectedPlan.put(plan.getPlanId().getDisplayString(), plans);
+        }
+            
         model.addAttribute("selectedPlan", selectedPlan);
                
         List<Concept> durations = getConcepts("Units of Duration");

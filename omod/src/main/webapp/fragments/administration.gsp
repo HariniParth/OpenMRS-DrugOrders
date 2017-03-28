@@ -8,26 +8,95 @@
     </div><br/><br/>
     
     <div class="fields">
-        <span id="order_label"><strong>Drug Name</strong></span>
-        <span id="order_value"><label id="plan_drug"></label></span><br/>
-        <span id="order_label"><strong>Plan Name</strong></span>
-        <span id="order_value"><label id="plan_disease"></label></span><br/><br/>
-        <span id="order_label"><strong>Dose</strong></span>
-        <span id="order_value"><label id="plan_dose"></label></span>
-        <span id="order_label"><strong>Dose units</strong></span>
-        <span id="order_value"><label id="plan_dose_units"></label></span>
-        <span id="order_label"><strong>Route</strong></span>
-        <span id="order_value"><label id="plan_route"></label></span>
-        <span id="order_label"><strong>Quantity</strong></span>
-        <span id="order_value"><label id="plan_quantity"></label></span>
-        <span id="order_label"><strong>Qnty units</strong></span>
-        <span id="order_value"><label id="plan_quantity_units"></label></span>
-        <span id="order_label"><strong>Duration</strong></span>
-        <span id="order_value"><label id="plan_duration"></label></span>
-        <span id="order_label"><strong>Durn units</strong></span>
-        <span id="order_value"><label id="plan_duration_units"></label></span>
-        <span id="order_label"><strong>Frequency</strong></span>
-        <span id="order_value"><label id="plan_frequency"></label></span><br/>        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Drug</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_drug"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Plan</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_disease"></label>
+            </div>
+        </div><br/><br/><br/>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Dose</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_dose"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Dose units</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_dose_units"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Route</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_route"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Quantity</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_quantity"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Qnty units</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_quantity_units"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Duration</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_duration"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Durn units</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_duration_units"></label>
+            </div>
+        </div>
+        
+        <div id="view_order_detail">
+            <div id="order_label">
+                <strong>Frequency</strong>
+            </div>
+            <div id="order_value">
+                <label id="plan_frequency"></label>
+            </div>
+        </div>   
         <div><button class="cancel right" id="btn-place" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button></div>
     </div>
 </div>
@@ -38,18 +107,18 @@
         <span id="dialog-heading"><h3 id="adminActionType"></h3></span>
     </div><br/>
     
-    <div>
+    <div class="fields">
         <form id="createPlanForm" method="post">
             <input type="hidden" id="planId" name="planId" />
             
-            <div class="fields" id="disease_field">
+            <div id="disease_field">
                 <label><strong>Enter Plan Name</strong></label>
                 <input id="adminPlanName" name="planName"/>
             </div><br/>
             
-            <p class="fields"><strong>Specify Standard Formulation</strong></p>
+            <p><strong>Specify Standard Formulation</strong></p>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label id="label"><strong>Drug Name</strong></label>
                 </div>
@@ -60,7 +129,7 @@
             
             <br/><br/>
 
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Route</strong></label>
                 </div>
@@ -76,7 +145,7 @@
             
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Dose</strong></label>
                 </div>
@@ -87,7 +156,7 @@
 
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Dose Units</strong></label>
                 </div>
@@ -103,7 +172,7 @@
 
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Quantity</strong></label>
                 </div>
@@ -114,7 +183,7 @@
 
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Qnty Units</strong></label>
                 </div>
@@ -130,7 +199,7 @@
 
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Duration</strong></label>
                 </div>
@@ -141,7 +210,7 @@
 
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Durn Units</strong></label>
                 </div>
@@ -157,7 +226,7 @@
 
             <br/><br/>
             
-            <div class="fields" id="view_order_detail">
+            <div id="view_order_detail">
                 <div id="order_label">
                     <label><strong>Frequency</strong></label>
                 </div>
@@ -206,7 +275,7 @@
     <div id="deletePlanWindow" class="dialog">
         <div class="dialog-header">
             <h3 id="dialog-heading">${ ui.message("DISCARD PLAN") }</h3>
-        </div><br/>
+        </div>
 
         <div>
             <form method="post">
@@ -217,6 +286,7 @@
 
                         <div class="fields" id="discardPlanBlock">
                             <% discardPlan.value.each { plan -> %>
+                                <input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ plan.id }" checked="true" />
                                 <i class="icon-plus-sign  edit-action" title="${ ui.message("Show") }"></i>
                                 <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                                 <strong>${ plan.drugId.getDisplayString() }</strong><br/><br/>
@@ -264,7 +334,6 @@
                                 </div>
                             <% } %>
                         </div>
-                        <input id="planToDiscard" name="planToDiscard" value="${ discardPlan.key }" type="hidden" />
                     <% } %>                    
                 <% } %>
                 
@@ -275,43 +344,6 @@
         </div>
     </div>
 <% } %>
-
-<div id="deletePlanItemWindow" class="dialog">
-    <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("DISCARD PLAN DRUG") }</h3>
-    </div><br/>
-    
-    <div>
-        <form method="post">
-            <input type="hidden" id="drugId" name="drugId" />
-            <label class="fields" id="order_label"><strong>Drug Name</strong></label>
-            <label class="fields" id="drug_value"></label>
-            <label class="fields" id="order_label"><strong>Plan Name</strong></label>
-            <label class="fields" id="disease_value"></label>
-            <label class="fields" id="order_label"><strong>Dose</strong></label>
-            <label class="fields" id="dose_value"></label>
-            <label class="fields" id="order_label"><strong>Dose Units</strong></label>
-            <label class="fields" id="dose_units_value"></label>
-            <label class="fields" id="order_label"><strong>Route</strong></label>
-            <label class="fields" id="route_value"></label>
-            <label class="fields" id="order_label"><strong>Quantity</strong></label>
-            <label class="fields" id="quantity_value"></label>
-            <label class="fields" id="order_label"><strong>Qnty Units</strong></label>
-            <label class="fields" id="quantity_units_value"></label>
-            <label class="fields" id="order_label"><strong>Duration</strong></label>
-            <label class="fields" id="duration_value"></label>
-            <label class="fields" id="order_label"><strong>Durn Units</strong></label>
-            <label class="fields" id="duration_units_value"></label>
-            <label class="fields" id="order_label"><strong>Frequency</strong></label>
-            <label class="fields" id="frequency_value"></label><br/>
-
-            <input type="hidden" name="action" value="deletePlanItem" />
-            <button class="confirm right" id="btn-place" name="deletePlanItem" type="submit" onclick="">${ ui.message("Confirm") }</button>
-            <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanItemDeleteWindow()">${ ui.message("Cancel") }</button>
-        </form>
-    </div>
-</div>
-
 
 <script type="text/javascript">
     jq( function() {

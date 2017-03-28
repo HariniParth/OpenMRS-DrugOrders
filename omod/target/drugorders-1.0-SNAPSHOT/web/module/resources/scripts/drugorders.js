@@ -26,6 +26,8 @@ $(document).ready( function() {
                         hideMedPlanEditWindow();
                     else if(ID === "createPlanWindow")
                         hideMedPlanCreateWindow();
+                    else if(ID === "deletePlanWindow")
+                        hideMedPlanDeleteWindow();
                     else if(ID === "createOrderWindow")
                         hideIndividualOrderDetailsWindow();
                     else if(ID === "showGroupOrderWindow")
@@ -497,32 +499,15 @@ function hideMedPlanEditWindow(){
     $("#adminEditPlanName").prop("disabled", true); 
 }
 
-function deleteMedPlanItem(drugId,diseaseName,drugName,dose,doseunits,route,quantity,quantityunits,duration,durationunits,frequency){
-    jq("#deletePlanItemWindow").show();
-    document.getElementById("deletePlanItemWindow").style.display = 'block';
-    $("#drugId").val(drugId);
-    $("#disease_value").text(diseaseName);
-    $("#drug_value").text(drugName);
-    $("#dose_value").text(dose);
-    $("#dose_units_value").text(doseunits);
-    $("#route_value").text(route);
-    $("#quantity_value").text(quantity);
-    $("#quantity_units_value").text(quantityunits);
-    $("#duration_value").text(duration);
-    $("#duration_units_value").text(durationunits);
-    $("#frequency_value").text(frequency);
+function deleteMedPlanItem(planID){
+    $("#selectedPlanItem").val(planID);
+    $("#adminPageForm").submit();  
 }
 
 function hideMedPlanDeleteWindow(){
     jq("#deletePlanWindow").hide();
-}
-
-function hideMedPlanItemDeleteWindow(){
-    jq("#deletePlanItemWindow").hide();
-    
-    jq(".detailsLink").each(function(){
-        jq(this).children('div > *').slice(0, 1).css({'background-color':'','color':''});
-    }); 
+    $("#selectedPlanItem").val("");
+    $("#selectedMedPlan").val("");
 }
 
 function viewMedPlanWindow(planName,drugName,dose,doseUnits,route,quantity,quantityUnits,duration,durationUnits,frequency){

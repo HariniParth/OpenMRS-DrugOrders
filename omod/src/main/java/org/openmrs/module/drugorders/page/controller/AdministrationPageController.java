@@ -39,7 +39,7 @@ public class AdministrationPageController {
                             @RequestParam(value = "drugDuration", required = false) Integer drugDuration,
                             @RequestParam(value = "durationUnits", required = false) String durationUnits,
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
-                            @RequestParam(value = "planToDiscard", required = false) String planToDiscard,
+                            @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
                             @RequestParam(value = "oldPlanName", required = false) String oldPlanName,
                             @RequestParam(value = "newPlanName", required = false) String newPlanName,
                             @RequestParam(value = "drugId", required = false) String drugId,
@@ -83,17 +83,14 @@ public class AdministrationPageController {
                 }
                 
                 if ("deletePlan".equals(action)) {
-                    List<standardplans> medPlans = Context.getService(standardplansService.class).getMedicationPlansByDisease(ConceptName(planToDiscard));
-                    for(standardplans medPlan : medPlans){
-                        Context.getService(standardplansService.class).deleteMedicationPlan(medPlan);
-                    }
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Discarded!");
-                }
-                
-                if ("deletePlanItem".equals(action)) {
-                    standardplans medPlan = Context.getService(standardplansService.class).getMedicationPlan(Integer.parseInt(drugId));
-                    Context.getService(standardplansService.class).deleteMedicationPlan(medPlan);
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Plan Item Discarded!");
+                    if(groupCheckBox.length > 0){
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            int id = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            standardplans medPlan = Context.getService(standardplansService.class).getMedicationPlan(id);
+                            Context.getService(standardplansService.class).deleteMedicationPlan(medPlan);
+                        }
+                        InfoErrorMessageUtil.flashInfoMessage(session, "Discarded!");
+                    }                    
                 }
                 
             } catch(APIException | NumberFormatException e){

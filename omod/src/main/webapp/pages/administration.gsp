@@ -29,6 +29,7 @@
         
         <form method="post" id="adminPageForm">
             <input type="hidden" id="selectedMedPlan" name="selectedMedPlan" />
+            <input type="hidden" id="selectedPlanItem" name="selectedPlanItem" />
             
             <table id="medPlansTable">
                 <thead>
@@ -65,7 +66,7 @@
                                                     </div>
 
                                                     <div id="button" class="pull-right">
-                                                        <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${ med.id }','${ med.planId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
+                                                        <i class="icon-trash delete-action" title="${ ui.message("Discard") }" onclick="deleteMedPlanItem('${ med.id }')"></i>
                                                         <i class="icon-edit edit-action" title="${ ui.message("Edit") }" onclick="editPlanItemDetails('${ med.id }','${ med.planId.getDisplayString() }','${ med.drugId.getDisplayString() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')"></i>
                                                     </div><br/>
                                                 </div>
