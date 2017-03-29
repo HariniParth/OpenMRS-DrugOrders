@@ -65,9 +65,15 @@ public class HibernateplanordersDAO implements planordersDAO {
         return crit.list();
     };
     
+    /**
+     *
+     * @param concept
+     * @param patient
+     * @return
+     */
     @Transactional(readOnly = true)
     @Override
-    public List<planorders> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient){
+    public List<planorders> getDrugOrdersByPlanAndPatient(Concept concept,Patient patient){
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(
                 planorders.class);
         crit.add(Restrictions.eq("diseaseId", concept)).add(Restrictions.eq("patientId", patient.getPatientId()));

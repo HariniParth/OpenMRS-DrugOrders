@@ -116,7 +116,7 @@ public class DrugordersPageController {
                 
                 if ("selectMedPlan".equals(action)) {
                     
-                    List<planorders> existingMedPlanOrders = Context.getService(planordersService.class).getDrugOrdersByDiseaseAndPatient(ConceptName(diseaseForPlan), patient);
+                    List<planorders> existingMedPlanOrders = Context.getService(planordersService.class).getDrugOrdersByPlanAndPatient(ConceptName(diseaseForPlan), patient);
                     List<String> allergicPlanOrderReason = new ArrayList<>();
                     for(String orderReason : allergicPlanItemOrderReason){
                         if(!orderReason.equals(""))

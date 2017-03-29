@@ -17,9 +17,9 @@ import org.openmrs.module.drugorders.planorders;
 public interface planordersDAO {
     
     public int getLastPlanID();
-    public planorders getDrugOrderByOrderID(Integer orderId);
     public planorders saveDrugOrder(planorders order);
+    public planorders getDrugOrderByOrderID(Integer orderId);    
     public List<planorders> getDrugOrdersByPlanID(Integer planId);
-    public List<planorders> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient);
+    public List<planorders> getDrugOrdersByPlanAndPatient(Concept concept,Patient patient);
     
 }

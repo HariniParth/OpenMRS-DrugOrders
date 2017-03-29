@@ -43,6 +43,12 @@ public class planordersServiceImpl extends BaseOpenmrsService implements planord
         return dao.getLastPlanID();
     }
     
+    @Transactional
+    @Override
+    public planorders saveDrugOrder(planorders order){
+        return dao.saveDrugOrder(order);
+    }
+    
     @Transactional(readOnly = true)
     @Override
     public planorders getDrugOrderByOrderID(Integer id){
@@ -55,16 +61,10 @@ public class planordersServiceImpl extends BaseOpenmrsService implements planord
         return dao.getDrugOrdersByPlanID(planId);
     }
     
-    @Transactional
-    @Override
-    public planorders saveDrugOrder(planorders order){
-        return dao.saveDrugOrder(order);
-    }
-    
     @Transactional(readOnly = true)
     @Override
-    public List<planorders> getDrugOrdersByDiseaseAndPatient(Concept concept,Patient patient){
-        return dao.getDrugOrdersByDiseaseAndPatient(concept, patient);
+    public List<planorders> getDrugOrdersByPlanAndPatient(Concept concept,Patient patient){
+        return dao.getDrugOrdersByPlanAndPatient(concept, patient);
     }
     
 }
