@@ -25,21 +25,25 @@ public class DrugordersFragmentController {
         List<drugorders> drugOrders = new ArrayList<>();
         List<drugorders> orders;
         
-        orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active");
+        orders = getActiveOrders(patient, "Active");
         for(drugorders order : orders) {
             drugOrders.add(order);
         }
         
-        orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Group");
+        orders = getActiveOrders(patient, "Active-Plan");
         for(drugorders order : orders) {
             drugOrders.add(order);
         }
         
-        orders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Active-Plan");
+        orders = getActiveOrders(patient, "Active-Group");
         for(drugorders order : orders) {
             drugOrders.add(order);
         }
         
         model.addAttribute("drugorders", drugOrders);
+    }
+    
+    private List<drugorders> getActiveOrders(Patient patient, String status){
+        return Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, status);
     }
 }

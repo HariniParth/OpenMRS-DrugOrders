@@ -5,7 +5,6 @@
  */
 package org.openmrs.module.drugorders.fragment.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.openmrs.Concept;
@@ -32,7 +31,6 @@ public class MedicationPlansNonActiveFragmentController {
 
         //Data structure to store the 'drugorders' object properties for all the non-active orders for the given disease
         HashMap<Integer, HashMap<Concept, HashMap<Integer, drugorders>>> NonActivePlanExtension = new HashMap<>();
-        HashMap<Integer, ArrayList<String>> planDrugs = new HashMap<>();
         
         List<drugorders> nonActiveMedOrders = Context.getService(drugordersService.class).getDrugOrdersByPatientAndStatus(patient, "Non-Active-Plan");
         
@@ -47,13 +45,11 @@ public class MedicationPlansNonActiveFragmentController {
                 
                 HashMap<Integer,DrugOrder> orderMain = new HashMap<>();
                 HashMap<Integer,drugorders> orderExtn = new HashMap<>();
-                ArrayList<String> drugNames = new ArrayList<>();
                 
                 for(planorders orderByPlan : ordersByPlan){
                     int order = orderByPlan.getOrderId();
                     orderMain.put(order, (DrugOrder) Context.getOrderService().getOrder(order));
                     orderExtn.put(order, Context.getService(drugordersService.class).getDrugOrderByOrderID(order));
-                    drugNames.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(order).getDrugName().getDisplayString());
                 }
                 
                 planMain.put(nonActiveMedPlan.getDiseaseId(), orderMain);
@@ -61,12 +57,8 @@ public class MedicationPlansNonActiveFragmentController {
                 
                 NonActivePlanMain.put(nonActiveMedPlan.getPlanId(), planMain);
                 NonActivePlanExtension.put(nonActiveMedPlan.getPlanId(), planExtn);
-                
-                planDrugs.put(nonActiveMedPlan.getPlanId(), drugNames);
             }
         }
-        
-        model.addAttribute("planDrugs", planDrugs);
         model.addAttribute("NonActivePlanMain", NonActivePlanMain);
         model.addAttribute("NonActivePlanExtension", NonActivePlanExtension);
     }

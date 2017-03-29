@@ -36,25 +36,16 @@ public class EditDrugOrderFragmentController {
                             @RequestParam(value = "selectedNonActiveGroup", required = false) String selectedNonActiveGroup,
                             @RequestParam(value = "selectedActiveItem", required = false) String selectedActiveItem,
                             @RequestParam(value = "selectedActiveOrder", required = false) String selectedActiveOrder,
-                            @RequestParam(value = "diseaseForPlan", required = false) String diseaseForPlan,
                             @RequestParam(value = "associatedDiagnosis", required = false) String associatedDiagnosis){
 
         HashMap<Integer,DrugOrder> groupMain = new HashMap<>();
         HashMap<Integer,drugorders> groupExtn = new HashMap<>();
         
-        model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("associatedDiagnosis", associatedDiagnosis);
         
         ConceptClass reasonConcept = Context.getConceptService().getConceptClassByName("Discontinue Order Reasons");
         List<Concept> discontinueReasons = Context.getConceptService().getConceptsByClass(reasonConcept);
         model.addAttribute("discontinueReasons", discontinueReasons);
-               
-        List<DrugOrder> orderMainData = getDrugOrderMainDataByPatient(patient);
-        HashMap<Integer,DrugOrder> newOrderMainData = new HashMap<>();
-        for(DrugOrder order : orderMainData){
-            newOrderMainData.put(order.getOrderId(), order);
-        }
-        model.addAttribute("newOrderMainData", newOrderMainData);
                
         if(StringUtils.isNotBlank(selectedActiveGroup)){
             try {
@@ -151,20 +142,5 @@ public class EditDrugOrderFragmentController {
         
         model.addAttribute("groupMain", groupMain);
         model.addAttribute("groupExtn", groupExtn);
-    }
-        
-    private List<DrugOrder> getDrugOrderMainDataByPatient(Patient p){
-        ArrayList<DrugOrder> drugOrdersMain = new ArrayList<>();
-        List<Order> orders = Context.getOrderService().getAllOrdersByPatient(p);
-        int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
-        DrugOrder drugOrderMain;
-        
-        for (Order order : orders) {
-            if (order.getOrderType().getOrderTypeId() == drugOrderTypeId){
-                drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                drugOrdersMain.add(drugOrderMain);
-            }
-        }
-        return drugOrdersMain;
     }
 }
