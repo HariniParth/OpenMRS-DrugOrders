@@ -109,4 +109,26 @@
         </createTable>
     </changeSet>
     
+    <changeSet id="harini_table_7" author="harini">
+        <sql>
+            drop table if exists new_plans;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="harini" id="harini_table_8">
+        <preConditions onFail="WARN" onError="WARN">
+            <not>
+                <tableExists tableName="new_plans" />
+            </not>
+        </preConditions>
+        <createTable tableName="new_plans">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="plan_name" type="int"></column>
+            <column name="plan_desc" type="varchar(255)"></column>
+            
+        </createTable>
+    </changeSet>
+    
 </databaseChangeLog>
