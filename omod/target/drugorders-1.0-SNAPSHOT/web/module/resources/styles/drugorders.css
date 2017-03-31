@@ -98,6 +98,11 @@ and open the template in the editor.
     font-size: 14px;
 }
 
+.desc{
+    font-size: 14px;
+    margin-left: 30px;
+}
+
 .groupBlock, .drugDetails{
     font-size: 14px;
     margin-left: 50px;
@@ -133,11 +138,16 @@ and open the template in the editor.
 
 .detailsLink{
     width: 100%;
-    border: 1px solid gainsboro;
     overflow: hidden;
+    border: 1px solid gainsboro;  
 }
 
-.detailsLink #order_value{
+.plansDetailsView{
+    width: 90%;
+    margin-left: 30px;
+}
+
+.detailsLink #order_value, .planDrugDetails{
     border-right: 1px solid gainsboro;
     float: left;
     width: 80%;
@@ -162,7 +172,7 @@ and open the template in the editor.
     margin-right: 20px;
 }
 
-.detailsLink:hover div:first-child > *, .orderRow:hover .orderInfo, .oldOrderRow:hover .oldOrderDetails, .planDrug:hover .planDrugDetails, .planDrug:hover .planDetails, .groupDrug:hover .groupDrugDetails, .oldOrderDetails:hover, .oldGroupDetails:hover{
+.detailsLink:hover div:first-child, .orderRow:hover .orderInfo, .oldOrderRow:hover .oldOrderDetails, .planDrug:hover .planDrugDetails, .planDrug:hover .planDetails, .groupDrug:hover .groupDrugDetails, .oldOrderDetails:hover, .oldGroupDetails:hover{
     background: #75b2f0;
     color: white;
     cursor: pointer;

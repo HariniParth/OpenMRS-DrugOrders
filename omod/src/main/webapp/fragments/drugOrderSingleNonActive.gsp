@@ -33,10 +33,8 @@
                                         ${ oldOrder.orderId }
                                     </div>
                                     <div id="oldOrderName">
-                                        <div>${ oldOrder.drugName.getDisplayString().toUpperCase() }</div>
-                                        <span class="itemSummary">
-                                            <div>${ oldDrugOrdersMain.get(oldOrder.orderId).dose } ${ oldDrugOrdersMain.get(oldOrder.orderId).doseUnits.getDisplayString() }, ${ oldDrugOrdersMain.get(oldOrder.orderId).duration } ${ oldDrugOrdersMain.get(oldOrder.orderId).durationUnits.getDisplayString() }</div>
-                                        </span>
+                                        <div><strong>${ oldOrder.drugName.getDisplayString().toUpperCase() }</strong></div>
+                                        <div class="itemSummary"><em>Click to view details</em></div>
                                     </div>                                    
                                 </div>
                                 
@@ -58,9 +56,10 @@
                             <div id="oldOrderId">
                                 ${ oldDrugOrderExtension.orderId }
                             </div>
+                            
                             <div id="oldOrderName">
-                                <div>${ oldDrugOrderExtension.drugName.getDisplayString().toUpperCase() }</div>
-                                <div><span class="itemSummary">${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).dose } ${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).doseUnits.getDisplayString() }, ${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).duration } ${ oldDrugOrdersMain.get(oldDrugOrderExtension.orderId).durationUnits.getDisplayString() }</span></div>
+                                <div><strong>${ oldDrugOrderExtension.drugName.getDisplayString().toUpperCase() }</strong></div>
+                                <div class="itemSummary"><em>Click to view details</em></div>
                             </div>
                         </td>
                         <td>

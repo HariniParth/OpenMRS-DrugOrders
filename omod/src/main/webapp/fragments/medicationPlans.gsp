@@ -26,10 +26,16 @@
 
                 <% ActivePlanMain.each { drugOrderMain -> %>
                     <tr>
-                        <td class="fields">
-                            <div><strong>${ drugOrderMain.key.getDisplayString().toUpperCase() }</strong></div><br/>
+                        <td>
+                            <div class="fields">
+                                <span class="viewDetails">
+                                    <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                                </span>
+                                <strong>${ drugOrderMain.key.getDisplayString().toUpperCase() }</strong>
+                            </div><br/>
 
-                            <div class="orderDetails">
+                            <div class="plansDetailsView">
                                 <% drugOrderMain.value.each { drugOrderMn -> %>
 
                                     <% if(ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).priority != null) { %>
@@ -42,11 +48,15 @@
                                             <div id="planDrugId">
                                                 ${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).orderId }
                                             </div>
+                                            
                                             <div id="planDrugName">
-                                                <div>${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString().toUpperCase() }</div>
+                                                <div>
+                                                    <strong>${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).drugName.getDisplayString().toUpperCase() }</strong>
+                                                </div>
+                                                
                                                 <span class="itemSummary">
                                                     <div>Start Date: ${ ActivePlanExtension.get(drugOrderMain.key).get(drugOrderMn.key).startDate.format('yyyy-MM-dd') }</div>
-                                                    <div>${ drugOrderMn.value.dose } ${ drugOrderMn.value.doseUnits.getDisplayString() }, ${ drugOrderMn.value.duration } ${ drugOrderMn.value.durationUnits.getDisplayString() }</div>
+                                                    <div><em>Click to view details</em></div>
                                                 </span>
                                             </div>
                                         </div>
@@ -90,6 +100,22 @@
         ],
         fixedColumns: true
 
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().parent().nextAll(".plansDetailsView").first().show();
+        jq(this).hide();
+        jq(this).next(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().parent().nextAll(".plansDetailsView").first().hide();
+        jq(this).hide();
+        jq(this).prev(".icon-plus-sign").show();
     });
 </script>
 

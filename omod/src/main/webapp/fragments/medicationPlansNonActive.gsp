@@ -25,28 +25,35 @@
                 <% NonActivePlanMain.each { planOrderMain -> %>
                     <% planOrderMain.value.each { planMain -> %>
                         <tr>
-                            <td class="fields">
-                                <div><strong>${ planMain.key.getDisplayString().toUpperCase() }</strong></div><br/>
+                            <td>
+                                <div class="fields">
+                                    <span class="viewDetails">
+                                        <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
+                                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
+                                    </span>
+                                    <strong>${ planMain.key.getDisplayString().toUpperCase() }</strong>
+                                </div><br/>
                                 
-                                <% planMain.value.each { orderMain -> %>
-                                    <div class="planDrug">
-                                        <% if(NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority != null) { %>
-                                            <% default_prio = NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority.getDisplayString(); %>
-                                        <% } %>
+                                <div class="plansDetailsView">
+                                    <% planMain.value.each { orderMain -> %>
+                                        <div class="planDrug">
+                                            <% if(NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority != null) { %>
+                                                <% default_prio = NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).priority.getDisplayString(); %>
+                                            <% } %>
 
-                                        <div class="planDetails">
-                                            <div id="planDrugId">
-                                                ${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).orderId }
+                                            <div class="planDetails">
+                                                <div id="planDrugId">
+                                                    ${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).orderId }
+                                                </div>
+                                                
+                                                <div id="planDrugName" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startDate.format('yyyy-MM-dd') }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString() }','${ orderMain.value.dose }','${ orderMain.value.doseUnits.getDisplayString() }','${ orderMain.value.route.getDisplayString() }','${ orderMain.value.duration }','${ orderMain.value.durationUnits.getDisplayString() }','${ orderMain.value.quantity }','${ orderMain.value.quantityUnits.getDisplayString() }','${ orderMain.value.frequency }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).refill }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).isAllergicOrderReasons }','${ default_prio }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).patientInstructions }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).pharmacistInstructions }')">   
+                                                    <div><strong>${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString().toUpperCase() }</strong></div>
+                                                    <div class="itemSummary"><em>Click to view details</em></div>
+                                                </div><br/>
                                             </div>
-                                            <div id="planDrugName" onclick="showDrugOrderViewWindow('VIEW ORDER','${ ui.format(patient.givenName) }','${ ui.format(patient.familyName) }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).startDate.format('yyyy-MM-dd') }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString() }','${ orderMain.value.dose }','${ orderMain.value.doseUnits.getDisplayString() }','${ orderMain.value.route.getDisplayString() }','${ orderMain.value.duration }','${ orderMain.value.durationUnits.getDisplayString() }','${ orderMain.value.quantity }','${ orderMain.value.quantityUnits.getDisplayString() }','${ orderMain.value.frequency }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).refill }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).isAllergicOrderReasons }','${ default_prio }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).patientInstructions }','${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).pharmacistInstructions }')">   
-                                                <div>${ NonActivePlanExtension.get(planOrderMain.key).get(planMain.key).get(orderMain.key).drugName.getDisplayString().toUpperCase() }</div>
-                                                <span class="itemSummary">
-                                                    <div>${ orderMain.value.dose } ${ orderMain.value.doseUnits.getDisplayString() }, ${ orderMain.value.duration } ${ orderMain.value.durationUnits.getDisplayString() }</div>
-                                                </span>
-                                            </div><br/>
                                         </div>
-                                    </div>
-                                <% } %>                               
+                                    <% } %>
+                                </div>
                             </td>
                             <td class="planRenewButton">
                                 <span id="button" class="pull-right">
@@ -77,6 +84,22 @@
         ],
         fixedColumns: true
 
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().parent().nextAll(".plansDetailsView").first().show();
+        jq(this).hide();
+        jq(this).next(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().parent().nextAll(".plansDetailsView").first().hide();
+        jq(this).hide();
+        jq(this).prev(".icon-plus-sign").show();
     });
 </script>
 

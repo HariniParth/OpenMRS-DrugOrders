@@ -54,16 +54,18 @@
                                                 <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
                                             </span>
                                             <strong>${ newPlan.planName.getDisplayString().toUpperCase() }</strong>
-                                        </div><br/>
+                                        </div>
 
+                                        <div class="desc">${ newPlan.planDesc }</div><br/>
+                                        
                                         <% medPlan = allMedicationPlans.get(newPlan.planName) %>
                                         <% if(medPlan.size() > 0) { %>
                                             <div class="plansDetailsView">
                                                 <% medPlan.each { med -> %>
                                                     <div class="detailsLink">
                                                         <div class="fields" id="order_value" onclick="viewMedPlanWindow('${ newPlan.planName.getDisplayString().toUpperCase() }','${ med.drugId.getDisplayString().toUpperCase() }','${ med.dose }','${ med.doseUnits.getDisplayString() }','${ med.route.getDisplayString() }','${ med.quantity }','${ med.quantityUnits.getDisplayString() }','${ med.duration }','${ med.durationUnits.getDisplayString() }','${ med.frequency }')">
-                                                            <div>${ med.drugId.getDisplayString().toUpperCase() }</div>
-                                                            <div><span class="itemSummary">${ med.dose  } ${ med.doseUnits.getDisplayString() }, ${ med.duration } ${ med.durationUnits.getDisplayString() }</span></div>
+                                                            <div><strong>${ med.drugId.getDisplayString().toUpperCase() }</strong></div>
+                                                            <div><span class="itemSummary"><em>Click to view details</em></span></div>
                                                         </div>
 
                                                         <div id="button" class="pull-right">
