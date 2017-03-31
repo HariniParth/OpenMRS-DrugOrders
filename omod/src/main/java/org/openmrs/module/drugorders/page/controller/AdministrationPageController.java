@@ -15,6 +15,7 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.newplansService;
 import org.openmrs.module.drugorders.api.standardplansService;
+import org.openmrs.module.drugorders.drugordersActivator;
 import org.openmrs.module.drugorders.newplans;
 import org.openmrs.module.drugorders.standardplans;
 import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
@@ -52,7 +53,15 @@ public class AdministrationPageController {
                 if (null != action) switch (action) {
                     case "definePlan":
                         newplans newplan = new newplans();
-                        newplan.setPlanName(ConceptName(definePlanName.trim()));
+                        
+                        if(ConceptName(definePlanName.trim()) == null){
+                            drugordersActivator activator = new drugordersActivator();
+                            Concept planConcept =  activator.saveConcept(definePlanName.trim(), Context.getConceptService().getConceptClassByName("Diagnosis"));
+                            newplan.setPlanName(planConcept);
+                        } 
+                        else
+                            newplan.setPlanName(ConceptName(definePlanName.trim()));
+                        
                         newplan.setPlanDesc(definePlanDesc);
                         Context.getService(newplansService.class).saveMedicationPlan(newplan);
                         InfoErrorMessageUtil.flashInfoMessage(session, "Plan Saved!");
@@ -61,7 +70,15 @@ public class AdministrationPageController {
                     case "addPlan":
                         standardplans medPlans = new standardplans();
                         medPlans.setPlanId(Context.getService(newplansService.class).getMedicationPlan(ConceptName(planName)).getId());
-                        medPlans.setDrugId(ConceptName(drugName.trim()));
+                        
+                        if(ConceptName(drugName.trim()) == null){
+                            drugordersActivator activator = new drugordersActivator();
+                            Concept drugConcept =  activator.saveConcept(drugName.trim(), Context.getConceptService().getConceptClassByName("Drug"));
+                            medPlans.setDrugId(drugConcept);
+                        }
+                        else
+                            medPlans.setDrugId(ConceptName(drugName.trim()));
+                        
                         medPlans.setRoute(ConceptName(drugRoute));
                         medPlans.setDose(Double.valueOf(drugDose));
                         medPlans.setDoseUnits(ConceptName(drugDoseUnits));
