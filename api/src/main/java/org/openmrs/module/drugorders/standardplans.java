@@ -21,9 +21,9 @@ public class standardplans extends BaseOpenmrsObject implements Serializable{
     private Double dose;
     private Concept route;
     private Concept drugId;
+    private Integer planId;
     private Double quantity;
     private Integer duration;
-    private Concept planId;
     private Concept doseUnits;
     private Concept durationUnits;
     private Concept quantityUnits;
@@ -43,11 +43,11 @@ public class standardplans extends BaseOpenmrsObject implements Serializable{
         this.id = id;
     }
     
-    public Concept getPlanId() {
+    public Integer getPlanId() {
         return planId;
     }
 
-    public void setPlanId(Concept planId) {
+    public void setPlanId(Integer planId) {
         this.planId = planId;
     }
 

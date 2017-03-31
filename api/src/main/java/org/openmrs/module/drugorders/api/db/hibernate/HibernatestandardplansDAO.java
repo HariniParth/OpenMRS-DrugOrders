@@ -6,7 +6,6 @@
 package org.openmrs.module.drugorders.api.db.hibernate;
 
 import java.util.List;
-import org.openmrs.Concept;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.apache.commons.logging.Log;
@@ -47,11 +46,10 @@ public class HibernatestandardplansDAO implements standardplansDAO {
         
     @Transactional(readOnly = true)
     @Override
-    public List<standardplans> getMedicationPlansByDisease(Concept concept){
+    public List<standardplans> getMedicationPlans(Integer planId){
         
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
-                standardplans.class);
-        crit.add(Restrictions.eq("planId", concept));
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(standardplans.class);
+        crit.add(Restrictions.eq("planId", planId));
         return crit.list();
     };
     

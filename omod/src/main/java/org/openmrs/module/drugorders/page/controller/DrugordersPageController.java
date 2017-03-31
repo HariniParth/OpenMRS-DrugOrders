@@ -32,6 +32,7 @@ import org.openmrs.module.allergyapi.Allergies;
 import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.api.newplansService;
 import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.api.standardplansService;
 import org.openmrs.module.drugorders.drugorders;
@@ -124,7 +125,7 @@ public class DrugordersPageController {
                     }
                     
                     if(existingMedPlanOrders.isEmpty()){
-                        List<standardplans> medplans = Context.getService(standardplansService.class).getMedicationPlansByDisease(ConceptName(diseaseForPlan));
+                        List<standardplans> medplans = Context.getService(standardplansService.class).getMedicationPlans(Context.getService(newplansService.class).getMedicationPlan(ConceptName(diseaseForPlan)).getId());
                         int planID = Context.getService(planordersService.class).getLastPlanID() + 1;
                         
                         for(standardplans medplan : medplans){

@@ -55,17 +55,17 @@
     
     <changeSet id="harini_table_3" author="harini">
         <sql>
-            drop table if exists standard_disease_plan;
+            drop table if exists standard_plans;
         </sql>
     </changeSet>
     
     <changeSet author="harini" id="harini_table_4">
         <preConditions onFail="WARN" onError="WARN">
             <not>
-                <tableExists tableName="standard_disease_plan" />
+                <tableExists tableName="standard_plans" />
             </not>
         </preConditions>
-        <createTable tableName="standard_disease_plan">
+        <createTable tableName="standard_plans">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column> 

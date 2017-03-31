@@ -6,7 +6,6 @@
 package org.openmrs.module.drugorders.api;
 
 import java.util.List;
-import org.openmrs.Concept;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.drugorders.standardplans;
 
@@ -16,12 +15,12 @@ import org.openmrs.module.drugorders.standardplans;
  */
 public interface standardplansService extends OpenmrsService{
         
+    public standardplans getMedicationPlan(Integer id);
+    
     public void deleteMedicationPlan(standardplans plan);
-    
-    public standardplans getMedicationPlan(Integer planId);
-    
+        
     public standardplans saveMedicationPlan(standardplans plan);
     
-    public List<standardplans> getMedicationPlansByDisease(Concept concept);
+    public List<standardplans> getMedicationPlans(Integer planId);
         
 }

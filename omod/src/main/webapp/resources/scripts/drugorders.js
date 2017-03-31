@@ -24,6 +24,8 @@ $(document).ready( function() {
                         hideDrugOrderViewWindow();
                     else if(ID === "editPlanWindow")
                         hideMedPlanEditWindow();
+                    else if(ID === "definePlanWindow")
+                        hideMedPlanDefineWindow();
                     else if(ID === "createPlanWindow")
                         hideMedPlanCreateWindow();
                     else if(ID === "deletePlanWindow")
@@ -448,9 +450,14 @@ function autoCompleteDrug(drug, allergies){
 }
 
 function displayPlanCreationWindow(){
-    jq("#createPlanWindow").show();
-    document.getElementById("createPlanWindow").style.display = 'block';
-    $("#adminActionType").text("CREATE NEW PLAN");
+    jq("#definePlanWindow").show();
+    document.getElementById("definePlanWindow").style.display = 'block';
+}
+
+function hideMedPlanDefineWindow(){
+    jq("#definePlanWindow").hide();
+    $("#definePlanName").val("");
+    $("#definePlanDesc").val("");
 }
 
 function addPlanItemWindow(diseaseName){

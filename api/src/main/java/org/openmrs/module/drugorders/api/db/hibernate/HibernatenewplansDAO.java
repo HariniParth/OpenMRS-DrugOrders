@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.drugorders.api.db.hibernate;
 
+import java.util.List;
 import org.openmrs.Concept;
 import org.hibernate.Criteria;
 import org.apache.commons.logging.Log;
@@ -30,6 +31,21 @@ public class HibernatenewplansDAO implements newplansDAO {
     
     public void setSessionFactory(SessionFactory sessionFactory) {
 	    this.sessionFactory = sessionFactory;
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public newplans getMedicationPlan(Integer id){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(newplans.class);
+        crit.add(Restrictions.eq("id", id));
+        return (newplans) crit.uniqueResult();
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<newplans> getAllMedicationPlans(){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(newplans.class);
+        return crit.list();
     }
     
     @Transactional

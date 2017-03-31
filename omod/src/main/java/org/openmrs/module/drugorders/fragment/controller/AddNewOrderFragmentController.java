@@ -14,7 +14,9 @@ import org.openmrs.Patient;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
+import org.openmrs.module.drugorders.api.newplansService;
 import org.openmrs.module.drugorders.api.standardplansService;
+import org.openmrs.module.drugorders.newplans;
 import org.openmrs.module.drugorders.standardplans;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
@@ -46,7 +48,11 @@ public class AddNewOrderFragmentController {
         model.addAttribute("diseaseForPlan", diseaseForPlan);
         model.addAttribute("diseaseName", diseaseName.trim());
         
-        List<standardplans> medplans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(diseaseName.trim()));
+        List<standardplans> medplans = new ArrayList<>();
+        if(Context.getService(newplansService.class).getMedicationPlan(Context.getConceptService().getConceptByName(diseaseName)) != null){
+            newplans newPlan = Context.getService(newplansService.class).getMedicationPlan(Context.getConceptService().getConceptByName(diseaseName));
+            medplans = Context.getService(standardplansService.class).getMedicationPlans(newPlan.getId());
+        }
         model.addAttribute("medplans", medplans);
                 
         int number_of_allergic_drugs = patientService.getAllergies(patient).size();
@@ -74,8 +80,11 @@ public class AddNewOrderFragmentController {
         
         List<Concept> names = new ArrayList<>();
         for (ConceptSearchResult con : results) {
-            if(Context.getService(standardplansService.class).getMedicationPlansByDisease(con.getConcept()).size() > 0)
-                names.add(con.getConcept()); 
+            newplans plan = Context.getService(newplansService.class).getMedicationPlan(con.getConcept());
+            if(plan != null){
+                if(Context.getService(standardplansService.class).getMedicationPlans(plan.getId()).size() > 0)
+                    names.add(con.getConcept());
+            }
         }
         String[] properties = new String[] { "name"};
         return SimpleObject.fromCollection(names, ui, properties);

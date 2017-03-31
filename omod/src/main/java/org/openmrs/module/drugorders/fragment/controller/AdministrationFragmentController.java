@@ -14,6 +14,7 @@ import org.openmrs.ConceptSearchResult;
 import org.openmrs.OrderFrequency;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.drugorders.api.newplansService;
 import org.openmrs.module.drugorders.api.standardplansService;
 import org.openmrs.module.drugorders.standardplans;
 import org.openmrs.ui.framework.SimpleObject;
@@ -31,17 +32,19 @@ public class AdministrationFragmentController {
     public void controller(PageModel model, @RequestParam(value = "selectedMedPlan", required = false) String selectedMedPlan,
                                             @RequestParam(value = "selectedPlanItem", required = false) Integer selectedPlanItem){
 
+        model.addAttribute("selectedMedPlan", selectedMedPlan);
+        
         HashMap<String, List<standardplans>> selectedPlan = new HashMap<>();
         List<standardplans> plans = new ArrayList<>();
         
         if(!selectedMedPlan.equals("")){
-            plans = Context.getService(standardplansService.class).getMedicationPlansByDisease(Context.getConceptService().getConceptByName(selectedMedPlan));
+            plans = Context.getService(standardplansService.class).getMedicationPlans(Context.getService(newplansService.class).getMedicationPlan(Context.getConceptService().getConceptByName(selectedMedPlan)).getId());
             selectedPlan.put(selectedMedPlan, plans);
         }
         else if(selectedPlanItem != null){
             standardplans plan = Context.getService(standardplansService.class).getMedicationPlan(selectedPlanItem);
             plans.add(plan);
-            selectedPlan.put(plan.getPlanId().getDisplayString(), plans);
+            selectedPlan.put(Context.getService(newplansService.class).getMedicationPlan(plan.getPlanId()).getPlanName().getDisplayString(), plans);
         }
             
         model.addAttribute("selectedPlan", selectedPlan);

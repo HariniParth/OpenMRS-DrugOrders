@@ -35,13 +35,13 @@
 
     </class>
 
-    <class name="standardplans" table="standard_disease_plan">
+    <class name="standardplans" table="standard_plans">
 
         <id name="id" type="int" column="id" unsaved-value="0">
             <generator class="native" />
         </id>
         <discriminator column="id" insert="false" />
-        <many-to-one name="planId" column="plan_id" class="org.openmrs.Concept" />
+        <property name="planId" column="plan_id" not-null="false" ></property>
         <many-to-one name="drugId" column="drug_id" class="org.openmrs.Concept" />
         <property name="dose" column="dose" type="java.lang.Double" length="10" ></property>
         <many-to-one name="doseUnits" column="dose_units" class="org.openmrs.Concept" />

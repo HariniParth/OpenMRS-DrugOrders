@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.drugorders.api;
 
+import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.drugorders.newplans;
@@ -14,6 +15,10 @@ import org.openmrs.module.drugorders.newplans;
  * @author harini-geek
  */
 public interface newplansService extends OpenmrsService{
+    
+    public List<newplans> getAllMedicationPlans();
+    
+    public newplans getMedicationPlan(Integer id);
     
     public void deleteMedicationPlan(newplans plan);
         

@@ -102,6 +102,31 @@
 </div>
   
 
+<div id="definePlanWindow" class="dialog">
+    <div class="dialog-header">
+        <span id="dialog-heading"><h3>DEFINE MEDICATION PLAN</h3></span>
+    </div>
+    
+    <div class="fields">
+        <form id="definePlanForm" method="post">
+            <div id="view_order_detail">
+                <label><strong>Enter Plan Name</strong></label>
+                <input id="definePlanName" name="definePlanName" />
+            </div><br/>
+            
+            <div id="view_order_detail">
+                <label><strong>Enter Description</strong></label>
+                <input type="textarea" maxlength="100" id="definePlanDesc" name="definePlanDesc"/>
+            </div><br/>
+            
+            <input type="hidden" name="action" value="definePlan" />
+            <button class="confirm right" id="planDefineButton" type="submit">${ ui.message("Confirm") }</button>
+            <button class="cancel left" type="button" onclick="hideMedPlanDefineWindow()">${ ui.message("Cancel") }</button><br/><br/>
+        </form>
+    </div>
+</div>
+
+
 <div id="createPlanWindow" class="dialog">
     <div class="dialog-header">
         <span id="dialog-heading"><h3 id="adminActionType"></h3></span>
@@ -274,7 +299,13 @@
 <% if(selectedPlan.size() > 0) { %>
     <div id="deletePlanWindow" class="dialog">
         <div class="dialog-header">
-            <h3 id="dialog-heading">${ ui.message("DISCARD PLAN") }</h3>
+            <h3 id="dialog-heading">
+                <% if(selectedMedPlan != "") { %>
+                    ${ ui.message("DISCARD PLAN") }
+                <% } else { %>
+                    ${ ui.message("DISCARD DRUG") }
+                <% } %>
+            </h3>
         </div>
 
         <div>
@@ -334,11 +365,17 @@
                                 </div>
                             <% } %>
                         </div>
+                        <input name="planToDiscard" value="${ discardPlan.key }" type="hidden" /> 
                     <% } %>                    
                 <% } %>
                 
-                <input name="action" value="deletePlan" type="hidden" />                
-                <button class="confirm right" id="btn-place" name="discardPlan" type="submit" onclick="">${ ui.message("Confirm") }</button>
+                <% if(selectedMedPlan != "") { %>
+                    <input name="action" value="deletePlan" type="hidden" />
+                <% } else { %>
+                    <input name="action" value="deleteDrug" type="hidden" /> 
+                <% } %>
+                               
+                <button class="confirm right" id="btn-place" type="submit" onclick="">${ ui.message("Confirm") }</button>
                 <button class="cancel" id="btn-place" type="button" onclick="hideMedPlanDeleteWindow()">${ ui.message("Cancel") }</button>
             </form>
         </div>
@@ -347,7 +384,7 @@
 
 <script type="text/javascript">
     jq( function() {
-        jq( "#adminPlanName" ).autocomplete({
+        jq( "#definePlanName" ).autocomplete({
             source: function( request, response ) {
                 var results = [];
                 jq.getJSON('${ ui.actionLink("getPlanNameSuggestions") }',

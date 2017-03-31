@@ -6,7 +6,6 @@
 package org.openmrs.module.drugorders.api.impl;
 
 import java.util.List;
-import org.openmrs.Concept;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
@@ -60,8 +59,8 @@ public class standardplansServiceImpl extends BaseOpenmrsService implements stan
     
     @Transactional(readOnly = true)
     @Override
-    public List<standardplans> getMedicationPlansByDisease(Concept concept){
-        return dao.getMedicationPlansByDisease(concept);
+    public List<standardplans> getMedicationPlans(Integer planId){
+        return dao.getMedicationPlans(planId);
     }
     
 }

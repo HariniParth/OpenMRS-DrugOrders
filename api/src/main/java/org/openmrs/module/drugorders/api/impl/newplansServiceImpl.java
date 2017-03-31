@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.drugorders.api.impl;
 
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
@@ -37,6 +38,18 @@ public class newplansServiceImpl extends BaseOpenmrsService implements newplansS
     
     public void setDao(newplansDAO dao) {
 	    this.dao = dao;
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public newplans getMedicationPlan(Integer id){
+        return dao.getMedicationPlan(id);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<newplans> getAllMedicationPlans(){
+        return dao.getAllMedicationPlans();
     }
     
     @Override
