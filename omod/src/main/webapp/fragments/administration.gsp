@@ -1,117 +1,20 @@
 <%
     ui.includeCss("drugorders", "drugorders.css")
+    ui.includeJavascript("drugorders", "drugorders.js")
 %>
-
-<div id="viewPlanWindow" class="dialog">
-    <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("PLAN DRUG") }</h3>
-    </div><br/><br/>
-    
-    <div class="fields">
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Drug</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_drug"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Plan</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_disease"></label>
-            </div>
-        </div><br/><br/><br/>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Dose</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_dose"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Dose units</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_dose_units"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Route</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_route"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Quantity</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_quantity"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Qnty units</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_quantity_units"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Duration</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_duration"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Durn units</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_duration_units"></label>
-            </div>
-        </div>
-        
-        <div id="view_order_detail">
-            <div id="order_label">
-                <strong>Frequency</strong>
-            </div>
-            <div id="order_value">
-                <label id="plan_frequency"></label>
-            </div>
-        </div>   
-        <div><button class="cancel right" id="btn-place" onclick="hideMedPlanWindow()">${ ui.message("Close") }</button></div>
-    </div>
-</div>
-  
 
 <div id="definePlanWindow" class="dialog">
     <div class="dialog-header">
         <span id="dialog-heading"><h3>DEFINE MEDICATION PLAN</h3></span>
-    </div>
+    </div><br/>
     
     <div class="fields">
         <form id="definePlanForm" method="post">
+            <input id="definePlanId" name="definePlanId" type="hidden" />
+            
             <div id="view_order_detail">
                 <label><strong>Enter Plan Name</strong></label>
-                <input id="definePlanName" name="definePlanName" />
+                <input type="text" id="definePlanName" name="definePlanName" />
             </div><br/>
             
             <div id="view_order_detail">
@@ -119,7 +22,7 @@
                 <input type="textarea" maxlength="100" id="definePlanDesc" name="definePlanDesc"/>
             </div><br/>
             
-            <input type="hidden" name="action" value="definePlan" />
+            <input type="hidden" name="action" id="defineAction" />
             <button class="confirm right" id="planDefineButton" type="submit">${ ui.message("Confirm") }</button>
             <button class="cancel left" type="button" onclick="hideMedPlanDefineWindow()">${ ui.message("Cancel") }</button><br/><br/>
         </form>
@@ -138,7 +41,7 @@
             
             <div id="disease_field">
                 <label><strong>Enter Plan Name</strong></label>
-                <input id="adminPlanName" name="planName"/>
+                <input id="adminPlanName" type="text" name="planName" />
             </div><br/>
             
             <p><strong>Specify Standard Formulation</strong></p>
@@ -272,27 +175,6 @@
             <button class="cancel left" type="button" onclick="hideMedPlanCreateWindow()">${ ui.message("Cancel") }</button><br/><br/>
         </form>
     </div>
-</div>
-
-
-<div id="renamePlanWindow" class="dialog">
-    <div class="dialog-header">
-        <h3 id="dialog-heading">${ ui.message("RENAME PLAN") }</h3>
-    </div><br/>
-    
-    <form method="post">
-        <label class="fields"><strong>Given Plan Name</strong>
-            <input id="oldPlanName" name="oldPlanName" readonly="true"/>
-        </label><br/>
-
-        <label class="fields"><strong>Enter Plan Name</strong>
-            <input id="newPlanName" name="newPlanName" />
-        </label><br/><br/>
-
-        <input type="hidden" name="action" value="renamePlan" />
-        <button class="confirm right" id="adminEditPlanName" type="submit" onclick="">${ ui.message("Confirm") }</button>
-        <button class="cancel left" id="btn-place" type="button" onclick="hideMedPlanEditWindow()">${ ui.message("Cancel") }</button><br/><br/>
-    </form>
 </div>
 
 

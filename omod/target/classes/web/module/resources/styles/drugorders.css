@@ -28,7 +28,7 @@ and open the template in the editor.
     width: 100%;
 }
 
-#btn-place, #adminEditPlanName, #selectPlanButton{
+#btn-place, #selectPlanButton{
     margin: 10px;
 }
 
@@ -79,7 +79,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.nonActiveOrderWindow, #medPlanWindow, .plansDetailsView, .groupBlock, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #definePlanWindow, #createPlanWindow, #viewPlanWindow, #renamePlanWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect, #removeFromGroupWindow{
+.nonActiveOrderWindow, #medPlanWindow, .plansDetailsView, .groupBlock, #createOrderWindow, #showOrderWindow, #renewOrderWindow, #definePlanWindow, #createPlanWindow, #allergicDrugOrderReasonField, #nonActiveOrdersLinkHide, #nonActivePlansLinkHide, .icon-minus-sign.edit-action, #allergicOrderReasonView, #pharmacistCommentsView, #discontinueReasonText, #discontinueReasonSelect, #removeFromGroupWindow{
     display: none;
 }
 
@@ -136,10 +136,17 @@ and open the template in the editor.
     width: 80%;
 }
 
-.detailsLink{
+.planBlock{
     width: 100%;
     overflow: hidden;
     border: 1px solid gainsboro;  
+}
+
+.planBlockDetails{
+    width: 80%;
+    float: left;
+    overflow: hidden;
+    border-right: 1px solid gainsboro;  
 }
 
 .plansDetailsView{
@@ -147,20 +154,20 @@ and open the template in the editor.
     margin-left: 30px;
 }
 
-.detailsLink #order_value, .planDrugDetails{
+.planDrugDetails{
     border-right: 1px solid gainsboro;
     float: left;
     width: 80%;
 }
 
-#definePlanWindow, #createPlanWindow, #showOrderWindow, #confirmOrderWindow, #viewPlanWindow, #deletePlanWindow, #showRenewOrderView, #renamePlanWindow, #createOrderWindow, #medPlanWindow, #medPlanDetailsWindow, #drugOrderView, #groupOrderList, #showGroupOrderWindow{
+#definePlanWindow, #createPlanWindow, #showOrderWindow, #confirmOrderWindow, #deletePlanWindow, #showRenewOrderView, #createOrderWindow, #medPlanWindow, #medPlanDetailsWindow, #drugOrderView, #groupOrderList, #showGroupOrderWindow{
     background: #f3f3f3;
     border: 1px solid #eee;
     padding: 5px;
     color: #363463;
 }
 
-.groupDrugName, #singleOrderView div:first-child, #planDrugName, #itemSpace .itemSummary, #singleOrderView, #viewPlanWindow, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails, .groupDrug, #removeFromGroupWindow{
+.groupDrugName, #singleOrderView div:first-child, #planDrugName, .planBlock, #itemSpace .itemSummary, #singleOrderView, #itemSpace, .oldOrderDetails, .planDrugDetails, .planDetails, .groupDrug, #removeFromGroupWindow{
     overflow: hidden;
 }
 
@@ -172,7 +179,7 @@ and open the template in the editor.
     margin-right: 20px;
 }
 
-.detailsLink:hover div:first-child, .orderRow:hover .orderInfo, .oldOrderRow:hover .oldOrderDetails, .planDrug:hover .planDrugDetails, .planDrug:hover .planDetails, .groupDrug:hover .groupDrugDetails, .oldOrderDetails:hover, .oldGroupDetails:hover{
+.orderRow:hover .orderInfo, .oldOrderRow:hover .oldOrderDetails, .planDrug:hover .planDrugDetails, .planDrug:hover .planDetails, .groupDrug:hover .groupDrugDetails, .oldOrderDetails:hover, .oldGroupDetails:hover{
     background: #75b2f0;
     color: white;
     cursor: pointer;
@@ -224,11 +231,11 @@ and open the template in the editor.
     vertical-align: top;
 }
 
-.orderRow.discontinued > .orderInfo, .groupDrug.discontinued > div:first-child > *, .detailsLink.discontinued > div > div{
+.orderRow.discontinued > .orderInfo, .groupDrug.discontinued > div:first-child > *{
     text-decoration: line-through;
 }
 
-.orderRow.onhold > .orderInfo, .groupDrug.onhold > div:first-child > *, .detailsLink.discontinued > div > div{
+.orderRow.onhold > .orderInfo, .groupDrug.onhold > div:first-child > *{
     color: orangered;
 }
 

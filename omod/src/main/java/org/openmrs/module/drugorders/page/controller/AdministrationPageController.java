@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdministrationPageController {
         
     public void controller(PageModel model, HttpSession session, @RequestParam(value = "planId", required = false) String planId,
+                            @RequestParam(value = "definePlanId", required = false) String definePlanId,
                             @RequestParam(value = "definePlanName", required = false) String definePlanName,
                             @RequestParam(value = "definePlanDesc", required = false) String definePlanDesc,
                             @RequestParam(value = "planName", required = false) String planName,
@@ -42,8 +43,6 @@ public class AdministrationPageController {
                             @RequestParam(value = "durationUnits", required = false) String durationUnits,
                             @RequestParam(value = "drugFrequency", required = false) String drugFrequency,
                             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
-                            @RequestParam(value = "oldPlanName", required = false) String oldPlanName,
-                            @RequestParam(value = "newPlanName", required = false) String newPlanName,
                             @RequestParam(value = "planToDiscard", required = false) String planToDiscard,
                             @RequestParam(value = "drugId", required = false) String drugId,
                             @RequestParam(value = "action", required = false) String action){
@@ -102,8 +101,8 @@ public class AdministrationPageController {
                         break;
                         
                     case "renamePlan":
-                        newplans oldPlan = Context.getService(newplansService.class).getMedicationPlan(ConceptName(oldPlanName.trim()));
-                        oldPlan.setPlanName(ConceptName(newPlanName.trim()));
+                        newplans oldPlan = Context.getService(newplansService.class).getMedicationPlan(Integer.parseInt(definePlanId));
+                        oldPlan.setPlanName(ConceptName(definePlanName.trim()));
                         InfoErrorMessageUtil.flashInfoMessage(session, "Plan Renamed!");
                         break;
                         
