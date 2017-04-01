@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.openmrs.module.drugorders">
 
-    <class name="drugorders" table="drug_order_extension">
+    <class name="drugorders" table="drug_orders_extn">
         <id name="id" type="int" column="id" unsaved-value="0">
             <generator class="native" />
         </id>
@@ -54,7 +54,7 @@
 
     </class>
     
-    <class name="planorders" table="drug_order_diseases">
+    <class name="planorders" table="plan_orders">
 
         <id name="id" type="int" column="id" unsaved-value="0">
             <generator class="native" />
@@ -64,7 +64,7 @@
         <property name="orderId" column="order_id" not-null="false" ></property>
         <property name="patientId" column="patient_id" not-null="false" ></property>
         <many-to-one name="diseaseId" column="disease_id" class="org.openmrs.Concept" />
-    
+        
     </class>
     
     <class name="newplans" table="new_plans">
