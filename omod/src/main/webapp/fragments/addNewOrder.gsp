@@ -50,13 +50,13 @@
                 <h3 id="dialog-heading">${ ui.message("STANDARD MEDICATION PLAN") }</h3>
             </div>
             
-            <input type="hidden" id="diseaseForPlan" name="diseaseForPlan" value="${ diseaseName }" />
+            <input type="hidden" id="selectedPlan" name="selectedPlan" value="${ diseaseName }" />
             <h5 class="align-center"><strong>${ diseaseName.toUpperCase() }</strong></h5><br/>
             
             <div id="medPlansBlock" class="fields">
                 <% medplans.each { medplan -> %>
                     <div class="planDrugName">
-                        <input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="" checked="true" />
+                        <input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ medplan.drugId }" checked="true" />
                         <i class="icon-plus-sign  edit-action" title="${ ui.message("Show") }"></i>
                         <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                         <strong>${ medplan.drugId.getDisplayString() }</strong>

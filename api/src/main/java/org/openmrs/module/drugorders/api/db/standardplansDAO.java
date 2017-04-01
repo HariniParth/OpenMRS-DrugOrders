@@ -21,5 +21,5 @@ public interface standardplansDAO {
     public standardplans saveMedicationPlan(standardplans plan);
     
     public List<standardplans> getMedicationPlans(Integer planId);
-        
+    
 }
