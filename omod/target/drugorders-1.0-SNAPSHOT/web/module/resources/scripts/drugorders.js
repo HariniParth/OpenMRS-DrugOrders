@@ -37,6 +37,7 @@ $(document).ready( function() {
         }  
     });
 
+    highlight();
     $("#planSaveButton").prop("disabled", true);
     $("#addOrderButton").prop("disabled", true);
     $("#planDefineButton").prop("disabled", true);
@@ -118,6 +119,29 @@ $(document).ready( function() {
         }
     });
 });
+
+function highlight(){
+    var selectedPlan = $("#discardPlan").text().toUpperCase();
+    var selectedDrug = $(".discardDrug");
+    
+    if(selectedPlan !== ""){
+        var $rowsNo = $('#medPlansTable tbody tr .planDetails').filter(function () {
+            if($.trim($(this).find('.fields').find('.planName').text()) === selectedPlan){
+                $(this).find('.fields').find('.icon-plus-sign').hide();
+                $(this).find('.fields').find('.icon-minus-sign').show();
+                $(this).find('.plansDetailsView').show();
+                
+                if(selectedDrug.size() === 1){
+                    $(this).find('.plansDetailsView').find('.planBlock').find('.planBlockDetails').find('.planItem').each(function(){
+                        if($(this).text() === selectedDrug.text().toUpperCase()){
+                            $(this).parent().parent().css({"background": "#75b2f0","color": "white"});
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
 
 function clearHighlights(){
     jq(".orderRow").each(function(){

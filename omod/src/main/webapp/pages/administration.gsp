@@ -51,7 +51,7 @@
                                         <div class="fields">
                                             <i class="icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                                             <i class="icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                                            <strong id="planName">${ newPlan.planName.getDisplayString().toUpperCase() }</strong>
+                                            <strong class="planName">${ newPlan.planName.getDisplayString().toUpperCase() }</strong>
                                         </div>
 
                                         <div class="desc">${ newPlan.planDesc }</div><br/>
@@ -65,7 +65,7 @@
                                                             <div>
                                                                 <i class="show-details icon-plus-sign edit-action" title="${ ui.message("View Details") }"></i>
                                                                 <i class="hide-details icon-minus-sign icon-minus-sign edit-action" title="${ ui.message("Hide Details") }"></i>
-                                                                <strong>${ med.drugId.getDisplayString().toUpperCase() }</strong>
+                                                                <strong class="planItem">${ med.drugId.getDisplayString().toUpperCase() }</strong>
                                                             </div><br/>
 
                                                             <div class="groupBlock">
